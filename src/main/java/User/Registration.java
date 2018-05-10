@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
 public class Registration extends HttpServlet {
     
     // Connect Database
-    private final PatientDAO userDAO = new PatientDAO();
+    private final PatientDAO patientDAO = new PatientDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -99,7 +99,7 @@ public class Registration extends HttpServlet {
             // Check if adding is successful
             if (patientDAO.insertUser(patient)) {
 
-                text = "Hi <strong>" + user.getName() + "</strong>,<br><br>" + text;
+                text = "Hello <strong>" + user.getName() + "</strong>,<br><br>" + text;
 
                 Cookie loginCookie = new Cookie("username", username);
                 //setting cookie to expiry in 30 mins
