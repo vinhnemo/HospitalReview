@@ -17,12 +17,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import Mail.*;
 
 /**
  *
  * @author TGMaster
  */
 public class Registration extends HttpServlet {
+    
+    private static final String service = "service.gamelord@gmail.com";
+    private static final String mailserver = "smtp.gmail.com";
+    private static final String subject = "[Registration] Welcome to GAMELORD";
     
     // Connect Database
     private final PatientDAO patientDAO = new PatientDAO();
@@ -36,7 +41,7 @@ public class Registration extends HttpServlet {
         // Declare requestDispatcher
         RequestDispatcher rd;
 
-        rd = sc.getRequestDispatcher("/registration.jsp");
+        rd = sc.getRequestDispatcher("/register.jsp");
         rd.forward(request, response);
     }
 
@@ -76,6 +81,14 @@ public class Registration extends HttpServlet {
             }
         }
         
+        String text
+                = "Thanks for signing up to keep in touch with <strong>GAMELORD</strong>. From now on there might be a few things about GAMELORD you would like to know:<br>"
+                + "First , you will find more than 1000 games online and offline at GAMELORD<br>"
+                + "Second, you can place your order online and then collect at the same time<br>"
+                + "Third, we have a fantastic website that updates daily<br>"
+                + "Final, we have an active online community<br><br>"
+                + "Keep your eyes peeled for a special offer email from us. In the meantime, see the latest and greatest game from the website.";
+        
         if (error.length() > 0) {
 
             request.setAttribute("error", error);
@@ -97,20 +110,19 @@ public class Registration extends HttpServlet {
             //patient.setImage("avatar.jpg");
            
             // Check if adding is successful
-<<<<<<< HEAD
             if (patientDAO.insertUser(patient)) {
 
-                text = "Hello <strong>" + user.getName() + "</strong>,<br><br>" + text;
+                text = "Hello <strong>" + patient.getFname() + "</strong>,<br><br>" + text;
 
                 Cookie loginCookie = new Cookie("username", username);
                 //setting cookie to expiry in 30 mins
                 loginCookie.setMaxAge(60 * 60 * 24 * 365);
                 response.addCookie(loginCookie);
 
-                Mail mail = new Mail(user.getEmail(), service, text, subject, mailserver);
+                Mail mail = new Mail(patient.getEmail(), service, text, subject, mailserver);
                 MailController sm = new MailController();
                 sm.sendMail(mail);
-=======
+
             
              PatientDAO pDAO = new PatientDAO();
             if (pDAO.insertUser(patient)) {
@@ -125,7 +137,7 @@ public class Registration extends HttpServlet {
 //                Mail mail = new Mail(user.getEmail(), service, text, subject, mailserver);
 //                MailController sm = new MailController();
 //                sm.sendMail(mail);
->>>>>>> 2c269d0da6f589e6e012d0d6a66b86e7704806a7
+
 
                 session.setAttribute("user", patient);
                 response.sendRedirect("/store");
