@@ -42,21 +42,38 @@ public class PatientDAO {
     // Insert account
     public boolean insertUser(Patient patient) {
 
-        String query = "INSERT INTO users (user_name, user_pass, user_email, user_dob, user_address, user_image, user_admin) VALUES "
-                + "(?, ?, ?, STR_TO_DATE(?,'%d-%m-%Y'), ?, ?, ?)";
+        String query = "INSERT INTO `patient`" +
+"(" +
+"`p_fname`," +
+"`p_lname`," +
+"`p_gender`," +
+"`email`," +
+"`password`," +
+"`p_address`," +
+"`languages`)" +
+"VALUES " +
+"(" +
+"?," +
+"?," +
+"?," +
+"?," +
+"?," +
+"?," +
+"?);";
 
         // Connect to database
         Connection connection = Database.getConnection();
 
         try {
             PreparedStatement ps = connection.prepareCall(query);
-            ps.setString(1, patient.getName());
-            ps.setString(2, patient.getPass());
-            ps.setString(3, patient.getEmail());
-            ps.setString(4, patient.getDOB());
-            ps.setString(5, patient.getAddress());
-            ps.setString(6, patient.getImage());
-            ps.setBoolean(7, patient.isAdmin());
+            ps.setString(1, patient.getFname());
+            ps.setString(2, patient.getLname());
+            ps.setString(3, patient.getSex());
+            ps.setString(4, patient.getEmail());
+            ps.setString(5, patient.getPass());
+            ps.setString(6, patient.getAddress());
+            ps.setString(7, patient.getLang());
+//            ps.setBoolean(7, patient.isAdmin());
             ps.executeUpdate();
 
             connection.close();
@@ -69,60 +86,70 @@ public class PatientDAO {
     }
 
     // Check login
-    public Patient login(String name) {
-        Patient p = new Patient();
-
-        String query = "SELECT * FROM users WHERE user_name = ?";
-
-        // Connect to database
-        Connection connection = Database.getConnection();
-
-        try {
-            PreparedStatement ps = connection.prepareCall(query);
-            ps.setString(1, name);
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                p.setID(rs.getInt("user_id"));
-                p.setEmail(rs.getString("user_email"));
-                p.setName(rs.getString("user_name"));
-                p.setPass(rs.getString("user_pass"));
-                p.setAddress(rs.getString("user_address"));
-                p.setImage(rs.getString("user_image"));
-
-                // Format Date
-                if (rs.getDate("user_DOB") != null) {
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    java.util.Date bday = rs.getDate("user_DOB");
-                    p.setDOB(sdf.format(bday));
-                }
-                psetAdmin(rs.getBoolean("user_admin"));
-            }
-
-            connection.close();
-            return p;
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return null;
-    }
+//    public Patient login(String name) {
+//        Patient p = new Patient();
+//
+//        String query = "SELECT * FROM users WHERE user_name = ?";
+//
+//        // Connect to database
+//        Connection connection = Database.getConnection();
+//
+//        try {
+//            PreparedStatement ps = connection.prepareCall(query);
+//            ps.setString(1, name);
+//            ResultSet rs = ps.executeQuery();
+//
+//            while (rs.next()) {
+//                p.setID(rs.getInt("user_id"));
+//                p.setEmail(rs.getString("user_email"));
+//                p.setName(rs.getString("user_name"));
+//                p.setPass(rs.getString("user_pass"));
+//                p.setAddress(rs.getString("user_address"));
+//                p.setImage(rs.getString("user_image"));
+//
+//                // Format Date
+//                if (rs.getDate("user_DOB") != null) {
+//                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+//                    java.util.Date bday = rs.getDate("user_DOB");
+//                    p.setDOB(sdf.format(bday));
+//                }
+//                psetAdmin(rs.getBoolean("user_admin"));
+//            }
+//
+//            connection.close();
+//            return p;
+//
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//        }
+//        return null;
+//    }
 
     public void updateUser(Patient p) {
-        String query = "UPDATE users SET user_name=?, user_pass=?, user_email=?, user_dob=STR_TO_DATE(?,'%d/%m/%Y'), user_address=?, user_image=? WHERE user_name=?";
+        String query = "UPDATE `patient`" +
+"SET" +
+"`p_fname` = ?,"+
+"`p_lname` = ?," +
+"`p_gender` = ?," +
+"`email` = ? ," +
+"`password` = ?," +
+"`p_address` = ?," +
+"`languages` = ?" +
+"WHERE `p_id` = ?;";
 
         // Connect to database
         Connection connection = Database.getConnection();
 
         try {
             PreparedStatement ps = connection.prepareCall(query);
-            ps.setString(1, p.getName());
-            ps.setString(2, p.getPass());
-            ps.setString(3, p.getEmail());
-            ps.setString(4, p.getDOB());
-            ps.setString(5, p.getAddress());
-            ps.setString(6, p.getImage());
-            ps.setString(7, p.getName());
+            ps.setString(1, p.getFname());
+            ps.setString(2, p.getLname());
+            ps.setString(3, p.getSex());
+            ps.setString(4, p.getEmail());
+            ps.setString(5, p.getPass());
+            ps.setString(6, p.getAddress());
+            ps.setString(7, p.getLang());
+            ps.setInt(8, p.getID());
             ps.executeUpdate();
 
             connection.close();
