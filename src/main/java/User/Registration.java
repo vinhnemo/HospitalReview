@@ -95,8 +95,9 @@ public class Registration extends HttpServlet {
             
             // Set Default Profile Pic
             //patient.setImage("avatar.jpg");
-
+           
             // Check if adding is successful
+<<<<<<< HEAD
             if (patientDAO.insertUser(patient)) {
 
                 text = "Hello <strong>" + user.getName() + "</strong>,<br><br>" + text;
@@ -109,6 +110,22 @@ public class Registration extends HttpServlet {
                 Mail mail = new Mail(user.getEmail(), service, text, subject, mailserver);
                 MailController sm = new MailController();
                 sm.sendMail(mail);
+=======
+            
+             PatientDAO pDAO = new PatientDAO();
+            if (pDAO.insertUser(patient)) {
+
+//                text = "Hi <strong>" + patient.getFname()+ "</strong>,<br><br>" + text;
+//
+//                Cookie loginCookie = new Cookie("username", username);
+//                //setting cookie to expiry in 30 mins
+//                loginCookie.setMaxAge(60 * 60 * 24 * 365);
+//                response.addCookie(loginCookie);
+//
+//                Mail mail = new Mail(user.getEmail(), service, text, subject, mailserver);
+//                MailController sm = new MailController();
+//                sm.sendMail(mail);
+>>>>>>> 2c269d0da6f589e6e012d0d6a66b86e7704806a7
 
                 session.setAttribute("user", patient);
                 response.sendRedirect("/store");
