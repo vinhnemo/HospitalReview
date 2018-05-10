@@ -16,7 +16,7 @@
 - UC14: Change password ✓ Tiến
 - UC15: Bookmark/remove a bookmark of a favorite hospital
 - UC16: Bookmark/remove a bookmark of a favorite doctor
-- UC17: View a doctor profile
+- UC17: View a doctor profile ✓ Vinh
 - UC18: Add/Remove/Update a doctor profile
 - UC19: Sort the list of search result by nearest location, doctor name, rating, number of ratings
 - UC20: Evaluate a hospital review (negative/positive) based on the historical review data
