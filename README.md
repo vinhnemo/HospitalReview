@@ -1,1 +1,22 @@
 # HospitalReview
+
+- UC1: Search for a doctor (without functionalities on rating and commenting on the doctor)
+- UC2: Search for a doctor (with functionalities on on comments and ratings)
+- UC3: Register a patient
+- UC4: Register a hospital
+- UC5: Register an admin
+- UC6: View/Add/Remove/Update the specialty category
+- UC7: View/Add/Remove/Update Patient profile
+- UC8: View/Add/Remove/Update Hospital profile
+- UC9: Rate and Comment a doctor
+- UC10: Disable/enable a rating and a comment
+- UC11: Deactivate/activate a patient/hospital
+- UC12: Switch languages of GUIs
+- UC13: Reset password
+- UC14: Change password
+- UC15: Bookmark/remove a bookmark of a favorite hospital
+- UC16: Bookmark/remove a bookmark of a favorite doctor
+- UC17: View a doctor profile
+- UC18: Add/Remove/Update a doctor profile
+- UC19: Sort the list of search result by nearest location, doctor name, rating, number of ratings
+- UC20: Evaluate a hospital review (negative/positive) based on the historical review data
