@@ -1,19 +1,19 @@
-# HospitalReview
+# Hospital Review
 
 - UC1: Search for a doctor (without functionalities on rating and commenting on the doctor)
 - UC2: Search for a doctor (with functionalities on on comments and ratings)
-- UC3: Register a patient ✓
-- UC4: Register a hospital ✓
-- UC5: Register an admin ✓
-- UC6: View/Add/Remove/Update the specialty category ✓
-- UC7: View/Add/Remove/Update Patient profile ✓
-- UC8: View/Add/Remove/Update Hospital profile ✓
+- UC3: Register a patient ✓ Tiến
+- UC4: Register a hospital ✓ Tiến
+- UC5: Register an admin ✓ Tiến
+- UC6: View/Add/Remove/Update the specialty category ✓ Vinh
+- UC7: View/Add/Remove/Update Patient profile ✓ Vinh
+- UC8: View/Add/Remove/Update Hospital profile ✓ Vinh
 - UC9: Rate and Comment a doctor
 - UC10: Disable/enable a rating and a comment
 - UC11: Deactivate/activate a patient/hospital
 - UC12: Switch languages of GUIs
-- UC13: Reset password ✓
-- UC14: Change password ✓
+- UC13: Reset password ✓ Tiến
+- UC14: Change password ✓ Tiến
 - UC15: Bookmark/remove a bookmark of a favorite hospital
 - UC16: Bookmark/remove a bookmark of a favorite doctor
 - UC17: View a doctor profile
