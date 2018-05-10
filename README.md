@@ -10,7 +10,7 @@
 - UC8: View/Add/Remove/Update Hospital profile ✓ Vinh
 - UC9: Rate and Comment a doctor
 - UC10: Disable/enable a rating and a comment
-- UC11: Deactivate/activate a patient/hospital
+- UC11: Deactivate/activate a patient/hospital ✓ Vinh
 - UC12: Switch languages of GUIs
 - UC13: Reset password ✓ Tiến
 - UC14: Change password ✓ Tiến
