@@ -100,7 +100,7 @@
 
                             <div class="form-group">
                                 <hr>
-                                <input type="checkbox" required name="terms" onchange="this.setCustomValidity(validity.valueMissing ? 'Please indicate that you accept the Terms and Conditions' : '');" id="field_terms">   <label for="terms">I agree with the <a href="terms.php" title="You may read our terms and conditions by clicking on this link">terms and conditions</a> for Registration.</label><span class="req">* </span>
+                                <input type="checkbox" required name="terms" onchange="this.setCustomValidity(validity.valueMissing ? 'Please indicate that you accept the Terms and Conditions' : '');" id="field_terms">   <label for="terms"><fmt:message key="label.register.msg5"/> <a href="terms.php" title="You may read our terms and conditions by clicking on this link"><fmt:message key="label.register.msg6"/></a> <fmt:message key="label.register.msg7"/></label><span class="req">* </span>
                             </div>
 
                             <div class="form-group">
