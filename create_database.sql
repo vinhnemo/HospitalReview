@@ -1,4 +1,4 @@
--- ----------------------------
+-- --------------------------------------------------------
     -- Table Patient
     -- ----------------------------
     CREATE TABLE `patient` (
@@ -11,5 +11,15 @@
   `p_address` varchar(150) NOT NULL,
   `languages` varchar(45) NOT NULL,
   PRIMARY KEY (`p_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+-- --------------------------------------------------------
+    -- Table Admin
+    -- ----------------------------
+    CREATE TABLE `admin` (
+  `id` int(250) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(45) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `password` varchar(150) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 -- --------------------------------------------------------

@@ -7,26 +7,26 @@ package DAO;
 
 import Database.*;
 import User.Patient;
+
 import java.sql.*;
-import java.text.SimpleDateFormat;
 
 /**
  *
  * @author TGMaster
  */
 public class PatientDAO {
-        
-    // Check existing username
-    public boolean validateUser(String username) {
 
-        String query = "SELECT * FROM users WHERE user_name = ?";
+    // Check existing email
+    public boolean validateUser(String email) {
+
+        String query = "SELECT * FROM patient WHERE email = ?";
 
         // Connect to database
         Connection connection = Database.getConnection();
 
         try {
             PreparedStatement ps = connection.prepareCall(query);
-            ps.setString(1, username);
+            ps.setString(1, email);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -42,24 +42,24 @@ public class PatientDAO {
     // Insert account
     public boolean insertUser(Patient patient) {
 
-        String query = "INSERT INTO `patient`" +
-"(" +
-"`p_fname`," +
-"`p_lname`," +
-"`p_gender`," +
-"`email`," +
-"`password`," +
-"`p_address`," +
-"`languages`)" +
-"VALUES " +
-"(" +
-"?," +
-"?," +
-"?," +
-"?," +
-"?," +
-"?," +
-"?);";
+        String query = "INSERT INTO patient"
+                + "("
+                + "p_fname,"
+                + "p_lname,"
+                + "p_gender,"
+                + "email,"
+                + "password,"
+                + "p_address,"
+                + "languages)"
+                + " VALUES "
+                + "("
+                + "?,"
+                + "?,"
+                + "?,"
+                + "?,"
+                + "?,"
+                + "?,"
+                + "?);";
 
         // Connect to database
         Connection connection = Database.getConnection();
@@ -73,7 +73,6 @@ public class PatientDAO {
             ps.setString(5, patient.getPass());
             ps.setString(6, patient.getAddress());
             ps.setString(7, patient.getLang());
-//            ps.setBoolean(7, patient.isAdmin());
             ps.executeUpdate();
 
             connection.close();
@@ -124,18 +123,18 @@ public class PatientDAO {
 //        }
 //        return null;
 //    }
-
+    
     public void updateUser(Patient p) {
-        String query = "UPDATE `patient`" +
-"SET" +
-"`p_fname` = ?,"+
-"`p_lname` = ?," +
-"`p_gender` = ?," +
-"`email` = ? ," +
-"`password` = ?," +
-"`p_address` = ?," +
-"`languages` = ?" +
-"WHERE `p_id` = ?;";
+        String query = "UPDATE patient"
+                + " SET "
+                + "p_fname = ?,"
+                + "p_lname = ?,"
+                + "p_gender = ?,"
+                + "email = ? ,"
+                + "password = ?,"
+                + "p_address = ?,"
+                + "languages = ?"
+                + " WHERE p_id = ?;";
 
         // Connect to database
         Connection connection = Database.getConnection();
