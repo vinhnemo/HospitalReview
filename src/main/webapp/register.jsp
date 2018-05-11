@@ -35,10 +35,11 @@
         <link rel="stylesheet" href="css/font-awesome.min.css">
     </head>
     <body>
+        <h1><fmt:message key="hello"/></h1>
         <form>
             <button name="language" value="en">EN </button>
             <button name="language" value="fr_FR">FR</button>
-            <button name="language" value="vi_VN">VN</button>
+            <button name="language" value="vi_VN">Tiếng Việt</button>
         </form>
         <%
             String error = "";
