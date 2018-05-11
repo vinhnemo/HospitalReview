@@ -39,7 +39,7 @@
         <form>
             <button name="language" value="en">EN </button>
             <button name="language" value="fr_FR">FR</button>
-            <button name="language" value="vi_VN">Tiếng Việt</button>
+            <button name="language" value="vi_VN">VN</button>
         </form>
         <%
             String error = "";
