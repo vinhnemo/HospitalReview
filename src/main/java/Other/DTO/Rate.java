@@ -3,20 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Other;
-
+package Other.DTO;
 /**
  *
  * @author Kuro
  */
-public class Comment {
+public class Rate {
     private int ID;
-    private String comment;
+    private float rate;
     private int dID;
 
-    public Comment(int ID, String comment, int dID) {
+    public Rate(int ID, float rate, int dID) {
         this.ID = ID;
-        this.comment = comment;
+        this.rate = rate;
         this.dID = dID;
     }
 
@@ -28,12 +27,12 @@ public class Comment {
         this.ID = ID;
     }
 
-    public String getComment() {
-        return comment;
+    public float getRate() {
+        return rate;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setRate(float rate) {
+        this.rate = rate;
     }
 
     public int getdID() {

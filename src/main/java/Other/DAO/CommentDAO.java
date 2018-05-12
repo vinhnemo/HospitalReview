@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAO;
+package Other.DAO;
 import Database.*;
-import Other.Comment;
+import Other.DTO.Comment;
 
 import java.sql.*;
 import java.util.ArrayList;
