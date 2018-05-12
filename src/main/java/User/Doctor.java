@@ -20,12 +20,11 @@ public class Doctor {
     private String speciality;
     private String hours;
     private String lang;
-    private double rate;
 
     public Doctor() {
     }
 
-    public Doctor(int ID, String fname, String lname, String sex, String degree, boolean insurance, String speciality, String hours, String lang, double rate) {
+    public Doctor(int ID, String fname, String lname, String sex, String degree, boolean insurance, String speciality, String hours, String lang) {
         this.ID = ID;
         this.fname = fname;
         this.lname = lname;
@@ -35,15 +34,7 @@ public class Doctor {
         this.speciality = speciality;
         this.hours = hours;
         this.lang = lang;
-        this.rate = rate;
-    }
 
-    public double getRate() {
-        return rate;
-    }
-
-    public void setRate(double rate) {
-        this.rate = rate;
     }
 
     public int getID() {
