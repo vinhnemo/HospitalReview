@@ -10,6 +10,7 @@ package Other.DTO;
  * @author Kuro
  */
 public class Comment {
+
     private int ID;
     private String comment;
     private int dID;
@@ -18,6 +19,10 @@ public class Comment {
         this.ID = ID;
         this.comment = comment;
         this.dID = dID;
+    }
+
+    public Comment() {
+
     }
 
     public int getID() {
@@ -43,5 +48,5 @@ public class Comment {
     public void setdID(int dID) {
         this.dID = dID;
     }
-    
+
 }

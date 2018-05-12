@@ -4,14 +4,19 @@
  * and open the template in the editor.
  */
 package Other.DTO;
+
 /**
  *
  * @author Kuro
  */
 public class Rate {
+
     private int ID;
     private float rate;
     private int dID;
+
+    public Rate() {
+    }
 
     public Rate(int ID, float rate, int dID) {
         this.ID = ID;
@@ -42,5 +47,5 @@ public class Rate {
     public void setdID(int dID) {
         this.dID = dID;
     }
-    
+
 }
