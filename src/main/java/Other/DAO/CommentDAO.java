@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  */
 public class CommentDAO {
 
-    public boolean insertComment(Comment c) {
+    public void addComment(int c_id, String comment, int d_id) {
 
         String query = "INSERT INTO comment"
                 + "("
@@ -38,18 +38,17 @@ public class CommentDAO {
 
         try {
             PreparedStatement ps = connection.prepareCall(query);
-            ps.setInt(1, c.getID());
-            ps.setString(2, c.getComment());
-            ps.setInt(3, c.getdID());
+            ps.setInt(1, c_id);
+            ps.setString(2, comment);
+            ps.setInt(3, d_id);
             ps.executeUpdate();
 
             connection.close();
-            return true;
+
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
 
-        return false;
     }
 
     public Comment getComment(int id) {
