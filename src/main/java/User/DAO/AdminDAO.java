@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAO;
+package User.DAO;
 
+import User.DTO.Admin;
 import Database.Database;
 import User.*;
 

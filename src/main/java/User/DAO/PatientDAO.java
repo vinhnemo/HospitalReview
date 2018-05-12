@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAO;
+package User.DAO;
 
 import Database.*;
-import User.Patient;
+import User.DTO.Patient;
 
 import java.sql.*;
 
@@ -85,44 +85,38 @@ public class PatientDAO {
     }
 
     // Check login
-//    public Patient login(String name) {
-//        Patient p = new Patient();
-//
-//        String query = "SELECT * FROM users WHERE user_name = ?";
-//
-//        // Connect to database
-//        Connection connection = Database.getConnection();
-//
-//        try {
-//            PreparedStatement ps = connection.prepareCall(query);
-//            ps.setString(1, name);
-//            ResultSet rs = ps.executeQuery();
-//
-//            while (rs.next()) {
-//                p.setID(rs.getInt("user_id"));
-//                p.setEmail(rs.getString("user_email"));
-//                p.setName(rs.getString("user_name"));
-//                p.setPass(rs.getString("user_pass"));
-//                p.setAddress(rs.getString("user_address"));
-//                p.setImage(rs.getString("user_image"));
-//
-//                // Format Date
-//                if (rs.getDate("user_DOB") != null) {
-//                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-//                    java.util.Date bday = rs.getDate("user_DOB");
-//                    p.setDOB(sdf.format(bday));
-//                }
-//                psetAdmin(rs.getBoolean("user_admin"));
-//            }
-//
-//            connection.close();
-//            return p;
-//
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-//        return null;
-//    }
+    public Patient login(String email) {
+        Patient p = new Patient();
+
+        String query = "SELECT * FROM patient WHERE email = ?";
+
+        // Connect to database
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareCall(query);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                p.setID(rs.getInt("p_id"));
+                p.setEmail(rs.getString("email"));
+                p.setLname(rs.getString("p_lname"));
+                p.setFname(rs.getString("p_fname"));
+                p.setPass(rs.getString("password"));
+                p.setAddress(rs.getString("p_address"));
+                p.setSex(rs.getString("p_gender"));
+                p.setLang(rs.getString("languages"));
+            }
+
+            connection.close();
+            return p;
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
     
     public void updateUser(Patient p) {
         String query = "UPDATE patient"
