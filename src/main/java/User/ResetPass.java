@@ -5,7 +5,8 @@
  */
 package User;
 
-import DAO.PatientDAO;
+import User.DTO.Patient;
+import User.DAO.PatientDAO;
 import Database.PasswordHashing;
 import Mail.*;
 
@@ -65,17 +66,18 @@ public class ResetPass extends HttpServlet {
                 url = "/resetpass.jsp";
             } else {
 
-                Patient u = patientDAO.login(email);
-                Patient new_user = new Patient(u.getID(), u.getEmail(), username, PasswordHashing.hashPassword(randomStr), u.getDOB(), u.getAddress(), u.getImage(), u.isAdmin());
+                Patient p = patientDAO.login(email);
+                Patient new_patient = new Patient(p.getID(), p.getFname(), p.getLname(), p.getSex(), p.getEmail(), PasswordHashing.hashPassword(randomStr), p.getAddress(), p.getLang());
 
-                patientDAO.updateUser(new_user);
+                patientDAO.updateUser(new_patient);
 
                 // Send Email
                 String text = "<b>Reset Password</b><br>"
-                        + "<p>User: <strong>" + username + "</strong></p>"
-                        + "<p>New password: <strong>" + randomStr + "</strong></p>";
+                        + "<p>Your email: <strong>" + email + "</strong></p>"
+                        + "<p>New password: <strong>" + randomStr + "</strong></p>"
+                        + "<p>Please login with your new password</p>";
 
-                Mail mail = new Mail(u.getEmail(), service, text, subject, mailserver);
+                Mail mail = new Mail(email, service, text, subject, mailserver);
                 MailController sendMail = new MailController();
 
                 if (sendMail.sendMail(mail)) {

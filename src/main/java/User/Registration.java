@@ -5,7 +5,10 @@
  */
 package User;
 
-import DAO.*;
+import User.DAO.PatientDAO;
+import User.DAO.AdminDAO;
+import User.DTO.Admin;
+import User.DTO.Patient;
 import Database.PasswordHashing;
 import Mail.*;
 

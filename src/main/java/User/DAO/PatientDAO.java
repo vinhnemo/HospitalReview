@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAO;
+package User.DAO;
 
 import Database.*;
-import User.Patient;
+import User.DTO.Patient;
 
 import java.sql.*;
 
