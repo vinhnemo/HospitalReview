@@ -20,7 +20,7 @@ import org.apache.commons.lang3.RandomStringUtils;
  *
  * @author TGMaster
  */
-public class ResetPass extends HttpServlet {
+public class ForgotPass extends HttpServlet {
 
     // Connect Database
     private final PatientDAO patientDAO = new PatientDAO();
@@ -42,7 +42,7 @@ public class ResetPass extends HttpServlet {
         String action = request.getParameter("action");
 
         if (action == null) {
-            rd = sc.getRequestDispatcher("/resetpass.jsp");
+            rd = sc.getRequestDispatcher("/forgotpass.jsp");
             rd.forward(request, response);
         } else {
 
@@ -63,7 +63,7 @@ public class ResetPass extends HttpServlet {
             String url;
             if (error.length() > 0) {
                 request.setAttribute("error", error);
-                url = "/resetpass.jsp";
+                url = "/forgotpass.jsp";
             } else {
 
                 Patient p = patientDAO.login(email);
@@ -84,7 +84,7 @@ public class ResetPass extends HttpServlet {
                     request.setAttribute("message", "Please check your email for your new password");
                 }
 
-                url = "/resetpass.jsp";
+                url = "/forgotpass.jsp";
             }
 
             rd = sc.getRequestDispatcher(url);
