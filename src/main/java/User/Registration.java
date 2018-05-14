@@ -78,9 +78,8 @@ public class Registration extends HttpServlet {
             String language = request.getParameter("language");
 
             String error = "";
-
             if (fname.equals("") || lname.equals("") || email.equals("") || pass.equals("") || address.equals("") || sex.equals("")) {
-                error += "Please fill out all required fields";
+                error += "Please fill out all required fields.";
             } else {
                 if (!pass.equals(pass2)) {
                     error += "Your password and confirmation password do not match";

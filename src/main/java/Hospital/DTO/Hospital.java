@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Hospital;
+package Hospital.DTO;
 
 /**
  *
@@ -13,6 +13,7 @@ public class Hospital {
     private int ID;
     private String name;
     private String address;
+    private String website;
     private String adName;
     private String adEmail;
 
@@ -51,6 +52,14 @@ public class Hospital {
         this.address = address;
     }
 
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+    
     public String getAdName() {
         return adName;
     }
