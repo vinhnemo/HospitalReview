@@ -38,9 +38,12 @@
     <body>
         <h1><fmt:message key="hello"/></h1>
         <form>
-            <button name="language" value="en">EN </button>
-            <button name="language" value="fr_FR">FR</button>
-            <button name="language" value="vi_VN">VN</button>
+            <select name="language" onchange="submit()">
+                <option disabled selected value> -- Select language -- </option>
+                <option value="en_US"><fmt:message key="EN"/></option>
+                <option value="fr_FR"><fmt:message key="FR"/></option>
+                <option value="vi_VN"><fmt:message key="VN"/></option>
+            </select>
         </form>
         <%
             String error = "";
