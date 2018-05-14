@@ -81,4 +81,35 @@ public class DoctorDAO {
         }
         return list;
     }
+
+    public Doctor getDoctor(int id) {
+        String query = "SELECT * FROM doctor WHERE d_id = ?";
+        Doctor doctor = new Doctor();
+
+        // Connect to database
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareCall(query);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                doctor.setID(rs.getInt("d_id"));
+                doctor.setFname(rs.getString("d_fname"));
+                doctor.setLname(rs.getString("d_lname"));
+                doctor.setSex(rs.getString("d_gender"));
+                doctor.setDegree(rs.getString("d_degree"));
+                doctor.setInsurance(rs.getBoolean("d_insurance"));
+                doctor.setSpeciality(rs.getString("d_speciality"));
+                doctor.setHours(rs.getString("d_hour"));
+                doctor.setLang(rs.getString("languages"));
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DoctorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return doctor;
+    }
 }

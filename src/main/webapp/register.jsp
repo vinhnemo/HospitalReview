@@ -67,35 +67,35 @@
                             <%}%>
 
                             <div class="form-group">
-                                <label for="username"><span class="req">* </span> <fmt:message key="label.register.username"/>:  <small><fmt:message key="label.register.msg1"/></small> </label> 
+                                <label for="username"><span class="req">* </span> <fmt:message key="label.username"/>:  <small><fmt:message key="label.register.msg1"/></small> </label> 
                                 <input class="form-control" type="text" name="username" id = "username" minlength="6" onkeyup="ValidateName(this)" required />  
                                 <span id="user-result"></span>
                             </div>
 
                             <div class="form-group">
-                                <label for="password"><span class="req">* </span> <fmt:message key="label.register.password"/>: </label>
+                                <label for="password"><span class="req">* </span> <fmt:message key="label.password"/>: </label>
                                 <input required name="password" type="password" class="form-control inputpass" minlength="4" maxlength="16"  id="pass1" /> </p>
 
-                                <label for="password"><span class="req">* </span> <fmt:message key="label.register.passwordconfirm"/>: </label>
+                                <label for="password"><span class="req">* </span> <fmt:message key="label.passwordconfirm"/>: </label>
                                 <input required name="password2" type="password" class="form-control inputpass" minlength="4" maxlength="16" placeholder="Re-enter password"  id="pass2" onchange="checkPass(); return false;" />
                                 <input type="hidden" name="" value="">
                                 <span id="confirmMessage" class="confirmMessage"></span>
                             </div>
 
                             <div class="form-group">
-                                <label for="email"><span class="req">* </span> <fmt:message key="label.register.email"/>: </label> 
+                                <label for="email"><span class="req">* </span> <fmt:message key="label.email"/>: </label> 
                                 <input class="form-control" required type="text" name="email" id = "email"  onchange="email_validate(this.value);" />   
                                 <div class="status" id="status"></div>
                             </div>
 
                             <div class="form-group"> 	 
-                                <label for="address"><span class="req">* </span> <fmt:message key="label.register.address"/>: </label>
+                                <label for="address"><span class="req">* </span> <fmt:message key="label.address"/>: </label>
                                 <input class="form-control" type="text" name="address" id = "txt" onkeyup = "add_validate(this.value)" required /> 
                                 <div id="statusAdd"></div>    
                             </div>
 
                             <div class="form-group">
-                                <label for="dob"> <fmt:message key="label.register.dob"/>: </label> 
+                                <label for="dob"> <fmt:message key="label.dob"/>: </label> 
                                 <input class="form-control" type="text" name="dob" id = "dob" onkeyup = "dob_validate(this.value)" placeholder="DD-MM-YYYY"/>  
                                 <div id="statusDOB"></div>
                             </div>
