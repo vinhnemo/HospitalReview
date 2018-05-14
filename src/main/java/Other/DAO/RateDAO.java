@@ -9,10 +9,6 @@ import Database.*;
 import Other.DTO.Rate;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -71,7 +67,7 @@ public class RateDAO {
 
             connection.close();
         } catch (SQLException ex) {
-            Logger.getLogger(RateDAO.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         return rate;
     }

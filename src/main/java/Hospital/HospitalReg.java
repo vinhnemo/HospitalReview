@@ -5,6 +5,9 @@
  */
 package Hospital;
 
+import Hospital.DAO.HospitalDAO;
+import Hospital.DTO.Hospital;
+
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -18,6 +21,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author TGMaster
  */
 public class HospitalReg extends HttpServlet {
+    
+    // Connect DAO
+    HospitalDAO hospitalDAO = new HospitalDAO();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -43,6 +49,31 @@ public class HospitalReg extends HttpServlet {
             String website = request.getParameter("website");
             String admin = request.getParameter("admin");
             String email = request.getParameter("email");
+            
+            String error = "";
+            if (name.equals("") || address.equals("") || website.equals(""))
+                error += "Please fill out all required fields.";
+            
+            if (error.length() > 0) {
+                request.setAttribute("error", error);
+                rd = sc.getRequestDispatcher("/hospitalreg.jsp");
+                rd.forward(request, response);
+            } else {
+                
+                hospital.setName(name);
+                hospital.setAddress(address);
+                hospital.setWebsite(website);
+                hospital.setAdName(admin);
+                hospital.setAdEmail(email);
+                
+                if (hospitalDAO.insert(hospital)) {
+                    
+                } else {
+                    request.setAttribute("error", "There is something wrong when adding to database.");
+                    rd = sc.getRequestDispatcher("/hospitalreg.jsp");
+                    rd.forward(request, response);
+                }
+            }
         }
     }
 

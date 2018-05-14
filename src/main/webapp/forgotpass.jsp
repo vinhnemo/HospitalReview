@@ -1,7 +1,7 @@
 <%-- 
     Document   : resetpass
     Created on : May 12, 2018, 9:24:20 AM
-    Author     : S410U
+    Author     : TGMaster
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
