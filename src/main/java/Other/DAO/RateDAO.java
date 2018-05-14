@@ -20,16 +20,14 @@ import java.util.logging.Logger;
  */
 public class RateDAO {
 
-    public void addRate(int r_id, float rate, int d_id) {
+    public void addRate(float rate, int d_id) {
 
         String query = "INSERT INTO rate"
                 + "("
-                + "r_id,"
                 + "r_rate,"
                 + "d_id)"
                 + " VALUES "
                 + "("
-                + "?,"
                 + "?,"
                 + "?);";
 
@@ -38,9 +36,8 @@ public class RateDAO {
 
         try {
             PreparedStatement ps = connection.prepareCall(query);
-            ps.setInt(1, r_id);
-            ps.setFloat(2, rate);
-            ps.setInt(3, d_id);
+            ps.setFloat(1, rate);
+            ps.setInt(2, d_id);
             ps.executeUpdate();
 
             connection.close();

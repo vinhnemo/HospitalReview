@@ -4,9 +4,33 @@
         <servlet-name>Registration</servlet-name>
         <servlet-class>User.Registration</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DoctorController</servlet-name>
+        <servlet-class>User.DoctorController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CommentController</servlet-name>
+        <servlet-class>User.CommentController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RateController</servlet-name>
+        <servlet-class>User.RateController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registration</servlet-name>
         <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DoctorController</servlet-name>
+        <url-pattern>/DoctorController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CommentController</servlet-name>
+        <url-pattern>/CommentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RateController</servlet-name>
+        <url-pattern>/RateController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
