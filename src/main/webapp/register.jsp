@@ -22,7 +22,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <link rel="icon" href=" ">
-        <title><fmt:message key="label.register.title"/></title>
+        <title>Doctor Strange</title>
 
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -36,15 +36,6 @@
         <link rel="stylesheet" href="css/font-awesome.min.css">
     </head>
     <body>
-        <h1><fmt:message key="hello"/></h1>
-        <form>
-            <select name="language" onchange="submit()">
-                <option disabled selected value> -- Select language -- </option>
-                <option value="en_US"><fmt:message key="EN"/></option>
-                <option value="fr_FR"><fmt:message key="FR"/></option>
-                <option value="vi_VN"><fmt:message key="VN"/></option>
-            </select>
-        </form>
         <%
             String error = "";
             if (request.getAttribute("error") != null) {
@@ -56,6 +47,7 @@
         <div class="container">
 
             <div class="row">
+                <div class="col-md-3"></div>
                 <div class="col-md-6">
 
                     <form action="register" method="post" id="fileForm" role="form">
@@ -118,31 +110,23 @@
                         </fieldset>
                     </form><!-- ends register form -->
                 </div><!-- ends col-6 -->
+            </div>
 
-                <div class="col-md-6 text-center">
-                    <svg viewBox="0 0 960 300">
-                    <symbol id="s-text">
-                        <text text-anchor="middle" x="50%" y="80%">Gamelord </text>
-                    </symbol>
-
-                    <g class = "g-ants">
-                    <use xlink:href="#s-text" class="text-copy"></use>
-                    <use xlink:href="#s-text" class="text-copy"></use>
-                    <use xlink:href="#s-text" class="text-copy"></use>
-                    <use xlink:href="#s-text" class="text-copy"></use>
-                    <use xlink:href="#s-text" class="text-copy"></use>
-                    </g>
-                    </svg>
+            <div class="row">
+                <div class="col-md-9"></div>
+                <div class="col-md-3">
+                    <jsp:include page="/multilanguage.jsp"></jsp:include>
                 </div>
             </div>
         </div>
+
+
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="js/jquery.min.js" ></script>
-        <script src="js/tether.min.js" ></script>
         <script src="js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/registration.js"></script>
+        <script src="js/registration.js"></script>
 
         <script type="text/javascript">document.getElementById("field_terms").setCustomValidity("Please indicate that you accept the Terms and Conditions");</script>
 

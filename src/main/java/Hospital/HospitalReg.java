@@ -67,7 +67,9 @@ public class HospitalReg extends HttpServlet {
                 hospital.setAdEmail(email);
                 
                 if (hospitalDAO.insert(hospital)) {
-                    
+                    request.setAttribute("hospital", hospital);
+                    rd = sc.getRequestDispatcher("/hospitalprofile.jsp");
+                    rd.forward(request, response);
                 } else {
                     request.setAttribute("error", "There is something wrong when adding to database.");
                     rd = sc.getRequestDispatcher("/hospitalreg.jsp");

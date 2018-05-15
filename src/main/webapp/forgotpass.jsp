@@ -21,7 +21,7 @@
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
         <link rel="icon" href=" ">
-        <title><fmt:message key="label.forgotpass.title"/></title>
+        <title>Doctor Strange</title>
 
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
