@@ -41,7 +41,6 @@
             if (request.getAttribute("error") != null) {
                 error = (String) request.getAttribute("error");
             }
-
         %>
 
         <div class="container">
@@ -111,22 +110,16 @@
                     </form><!-- ends register form -->
                 </div><!-- ends col-6 -->
             </div>
-
-            <div class="row">
-                <div class="col-md-9"></div>
-                <div class="col-md-3">
-                    <jsp:include page="/multilanguage.jsp"></jsp:include>
-                </div>
-            </div>
         </div>
 
+        <jsp:include page="/multilanguage.jsp"></jsp:include>
 
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="js/jquery.min.js" ></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/registration.js"></script>
+        <script type="text/javascript" src="js/jquery.min.js" ></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/registration.js"></script>
 
         <script type="text/javascript">document.getElementById("field_terms").setCustomValidity("Please indicate that you accept the Terms and Conditions");</script>
 

@@ -24,14 +24,8 @@
                     </div>
                 </p>
             </div>
-            <form>
-                <select name="language" onchange="submit()">
-                    <option disabled selected value> -- select language -- </option>
-                    <option value="en_US">English</option>
-                    <option value="fr_FR">Français</option>
-                    <option value="vi_VN">Tiếng Việt</option>
-                </select>
-            </form>
         </div>
+        
+        <script src="js/jquery"></script>
     </body>
 </html>

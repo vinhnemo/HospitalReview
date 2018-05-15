@@ -33,14 +33,6 @@
         <link rel="stylesheet" type="text/css" href="css/resetpass.css">
     </head>
     <body class="my-login-page">
-        <form>
-            <select name="language" onchange="submit()">
-                <option disabled selected value> -- Select language -- </option>
-                <option value="en_US"><fmt:message key="EN"/></option>
-                <option value="fr_FR"><fmt:message key="FR"/></option>
-                <option value="vi_VN"><fmt:message key="VN"/></option>
-            </select>
-        </form>
         <%
             String error = "";
             if (request.getAttribute("error") != null) {
@@ -110,36 +102,34 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="footer">
-                            Copyright &copy; 2018 &mdash;  TGMaster
-                        </div>
                     </div>
                 </div>
             </div>
+
         </section>
 
-        <!-- Bootstrap core JavaScript
-          ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="js/jquery.min.js" ></script>
-        <script src="js/bootstrap.min.js"></script>
+        <jsp:include page="/multilanguage.jsp"></jsp:include>
+
+            <!-- Bootstrap core JavaScript
+              ================================================== -->
+            <!-- Placed at the end of the document so the pages load faster -->
+            <script src="js/jquery.min.js" ></script>
+            <script src="js/bootstrap.min.js"></script>
 
         <%if (message.length() > 0) {%>
         <script type = "text/javascript">
+            $(document).ready(function () {
+                $("header").hide();
+                $('#message').prop("disabled", true);
 
-                $(document).ready(function () {
-                    $("header").hide();
-                    $('#message').prop("disabled", true);
-
-                    $('#message').delay(4000).slideUp("slow", function () {
-                        // Animation complete.
-                        $('#message').prop("disabled", false);
-                        $("header").show();
-                    });
+                $('#message').delay(4000).slideUp("slow", function () {
+                    // Animation complete.
+                    $('#message').prop("disabled", false);
+                    $("header").show();
                 });
-
+            });
         </script>
-        <%}%>
+        <% }%>
 
     </body>
 </html>
