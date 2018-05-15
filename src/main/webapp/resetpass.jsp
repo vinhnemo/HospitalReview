@@ -1,18 +1,20 @@
 <%-- 
-    Document   : resetpass
-    Created on : May 12, 2018, 9:24:20 AM
-    Author     : S410U
+    Document   : resetpass1
+    Created on : May 14, 2018, 8:27:13 PM
+    Author     : Kuro
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <c:set var="language" value="${param.language}" scope="session" />
 <c:if test="${not empty language}">
     <fmt:setLocale value="${language}" />
 </c:if>
 <fmt:setBundle basename="text" />
 <!DOCTYPE html>
+
 <html lang="${language}">
     <head>
         <meta charset="utf-8">
@@ -20,131 +22,64 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-        <link rel="icon" href=" ">
-        <title><fmt:message key="label.resetpass.title"/></title>
+        <title><fmt:message key="label.reset.title"/></title>
 
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
-        <style>
-            .form-gap {
-                padding-top: 70px;
-            }
-        </style>
+        <!-- Custom form -->
+        <link rel="stylesheet" type="text/css" href="css/resetpass.css">
 
         <!-- Font Awesome Style Icon -->
         <link rel="stylesheet" href="css/font-awesome.min.css">
     </head>
-    <body>
+    <body class="my-login-page">
         <form>
-            <button name="language" value="en">EN </button>
-            <button name="language" value="fr_FR">FR</button>
-            <button name="language" value="vi_VN">VN</button>
+            <select name="language" onchange="submit()">
+                <option disabled selected value> -- Select language -- </option>
+                <option value="en_US"><fmt:message key="EN"/></option>
+                <option value="fr_FR"><fmt:message key="FR"/></option>
+                <option value="vi_VN"><fmt:message key="VN"/></option>
+            </select>
         </form>
-        <%
-            String error = "";
-            if (request.getAttribute("error") != null) {
-                error = (String) request.getAttribute("error");
-            }
+        <section class="h-100">
+            <div class="container h-100">
+                <div class="row justify-content-md-center align-items-center h-100">
+                    <div class="card-wrapper">
+                        <div class="brand">
+                            <img src="img/logo/logo.jpg">
+                        </div>
+                        <div class="card fat">
+                            <div class="card-body">
+                                <h4 class="card-title"><fmt:message key="label.reset.reset"/></h4>
+                                <form method="POST">
 
-            String message = "";
-            if (request.getAttribute("message") != null) {
-                message = (String) request.getAttribute("message");
-        %>
-
-        <div class="container animated slideInDown" id="message">
-            <div class="row">
-                <div class="col-sm-3 col-md-3"></div>
-                <div class="col-sm-6 col-md-6">
-                    <div class="alert alert-success">
-                        <i class="fa fa-check"></i> <strong><fmt:message key="label.resetpass.resetsuccess"/></strong>
-                        <hr class="message-inner-separator">
-                        <p><%=message%></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <%}%>
-
-        <!-- Header
-        ================================================== -->
-
-        <section>
-            <div class="form-gap"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4 col-md-offset-4">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div class="text-center">
-                                    <h3><i class="fa fa-lock fa-4x"></i></h3>
-                                    <h2 class="text-center"><fmt:message key="label.resetpass.forgot"/></h2>
-                                    <p><fmt:message key="label.resetpass.msg1"/></p>
-                                    <div class="panel-body">
-
-                                        <form id="register-form" role="form" autocomplete="off" class="form" method="post" action="reset">
-                                            <%
-                                                if (error.length() > 0) {
-                                            %>
-                                            <div class="form-group has-danger">
-                                                <div class="form-control-feedback">
-                                                    <span class="text-danger align-middle">
-                                                        <i class="fa fa-close"></i> <%=error%>
-                                                    </span>
-                                                </div>
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"><i class="far fa-envelope"></i></span>
-                                                    <input id="username" name="username" placeholder=<fmt:message key="label.username"/> class="form-control"  type="text" autofocus required>
-                                                </div>
-                                            </div>
-                                            <%} else {%>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"><i class="far fa-envelope"></i></span>
-                                                    <input id="username" name="username" placeholder=<fmt:message key="label.username"/> class="form-control"  type="text" autofocus>
-                                                </div>
-                                            </div>
-                                            <%}%>
-                                            <div class="form-group">
-                                                <input name="action" class="btn btn-lg btn-primary btn-block"  type="submit" value=<fmt:message key="label.resetpass.resetbtn"/>>
-                                            </div>
-
-                                            <input type="hidden" class="hide" name="token" id="token" value=""> 
-                                        </form>
-
+                                    <div class="form-group">
+                                        <label for="new-password"><fmt:message key="label.reset.newpass"/></label>
+                                        <input id="new-password" type="password" class="form-control" name="password" required autofocus data-eye>
+                                        <div class="form-text text-muted">
+                                            <fmt:message key="label.reset.msg1"/>
+                                        </div>
                                     </div>
-                                </div>
+
+                                    <div class="form-group no-margin">
+                                        <button type="submit" class="btn btn-primary btn-block">
+                                            <fmt:message key="label.reset.btn"/>
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
+                        </div>
+                        <div class="footer">
+                            Copyright &copy; 2018 &mdash; TGMaster 
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Bootstrap core JavaScript
-          ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="js/jquery.min.js" ></script>
-        <script src="js/tether.min.js" ></script>
+        <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
-
-        <%if (message.length() > 0) {%>
-        <script type = "text/javascript">
-
-            $(document).ready(function () {
-                $("header").hide();
-                $('#message').prop("disabled", true);
-
-                $('#message').delay(4000).slideUp("slow", function () {
-                    // Animation complete.
-                    $('#message').prop("disabled", false);
-                    $("header").show();
-                });
-            });
-
-        </script>
-        <%}%>
-
+        <script src="js/resetpass.js"></script>
     </body>
 </html>

@@ -15,11 +15,8 @@
     <servlet>
         <servlet-name>RateController</servlet-name>
         <servlet-class>User.RateController</servlet-class>
-<<<<<<< HEAD
-=======
     </servlet>
     <servlet>
->>>>>>> 468e5d7c325545089c5417ad0a24fa78bde5333e
         <servlet-name>ForgotPass</servlet-name>
         <servlet-class>User.ForgotPass</servlet-class>
     </servlet>
@@ -42,14 +39,10 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RateController</servlet-name>
-<<<<<<< HEAD
         <url-pattern>/RateController</url-pattern>
-        =======
-=======
         <url-pattern>/rate</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
->>>>>>> 468e5d7c325545089c5417ad0a24fa78bde5333e
         <servlet-name>ForgotPass</servlet-name>
         <url-pattern>/forgot</url-pattern>
     </servlet-mapping>
