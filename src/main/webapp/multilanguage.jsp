@@ -28,6 +28,7 @@
                 </div>
             </div>
 
+
             <style scoped>
                 .dropup {margin-top:120px;}
             </style>
@@ -49,4 +50,10 @@
                     $('[data-toggle="popover"]').popover()
                 })
 </script>
+
+        </div>
+        
+        <script src="js/jquery"></script>
+    </body>
+
 </html>
