@@ -112,12 +112,7 @@
                 </div><!-- ends col-6 -->
             </div>
 
-            <div class="row">
-                <div class="col-md-9"></div>
-                <div class="col-md-3">
-                    <jsp:include page="/multilanguage.jsp"></jsp:include>
-                </div>
-            </div>
+
         </div>
 
 
@@ -129,6 +124,11 @@
         <script src="js/registration.js"></script>
 
         <script type="text/javascript">document.getElementById("field_terms").setCustomValidity("Please indicate that you accept the Terms and Conditions");</script>
-
+        <div class="row">
+            <div class="col-md-9"></div>
+            <div class="col-md-3">
+                <jsp:include page="/multilanguage.jsp"></jsp:include>
+            </div>
+        </div>
     </body>
 </html>

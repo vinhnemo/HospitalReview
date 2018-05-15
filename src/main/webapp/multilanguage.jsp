@@ -7,31 +7,46 @@
 <!DOCTYPE html>
 <html>
     <body>
-        <div class="footer">
-            <div class="container">
-                <p class="text-muted credit">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            Dropup <span class="caret caret-up"></span>
-                        </button>
-                        <ul class="dropdown-menu drop-up" role="menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                        </ul>
-                    </div>
-                </p>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <style>
+            body {
+                padding-top: 1em;
+            }	
+        </style>
+
+        <div class="container-fluid">
+
+            <div class="dropup">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Select Language
+                </button>
+                <div class="dropdown-menu" aria-labelledby="about-us">
+                    
+                    <a class="dropdown-item" href="#">English</a>
+                    <a class="dropdown-item" href="#">Francais</a>
+                    <a class="dropdown-item" href="#">Tiếng Việt</a>
+                </div>
             </div>
-            <form>
-                <select name="language" onchange="submit()">
-                    <option disabled selected value> -- select language -- </option>
-                    <option value="en_US">English</option>
-                    <option value="fr_FR">Français</option>
-                    <option value="vi_VN">Tiếng Việt</option>
-                </select>
-            </form>
+
+            <style scoped>
+                .dropup {margin-top:120px;}
+            </style>
+
         </div>
-    </body>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
+
+                $(function () {
+                    $('[data-toggle="tooltip"]').tooltip()
+                })
+
+// Initialize popover component
+                $(function () {
+                    $('[data-toggle="popover"]').popover()
+                })
+</script>
 </html>

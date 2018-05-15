@@ -2,7 +2,7 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>Registration</servlet-name>
-        <servlet-class>User.Registration</servlet-class>
+        <servlet-class>Registration</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DoctorController</servlet-name>
@@ -20,7 +20,6 @@
         <servlet-name>ForgotPass</servlet-name>
         <servlet-class>User.ForgotPass</servlet-class>
     </servlet>
-    
     <servlet>
         <servlet-name>HospitalReg</servlet-name>
         <servlet-class>Hospital.HospitalReg</servlet-class>
