@@ -24,18 +24,6 @@ public class Registration extends HttpServlet {
     private final PatientDAO patientDAO = new PatientDAO();
     private final AdminDAO adminDAO = new AdminDAO();
     
-    public static void getLanguage(HttpServletRequest request, HttpServletResponse response) {
-        // Call session
-        HttpSession session = request.getSession();
-        
-        String lang = "";
-        if (request.getParameter("language") != null) {
-            lang = (String)request.getParameter("language");
-        }
-        else lang = "en_US";
-        session.setAttribute("language", lang);
-    }
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -44,9 +32,6 @@ public class Registration extends HttpServlet {
 
         // Declare requestDispatcher
         RequestDispatcher rd;
-        
-        // Language
-        getLanguage(request, response);
         
         rd = sc.getRequestDispatcher("/register.jsp");
         rd.forward(request, response);
@@ -64,9 +49,6 @@ public class Registration extends HttpServlet {
 
         // Call session
         HttpSession session = request.getSession();
-
-        // Language
-        getLanguage(request, response);
         
         String type = request.getParameter("type");
         if (type.equals("patient")) {
