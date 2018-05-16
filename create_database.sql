@@ -65,7 +65,8 @@
   `h_name` varchar(45) NOT NULL,
   `h_address` varchar(150) NOT NULL,
   `h_website` varchar(150) NOT NULL,
-  `email` varchar(150) NOT NULL,
-  `password` varchar(150) NOT NULL,
+  `adname` varchar(150) NOT NULL,
+  `ademail` varchar(150) NOT NULL,
   PRIMARY KEY (`h_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8
+--------------------------------------------------------
