@@ -1,23 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package User;
 
-import DAO.*;
+
+import User.DAO.*;
+import User.DTO.*;
 import Database.PasswordHashing;
 import Mail.*;
 
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.*;
+import javax.servlet.http.*;
 
 /**
  *
@@ -33,6 +24,18 @@ public class Registration extends HttpServlet {
     private final PatientDAO patientDAO = new PatientDAO();
     private final AdminDAO adminDAO = new AdminDAO();
     
+    public static void getLanguage(HttpServletRequest request, HttpServletResponse response) {
+        // Call session
+        HttpSession session = request.getSession();
+        
+        String lang = "";
+        if (request.getParameter("language") != null) {
+            lang = (String)request.getParameter("language");
+        }
+        else lang = "en_US";
+        session.setAttribute("language", lang);
+    }
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -41,7 +44,10 @@ public class Registration extends HttpServlet {
 
         // Declare requestDispatcher
         RequestDispatcher rd;
-
+        
+        // Language
+        getLanguage(request, response);
+        
         rd = sc.getRequestDispatcher("/register.jsp");
         rd.forward(request, response);
     }
@@ -59,6 +65,9 @@ public class Registration extends HttpServlet {
         // Call session
         HttpSession session = request.getSession();
 
+        // Language
+        getLanguage(request, response);
+        
         String type = request.getParameter("type");
         if (type.equals("patient")) {
 
@@ -75,9 +84,8 @@ public class Registration extends HttpServlet {
             String language = request.getParameter("language");
 
             String error = "";
-
             if (fname.equals("") || lname.equals("") || email.equals("") || pass.equals("") || address.equals("") || sex.equals("")) {
-                error += "Please fill out all required fields";
+                error += "Please fill out all required fields.";
             } else {
                 if (!pass.equals(pass2)) {
                     error += "Your password and confirmation password do not match";

@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package User;
+package User.DTO;
 
 /**
  *
  * @author TGMaster
  */
 public class Doctor {
+
     private int ID;
     private String fname;
     private String lname;
     private String sex;
     private String degree;
-    private String insurance;
+    private boolean insurance;
     private String speciality;
     private String hours;
     private String lang;
@@ -23,7 +24,7 @@ public class Doctor {
     public Doctor() {
     }
 
-    public Doctor(int ID, String fname, String lname, String sex, String degree, String insurance, String speciality, String hours, String lang) {
+    public Doctor(int ID, String fname, String lname, String sex, String degree, boolean insurance, String speciality, String hours, String lang) {
         this.ID = ID;
         this.fname = fname;
         this.lname = lname;
@@ -33,6 +34,7 @@ public class Doctor {
         this.speciality = speciality;
         this.hours = hours;
         this.lang = lang;
+
     }
 
     public int getID() {
@@ -75,11 +77,11 @@ public class Doctor {
         this.degree = degree;
     }
 
-    public String getInsurance() {
+    public boolean getInsurance() {
         return insurance;
     }
 
-    public void setInsurance(String insurance) {
+    public void setInsurance(boolean insurance) {
         this.insurance = insurance;
     }
 
@@ -106,6 +108,4 @@ public class Doctor {
     public void setLang(String lang) {
         this.lang = lang;
     }
-    
-    
 }
