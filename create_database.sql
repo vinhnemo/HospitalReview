@@ -57,3 +57,16 @@
   PRIMARY KEY (`c_id`)
   FOREIGN KEY (`d_id`) REFERENCES `doctor` (`d_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+--------------------------------------------------------
+    -- Table Hospital
+    -- ----------------------------
+   CREATE TABLE `Hospital` (
+  `h_id` int(250) unsigned NOT NULL AUTO_INCREMENT,
+  `h_name` varchar(45) NOT NULL,
+  `h_address` varchar(150) NOT NULL,
+  `h_website` varchar(150) NOT NULL,
+  `adname` varchar(150) NOT NULL,
+  `ademail` varchar(150) NOT NULL,
+  PRIMARY KEY (`h_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8
+--------------------------------------------------------
