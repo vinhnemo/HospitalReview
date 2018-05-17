@@ -9,6 +9,7 @@ import Database.*;
 import User.DTO.Patient;
 
 import java.sql.*;
+import javax.transaction.Transaction;
 
 /**
  *
@@ -117,7 +118,7 @@ public class PatientDAO {
         }
         return null;
     }
-    
+
     public void updateUser(Patient p) {
         String query = "UPDATE patient"
                 + " SET "
@@ -142,7 +143,7 @@ public class PatientDAO {
             ps.setString(5, p.getPass());
             ps.setString(6, p.getAddress());
             ps.setString(7, p.getLang());
-            ps.setInt(8, p.getID());
+            ps.setLong(8, p.getID());
             ps.executeUpdate();
 
             connection.close();
