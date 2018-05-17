@@ -24,6 +24,10 @@
         <servlet-name>HospitalReg</servlet-name>
         <servlet-class>Hospital.HospitalReg</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ResetPassword</servlet-name>
+        <servlet-class>User.ResetPassword</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registration</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -48,6 +52,10 @@
     <servlet-mapping>
         <servlet-name>HospitalReg</servlet-name>
         <url-pattern>/HospitalRegistration</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResetPassword</servlet-name>
+        <url-pattern>/reset</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

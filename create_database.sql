@@ -1,8 +1,9 @@
 -- --------------------------------------------------------
     -- Table Patient
     -- ----------------------------
+    DROP TABLE IF EXISTS `patient`;
     CREATE TABLE `patient` (
-  `p_id` int(250) unsigned NOT NULL AUTO_INCREMENT,
+  `p_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `p_fname` varchar(45) NOT NULL,
   `p_lname` varchar(45) NOT NULL,
   `p_gender` varchar(45) NOT NULL,
@@ -10,23 +11,27 @@
   `password` varchar(150) NOT NULL,
   `p_address` varchar(150) NOT NULL,
   `languages` varchar(45) NOT NULL,
-  PRIMARY KEY (`p_id`)
+  PRIMARY KEY (`p_id`),
+  UNIQUE KEY `patient_uindex` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 -- --------------------------------------------------------
     -- Table Admin
     -- ----------------------------
-	CREATE TABLE `admin` (
-  `id` int(250) unsigned NOT NULL AUTO_INCREMENT,
+    DROP TABLE IF EXISTS `admin`;
+    CREATE TABLE `admin` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(45) NOT NULL,
   `email` varchar(150) NOT NULL,
   `password` varchar(150) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `admin_uindex` (`username`, `email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 -- --------------------------------------------------------
     -- Table Doctor
     -- ----------------------------
-     CREATE TABLE `doctor` (
-  `d_id` int(250) unsigned NOT NULL AUTO_INCREMENT,
+    DROP TABLE IF EXISTS `doctor`;
+    CREATE TABLE `doctor` (
+  `d_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `d_fname` varchar(150) NOT NULL,
   `d_lname` varchar(150) NOT NULL,
   `d_gender` varchar(45) NOT NULL,
@@ -40,8 +45,9 @@
  --------------------------------------------------------
     -- Table Rate
     -- ----------------------------
-     CREATE TABLE `rate` (
-  `r_id` int(250) unsigned NOT NULL AUTO_INCREMENT,
+    DROP TABLE IF EXISTS `rate`;
+    CREATE TABLE `rate` (
+  `r_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `r_rate` float(10) unsigned NOT NULL,
   `d_id` int(250) unsigned NOT NULL,
   PRIMARY KEY (`r_id`)
@@ -50,8 +56,9 @@
 --------------------------------------------------------
     -- Table Comment
     -- ----------------------------
-     CREATE TABLE `comment` (
-  `c_id` int(250) unsigned NOT NULL AUTO_INCREMENT,
+    DROP TABLE IF EXISTS `comment`;
+    CREATE TABLE `comment` (
+  `c_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `c_comment` varchar(255) NOT NULL,
   `d_id` int(250) unsigned NOT NULL,
   PRIMARY KEY (`c_id`)
@@ -60,8 +67,9 @@
 --------------------------------------------------------
     -- Table Hospital
     -- ----------------------------
-   CREATE TABLE `Hospital` (
-  `h_id` int(250) unsigned NOT NULL AUTO_INCREMENT,
+    DROP TABLE IF EXISTS `hospital`;
+    CREATE TABLE `hospital` (
+  `h_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `h_name` varchar(45) NOT NULL,
   `h_address` varchar(150) NOT NULL,
   `h_website` varchar(150) NOT NULL,
