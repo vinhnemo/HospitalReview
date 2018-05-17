@@ -5,12 +5,20 @@
  */
 package User.DTO;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author TGMaster
  */
-public class Patient {
-    private int ID;
+
+@Entity(name = "users")
+public class Patient implements Serializable{
+    
+    @Id
+    private long ID;
     private String fname;
     private String lname;
     private String sex;
@@ -22,7 +30,7 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(int ID, String fname, String lname, String sex, String email, String pass, String address, String lang) {
+    public Patient(long ID, String fname, String lname, String sex, String email, String pass, String address, String lang) {
         this.ID = ID;
         this.fname = fname;
         this.lname = lname;
@@ -33,11 +41,11 @@ public class Patient {
         this.lang = lang;
     }
 
-    public int getID() {
+    public long getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(long ID) {
         this.ID = ID;
     }
 
@@ -96,6 +104,5 @@ public class Patient {
     public void setLang(String lang) {
         this.lang = lang;
     }
-    
-    
+
 }

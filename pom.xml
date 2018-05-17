@@ -15,47 +15,69 @@
     </properties>
     
     <dependencies>
+        
         <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+        
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+        
         <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
             <version>1.6.0</version>
         </dependency>
+        
         <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>smtp</artifactId>
             <version>1.6.0</version>
         </dependency>
+        
         <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>mailapi</artifactId>
             <version>1.6.0</version>
         </dependency>
+        
         <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>pop3</artifactId>
             <version>1.6.0</version>
         </dependency>
+        
         <dependency>
             <groupId>org.mindrot</groupId>
             <artifactId>jbcrypt</artifactId>
             <version>0.4</version>
         </dependency>
+        
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.7</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>5.0.6.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>5.0.6.RELEASE</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
@@ -107,5 +129,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
