@@ -67,7 +67,8 @@
                             </ul>
                         </li>
                         <li><a href="#contact">Contact Us</a></li>
-                        <li><a href="#" class="sign">Sign In/Sign Up</a></li>
+                        <li><a href="login.jsp">Sign In/Sign Up</a></li>
+                        
                     </ul>
                 </nav>
             </div>
