@@ -9,6 +9,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="language" value="${param.language}" scope="session" />
+<%String language = request.getParameter("language"), english = "", french = "", vietnamese = "";
+    if (language == null) language = "en_US";
+    if(language.equals("en_US")) {language = "English"; english = "active";}
+    else if(language.equals("fr_FR")) {language = "Français"; french = "active";}
+    else if(language.equals("vi_VN")) {language = "Tiếng Việt"; vietnamese = "active";}
+%>
 <c:if test="${not empty language}">
     <fmt:setLocale value="${language}" />
 </c:if>
@@ -29,11 +35,12 @@
 
         <!-- Registration CSS -->
         <link href="css/registration.css" rel="stylesheet">
-        <link href="css/custom.css" rel="stylesheet">
-        <link href="css/loading.css" rel="stylesheet">
+        <link href="css/language.css" rel="stylesheet">
 
         <!-- Font Awesome Style Icon -->
         <link rel="stylesheet" href="css/font-awesome.min.css">
+        
+        <script src="js/popper.min.js"></script>
     </head>
     <body>
         <%
@@ -113,21 +120,27 @@
 
         </div>
 
-        <jsp:include page="/multilanguage.jsp"></jsp:include>
+        <div class="footer">
+            <div class="container-fluid">
+                <div class="btn-group dropup btn-sm">
+                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <%=language%>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item <%=english%>" href="/register?language=en_US">English</a>
+                        <a class="dropdown-item <%=french%>" href="/register?language=fr_FR">Français</a>
+                        <a class="dropdown-item <%=vietnamese%>" href="/register?language=vi_VN">Tiếng Việt</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script type="text/javascript" src="js/jquery.min.js" ></script>
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/registration.js"></script>
-
+        <script src="js/jquery.min.js" ></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/registration.js"></script>
         <script type="text/javascript">document.getElementById("field_terms").setCustomValidity("Please indicate that you accept the Terms and Conditions");</script>
-        <div class="row">
-            <div class="col-md-9"></div>
-            <div class="col-md-3">
-                <jsp:include page="/multilanguage.jsp"></jsp:include>
-            </div>
-        </div>
     </body>
 </html>

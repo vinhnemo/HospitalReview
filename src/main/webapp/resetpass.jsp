@@ -9,6 +9,21 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="language" value="${param.language}" scope="session" />
+<%String language = request.getParameter("language"), english = "", french = "", vietnamese = "";
+    if (language == null) {
+        language = "en_US";
+    }
+    if (language.equals("en_US")) {
+        language = "English";
+        english = "active";
+    } else if (language.equals("fr_FR")) {
+        language = "Français";
+        french = "active";
+    } else if (language.equals("vi_VN")) {
+        language = "Tiếng Việt";
+        vietnamese = "active";
+    }
+%>
 <c:if test="${not empty language}">
     <fmt:setLocale value="${language}" />
 </c:if>
@@ -28,20 +43,15 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Custom form -->
-        <link rel="stylesheet" type="text/css" href="css/resetpass.css">
+        <link rel="stylesheet" href="css/resetpass.css">
+        <link rel="stylesheet" href="css/language.css">
 
         <!-- Font Awesome Style Icon -->
         <link rel="stylesheet" href="css/font-awesome.min.css">
+
+        <script src="js/popper.min.js"></script>
     </head>
     <body class="my-login-page">
-        <form>
-            <select name="language" onchange="submit()">
-                <option disabled selected value> -- Select language -- </option>
-                <option value="en_US"><fmt:message key="EN"/></option>
-                <option value="fr_FR"><fmt:message key="FR"/></option>
-                <option value="vi_VN"><fmt:message key="VN"/></option>
-            </select>
-        </form>
         <section class="h-100">
             <div class="container h-100">
                 <div class="row justify-content-md-center align-items-center h-100">
@@ -70,14 +80,28 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="footer">
-                            Copyright &copy; 2018 &mdash; TGMaster 
-                        </div>
                     </div>
                 </div>
             </div>
         </section>
+        <div class="footer">
+            <div class="container-fluid">
+                <div class="btn-group dropup btn-sm">
+                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <%=language%>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item <%=english%>" href="/resetpass.jsp?language=en_US">English</a>
+                        <a class="dropdown-item <%=french%>" href="/resetpass.jsp?language=fr_FR">Français</a>
+                        <a class="dropdown-item <%=vietnamese%>" href="/resetpass.jsp?language=vi_VN">Tiếng Việt</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <!-- Bootstrap core JavaScript
+          ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/resetpass.js"></script>
