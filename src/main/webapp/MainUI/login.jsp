@@ -32,12 +32,24 @@
         <header id="header">
             <div class="container-fluid">
                 <div id="logo" class="pull-left">
-                    <h1><a href="#intro" class="scrollto">Doctor STRANGE</a></h1>
+                    <h1><a href="home.jsp" class="scrollto">Doctor STRANGE</a></h1>
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-active"><a href="home.jsp">Home</a></li>
-                        <li><a href="#">Find Doctor</a></li>
+                        <li class="menu-has-children menu-active"><a href="#">Find Doctor</a>
+                            <ul>
+                                <li>
+                                    <div class="dropdown-form">
+                                        <form action="" method="">
+                                            <h3>Find Your Doctor</h3>
+                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
+                                            <input class="dropdown-button" type="submit" value="Search Doctor">
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul> 
+                        </li>
+                        <li><a href="#">Appointment</a></li>
                         <li class="menu-has-children"><a href="">Language</a>
                             <ul>
                                 <li><a href="#">English</a></li>
@@ -45,6 +57,7 @@
                             </ul>
                         </li>
                         <li><a href="#footer">Contact Us</a></li>
+                        <li class="menu-active"><a href="login.jsp">Sign In/Sign Up</a></li>                     
                     </ul>
                 </nav>
             </div>
