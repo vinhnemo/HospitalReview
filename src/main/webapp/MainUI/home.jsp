@@ -5,8 +5,31 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<c:set var="language" value="${param.language}" scope="session" />
+<%String language = request.getParameter("language"), english = "", french = "", vietnamese = "";
+    if (language == null) {
+        language = "en_US";
+    }
+    if (language.equals("en_US")) {
+        language = "English";
+        english = "active";
+    } else if (language.equals("fr_FR")) {
+        language = "Français";
+        french = "active";
+    } else if (language.equals("vi_VN")) {
+        language = "Tiếng Việt";
+        vietnamese = "active";
+    }
+%>
+<c:if test="${not empty language}">
+    <fmt:setLocale value="${language}" />
+</c:if>
+<fmt:setBundle basename="text" />
 <!DOCTYPE html>
-<html>
+<html lang="${language}">
     <head>
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -20,22 +43,35 @@
         <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
         <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
-
+        <link rel="stylesheet" href="lib/form/form.css">
     </head>
 
     <body>
 
         <header id="header">
             <div class="container-fluid">
-
                 <div id="logo" class="pull-left">
                     <h1><a href="#intro" class="scrollto">Doctor STRANGE</a></h1>
                 </div>
                 <nav id="nav-menu-container">
-              
+<<<<<<< HEAD
+
+=======
+>>>>>>> ff37197e66bb240e5d0c526236301158fd0f92d2
                     <ul class="nav-menu">
-                        <li class="menu-active"><a href="#intro">Home</a></li>
-                        <li><a href="#">Find Doctor</a></li>
+                        <li class="menu-has-children menu-active"><a href="#">Find Doctor</a>
+                            <ul>
+                                <li>
+                                    <div class="dropdown-form">
+                                        <form action="" method="">
+                                            <h3>Find Your Doctor</h3>
+                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
+                                            <input class="dropdown-button" type="submit" value="Search Doctor">
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul> 
+                        </li>
                         <li><a href="#">Appointment</a></li>
                         <li class="menu-has-children"><a href="">Language</a>
                             <ul>
@@ -44,8 +80,7 @@
                             </ul>
                         </li>
                         <li><a href="#contact">Contact Us</a></li>
-                        <li><a href="login.jsp">Sign In/Sign Up</a></li>
-                        
+                        <li class="menu-active"><a href="login.jsp">Sign In/Sign Up</a></li>                     
                     </ul>
                 </nav>
             </div>
@@ -275,7 +310,7 @@
                     </header>
 
                     <div class="owl-carousel clients-carousel">
-                        
+
                         <img src="img/clients/client-9.png" alt="">
                         <img src="img/clients/client-10.png" alt="">
                         <img src="img/clients/client-11.png" alt="">
@@ -385,7 +420,7 @@
                 </div>
             </section>
 
-       
+
             <section id="contact" class="section-bg wow fadeInUp">
                 <div class="container">
 
@@ -509,7 +544,7 @@
 
         <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
-   
+
         <script src="lib/jquery/jquery.min.js"></script>
         <script src="lib/jquery/jquery-migrate.min.js"></script>
         <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>

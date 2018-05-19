@@ -100,8 +100,31 @@
 .login-dark form .btn-primary:active .btn-primary2:active{
   transform:translateY(1px);
 }
-
+/* Check validate form thoi */
 .login-dark form .warn {
     color :red;
     padding: 5px;
+}
+/* Button find doctor */
+.dropdown-button {
+  background: #18d26e;
+  border: 0;
+  padding: 10px 30px;
+  color: #fff;
+  transition: 0.4s;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.dropdown-button :hover {
+  background: #13a456;
+}
+/* Dropdown Search input */
+.dropdown-form {
+  width : 500px; 
+}
+.form-search {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  padding: 10px ;
 }

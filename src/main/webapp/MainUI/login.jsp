@@ -7,6 +7,23 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <%
+        // Call cookie
+        Cookie isLogin[] = request.getCookies();
+
+        if (isLogin != null) {
+            for (Cookie ck : isLogin) {
+                if (ck.getName().equals("u_email")) {
+                    response.sendRedirect("/index.jsp");
+                }
+            }
+        }
+
+        String error = "";
+        if (request.getAttribute("error") != null) {
+            error = (String) request.getAttribute("error");
+        }
+    %>
     <head>
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -23,7 +40,6 @@
         <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
 
-
         <link rel="stylesheet" href="lib/form/form.css">
     </head> 
 
@@ -32,20 +48,32 @@
         <header id="header">
             <div class="container-fluid">
                 <div id="logo" class="pull-left">
-                    <h1><a href="#intro" class="scrollto">Doctor STRANGE</a></h1>
+                    <h1><a href="home.jsp" class="scrollto">Doctor STRANGE</a></h1>
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-active"><a href="home.jsp">Home</a></li>
-                        <li><a href="#">Find Doctor</a></li>
+                        <li class="menu-has-children menu-active"><a href="#">Find Doctor</a>
+                            <ul>
+                                <li>
+                                    <div class="dropdown-form">
+                                        <form action="" method="">
+                                            <h3>Find Your Doctor</h3>
+                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
+                                            <input class="dropdown-button" type="submit" value="Search Doctor">
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul> 
+                        </li>
+                        <li><a href="#">Appointment</a></li>
                         <li class="menu-has-children"><a href="">Language</a>
                             <ul>
                                 <li><a href="#">English</a></li>
-                                <li><a href="#">French</a></li>
-                                <li><a href="#">Vietnamese</a></li>
+                                <li><a href="#">Tiếng Việt</a></li>
                             </ul>
                         </li>
                         <li><a href="#footer">Contact Us</a></li>
+                        <li class="menu-active"><a href="login.jsp">Sign In/Sign Up</a></li>                     
                     </ul>
                 </nav>
             </div>
@@ -53,19 +81,26 @@
 
         <main id="main">
             <div class="login-dark">
-                <form class="login" action="" method="post">
+                <form class="login" action="login" method="post">
                     <h1>Login</h1>
                     <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
+
+                    <% if (error.length() > 0) {%>
+                    <div class="form-group has-danger"><input class="form-control" type="email" name="email" placeholder="Email"></div>
+                    <div class="form-group has-danger"><input class="form-control" type="password" name="password" placeholder="Password"></div>
+                    <% } else {%>
                     <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
                     <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Log In</button></div>
+                    <% }%>
+                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action">Log In</button></div>
                     <div class="form-group">
-                        <input class="btn btn-primary2 btn-block" type="button" value="Register New Account" onclick="window.location.href='register.jsp'" />                        
+                        <input class="btn btn-primary2 btn-block" type="button" value="Register New Account" onclick="window.location.href = 'register'" />                        
                     </div>
-                    <a href="#" class="forgot">Forgot your email or password?</a>
+                    <a href="forgot" class="forgot">Forgot your email or password?</a>
                 </form>
             </div>
         </main>
+
         <footer id="footer">
             <div class="footer-top">
                 <div class="container">

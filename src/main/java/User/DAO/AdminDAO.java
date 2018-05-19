@@ -21,16 +21,16 @@ import java.sql.SQLException;
 public class AdminDAO {
 
     // Check existing username
-    public boolean validateUser(String username) {
+    public boolean validateUser(String email) {
 
-        String query = "SELECT * FROM admin WHERE username = ?";
+        String query = "SELECT * FROM admin WHERE email = ?";
 
         // Connect to database
         Connection connection = Database.getConnection();
 
         try {
             PreparedStatement ps = connection.prepareCall(query);
-            ps.setString(1, username);
+            ps.setString(1, email);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -48,12 +48,10 @@ public class AdminDAO {
 
         String query = "INSERT INTO admin"
                 + "("
-                + "username,"
-                + "password,"
-                + "email)"
+                + "email,"
+                + "password)"
                 + " VALUES "
                 + "("
-                + "?,"
                 + "?,"
                 + "?);";
 
@@ -62,9 +60,8 @@ public class AdminDAO {
 
         try {
             PreparedStatement ps = connection.prepareCall(query);
-            ps.setString(1, admin.getUsername());
+            ps.setString(1, admin.getEmail());
             ps.setString(2, admin.getPass());
-            ps.setString(3, admin.getEmail());
             ps.executeUpdate();
 
             connection.close();
@@ -77,22 +74,21 @@ public class AdminDAO {
     }
     
     // Check login
-    public Admin login(String name) {
+    public Admin login(String email) {
         Admin admin = new Admin();
 
-        String query = "SELECT * FROM admin WHERE username = ?";
+        String query = "SELECT * FROM admin WHERE email = ?";
 
         // Connect to database
         Connection connection = Database.getConnection();
 
         try {
             PreparedStatement ps = connection.prepareCall(query);
-            ps.setString(1, name);
+            ps.setString(1, email);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 admin.setID(rs.getInt("id"));
-                admin.setUsername(rs.getString("username"));
                 admin.setEmail(rs.getString("email"));
                 admin.setPass(rs.getString("password"));
             }
@@ -110,7 +106,6 @@ public class AdminDAO {
     public void updateUser(Admin admin) {
         String query = "UPDATE admin"
                 + " SET "
-                + "username = ?,"
                 + "email = ? ,"
                 + "password = ?,"
                 + " WHERE id = ?;";
@@ -120,10 +115,9 @@ public class AdminDAO {
 
         try {
             PreparedStatement ps = connection.prepareCall(query);
-            ps.setString(1, admin.getUsername());
-            ps.setString(2, admin.getEmail());
-            ps.setString(3, admin.getPass());
-            ps.setInt(4, admin.getID());
+            ps.setString(1, admin.getEmail());
+            ps.setString(2, admin.getPass());
+            ps.setInt(3, admin.getID());
             ps.executeUpdate();
 
             connection.close();
