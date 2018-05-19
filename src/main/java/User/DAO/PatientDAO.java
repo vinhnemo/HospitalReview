@@ -9,6 +9,10 @@ import Database.*;
 import User.DTO.Patient;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.transaction.Transaction;
 
 /**
@@ -151,5 +155,41 @@ public class PatientDAO {
             ex.printStackTrace();
         }
 
+    }
+    public List<Patient> searchPatien(String name) {
+        String query;
+        List<Patient> list = new ArrayList<>();
+
+        // Connect to database
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps;
+
+            query = "SELECT * FROM patient WHERE p_fname LIKE ? OR p_lname LIKE ?";
+            ps = connection.prepareCall(query);
+            ps.setString(1, "%" + name + "%");
+            ps.setString(2, "%" + name + "%");
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Patient p = new Patient();
+                p.setID(rs.getInt("p_id"));
+                p.setFname(rs.getString("p_fname"));
+                p.setLname(rs.getString("p_lname"));
+                p.setSex(rs.getString("p_gender"));
+                p.setEmail(rs.getString("email"));
+                p.setPass(rs.getString("password"));
+                p.setAddress(rs.getString("p_address"));
+                p.setLang(rs.getString("languages"));
+                list.add(p);
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Patient.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
     }
 }
