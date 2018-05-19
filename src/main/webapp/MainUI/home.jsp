@@ -32,7 +32,7 @@
                     <h1><a href="#intro" class="scrollto">Doctor STRANGE</a></h1>
                 </div>
                 <nav id="nav-menu-container">
-              
+
                     <ul class="nav-menu">
                         <li class="menu-active"><a href="#intro">Home</a></li>
                         <li><a href="#">Find Doctor</a></li>
@@ -45,7 +45,8 @@
                         </li>
                         <li><a href="#contact">Contact Us</a></li>
                         <li><a href="login.jsp">Sign In/Sign Up</a></li>
-                        
+                        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
                     </ul>
                 </nav>
             </div>
@@ -275,7 +276,7 @@
                     </header>
 
                     <div class="owl-carousel clients-carousel">
-                        
+
                         <img src="img/clients/client-9.png" alt="">
                         <img src="img/clients/client-10.png" alt="">
                         <img src="img/clients/client-11.png" alt="">
@@ -385,7 +386,7 @@
                 </div>
             </section>
 
-       
+
             <section id="contact" class="section-bg wow fadeInUp">
                 <div class="container">
 
@@ -509,7 +510,7 @@
 
         <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
-   
+
         <script src="lib/jquery/jquery.min.js"></script>
         <script src="lib/jquery/jquery-migrate.min.js"></script>
         <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
