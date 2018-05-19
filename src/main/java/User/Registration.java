@@ -62,7 +62,7 @@ public class Registration extends HttpServlet {
             String pass = request.getParameter("password");
             String pass2 = request.getParameter("password2");
             String address = request.getParameter("address");
-            String sex = request.getParameter("sex");
+            String sex = request.getParameter("gender");
             String language = request.getParameter("language");
 
             String error = "";
@@ -160,17 +160,16 @@ public class Registration extends HttpServlet {
                 rd.forward(request, response);
 
             } else {
-                
-                admin.setUsername(username);
-                admin.setPass(PasswordHashing.hashPassword(pass));
+
                 admin.setEmail(email);
+                admin.setPass(PasswordHashing.hashPassword(pass));
 
                 // Set Default Profile Pic
                 //patient.setImage("avatar.jpg");
                 // Check if adding is successful
                 if (adminDAO.insertUser(admin)) {
 
-                    text = "Hello <strong>" + admin.getUsername() + "</strong>,<br><br>" + text;
+                    text = "Hello <strong>" + admin.getEmail() + "</strong>,<br><br>" + text;
 
                     Cookie loginCookie = new Cookie("username", username);
                     //setting cookie to expiry in 1 year

@@ -5,6 +5,28 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<c:set var="language" value="${param.language}" scope="session" />
+<%String language = request.getParameter("language"), english = "", vietnamese = "", lang = "";
+    if (language == null) {
+        language = "en_US";
+    }
+    if (language.equals("en_US")) {
+        lang = "English";
+        english = "active";
+    } else if (language.equals("vi_VN")) {
+        lang = "Tiếng Việt";
+        vietnamese = "active";
+    }
+%>
+<c:if test="${not empty language}">
+    <fmt:setLocale value="${language}" />
+</c:if>
+<fmt:setBundle basename="text" />
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -37,7 +59,6 @@
                         <li class="menu-has-children"><a href="">Language</a>
                             <ul>
                                 <li><a href="#">English</a></li>
-                                <li><a href="#">French</a></li>
                                 <li><a href="#">Vietnamese</a></li>
                             </ul>
                         </li>
@@ -52,10 +73,18 @@
                 <form class="register" method="post" style="width:600px;">
                     <h1>Register Account</h1>
                     <br>
-                    <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
-                    <div class="form-group"><input class="form-control d-inline-flex" type="password" name="password" placeholder="Password" style="width:200px;"></div>
-                    <div class="form-group"><input class="form-control d-inline-flex" type="password" name="password" placeholder="Confirm Password" style="width:200px;"></div>
-                    <div class="form-group"><input class="form-control d-inline" type="text" name="firstname" placeholder="First Name" style="width:200px;margin:0px 0px;"><input class="form-control d-inline" type="text" name="lastname" placeholder="Last Name" style="width:200px;margin:0px 10px;"></div>
+                    <div class="form-group">
+                        <input class="form-control d-inline" type="text" name="fname" placeholder="First Name" style="width:200px;margin:0px 0px;" onkeyup="ValidateText(this)" required><input class="form-control d-inline" type="text" name="lname" placeholder="Last Name" style="width:200px;margin:0px 10px;" onkeyup="ValidateText(this)" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="email" name="email" placeholder="Email" onchange="email_validate(this.value);" required>
+                        <div class="status" id="status"></div>
+                    </div>
+                    <div class="form-group"><input class="form-control d-inline-flex" type="password" name="password" placeholder="Password" style="width:200px;" minlength="4" maxlength="16" id="pass1" required></div>
+                    <div class="form-group">
+                        <input class="form-control d-inline-flex" type="password" name="password2" placeholder="Confirm Password" style="width:200px;" minlength="4" maxlength="16" id="pass2" onchange="checkPass(); return false;" required>
+                        <span id="confirmMessage" class="confirmMessage"></span>
+                    </div>
                     <div class="form-group">
                         <label style="color:#65757d; margin:0px 10px;">Gender:&nbsp;</label>
                         <select class="form-control d-inline" name="gender" style="width:120px;color:#65757d;">
@@ -64,11 +93,22 @@
                             <option value="other">Other</option>
                         </select>
                     </div>
-                    <div class="form-group"><input class="form-control" type="date" style="color:#65757d;"></div>
-                    <div class="form-group"><input class="form-control" type="text" name="address" placeholder="Address" style="width:420px;margin:0px 0px;"></div>
-                    <div class="form-group"><input class="form-control" type="text" name="phoneno" placeholder="Phone Number" style="width:420px;margin:0px 0px;"></div>
+                    <!-- <div class="form-group"><input class="form-control" type="date" style="color:#65757d;"></div> -->
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="address" placeholder="Address" style="width:420px;margin:0px 0px;" onkeyup = "add_validate(this.value)" required>
+                        <div id="statusAdd"></div>
+                    </div>
+                    <input type="hidden" name="language" value="<%=language%>">
+
+                    <div class="form-group">
+                        <hr>
+                        <input type="checkbox" required name="terms" onchange="this.setCustomValidity(validity.valueMissing ? 'Please indicate that you accept the Terms and Conditions' : '');" id="field_terms">   <label for="terms">I agree with the <a href="terms.php" title="You may read our terms and conditions by clicking on this link">terms and conditions</a> for Registration.</label>
+                    </div>
+
+                    <small>You will receive an email to complete the registration and validation process.</small>
+                    <small>Be sure to check your spam folders. </small>
                     <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Sign Up</button></div>
-                    <a href="login.jsp" class="forgot">Already have account? Sign in.</a>
+                    <a href="login" class="forgot">Already have account? Sign in.</a>
                 </form>
             </div>
         </main>
@@ -145,7 +185,7 @@
             <script src="lib/isotope/isotope.pkgd.min.js"></script>
             <script src="lib/lightbox/js/lightbox.min.js"></script>
             <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
-            <script src="contactform/contactform.js"></script>
+            <script src="js/registration.js"></script>
             <script src="js/main.js"></script>
     </body>
 </html>

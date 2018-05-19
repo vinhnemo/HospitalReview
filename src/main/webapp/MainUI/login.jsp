@@ -7,6 +7,23 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <%
+        // Call cookie
+        Cookie isLogin[] = request.getCookies();
+
+        if (isLogin != null) {
+            for (Cookie ck : isLogin) {
+                if (ck.getName().equals("u_email")) {
+                    response.sendRedirect("/index.jsp");
+                }
+            }
+        }
+
+        String error = "";
+        if (request.getAttribute("error") != null) {
+            error = (String) request.getAttribute("error");
+        }
+    %>
     <head>
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -22,7 +39,6 @@
         <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
         <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
-
 
         <link rel="stylesheet" href="lib/form/form.css">
     </head> 
@@ -41,7 +57,6 @@
                         <li class="menu-has-children"><a href="">Language</a>
                             <ul>
                                 <li><a href="#">English</a></li>
-                                <li><a href="#">French</a></li>
                                 <li><a href="#">Vietnamese</a></li>
                             </ul>
                         </li>
@@ -53,19 +68,26 @@
 
         <main id="main">
             <div class="login-dark">
-                <form class="login" action="" method="post">
+                <form class="login" action="login" method="post">
                     <h1>Login</h1>
                     <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
+
+                    <% if (error.length() > 0) {%>
+                    <div class="form-group has-danger"><input class="form-control" type="email" name="email" placeholder="Email"></div>
+                    <div class="form-group has-danger"><input class="form-control" type="password" name="password" placeholder="Password"></div>
+                    <% } else {%>
                     <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
                     <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Log In</button></div>
+                    <% }%>
+                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action">Log In</button></div>
                     <div class="form-group">
-                        <input class="btn btn-primary2 btn-block" type="button" value="Register New Account" onclick="window.location.href='register.jsp'" />                        
+                        <input class="btn btn-primary2 btn-block" type="button" value="Register New Account" onclick="window.location.href = 'register'" />                        
                     </div>
-                    <a href="#" class="forgot">Forgot your email or password?</a>
+                    <a href="forgot" class="forgot">Forgot your email or password?</a>
                 </form>
             </div>
         </main>
+
         <footer id="footer">
             <div class="footer-top">
                 <div class="container">
