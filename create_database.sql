@@ -78,3 +78,23 @@
   PRIMARY KEY (`h_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8
 --------------------------------------------------------
+----------------table deactivePatient---------------------
+--------------------------------------------------------
+CREATE TABLE `deactivePatien` (
+  `DP_id` int(250) unsigned NOT NULL AUTO_INCREMENT,
+  `p_id` int(250) unsigned NOT NULL,
+  PRIMARY KEY (`DP_id`),
+  FOREIGN KEY (`p_id`) REFERENCES `patient` (`p_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+--------------------------------------------------------
+----------------table deactiveHospital---------------------
+--------------------------------------------------------
+CREATE TABLE `deactiveHospital` (
+  `DH_id` int(250) unsigned NOT NULL AUTO_INCREMENT,
+  `h_id` int(250) unsigned NOT NULL,
+  PRIMARY KEY (`DH_id`),
+  FOREIGN KEY (`h_id`) REFERENCES `hospital` (`h_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+--------------------------------------------------------
+------------------------------------
+--------------------------------------------------------
