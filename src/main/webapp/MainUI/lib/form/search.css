@@ -141,8 +141,18 @@
         visibility:visible}
 }
 .nothing-special {
-    height: 200px;
+    height: 90px;
     width: 100%;
     background-color: #000;
+}
+.search-keyword {
+    height: 70px;
+    width: 100%;    
+}
+.keyword {
+    font-size: 20px;
+    margin-left: 5%;
+    padding-top: 20px;
+    font-weight: 500;
 }
 
