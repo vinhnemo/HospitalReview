@@ -59,7 +59,7 @@
                         <li class="menu-has-children"><a href="">Language</a>
                             <ul>
                                 <li><a href="#">English</a></li>
-                                <li><a href="#">Vietnamese</a></li>
+                                <li><a href="#">Tiếng Việt</a></li>
                             </ul>
                         </li>
                         <li><a href="#footer">Contact Us</a></li>
