@@ -156,6 +156,7 @@ public class PatientDAO {
         }
 
     }
+
     public List<Patient> searchPatien(String name) {
         String query;
         List<Patient> list = new ArrayList<>();
@@ -192,4 +193,85 @@ public class PatientDAO {
         }
         return list;
     }
+
+    // Get All News
+    public List<Patient> getAllPatient() {
+        List<Patient> list = new ArrayList<>();
+        String query = "SELECT * FROM patient ";
+
+        // Connect to database
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareCall(query);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Patient p = new Patient();
+                p.setID(rs.getInt("p_id"));
+                p.setFname(rs.getString("p_fname"));
+                p.setLname(rs.getString("p_lname"));
+                p.setSex(rs.getString("p_gender"));
+                p.setEmail(rs.getString("email"));
+                p.setPass(rs.getString("password"));
+                p.setAddress(rs.getString("p_address"));
+                p.setLang(rs.getString("languages"));
+                list.add(p);
+            }
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Patient.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return list;
+    }
+
+    public Patient getDoctor(int id) {
+        String query = "SELECT * FROM patient WHERE p_id = ?";
+        Patient p = new Patient();
+
+        // Connect to database
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareCall(query);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                p.setID(rs.getInt("p_id"));
+                p.setFname(rs.getString("p_fname"));
+                p.setLname(rs.getString("p_lname"));
+                p.setSex(rs.getString("p_gender"));
+                p.setEmail(rs.getString("email"));
+                p.setPass(rs.getString("password"));
+                p.setAddress(rs.getString("p_address"));
+                p.setLang(rs.getString("languages"));
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DoctorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return p;
+    }
+    
+    public boolean removePatient(int id) {
+        // Connect to database
+        Connection connection = Database.getConnection();
+
+        String query = "DELETE FROM patient WHERE p_id = ?";
+
+        try {
+            PreparedStatement ps = connection.prepareCall(query);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            connection.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DoctorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
 }
