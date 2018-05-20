@@ -9,6 +9,10 @@ import Database.*;
 import Other.DTO.Comment;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -67,5 +71,31 @@ public class CommentDAO {
             ex.printStackTrace();
         }
         return c;
+    }
+
+    public List<Comment> getAllRate() {
+        List<Comment> list = new ArrayList<>();
+        String query = "SELECT * FROM comment ";
+
+        // Connect to database
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareCall(query);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Comment c = new Comment();
+                c.setID(rs.getInt("c_id"));
+                c.setComment(rs.getString("c_comment"));
+                c.setdID(rs.getInt("d_id"));
+                list.add(c);
+            }
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CommentDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return list;
     }
 }

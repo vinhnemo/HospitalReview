@@ -9,6 +9,10 @@ import Database.*;
 import Other.DTO.Rate;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -67,5 +71,55 @@ public class RateDAO {
             ex.printStackTrace();
         }
         return rate;
+    }
+
+    public List<Rate> getAllRate() {
+        List<Rate> list = new ArrayList<>();
+        String query = "SELECT * FROM rate ";
+
+        // Connect to database
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareCall(query);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Rate rate = new Rate();
+                rate.setID(rs.getInt("r_id"));
+                rate.setRate(rs.getFloat("r_rate"));
+                rate.setdID(rs.getInt("d_id"));
+                list.add(rate);
+            }
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(RateDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return list;
+    }
+
+    public float getRatingPoint() {
+        float rating = 0;
+        int count = 0;
+        String query = "SELECT * FROM rate ";
+
+        // Connect to database
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareCall(query);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                count++;
+                rating += rs.getFloat("r_rate");
+            }
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(RateDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return rating / count;
     }
 }
