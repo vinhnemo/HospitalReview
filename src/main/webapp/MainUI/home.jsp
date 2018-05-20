@@ -54,10 +54,6 @@
                     <h1><a href="#intro" class="scrollto">Doctor STRANGE</a></h1>
                 </div>
                 <nav id="nav-menu-container">
-<<<<<<< HEAD
-
-=======
->>>>>>> ff37197e66bb240e5d0c526236301158fd0f92d2
                     <ul class="nav-menu">
                         <li class="menu-has-children menu-active"><a href="#">Find Doctor</a>
                             <ul>
