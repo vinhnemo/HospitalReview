@@ -4,6 +4,7 @@
     Author     : MSI
 --%>
 
+<%@page import="User.DTO.Patient"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -46,6 +47,14 @@
     </head> 
 
     <body>
+        <%
+            Patient patient = new Patient();
+            boolean filled = false;
+            if (request.getAttribute("patient") != null) {
+                patient = (Patient) request.getAttribute("patient");
+                filled = true;
+            }
+        %>
         <!-- Header -->
         <header id="header">
             <div class="container-fluid">
@@ -87,13 +96,23 @@
                 <form class="register" method="post" style="width:600px;">
                     <h1>Register Account</h1>
                     <br>
+                    <% if (filled) {%>
                     <div class="form-group">
-                        <input class="form-control d-inline" type="text" name="fname" placeholder="First Name" style="width:200px;margin:0px 0px;" onkeyup="ValidateText(this)" required><input class="form-control d-inline" type="text" name="lname" placeholder="Last Name" style="width:200px;margin:0px 10px;" onkeyup="ValidateText(this)" required>
+                        <input class="form-control d-inline" type="text" name="fname" value="<%=patient.getFname()%>" style="width:200px;margin:0px 0px;" required><input class="form-control d-inline" type="text" name="lname" value="<%=patient.getLname()%>" style="width:200px;margin:0px 10px;" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="email" name="email" value="<%=patient.getEmail()%>" onchange="email_validate(this.value);" required>
+                        <div class="status" id="status"></div>
+                    </div>
+                    <% } else {%>
+                    <div class="form-group">
+                        <input class="form-control d-inline" type="text" name="fname" placeholder="First Name" style="width:200px;margin:0px 0px;" required><input class="form-control d-inline" type="text" name="lname" placeholder="Last Name" style="width:200px;margin:0px 10px;" required>
                     </div>
                     <div class="form-group">
                         <input class="form-control" type="email" name="email" placeholder="Email" onchange="email_validate(this.value);" required>
                         <div class="status" id="status"></div>
                     </div>
+                    <% }%>
                     <div class="form-group"><input class="form-control d-inline-flex" type="password" name="password" placeholder="Password" style="width:200px;" minlength="4" maxlength="16" id="pass1" required></div>
                     <div class="form-group">
                         <input class="form-control d-inline-flex" type="password" name="password2" placeholder="Confirm Password" style="width:200px;" minlength="4" maxlength="16" id="pass2" onchange="checkPass(); return false;" required>
@@ -108,10 +127,17 @@
                         </select>
                     </div>
                     <!-- <div class="form-group"><input class="form-control" type="date" style="color:#65757d;"></div> -->
+                    <% if (filled) {%>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="address" value="<%=patient.getAddress()%>" style="width:420px;margin:0px 0px;" onkeyup = "add_validate(this.value)" required>
+                        <div id="statusAdd"></div>
+                    </div>
+                    <% } else {%>
                     <div class="form-group">
                         <input class="form-control" type="text" name="address" placeholder="Address" style="width:420px;margin:0px 0px;" onkeyup = "add_validate(this.value)" required>
                         <div id="statusAdd"></div>
                     </div>
+                    <% }%>
                     <input type="hidden" name="language" value="<%=language%>">
 
                     <div class="form-group">
@@ -121,7 +147,7 @@
 
                     <small>You will receive an email to complete the registration and validation process.</small>
                     <small>Be sure to check your spam folders. </small>
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Sign Up</button></div>
+                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action" value="Signup">Sign Up</button></div>
                     <a href="login" class="forgot">Already have account? Sign in.</a>
                 </form>
             </div>

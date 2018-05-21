@@ -90,19 +90,6 @@
 
                 <!-- Modal content-->
                 <div class="modal-content">
-                    <!--
-                    <div class="modal-header">
-                        <h4 class="modal-title">Modal Header</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        
-                    </div>
-                    <div class="modal-body">
-                        <p>Some text in the modal.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                    -->
                     <div class="modal-body">
                         <section id="formHolder">
 
@@ -131,7 +118,7 @@
                                     <div class="login form-peice switched">
                                         <form class="login-form" action="login" method="post">
                                             <div class="form-group">
-                                                <label for="loginemail">Email Adderss</label>
+                                                <label for="loginemail">Email</label>
                                                 <input type="email" name="email" id="loginemail" required>
                                             </div>
 
@@ -153,36 +140,31 @@
                                         <form class="signup-form" action="register" method="post">
 
                                             <div class="form-group">
-                                                <label for="name">Full Name</label>
-                                                <input type="text" name="username" id="name" class="name">
+                                                <label for="fname">First Name</label>
+                                                <input type="text" name="fname" id="fname" class="fname" required>
                                                 <span class="error"></span>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="email">Email Adderss</label>
-                                                <input type="email" name="emailAdress" id="email" class="email">
+                                                <label for="lname">Last Name</label>
+                                                <input type="text" name="lname" id="lname" class="lname" required>
                                                 <span class="error"></span>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="phone">Phone Number - <small>Optional</small></label>
-                                                <input type="text" name="phone" id="phone">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="password">Password</label>
-                                                <input type="password" name="password" id="password" class="pass">
+                                                <label for="email">Email</label>
+                                                <input type="email" name="email" id="email" class="email" required>
                                                 <span class="error"></span>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="passwordCon">Confirm Password</label>
-                                                <input type="password" name="passwordCon" id="passwordCon" class="passConfirm">
+                                                <label for="address">Address</label>
+                                                <input type="text" name="address" id="address" class="address" required>
                                                 <span class="error"></span>
                                             </div>
 
                                             <div class="CTA">
-                                                <input type="submit" value="Signup Now" id="submit">
+                                                <input type="submit" value="Signup Now" id="submit" name="action">
                                                 <a href="#" class="switch">I have an account</a>
                                             </div>
                                         </form>

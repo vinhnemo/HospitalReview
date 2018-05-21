@@ -8,16 +8,20 @@ and open the template in the editor.
     Author     : TGMaster
 */
 
-
-
+.modal-content
+{
+    max-width: 900px;
+    background: transparent;
+    border: transparent;
+}
 
 .brand {
     padding: 20px;
-    background: url(https://goo.gl/A0ynht);
+    background: #444;
     background-size: cover;
     background-position: center center;
     color: #fff;
-    min-height: 510px;
+    min-height: 540px;
     position: relative;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
     transition: all 0.6s cubic-bezier(1, -0.375, 0.285, 0.995);
@@ -38,7 +42,7 @@ and open the template in the editor.
     z-index: -1;
 }
 .brand a.logo {
-    color: #f05755;
+    color: #18d26e;
     font-size: 20px;
     font-weight: 700;
     text-decoration: none;
@@ -204,7 +208,7 @@ and open the template in the editor.
     font-size: 12px;
     text-transform: uppercase;
     padding: 5px 30px;
-    background: #18d26e;
+    background: #13a456;
     color: #fff;
     border-radius: 30px;
     margin-right: 20px;
