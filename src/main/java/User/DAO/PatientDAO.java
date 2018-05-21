@@ -93,7 +93,15 @@ public class PatientDAO {
     public Patient login(String email) {
         Patient p = new Patient();
 
-        String query = "SELECT * FROM patient WHERE email = ?";
+        String query = "SELECT `patient`.`p_id`,"
+                + "    `patient`.`p_fname`,"
+                + "    `patient`.`p_lname`,"
+                + "    `patient`.`p_gender`,"
+                + "    `patient`.`email`,"
+                + "    `patient`.`password`,"
+                + "    `patient`.`p_address`,"
+                + "    `patient`.`languages`"
+                + "FROM patient, deactivepatien  where patient.email = ? and IFNULL(deactivepatien.p_id != patient.p_id , TRUE);";
 
         // Connect to database
         Connection connection = Database.getConnection();
@@ -226,7 +234,7 @@ public class PatientDAO {
         return list;
     }
 
-    public Patient getDoctor(int id) {
+    public Patient getPatient(int id) {
         String query = "SELECT * FROM patient WHERE p_id = ?";
         Patient p = new Patient();
 
@@ -255,22 +263,103 @@ public class PatientDAO {
         }
         return p;
     }
-    
+
+    public Patient getPatientfromEmail(String email) {
+        String query = "SELECT * FROM patient WHERE email = ?";
+        Patient p = new Patient();
+
+        // Connect to database
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareCall(query);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                p.setID(rs.getInt("p_id"));
+                p.setFname(rs.getString("p_fname"));
+                p.setLname(rs.getString("p_lname"));
+                p.setSex(rs.getString("p_gender"));
+                p.setEmail(rs.getString("email"));
+                p.setPass(rs.getString("password"));
+                p.setAddress(rs.getString("p_address"));
+                p.setLang(rs.getString("languages"));
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DoctorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return p;
+    }
+
     public boolean removePatient(int id) {
         // Connect to database
         Connection connection = Database.getConnection();
 
-        String query = "DELETE FROM patient WHERE p_id = ?";
+        String query = " DELETE FROM deactivepatien WHERE DP_id = ? ; DELETE FROM patient WHERE p_id = ? ;";
 
         try {
             PreparedStatement ps = connection.prepareCall(query);
             ps.setInt(1, id);
+            ps.setInt(2, id);
             ps.executeUpdate();
             connection.close();
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(DoctorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return false;
+    }
+
+    public boolean deactivePatient(int id) {
+
+        String query = "INSERT INTO deactivepatien"
+                + "(DP_id,"
+                + "p_id)"
+                + " VALUES "
+                + "(?,"
+                + "?);";
+
+        // Connect to database
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareCall(query);
+            ps.setLong(1, id);
+            ps.setLong(2, id);
+            ps.executeUpdate();
+
+            connection.close();
+            return true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public boolean active(int id) {
+
+        String query = "DELETE FROM deactivepatien WHERE DP_id = ?";
+                
+
+        // Connect to database
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareCall(query);
+            ps.setLong(1, id);
+
+            ps.executeUpdate();
+
+            connection.close();
+            return true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
         return false;
     }
 
