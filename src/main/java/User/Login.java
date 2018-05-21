@@ -107,7 +107,7 @@ public class Login extends HttpServlet {
                     response.addCookie(loginCookie);
                 }
 
-                response.sendRedirect("/index.jsp");
+                response.sendRedirect("/profilePatient.jsp");
             }
         }
 

@@ -116,7 +116,7 @@ public class Registration extends HttpServlet {
                     sm.sendMail(mail);
 
                     session.setAttribute("user", patient);
-                    response.sendRedirect("/index.jsp");
+                    response.sendRedirect("/register.jsp");
                 } else {
                     request.setAttribute("error", "Error in Registration");
                     rd = sc.getRequestDispatcher("/register.jsp");
