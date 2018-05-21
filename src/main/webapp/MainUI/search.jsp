@@ -14,8 +14,6 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
-        <link href="img/favicon.png" rel="icon">
-        <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -24,7 +22,8 @@
         <link href="css/style.css" rel="stylesheet">
         <link rel="stylesheet" href="lib/form/search.css">
         <link rel="stylesheet" href="lib/form/form.css">
-
+        <link rel="stylesheet" href="lib/form/sidebar.css">
+        <script src="lib/modernizer/modernizr-2.6.2.min.js"></script>
     </head>
 
     <body>
@@ -72,6 +71,41 @@
             <!-- !! -->
             <section class="card-section-imagia">
                 <div class="container">
+                    <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+                    <aside id="fh5co-aside" role="complementary" class="border js-fullheight">
+
+                        <h4>Filter Your Result</h4><hr>
+                        <div>
+                            Your nearest location 
+                            <div class="search-container">
+                                <input type="text" name="search-bar" placeholder="Search..." class="search-input">
+                                <button class="btn btn-light search-btn" type="button"> 
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div><hr>
+                            Gender<br>
+                            <select class="side-select"> <!-- apply from db -->
+                                <option value="1">Male</option>
+                                <option value="2">Female</option>
+                            </select><hr>
+                            Last Name<br>
+                            <select class="side-select"> <!-- apply from db -->
+                                <option value="1">A ->Z</option>
+                                <option value="2">Z->A</option>
+                            </select><hr>
+                            Speciality<br>
+                            <select class="side-select"> <!-- apply from db -->
+                                <option value="Crazy">Crazy</option>
+                                <option value="Mad">Mad</option>
+                            </select><hr>
+                            Language<br>
+                            <select class="side-select"> <!-- apply from db -->
+                                <option value="en">English</option>
+                                <option value="vi">Vietnamese</option>
+                            </select><hr>
+                        </div>
+                    </aside>
+
                     <div class="row">
                         <!-- Apply when has Database 
                          DoctorDAO d = new DoctorDAO();
@@ -111,7 +145,7 @@
                                             </div>
                                         </div>
                                         <div class="footer-imagia">
-                                            <div class="social-imagia text-center"><a href="#"><i class="fa fa-facebook"></i></a></div>
+                                            <div class="social-imagia text-center"><a href="#">View Profile</a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -177,24 +211,24 @@
                         </footer>
 
                         <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-
-
                         <script src="lib/jquery/jquery.min.js"></script>
                         <script src="lib/jquery/jquery-migrate.min.js"></script>
                         <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-                        <script src="lib/easing/easing.min.js"></script>
+                        <script src="lib/waypoints/waypoints.min.js"></script>
+                        <script src="lib/easing/jquery.easing.1.3.js"></script>
+                        <script src="lib/waypoints/waypoints.min.js"></script>
+                        <script src="lib/flexslider/jquery.flexslider-min.js"></script>
+                        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+                        <script src="lib/form/side.js"></script>
+
                         <script src="lib/superfish/hoverIntent.js"></script>
                         <script src="lib/superfish/superfish.min.js"></script>
                         <script src="lib/wow/wow.min.js"></script>
-                        <script src="lib/waypoints/waypoints.min.js"></script>
                         <script src="lib/counterup/counterup.min.js"></script>
                         <script src="lib/owlcarousel/owl.carousel.min.js"></script>
                         <script src="lib/isotope/isotope.pkgd.min.js"></script>
                         <script src="lib/lightbox/js/lightbox.min.js"></script>
                         <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
-
-                        <script src="contactform/contactform.js"></script>
-
                         <script src="js/main.js"></script>
 
                         </body>
