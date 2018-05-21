@@ -81,7 +81,7 @@
 ----------------table deactivePatient---------------------
 --------------------------------------------------------
 CREATE TABLE `deactivePatien` (
-  `DP_id` int(250) unsigned NOT NULL AUTO_INCREMENT,
+  `DP_id` int(250) unsigned NOT NULL,
   `p_id` int(250) unsigned NOT NULL,
   PRIMARY KEY (`DP_id`),
   FOREIGN KEY (`p_id`) REFERENCES `patient` (`p_id`)
@@ -90,7 +90,7 @@ CREATE TABLE `deactivePatien` (
 ----------------table deactiveHospital---------------------
 --------------------------------------------------------
 CREATE TABLE `deactiveHospital` (
-  `DH_id` int(250) unsigned NOT NULL AUTO_INCREMENT,
+  `DH_id` int(250) unsigned NOT NULL,
   `h_id` int(250) unsigned NOT NULL,
   PRIMARY KEY (`DH_id`),
   FOREIGN KEY (`h_id`) REFERENCES `hospital` (`h_id`)
