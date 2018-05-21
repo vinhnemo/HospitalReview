@@ -113,7 +113,7 @@
                                     <a href="#" class="logo">Doctor <span>STRANGE</span></a>
 
                                     <div class="heading">
-                                        <h2>Marina</h2>
+                                        <h2>Login</h2>
                                         <p>Your Right Choice</p>
                                     </div>
 
@@ -569,7 +569,7 @@
 
                     </div>
 
-                    <div class="form">
+                    <div class="form2">
                         <form action="" method="post" role="form" class="contactForm">
                             <div class="form-row">
                                 <div class="form-group col-md-6">

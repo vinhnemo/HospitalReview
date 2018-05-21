@@ -63,7 +63,6 @@
 
 .login-dark form .btn-primary:hover, .login-dark form .btn-primary:active {
   background:#13a456;
-  outline:none;
 }
 
 .login-dark form .btn-primary2 {
@@ -80,7 +79,6 @@
 
 .login-dark form .btn-primary2:hover, .login-dark form .btn-primary2:active {
   background:#195096;
-  outline:none;
 }
 
 .login-dark form .forgot {
