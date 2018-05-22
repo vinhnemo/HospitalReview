@@ -49,7 +49,7 @@ function email_validate(email)
     if (regMail.test(email) === false)
     {
         message.style.color = "#ff6666";
-        message.innerHTML = "<span class='warning'><i class=\"fa fa-times\" aria-hidden=\"true\"> Email address is not valid yet.</span>";
+        message.innerHTML = "<span class='warning'><i class=\"fa fa-times\" aria-hidden=\"true\"> Email address is not valid.</span>";
     } else
     {
         message.style.color = "#66cc66";
@@ -78,7 +78,7 @@ function add_validate(address)
     if (regAdd.test(address) === false)
     {
         message.style.color = "#ff6666";
-        message.innerHTML = "<span class='warning'>Address is not valid yet.</span>";
+        message.innerHTML = "<span class='warning'>Address is not valid.</span>";
     } else
     {
         message.style.color = "#66cc66";
@@ -117,3 +117,5 @@ $(document).ready(function () {
         });
     }
 });
+
+document.getElementById("field_terms").setCustomValidity("Please indicate that you accept the Terms and Conditions");

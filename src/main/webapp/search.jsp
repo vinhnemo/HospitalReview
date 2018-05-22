@@ -71,6 +71,8 @@
             <!-- !! -->
             <section class="card-section-imagia">
                 <div class="container">
+                    <div class="row" id="sidebar">
+                    <div class="col-sm-9">
                     <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
                     <aside id="fh5co-aside" role="complementary" class="border js-fullheight">
 
@@ -105,15 +107,16 @@
                             </select><hr>
                         </div>
                     </aside>
+                    </div>
 
-                    <div class="row">
+                    
                         <!-- Apply when has Database 
                          DoctorDAO d = new DoctorDAO();
                            List<Doctor> a = d.getAllDoctor();
                            for (Doctor doctor : a) {
                            out.print(doctor.method-query()); } Drag to Div 
                         -->
-                        <div class="col-sm-6 col-md-4">
+                        <!--<div class="col-md-4">-->
                             <div class="card-container-imagia">
                                 <div class="card-imagia">
                                     <div class="front-imagia">
