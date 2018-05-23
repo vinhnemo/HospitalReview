@@ -68,7 +68,7 @@
                                 <li>
                                     <div class="dropdown-form">
                                         <form action="doctor" method="POST">
-                                            <h3><fmt:message key="home.finddoc"/></h3>
+                                            <h3><fmt:message key="finddoc"/></h3>
                                             <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
                                             <input class="dropdown-button" type="submit" value="Search Doctor">
                                         </form>
@@ -76,15 +76,15 @@
                                 </li>
                             </ul> 
                         </li>
-                        <li><a href="#"><fmt:message key="home.appt"/></a></li>
-                        <li class="menu-has-children"><a href=""><fmt:message key="home.language"/></a>
+                        <li><a href="#"><fmt:message key="appt"/></a></li>
+                        <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
                             <ul>
                                 <li><a href="register.jsp?language=en_US">English</a></li>
                                 <li><a href="register.jsp?language=vi_VN">Tiếng Việt</a></li>
                             </ul>
                         </li>
-                        <li><a href="#footer"><fmt:message key="home.contact"/></a></li>
-                        <li class="menu-active"><a href="login.jsp"><fmt:message key="home.signinup"/></a></li>                     
+                        <li><a href="#footer"><fmt:message key="contact"/></a></li>
+                        <li class="menu-active"><a href="login.jsp"><fmt:message key="signinup"/></a></li>                     
                     </ul>
                 </nav>
             </div>
