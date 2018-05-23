@@ -8,7 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<c:set var="language" value="${param.language}" scope="session" />
+<c:set var="language" value="${param.language}"  />
 <%String language = request.getParameter("language"), english = "", french = "", vietnamese = "";
     if (language == null) {
         language = "en_US";
@@ -52,7 +52,7 @@
         <header id="header">
             <div class="container-fluid">
                 <div id="logo" class="pull-left">
-                    <h1><a href="#intro" class="scrollto"><fmt:message key="home.title"/></a></h1>
+                    <h1><a href="home.jsp" class="scrollto">Doctor STRANGE</a></h1>
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
@@ -61,7 +61,7 @@
                                 <li>
                                     <div class="dropdown-form">
                                         <form action="doctor" method="POST">
-                                            <h3>Find Your Doctor</h3>
+                                            <h3><fmt:message key="home.finddoc"/></h3>
                                             <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
                                             <input class="dropdown-button" type="submit" value="Search Doctor">
                                         </form>
@@ -69,15 +69,15 @@
                                 </li>
                             </ul> 
                         </li>
-                        <li><a href="#">Appointment</a></li>
-                        <li class="menu-has-children"><a href="">Language</a>
+                        <li><a href="#"><fmt:message key="home.appt"/></a></li>
+                        <li class="menu-has-children"><a href=""><fmt:message key="home.language"/></a>
                             <ul>
                                 <li><a href="home.jsp?language=en_US">English</a></li>
                                 <li><a href="home.jsp?language=vi_VN">Tiếng Việt</a></li>
                             </ul>
                         </li>
-                        <li><a href="#contact">Contact Us</a></li>
-                        <li class="menu-active"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true">Sign In/Sign Up</a></li>                     
+                        <li><a href="#contact"><fmt:message key="home.contact"/></a></li>
+                        <li class="menu-active"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true"><fmt:message key="home.signinup"/></a></li>                     
                     </ul>
                 </nav>
             </div>
