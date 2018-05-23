@@ -80,20 +80,22 @@
 --------------------------------------------------------
 ----------------table deactivePatient---------------------
 --------------------------------------------------------
-CREATE TABLE `deactivePatien` (
-  `DP_id` int(250) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `deactivepatien` (
+  `DP_id` int(250) unsigned NOT NULL,
   `p_id` int(250) unsigned NOT NULL,
   PRIMARY KEY (`DP_id`),
-  FOREIGN KEY (`p_id`) REFERENCES `patient` (`p_id`)
+  KEY `p_id` (`p_id`),
+  CONSTRAINT `deactivepatien_ibfk_1` FOREIGN KEY (`p_id`) REFERENCES `patient` (`p_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 --------------------------------------------------------
 ----------------table deactiveHospital---------------------
 --------------------------------------------------------
-CREATE TABLE `deactiveHospital` (
-  `DH_id` int(250) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `deactivehospital` (
+  `DH_id` int(250) unsigned NOT NULL ,
   `h_id` int(250) unsigned NOT NULL,
   PRIMARY KEY (`DH_id`),
-  FOREIGN KEY (`h_id`) REFERENCES `hospital` (`h_id`)
+  KEY `h_id` (`h_id`),
+  CONSTRAINT `deactivehospital_ibfk_1` FOREIGN KEY (`h_id`) REFERENCES `hospital` (`h_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 --------------------------------------------------------
 ------------------------------------

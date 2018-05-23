@@ -43,6 +43,7 @@
         <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
         <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
+        <link href="css/modal.css" rel="stylesheet">
         <link rel="stylesheet" href="lib/form/form.css">
     </head>
 
@@ -54,10 +55,6 @@
                     <h1><a href="#intro" class="scrollto">Doctor STRANGE</a></h1>
                 </div>
                 <nav id="nav-menu-container">
-<<<<<<< HEAD
-
-=======
->>>>>>> ff37197e66bb240e5d0c526236301158fd0f92d2
                     <ul class="nav-menu">
                         <li class="menu-has-children menu-active"><a href="#">Find Doctor</a>
                             <ul>
@@ -80,11 +77,108 @@
                             </ul>
                         </li>
                         <li><a href="#contact">Contact Us</a></li>
-                        <li class="menu-active"><a href="login.jsp">Sign In/Sign Up</a></li>                     
+                        <li class="menu-active"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true">Sign In/Sign Up</a></li>                     
                     </ul>
                 </nav>
             </div>
         </header>
+
+        <!-- Login Popup -->
+        <!-- Modal -->
+        <div id="myLogin" class="modal fade" role="dialog" tabindex='-1'>
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <section id="formHolder">
+
+                            <div class="row">
+
+                                <!-- Brand Box -->
+                                <div class="col-sm-6 brand">
+                                    <a href="#" class="logo">Doctor <span>STRANGE</span></a>
+
+                                    <div class="heading">
+                                        <h2>Login</h2>
+                                        <p>Your Right Choice</p>
+                                    </div>
+
+                                    <div class="success-msg">
+                                        <p>Great! You are one of our members now</p>
+                                        <a href="#" class="profile">Your Profile</a>
+                                    </div>
+                                </div>
+
+
+                                <!-- Form Box -->
+                                <div class="col-sm-6 form">
+
+                                    <!-- Login Form -->
+                                    <div class="login form-peice switched">
+                                        <form class="login-form" action="login" method="post">
+                                            <div class="form-group">
+                                                <label for="loginemail">Email</label>
+                                                <input type="email" name="email" id="loginemail" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="loginPassword">Password</label>
+                                                <input type="password" name="password" id="loginPassword" required>
+                                            </div>
+
+                                            <div class="CTA">
+                                                <input type="submit" value="Login" name="action">
+                                                <a href="#" class="switch">I'm New</a>
+                                            </div>
+                                        </form>
+                                    </div><!-- End Login Form -->
+
+
+                                    <!-- Signup Form -->
+                                    <div class="signup form-peice">
+                                        <form class="signup-form" action="register" method="post">
+
+                                            <div class="form-group">
+                                                <label for="fname">First Name</label>
+                                                <input type="text" name="fname" id="fname" class="fname" required>
+                                                <span class="error"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="lname">Last Name</label>
+                                                <input type="text" name="lname" id="lname" class="lname" required>
+                                                <span class="error"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="email">Email</label>
+                                                <input type="email" name="email" id="email" class="email" required>
+                                                <span class="error"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="address">Address</label>
+                                                <input type="text" name="address" id="address" class="address" required>
+                                                <span class="error"></span>
+                                            </div>
+
+                                            <div class="CTA">
+                                                <input type="submit" value="Signup Now" id="submit" name="action">
+                                                <a href="#" class="switch">I have an account</a>
+                                            </div>
+                                        </form>
+                                    </div><!-- End Signup Form -->
+                                </div>
+                            </div>
+                        </section>
+                    </div> <!-- body -->
+                </div>
+
+            </div>
+        </div>
+
+
         <section id="intro">
             <div class="intro-container">
                 <div id="introCarousel" class="carousel  slide carousel-fade" data-ride="carousel">
@@ -457,7 +551,7 @@
 
                     </div>
 
-                    <div class="form">
+                    <div class="form2">
                         <form action="" method="post" role="form" class="contactForm">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
@@ -562,6 +656,7 @@
         <script src="contactform/contactform.js"></script>
 
         <script src="js/main.js"></script>
+        <script src="js/modal.js"></script>
 
     </body>
 </html>

@@ -1,7 +1,7 @@
 <%-- 
-    Document   : register
-    Created on : May 16, 2018, 5:46:22 PM
-    Author     : MSI
+    Document   : profilePatient
+    Created on : May 19, 2018, 9:42:31 PM
+    Author     : NemoVinh
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -29,6 +29,24 @@
 
 <!DOCTYPE html>
 <html>
+    <%
+        // Call cookie
+        Cookie isLogin[] = request.getCookies();
+
+        if (isLogin != null) {
+            for (Cookie ck : isLogin) {
+                if (ck.getName().equals("u_email")) {
+                    response.sendRedirect("/index.jsp");
+                }
+            }
+        } else {
+
+        }
+        String error = "";
+        if (request.getAttribute("error") != null) {
+            error = (String) request.getAttribute("error");
+        }
+    %>
     <head>
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -80,18 +98,19 @@
                 </nav>
             </div>
         </header>
-        
+        <jsp:useBean id="user" scope="application" class="User.DTO.Patient"/>
+
         <!-- MAIN : form -->
         <main id="main">
             <div class="login-dark">
-                <form class="register" method="post" style="width:600px;">
-                    <h1>Register Account</h1>
+                <form class="PatientController" method="post" style="width:600px;">
+                    <h1>Patient Profile</h1>
                     <br>
                     <div class="form-group">
-                        <input class="form-control d-inline" type="text" name="fname" placeholder="First Name" style="width:200px;margin:0px 0px;" onkeyup="ValidateText(this)" required><input class="form-control d-inline" type="text" name="lname" placeholder="Last Name" style="width:200px;margin:0px 10px;" onkeyup="ValidateText(this)" required>
+                        <input class="form-control d-inline" type="text" name="fname" placeholder="<jsp:getProperty name="user" property="fname"/>" style="width:200px;margin:0px 0px;" onkeyup="ValidateText(this)" required><input class="form-control d-inline" type="text" name="lname" placeholder="<jsp:getProperty name="user" property="lname"/>" style="width:200px;margin:0px 10px;" onkeyup="ValidateText(this)" required>
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="email" name="email" placeholder="Email" onchange="email_validate(this.value);" required>
+                        <input class="form-control" type="email" name="email" placeholder="<jsp:getProperty name="user" property="email"/>" onchange="email_validate(this.value);" required>
                         <div class="status" id="status"></div>
                     </div>
                     <div class="form-group"><input class="form-control d-inline-flex" type="password" name="password" placeholder="Password" style="width:200px;" minlength="4" maxlength="16" id="pass1" required></div>
@@ -109,20 +128,14 @@
                     </div>
                     <!-- <div class="form-group"><input class="form-control" type="date" style="color:#65757d;"></div> -->
                     <div class="form-group">
-                        <input class="form-control" type="text" name="address" placeholder="Address" style="width:420px;margin:0px 0px;" onkeyup = "add_validate(this.value)" required>
+                        <input class="form-control" type="text" name="address" placeholder="<jsp:getProperty name="user" property="address"/>" style="width:420px;margin:0px 0px;" onkeyup = "add_validate(this.value)" required>
                         <div id="statusAdd"></div>
                     </div>
                     <input type="hidden" name="language" value="<%=language%>">
+                   
 
-                    <div class="form-group">
-                        <hr>
-                        <input type="checkbox" required name="terms" onchange="this.setCustomValidity(validity.valueMissing ? 'Please indicate that you accept the Terms and Conditions' : '');" id="field_terms">   <label for="terms">I agree with the <a href="terms.php" title="You may read our terms and conditions by clicking on this link">terms and conditions</a> for Registration.</label>
-                    </div>
+                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action" value="update">UpDate</button></div>
 
-                    <small>You will receive an email to complete the registration and validation process.</small>
-                    <small>Be sure to check your spam folders. </small>
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Sign Up</button></div>
-                    <a href="login" class="forgot">Already have account? Sign in.</a>
                 </form>
             </div>
         </main>
