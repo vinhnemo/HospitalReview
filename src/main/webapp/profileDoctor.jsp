@@ -307,12 +307,11 @@
             </div>
         </footer>
 
-        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
         <script src="lib/jquery/jquery.min.js"></script>
         <script src="lib/jquery/jquery-migrate.min.js"></script>
         <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/easing/jquery.easing.1.3.js"></script>
         <script src="lib/flexslider/jquery.flexslider-min.js"></script>
         <script src="lib/bootstrap/js/bootstrap.min.js"></script>
         <script src="lib/superfish/hoverIntent.js"></script>
