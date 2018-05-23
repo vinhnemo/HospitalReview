@@ -44,7 +44,8 @@ public class Login extends HttpServlet {
         if (action == null) {
             rd = sc.getRequestDispatcher("/login.jsp");
             rd.forward(request, response);
-        } else if (action.equals("Login")) {
+        } else if (action.equals("Ajax Login")) {
+            
             String email = request.getParameter("email");
             String pass = request.getParameter("password");
             String remember = request.getParameter("remember");
@@ -167,7 +168,7 @@ public class Login extends HttpServlet {
                 response.sendRedirect("/home.jsp");
             }
         }
-
+        
     }
 
     @Override

@@ -139,7 +139,7 @@
                     </div>
                     <% }%>
                     <input type="hidden" name="language" value="<%=language%>">
-
+                    <input type="hidden" name="type" value="patient">
                     <div class="form-group">
                         <hr>
                         <input type="checkbox" required name="terms" onchange="this.setCustomValidity(validity.valueMissing ? 'Please indicate that you accept the Terms and Conditions' : '');" id="field_terms">   <label for="terms">I agree with the <a href="terms.php" title="You may read our terms and conditions by clicking on this link">terms and conditions</a> for Registration.</label>

@@ -110,8 +110,9 @@ $(document).ready(function () {
     });
 
     $('form.login-form').submit(function (event) {
+
         event.preventDefault();
-        
+/*
         $('.signup, .login').addClass('switched');
 
         setTimeout(function () {
@@ -132,7 +133,7 @@ $(document).ready(function () {
         setTimeout(function () {
             $('.form').hide();
         }, 700);
-
+*/
     });
 
     // Reload page

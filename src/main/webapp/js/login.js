@@ -9,15 +9,16 @@ $(document).ready(function () {
     $("#login").click(function (e) {
         clearTimeout(x_timer);
         $('#user-result').html('<img src="img/loading.gif" />');
-        var email = $('#email').val();
-        var pass = $('#password').val();
+        var email = $('#loginemail').val();
+        var pass = $('#loginPassword').val();
+        var remember = $('#remember').val();
         x_timer = setTimeout(function () {
-            check_login_ajax(email, pass);
+            check_login_ajax(email, pass, remember, "Ajax Login");
         }, 1000);
     });
 
-    function check_login_ajax(email, password) {
-        $.post('validate', {'email': email, 'pass': password}, function (data) {
+    function check_login_ajax(email, password, remember, action) {
+        $.post('validate', {'email': email, 'pass': password, 'remember': remember, 'action': action}, function (data) {
             $("#user-result").html(data);
         });
     }

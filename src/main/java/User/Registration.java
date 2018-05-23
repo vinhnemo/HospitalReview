@@ -117,7 +117,7 @@ public class Registration extends HttpServlet {
                     //patient.setImage("avatar.jpg");
                     // Check if adding is successful
                     if (patientDAO.insertUser(patient)) {
-
+                        System.out.println("Stop here!");
                         text = "Hello <strong>" + patient.getFname() + "</strong>,<br><br>" + text;
 
                         Cookie loginCookie = new Cookie("email", email);
