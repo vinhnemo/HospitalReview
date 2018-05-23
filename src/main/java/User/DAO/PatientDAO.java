@@ -24,14 +24,31 @@ public class PatientDAO {
     // Check existing email
     public boolean validateUser(String email) {
 
-        String query = "SELECT * FROM patient WHERE email = ?";
-
-        // Connect to database
+//        String query = "SELECT * FROM patient WHERE email = ?";
+        String test = "INSERT INTO `ppl_hopital_system`.`patient`"
+                + "("
+                + "`p_fname`,"
+                + "`p_lname`,"
+                + "`p_gender`,"
+                + "`email`,"
+                + "`password`,"
+                + "`p_address`,"
+                + "`languages`)"
+                + "VALUES"
+                + "("
+                + "\"nemo\","
+                + "\"nemo\","
+                + "\"nemo\","
+                + "\"nemo@gmail.com\","
+                + "\"nemo\","
+                + "\"nemo\","
+                + "\"english\");" ;// Connect to database
         Connection connection = Database.getConnection();
 
         try {
-            PreparedStatement ps = connection.prepareCall(query);
-            ps.setString(1, email);
+            PreparedStatement ps = connection.prepareCall(test);
+            System.out.println(test + "*************************************************************************************");
+//            ps.setString(1, email);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -345,7 +362,6 @@ public class PatientDAO {
     public boolean active(int id) {
 
         String query = "DELETE FROM deactivepatien WHERE DP_id = ?";
-                
 
         // Connect to database
         Connection connection = Database.getConnection();
