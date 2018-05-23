@@ -60,7 +60,7 @@
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
-                                        <form action="" method="">
+                                        <form action="doctor" method="POST">
                                             <h3>Find Your Doctor</h3>
                                             <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
                                             <input class="dropdown-button" type="submit" value="Search Doctor">

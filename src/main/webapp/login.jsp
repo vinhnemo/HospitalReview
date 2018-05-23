@@ -5,8 +5,31 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<c:set var="language" value="${param.language}" scope="session" />
+<%String language = request.getParameter("language"), english = "", french = "", vietnamese = "";
+    if (language == null) {
+        language = "en_US";
+    }
+    if (language.equals("en_US")) {
+        language = "English";
+        english = "active";
+    } else if (language.equals("fr_FR")) {
+        language = "Français";
+        french = "active";
+    } else if (language.equals("vi_VN")) {
+        language = "Tiếng Việt";
+        vietnamese = "active";
+    }
+%>
+<c:if test="${not empty language}">
+    <fmt:setLocale value="${language}" scope="session"/>
+</c:if>
+<fmt:setBundle basename="text" />
 <!DOCTYPE html>
-<html>
+<html lang="${language}">
     <%
         // Call cookie
         Cookie isLogin[] = request.getCookies();
@@ -54,7 +77,7 @@
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
-                                        <form action="" method="">
+                                        <form action="doctor" method="POST">
                                             <h3>Find Your Doctor</h3>
                                             <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
                                             <input class="dropdown-button" type="submit" value="Search Doctor">
