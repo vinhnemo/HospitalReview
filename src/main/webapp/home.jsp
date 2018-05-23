@@ -25,7 +25,7 @@
     }
 %>
 <c:if test="${not empty language}">
-    <fmt:setLocale value="${language}" />
+    <fmt:setLocale value="${language}" scope="session"/>
 </c:if>
 <fmt:setBundle basename="text" />
 <!DOCTYPE html>
@@ -52,11 +52,11 @@
         <header id="header">
             <div class="container-fluid">
                 <div id="logo" class="pull-left">
-                    <h1><a href="#intro" class="scrollto">Doctor STRANGE</a></h1>
+                    <h1><a href="#intro" class="scrollto"><fmt:message key="home.title"/></a></h1>
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="#">Find Doctor</a>
+                        <li class="menu-has-children menu-active"><a href="#"><fmt:message key="home.finddoc"/></a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
@@ -72,8 +72,8 @@
                         <li><a href="#">Appointment</a></li>
                         <li class="menu-has-children"><a href="">Language</a>
                             <ul>
-                                <li><a href="#">English</a></li>
-                                <li><a href="#">Tiếng Việt</a></li>
+                                <li><a href="home.jsp?language=en_US">English</a></li>
+                                <li><a href="home.jsp?language=vi_VN">Tiếng Việt</a></li>
                             </ul>
                         </li>
                         <li><a href="#contact">Contact Us</a></li>
