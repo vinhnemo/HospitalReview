@@ -105,8 +105,8 @@
                                     </div>
 
                                     <div class="success-msg">
-                                        <p>Great! You are one of our members now</p>
-                                        <a href="#" class="profile">Your Profile</a>
+                                        <p>Great! You have logged in successfully.</p>
+                                        <a href="patient" class="profile">Your Profile</a>
                                     </div>
                                 </div>
 
@@ -116,7 +116,9 @@
 
                                     <!-- Login Form -->
                                     <div class="login form-peice switched">
-                                        <form class="login-form" action="login" method="post">
+                                        <form class="login-form" action="#" method="post">
+                                            <span id="user-result"></span>
+                                            
                                             <div class="form-group">
                                                 <label for="loginemail">Email</label>
                                                 <input type="email" name="email" id="loginemail" required>
@@ -126,9 +128,14 @@
                                                 <label for="loginPassword">Password</label>
                                                 <input type="password" name="password" id="loginPassword" required>
                                             </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="remember">Remember me?</label>
+                                                <input type="checkbox" name="remember" id="remember" value="yes" id="remember">
+                                            </div>
 
                                             <div class="CTA">
-                                                <input type="submit" value="Login" name="action">
+                                                <input type="submit" value="Login" name="action" id="login">
                                                 <a href="#" class="switch">I'm New</a>
                                             </div>
                                         </form>
@@ -657,6 +664,7 @@
 
         <script src="js/main.js"></script>
         <script src="js/modal.js"></script>
+        <script src="js/login.js"></script>
 
     </body>
 </html>

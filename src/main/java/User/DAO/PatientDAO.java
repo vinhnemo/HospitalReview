@@ -92,7 +92,9 @@ public class PatientDAO {
     // Check login
     public Patient login(String email) {
         Patient p = new Patient();
-
+        
+        String query = "SELECT * FROM patient WHERE email = ?";
+        /*
         String query = "SELECT `patient`.`p_id`,"
                 + "    `patient`.`p_fname`,"
                 + "    `patient`.`p_lname`,"
@@ -102,7 +104,7 @@ public class PatientDAO {
                 + "    `patient`.`p_address`,"
                 + "    `patient`.`languages`"
                 + "FROM patient, deactivepatien  where patient.email = ? and IFNULL(deactivepatien.p_id != patient.p_id , TRUE);";
-
+        */
         // Connect to database
         Connection connection = Database.getConnection();
 
