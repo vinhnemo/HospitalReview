@@ -8,7 +8,6 @@ and open the template in the editor.
     Author     : MSI
 */
 .doctor-name{
-    height: 200px;
     width: 99%;
     margin-top: 30px;
 }
@@ -40,12 +39,14 @@ and open the template in the editor.
     }
 }
 .doctor-information {
-    height: 300px;
+    margin-top: 30px;
     width: 99%;
     color: #000;
     background-color: #fff;
     padding-left: 30px;
     padding-top : 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
 }
 .doctor-information .head {
     font-size: 26px;
@@ -61,33 +62,210 @@ and open the template in the editor.
     margin-left: 100px;
     color: #000;
 }
+.side-doctor {
+    padding-top: 30px;
+    padding-left: 10px;
+}
+.side-doctor input.side-button {
+    text-align: center;
+    background: #18d26e;
+    border: 0;
+    padding: 10px 30px;
+    color: #fff;
+    transition: 0.4s;
+    cursor: pointer;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 60%;
+    border-radius: 10px;
+}
+.side-doctor input.side-button:hover {
+    background: #13a456;
+}
+.side-doctor input.side-button2 {
+    text-align: center;
+    background: #351b60;
+    border: 0;
+    padding: 10px 30px;
+    color: #fff;
+    transition: 0.4s;
+    cursor: pointer;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    width: 60%;
+}
+.side-doctor input.side-button2:hover {
+    background: #5e27b8;
+}
+.comment{
+    margin-top: 30px;
+}
 
 /* Comment */
+/*Comment List styles*/
+.comment-list .row {
+    margin-bottom: 0px;
+}
+.comment-list .panel .panel-heading {
+    padding: 4px 15px;
+    position: absolute;
+    border:none;
+    /*Panel-heading border radius*/
+    border-top-right-radius:0px;
+    top: 1px;
+}
+.comment-list .panel .panel-heading.right {
+    border-right-width: 0px;
+    /*Panel-heading border radius*/
+    border-top-left-radius:0px;
+    right: 16px;
+}
+.comment-list .panel .panel-heading .panel-body {
+    padding-top: 6px;
+}
+.panel-body{
+    border: 1px solid #000;
+    background-color: #fff;
+    padding-left: 10px;
+    padding-top: 10px;
+}
 .thumbnail {
-    padding:0px;
+    min-width: 100px;
 }
-.panel {
-    position:relative;
+article {
+    margin-top: 20px;
 }
-.panel>.panel-heading:after,.panel>.panel-heading:before{
-    position:absolute;
-    top:11px;left:-16px;
-    right:100%;
-    width:0;
-    height:0;
-    display:block;
-    content:" ";
-    border-color:transparent;
-    border-style:solid solid outset;
-    pointer-events:none;
+.comment-list figcaption {
+    /*For wrapping text in thumbnail*/
+    word-wrap: break-word;
+    margin-top: 30px;
+    border: 1px solid #000;
+    border-radius : 5px;
+    padding: 5px 5px 5px 5px;
 }
-.panel>.panel-heading:after{
-    border-width:7px;
-    border-right-color:#f7f7f7;
-    margin-top:1px;
-    margin-left:2px;
+/* Portrait tablets and medium desktops */
+@media (min-width: 768px) {
+    .comment-list .arrow:after, .comment-list .arrow:before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-color: transparent;
+    }
+    .comment-list .panel.arrow.left:after, .comment-list .panel.arrow.left:before {
+        border-left: 0;
+    }
+    /*****Left Arrow*****/
+    /*Outline effect style*/
+    .comment-list .panel.arrow.left:before {
+        left: 0px;
+        top: 30px;
+        /*Use boarder color of panel*/
+        border-right-color: inherit;
+        border-width: 16px;
+    }
+    /*Background color effect*/
+    .comment-list .panel.arrow.left:after {
+        left: 1px;
+        top: 31px;
+        /*Change for different outline color*/
+        border-right-color: #FFFFFF;
+        border-width: 15px;
+    }
 }
-.panel>.panel-heading:before{
-    border-right-color:#ddd;
-    border-width:8px;
+.comment-list .comment-post {
+    margin-top: 6px;
 }
+
+/* comment box */
+
+
+.status-upload {
+    background: none repeat scroll 0 0 #f5f5f5;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    float: left;
+    width: 100%;
+}
+.status-upload form {
+    float: left;
+    width: 100%;
+}
+.status-upload form textarea {
+    background: none repeat scroll 0 0 #fff;
+    border: medium none;
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    -ms-border-radius: 4px 4px 0 0;
+    -o-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+    color: #777777;
+    float: left;
+    font-family: Lato;
+    font-size: 14px;
+    height: 142px;
+    letter-spacing: 0.3px;
+    padding: 20px;
+    min-width: 100%;
+    resize:vertical;
+    outline:none;
+    border: 1px solid #F2F2F2;
+}
+
+.status-upload form button {
+    border: medium none;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    color: #fff;
+    float: right;
+    font-family: Lato;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    margin: 9px 9px 9px;
+    padding: 6px 15px;
+}
+
+/* Rating */
+/* Rating Star Widgets Style */
+.rating-stars {
+    margin-top: 20px;
+}
+.rating-stars ul {
+  list-style-type:none;
+  padding:0;
+  
+  -moz-user-select:none;
+  -webkit-user-select:none;
+}
+.rating-stars ul > li.star {
+  display:inline-block;
+  
+}
+
+/* Idle State of the stars */
+.rating-stars ul > li.star > i.fa {
+  font-size:2.5em; /* Change the size of the stars */
+  color:#ccc; /* Color on idle state */
+}
+
+/* Hover state of the stars */
+.rating-stars ul > li.star.hover > i.fa {
+  color:#FFCC36;
+}
+
+/* Selected state of the stars */
+.rating-stars ul > li.star.selected > i.fa {
+  color:#FF912C;
+}
+
+
+
+

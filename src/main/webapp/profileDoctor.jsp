@@ -86,11 +86,10 @@
             <!-- De choi thoi -->
             <div class="nothing-special-dark"></div>
             <div class="nothing-special-light"></div>
-            <!-- !! -->
             <section class="card-section-imagia">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-7 col-sm-7" style="background-color: #eee; min-height: 1000px; margin-right: 10px;">
+                        <div class="col-md-7 col-sm-7" style="background-color: #eee; margin-right: 10px;">
                             <div class="doctor-name">
                                 <div class="row" style="margin-top: 40px;">             
                                     <div class="col-md-4 col-sm-10">
@@ -116,63 +115,137 @@
                                     <tr><td><div class="info">Work-hour: </div></td><td> <div class="info-text">10AM-2PM</div></div></td></tr>
                                 </table>
                             </div>
-                            <div class="col-sm-12">
-                                <h3>User Comment Example</h3>
-                            </div><!-- /col-sm-12 -->
-                        </div><!-- /row -->
-                        <div class="row">
-                            <div class="col-sm-1">
-                                <div class="thumbnail">
-                                    <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
-                                </div><!-- /thumbnail -->
-                            </div><!-- /col-sm-1 -->
-
-                            <div class="col-sm-5">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <strong>myusername</strong> <span class="text-muted">commented 5 days ago</span>
-                                    </div>
-                                    <div class="panel-body">
-                                        Panel content
-                                    </div><!-- /panel-body -->
-                                </div><!-- /panel panel-default -->
-                            </div><!-- /col-sm-5 -->
-                        </div>   
-</div>
-                        <div class="col-md-4 col-sm-4" style="background-color: #FFF;min-height: 960px;">                     
-                            <div class="side-content">
-                                <h4>Filter Your Result</h4><hr>
-                                <div class="side-text">Your nearest location</div>
-                                <div class="search-container">
-                                    <input type="text" name="search-bar" placeholder="Search..." class="search-input">
-                                    <button class="btn btn-light search-btn" type="button"> 
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </div><hr>
-                                <div class="side-text">Gender</div>
-                                <select class="side-select"> <!-- apply from db -->
-                                    <option value="1">Male</option>
-                                    <option value="2">Female</option>
-                                </select><hr>
-                                <div class="side-text">Last Name</div>
-                                <select class="side-select"> <!-- apply from db -->
-                                    <option value="1">A -> Z</option>
-                                    <option value="2">Z -> A</option>
-                                </select><hr>
-                                <div class="side-text">Speciality</div>
-                                <select class="side-select"> <!-- apply from db -->
-                                    <option value="Crazy">Crazy</option>
-                                    <option value="Mad">Mad</option>
-                                </select><hr>
-                                <div class="side-text">Rating</div>
-                                <select class="side-select"> <!-- apply from db -->
-                                    <option value="popular">Popular</option>
-                                    <option value="highlow">High -> Low</option>
-                                    <option value="lowhigh">Low -> High</option>
-                                </select>
-                            </div>                            
                         </div>
-                    </div> 
+                        <div class="col-md-4 col-sm-4" style="background-color: #FFF;">  
+                            <div class="side-doctor">
+                                <h4>Options</h4><hr>
+                                <div class="side-text">Make an Appointment:</div>
+                                <input class="side-button" type="submit" value="Make Appointment"><hr>
+                                <div class="side-text">Add to Bookmark:</div>
+                                <input class="side-button2" type="submit" value="Bookmark"><hr>
+                                <div class="side-text">Your Rating:</div>
+                                <section class='rating-widget'>
+                                    <!-- Rating Stars Box -->
+                                    <div class='rating-stars text-center'>
+                                        <ul id='stars'>
+                                            <li class='star' title='Poor' data-value='1'>
+                                                <i class='fa fa-star fa-fw'></i>
+                                            </li>
+                                            <li class='star' title='Fair' data-value='2'>
+                                                <i class='fa fa-star fa-fw'></i>
+                                            </li>
+                                            <li class='star' title='Good' data-value='3'>
+                                                <i class='fa fa-star fa-fw'></i>
+                                            </li>
+                                            <li class='star' title='Excellent' data-value='4'>
+                                                <i class='fa fa-star fa-fw'></i>
+                                            </li>
+                                            <li class='star' title='WOW!!!' data-value='5'>
+                                                <i class='fa fa-star fa-fw'></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="text-msg"></div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h3 class="page-header">Comments</h3>
+                                <hr>
+                                <section class="comment-list">
+                                    <!-- for commentDAO blah blah { -->
+                                    <article class="row">
+                                        <div class="col-md-2 col-sm-2">
+                                            <figure class="thumbnail">
+                                                <figcaption class="text-center">Sinh Nguyenssssss</figcaption>
+                                            </figure>
+                                        </div>
+                                        <div class="col-md-8 col-sm-9" style="margin-left:20px; ">
+                                            <div class="panel panel-default arrow left">
+                                                <div class="panel-body">
+                                                    <header class="text-left">
+                                                        <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
+                                                        <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
+                                                    </header>
+                                                    <div class="comment-post">
+                                                        <p>
+                                                            This doctor is extremely bad, he is the real bullshit dsajdsad dsadksahdnksa sadhkasjdhsaj dsahkjdhsadkj hkjhdjkdh hjkdsahjkdhsa hkjsadhsajkd 
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </article>
+
+                                    <article class="row">
+                                        <div class="col-md-2 col-sm-2">
+                                            <figure class="thumbnail">
+                                                <figcaption class="text-center">Sinh Nguyenssssss</figcaption>
+                                            </figure>
+                                        </div>
+                                        <div class="col-md-8 col-sm-8" style="margin-left:20px; ">
+                                            <div class="panel panel-default arrow left">
+                                                <div class="panel-body">
+                                                    <header class="text-left">
+                                                        <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
+                                                        <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Jan 16, 2019</time>
+                                                    </header>
+                                                    <div class="comment-post">
+                                                        <p>
+                                                            This doctor is extremely bad, he is the real bullshit dsajdsad dahjkdhsa hkjsadhsajkd 
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </article>
+
+                                    <article class="row">
+                                        <div class="col-md-2 col-sm-2">
+                                            <figure class="thumbnail">
+                                                <figcaption class="text-center">Sinh Nguyenssssss</figcaption>
+                                            </figure>
+                                        </div>
+                                        <div class="col-md-8 col-sm-9" style="margin-left:20px; ">
+                                            <div class="panel panel-default arrow left">
+                                                <div class="panel-body">
+                                                    <header class="text-left">
+                                                        <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
+                                                        <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 32, 2094</time>
+                                                    </header>
+                                                    <div class="comment-post">
+                                                        <p>
+                                                            This doctor is extkdh hjkdsahjkdhsa hkjsadhsajkd 
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <!-- end loop -->
+                                </section>
+                                <!--end comment list-->
+                            </div>
+                        </div>
+                        <!--comment box-->
+                        <div class="comment-box">
+                            <div class="row" style="margin-top: 30px;">
+                                <div class="col-md-8">
+                                    <div class="widget-area no-padding blank">
+                                        <div class="status-upload">
+                                            <form action="" method="">
+                                                <textarea placeholder="What are your opinion about him/her" ></textarea>
+                                                <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Post</button>
+                                            </form>
+                                        </div><!-- Status Upload  -->
+                                    </div><!-- Widget Area -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>
@@ -245,6 +318,7 @@
         <script src="lib/superfish/hoverIntent.js"></script>
         <script src="lib/superfish/superfish.min.js"></script>
         <script src="lib/wow/wow.min.js"></script>
+        <script src="lib/form/rating.js"></script>
         <script src="lib/form/side.js"></script>
         <script src="js/main.js"></script>
 
