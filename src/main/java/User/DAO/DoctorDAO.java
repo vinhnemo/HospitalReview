@@ -179,9 +179,9 @@ public class DoctorDAO {
         try {
             // create a mysql database connection
             String myDriver = "com.mysql.jdbc.Driver";
-            String myUrl = "jdbc:mysql://localhost:3306/onlshopnew?useUnicode=true&characterEncoding=UTF-8&useFastDateParsing=false";
+            String myUrl = "jdbc:mysql://127.0.0.1:3306/hospital";
             Class.forName(myDriver);
-            Connection conn = DriverManager.getConnection(myUrl, "root", "7777777");
+            Connection conn = DriverManager.getConnection(myUrl, "root", "");
 
             conn.setAutoCommit(false);
             // set all the preparedstatement parameters
@@ -213,9 +213,9 @@ public class DoctorDAO {
         try {
             // create a mysql database connection
             String myDriver = "com.mysql.jdbc.Driver";
-            String myUrl = "jdbc:mysql://localhost:3306/onlshopnew?useUnicode=true&characterEncoding=UTF-8&useFastDateParsing=false";
+            String myUrl = "jdbc:mysql://127.0.0.1:3306/hospital";
             Class.forName(myDriver);
-            Connection conn = DriverManager.getConnection(myUrl, "root", "7777777");
+            Connection conn = DriverManager.getConnection(myUrl, "root", "");
 
             // set all the preparedstatement parameters
             PreparedStatement stmt = conn.prepareStatement(query1);
