@@ -130,6 +130,15 @@ CREATE TABLE `bookmarkhospital` (
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `doctorreview` (
+  `d_id` bigint(20) unsigned NOT NULL ,
+  `allowReview` INT NOT NULL DEFAULT '1',
+  PRIMARY KEY (`d_id`),
+  KEY `d_id` (`d_id`),
+  CONSTRAINT `doctorreview_ibfk_1` FOREIGN KEY (`d_id`) REFERENCES `doctor` (`d_id`)
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 -- ------------------------------------------------------
 -- ----------------------------------
 -- ------------------------------------------------------
