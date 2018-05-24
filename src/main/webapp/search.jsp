@@ -3,9 +3,7 @@
     Created on : May 16, 2018, 4:41:41 PM
     Author     : MSI
 --%>
-<%@page import="User.DTO.Doctor"%>
-<%@page import="java.util.List"%>
-<%@page import="User.DAO.DoctorDAO"%> 
+<%@page import="java.util.*, User.DTO.*, User.DAO.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -50,7 +48,11 @@
     </head>
 
     <body>
+        <%
+            DoctorDAO doctorDAO = new DoctorDAO();
+            List<Doctor> listOfDoctor = (ArrayList<Doctor>) session.getAttribute("doctorlist");
 
+        %>
         <header id="header">
             <div class="container-fluid">
                 <div id="logo" class="pull-left">
@@ -62,7 +64,7 @@
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
-                                        <form method="POST">
+                                        <form method="POST" action="doctor">
                                             <h3>Find Your Doctor</h3>
                                             <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
                                             <input class="dropdown-button" type="submit" name="action" value="Search Doctor">
@@ -134,24 +136,23 @@
 
                         <div class="col-md-9">
                             <div class="row">                        
-                                <!--%  
-                           DoctorDAO d = new DoctorDAO();
-                           List<Doctor> a = d.getAllDoctor();
-                           for (Doctor doctor : a) {
-                           out.print();  
-                                %-->
+                                <!-- < %                               
+                                if (listOfDoctor.size() > 0) {
+                                        for (Doctor d : listOfDoctor) {
+                                %> -->
                                 <div class="col-md-3">
+
                                     <div class="card-container-imagia">
                                         <div class="card-imagia">
                                             <div class="front-imagia">
                                                 <div class="cover-imagia"><!--<img src="https://unsplash.it/720/500?image=1067" alt="">--></div>
                                                 <div class="user-imagia"><img src="https://unsplash.it/120/120?image=64" class="img-circle" alt=""></div>
                                                 <div class="content-imagia">
-                                                    <h3 class="name-imagia">Name: Nguyen Van Sinh</h3>
+                                                    <h3 class="name-imagia">Name: <!-- < %= d.getLname() + d.getFname()%> --></h3>
                                                     <p class="subtitle-imagia">Speciality: Neurology :) </p> <hr>
-                                                    <div id="gender"> Gender : GAY</div>
+                                                    <div id="gender"> Gender : <!--< %= d.getSex()%> --></div>
                                                     <div id="workplace"> Working at : HCMIU </div>
-                                                    <div id="degree"> Degree : Kindergarten </div>
+                                                    <div id="degree"> Degree : <!--< %= d.getDegree()%>  --></div>
                                                 </div>
                                                 <div class="footer-imagia"><span><i class="fa fa-plus"></i> More info</span></div>
                                             </div>
@@ -159,13 +160,13 @@
                                                 <div class="content-imagia content-back-imagia">
                                                     <div>
                                                         <h4> Nguyen Van Sinh</h4>
-                                                        <div id="specific-speciality">Specific-speciality: Bác Sĩ Điên </div>
-                                                        <div id="timework">Time : Rảnh cả ngày</div>
+                                                        <div id="specific-speciality">Specific-speciality:<!-- < %= d.getSpeciality()%> --> </div>
+                                                        <div id="timework">Time :<!-- < %= d.getHours()%> --></div>
                                                         <div id="">Abc : xyz </div>
-                                                        <div id="insurance">Insurance: Accected</div>
+                                                        <div id="insurance">Insurance: <!--< %= d.getInsurance()%> --></div>
                                                         <div id="">DOB : 6-9-1939</div>
                                                         <div id="">Address : Tiệm Đồ Gỗ </div>
-                                                        <div id="">Insurance: Accectedd </div>
+                                                        <div id="">Insurance: <!--< %= d.getInsurance()%> --> </div>
                                                     </div>
                                                 </div>
                                                 <div class="footer-imagia">
@@ -178,11 +179,12 @@
                                         </div>
                                     </div>
                                 </div> 
+                                <!--    < %}
+                                }%>-->
                             </div>
 
                         </div>
                     </div> 
-                    <!--%}%-->
                 </div>
                 </div> 
                 </div>

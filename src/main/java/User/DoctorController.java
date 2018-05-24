@@ -73,8 +73,8 @@ public class DoctorController extends HttpServlet {
             } // search Doctor UC1
             else if (action.equals("Search Doctor")) {
                 String search = escapeHtml4(request.getParameter("search"));
-                List<Doctor> searchList = doctorDAO.searchDoctor(search);
-                session.setAttribute("doctorlist", searchList);
+                List<Doctor> listOfDoctor = doctorDAO.searchDoctor(search);
+                session.setAttribute("doctorlist", listOfDoctor);
                 rd = sc.getRequestDispatcher("/search.jsp");
                 rd.forward(request, response);
             } // remove Doctor
