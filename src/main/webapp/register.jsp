@@ -1,3 +1,21 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Marketplace
+Explore
+ @vinhnemo
+Sign out
+2
+0 3 TGMaster/HospitalReview
+ Code  Issues 0  Pull requests 0  Projects 1  Wiki  Insights
+HospitalReview/src/main/webapp/register.jsp
+b6d3f05  19 hours ago
+@hhung957 hhung957 sửa tí thôi
+@TGMaster @hhung957 @bluekid1101
+     
+233 lines (213 sloc)  12.8 KB
 <%-- 
     Document   : register
     Created on : May 16, 2018, 5:46:22 PM
@@ -230,3 +248,16 @@
             <script src="js/main.js"></script>
     </body>
 </html>
+© 2018 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+API
+Training
+Shop
+Blog
+About
+Press h to open a hovercard with more details.

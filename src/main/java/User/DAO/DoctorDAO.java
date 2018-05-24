@@ -81,7 +81,7 @@ public class DoctorDAO {
         return list;
     }
 
-    // Get All News
+    // Get All doctors
     public List<Doctor> getAllDoctor() {
         List<Doctor> list = new ArrayList<>();
         String query = "SELECT * FROM doctor ";
@@ -115,8 +115,9 @@ public class DoctorDAO {
     }
 
     public Doctor getDoctor(int id) {
-        String query = "SELECT doctor.d_id,d_fname,d_lname,d_gender,d_degree,d_insurance,d_speciality,d_hour,languages, allowReview FROM doctor,doctorreview WHERE doctor.d_id = ? AND doctor.d_id = doctorreview.d_id;";
-        Doctor doctor = new Doctor();
+//        String query = "SELECT doctor.d_id,d_fname,d_lname,d_gender,d_degree,d_insurance,d_speciality,d_hour,languages, allowReview FROM doctor,doctorreview WHERE doctor.d_id = ? AND doctor.d_id = doctorreview.d_id;";
+        String query = "select * from doctor where d_id = ? ;";
+                Doctor doctor = new Doctor();
 
         // Connect to database
         Connection connection = Database.getConnection();
@@ -136,7 +137,7 @@ public class DoctorDAO {
                 doctor.setSpeciality(rs.getString("d_speciality"));
                 doctor.setHours(rs.getString("d_hour"));
                 doctor.setLang(rs.getString("languages"));
-                doctor.setAllowReview(rs.getInt("allowReview"));
+//                doctor.setAllowReview(rs.getInt("allowReview"));
             }
 
             connection.close();
@@ -145,8 +146,7 @@ public class DoctorDAO {
         }
         return doctor;
     }
-    
-    
+
     public void addDoctor(int id, String fname, String lname, String sex, String degree, boolean insurance, String speciality, String hours, String lang) {
 
         ResultSet generatedKeys;

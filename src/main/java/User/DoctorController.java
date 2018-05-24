@@ -40,10 +40,11 @@ public class DoctorController extends HttpServlet {
         RequestDispatcher rd;
         // Get action
         String action = request.getParameter("action");
+//        String action ="viewpro" ;
         if (action == null) {
             List<Doctor> listOfDoctor = doctorDAO.getAllDoctor();
             session.setAttribute("doctorlist", listOfDoctor);
-            rd = sc.getRequestDispatcher("search.jsp");
+            rd = sc.getRequestDispatcher("/search.jsp");
             rd.forward(request, response);
         } else {
             // add Doctor
@@ -71,7 +72,7 @@ public class DoctorController extends HttpServlet {
                 response.sendRedirect("");
 
             } // search Doctor UC1
-            else if (action.equals("Search Doctor")) {
+            else if (action.equals("Doctor")) {
                 String search = escapeHtml4(request.getParameter("search"));
                 List<Doctor> listOfDoctor = doctorDAO.searchDoctor(search);
                 session.setAttribute("doctorlist", listOfDoctor);
@@ -106,6 +107,13 @@ public class DoctorController extends HttpServlet {
                 List<Doctor> listOfDoctor = doctorDAO.getAllDoctor();
                 session.setAttribute("doctorlist", listOfDoctor);
                 response.sendRedirect("");
+            } else if (action.equals("viewpro")) {
+                int id = Integer.parseInt(request.getParameter("id_doctor"));
+                DoctorDAO dao = new DoctorDAO();
+                Doctor doc = (Doctor) dao.getDoctor(id);
+                session.setAttribute("prodoc", doc);
+                rd = sc.getRequestDispatcher("/viewdoctor.jsp");
+                rd.forward(request, response);
             }
 
         }
