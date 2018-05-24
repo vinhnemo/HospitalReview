@@ -5,8 +5,31 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<c:set var="language" value="${param.language}" />
+<%String language = request.getParameter("language"), english = "", french = "", vietnamese = "";
+    if (language == null) {
+        language = "en_US";
+    }
+    if (language.equals("en_US")) {
+        language = "English";
+        english = "active";
+    } else if (language.equals("fr_FR")) {
+        language = "Français";
+        french = "active";
+    } else if (language.equals("vi_VN")) {
+        language = "Tiếng Việt";
+        vietnamese = "active";
+    }
+%>
+<c:if test="${not empty language}">
+    <fmt:setLocale value="${language}" scope="session"/>
+</c:if>
+<fmt:setBundle basename="text" />
 <!DOCTYPE html>
-<html>
+<html lang="${language}">
     <%
         // Call cookie
         Cookie isLogin[] = request.getCookies();
@@ -50,12 +73,12 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="#">Find Doctor</a>
+                        <li class="menu-has-children menu-active"><a href="/search.jsp"><fmt:message key="finddoc"/></a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
-                                        <form action="" method="">
-                                            <h3>Find Your Doctor</h3>
+                                        <form action="doctor" method="POST">
+                                            <h3><fmt:message key="finddoc"/></h3>
                                             <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
                                             <input class="dropdown-button" type="submit" value="Search Doctor">
                                         </form>
@@ -63,15 +86,15 @@
                                 </li>
                             </ul> 
                         </li>
-                        <li><a href="#">Appointment</a></li>
-                        <li class="menu-has-children"><a href="">Language</a>
+                        <li><a href="#"><fmt:message key="appt"/></a></li>
+                        <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
                             <ul>
-                                <li><a href="#">English</a></li>
-                                <li><a href="#">Tiếng Việt</a></li>
+                                <li><a href="login.jsp?language=en_US">English</a></li>
+                                <li><a href="login.jsp?language=vi_VN">Tiếng Việt</a></li>
                             </ul>
                         </li>
-                        <li><a href="#footer">Contact Us</a></li>
-                        <li class="menu-active"><a href="login.jsp">Sign In/Sign Up</a></li>                     
+                        <li><a href="#footer"><fmt:message key="contact"/></a></li>
+                        <li class="menu-active"><a href="login.jsp"><fmt:message key="signinup"/></a></li>                     
                     </ul>
                 </nav>
             </div>
@@ -86,11 +109,11 @@
                     <% if (error.length() > 0) {%>
                     <div class="form-group has-danger"><input class="form-control" type="email" name="email" placeholder="Email"></div>
                     <div class="form-group has-danger"><input class="form-control" type="password" name="password" placeholder="Password"></div>
-                    <% } else {%>
+                        <% } else {%>
                     <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
                     <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
-                    <% }%>
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action">Log In</button></div>
+                        <% }%>
+                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action" value="Login">Log In</button></div>
                     <div class="form-group">
                         <input class="btn btn-primary2 btn-block" type="button" value="Register New Account" onclick="window.location.href = 'register'" />                        
                     </div>

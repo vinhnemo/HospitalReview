@@ -10,7 +10,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<c:set var="language" value="${param.language}" scope="session" />
+<c:set var="language" value="${param.language}"  />
 <%String language = request.getParameter("language"), english = "", vietnamese = "", lang = "";
     if (language == null) {
         language = "en_US";
@@ -29,7 +29,7 @@
 <fmt:setBundle basename="text" />
 
 <!DOCTYPE html>
-<html>
+<html lang="${language}">
     <head>
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -63,12 +63,12 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="#">Find Doctor</a>
+                        <li class="menu-has-children menu-active"><a href="/search.jsp">Find Doctor</a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
-                                        <form action="" method="">
-                                            <h3>Find Your Doctor</h3>
+                                        <form action="doctor" method="POST">
+                                            <h3><fmt:message key="finddoc"/></h3>
                                             <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
                                             <input class="dropdown-button" type="submit" value="Search Doctor">
                                         </form>
@@ -76,15 +76,15 @@
                                 </li>
                             </ul> 
                         </li>
-                        <li><a href="#">Appointment</a></li>
-                        <li class="menu-has-children"><a href="">Language</a>
+                        <li><a href="#"><fmt:message key="appt"/></a></li>
+                        <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
                             <ul>
-                                <li><a href="#">English</a></li>
-                                <li><a href="#">Tiếng Việt</a></li>
+                                <li><a href="register.jsp?language=en_US">English</a></li>
+                                <li><a href="register.jsp?language=vi_VN">Tiếng Việt</a></li>
                             </ul>
                         </li>
-                        <li><a href="#footer">Contact Us</a></li>
-                        <li class="menu-active"><a href="login.jsp">Sign In/Sign Up</a></li>                     
+                        <li><a href="#footer"><fmt:message key="contact"/></a></li>
+                        <li class="menu-active"><a href="login.jsp"><fmt:message key="signinup"/></a></li>                     
                     </ul>
                 </nav>
             </div>
@@ -139,7 +139,7 @@
                     </div>
                     <% }%>
                     <input type="hidden" name="language" value="<%=language%>">
-
+                    <input type="hidden" name="type" value="patient">
                     <div class="form-group">
                         <hr>
                         <input type="checkbox" required name="terms" onchange="this.setCustomValidity(validity.valueMissing ? 'Please indicate that you accept the Terms and Conditions' : '');" id="field_terms">   <label for="terms">I agree with the <a href="terms.php" title="You may read our terms and conditions by clicking on this link">terms and conditions</a> for Registration.</label>

@@ -1,10 +1,9 @@
 <%-- 
-    Document   : home
-    Created on : May 16, 2018, 4:41:41 PM
+    Document   : profileUser
+    Created on : May 24, 2018, 1:43:34 AM
     Author     : MSI
 --%>
-<%@page import="java.util.*, User.DTO.*, User.DAO.*"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%> 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
@@ -44,15 +43,15 @@
         <link rel="stylesheet" href="lib/form/search.css">
         <link rel="stylesheet" href="lib/form/sidebar.css">
         <link rel="stylesheet" href="lib/form/form.css">
-        <script src="lib/modernizer/modernizr-2.6.2.min.js"></script>
+        <link rel="stylesheet" href="lib/form/profile.css">
     </head>
-
+    <style>
+        .nav .nav-tabs .tabs-left li>a :hover{
+            background-color: #000;
+        }
+    </style>
     <body>
-        <%
-            DoctorDAO doctorDAO = new DoctorDAO();
-            List<Doctor> listOfDoctor = (ArrayList<Doctor>) session.getAttribute("doctorlist");
 
-        %>
         <header id="header">
             <div class="container-fluid">
                 <div id="logo" class="pull-left">
@@ -60,14 +59,14 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="/search.jsp">Find Doctor</a>
+                        <li class="menu-has-children menu-active"><a href="#">Find Doctor</a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
-                                        <form method="POST" action="doctor">
+                                        <form action="doctor" method="POST">
                                             <h3>Find Your Doctor</h3>
                                             <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
-                                            <input class="dropdown-button" type="submit" name="action" value="Search Doctor">
+                                            <input class="dropdown-button" type="submit" value="Search Doctor">
                                         </form>
                                     </div>
                                 </li>
@@ -90,104 +89,56 @@
         <main id="main">
             <!-- De choi thoi -->
             <div class="nothing-special-dark"></div>
-            <div class="search-field">
-                <h4> (Number of results) doctors found by keyword (Keyword) </h4>
-            </div>
-            <!-- !! -->
+            <div class="nothing-special-light"></div>
             <section class="card-section-imagia">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="row">
-                        <div class="col-md-3">
-                            <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-                            <aside id="fh5co-aside" role="complementary" class="border js-fullheight">
-                                <div class="side-content">
-                                    <h4>Filter Your Result</h4><hr>
-                                    <div class="side-text">Your nearest location</div>
-                                    <div class="search-container">
-                                        <input type="text" name="search-bar" placeholder="Search..." class="search-input">
-                                        <button class="btn btn-light search-btn" type="button"> 
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                    </div><hr>
-                                    <div class="side-text">Gender</div>
-                                    <select class="side-select"> <!-- apply from db -->
-                                        <option value="1">Male</option>
-                                        <option value="2">Female</option>
-                                    </select><hr>
-                                    <div class="side-text">Last Name</div>
-                                    <select class="side-select"> <!-- apply from db -->
-                                        <option value="1">A -> Z</option>
-                                        <option value="2">Z -> A</option>
-                                    </select><hr>
-                                    <div class="side-text">Speciality</div>
-                                    <select class="side-select"> <!-- apply from db -->
-                                        <option value="Crazy">Crazy</option>
-                                        <option value="Mad">Mad</option>
-                                    </select><hr>
-                                    <div class="side-text">Rating</div>
-                                    <select class="side-select"> <!-- apply from db -->
-                                        <option value="popular">Popular</option>
-                                        <option value="highlow">High -> Low</option>
-                                        <option value="lowhigh">Low -> High</option>
-                                    </select>
-                                </div>                            
-                            </aside>
+                        <div class="col-md-3 col-sm-3" style="background-color: #FFF;">
+                            <h4>Options</h4><hr>
+                            <ul class="nav nav-tabs tabs-left">
+                                <li class="active"><a href="#general" data-toggle="tab"><i class="fa fa-gears"></i>General</a></li>
+                                <li><a href="#edit" data-toggle="tab"><i class="fa fa-pencil"></i>Edit Your Profile</a></li>
+                                <li><div class="side-text"><i class="fa fa-key"></i>Change password</div></li>
+                                <li><div class="side-text"><i class="fa fa-bookmark"></i>Bookmarks</div></li>
+                                <li><div class="side-text"><i class="fa fa-angle-double-right"></i>Others</div></li>
+                            </ul>
                         </div>
-
-                        <div class="col-md-9">
-                            <div class="row">                        
-                                <!-- < %                               
-                                if (listOfDoctor.size() > 0) {
-                                        for (Doctor d : listOfDoctor) {
-                                %> -->
-                                <div class="col-md-3">
-
-                                    <div class="card-container-imagia">
-                                        <div class="card-imagia">
-                                            <div class="front-imagia">
-                                                <div class="cover-imagia"><!--<img src="https://unsplash.it/720/500?image=1067" alt="">--></div>
-                                                <div class="user-imagia"><img src="https://unsplash.it/120/120?image=64" class="img-circle" alt=""></div>
-                                                <div class="content-imagia">
-                                                    <h3 class="name-imagia">Name: <!-- < %= d.getLname() + d.getFname()%> --></h3>
-                                                    <p class="subtitle-imagia">Speciality: Neurology :) </p> <hr>
-                                                    <div id="gender"> Gender : <!--< %= d.getSex()%> --></div>
-                                                    <div id="workplace"> Working at : HCMIU </div>
-                                                    <div id="degree"> Degree : <!--< %= d.getDegree()%>  --></div>
+                        <div class="col-md-8 col-sm-8" style="background-color: #eee; margin-left: 10px;">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="general">
+                                    <div class="doctor-name">
+                                        <div class="row" style="margin-top: 40px;">             
+                                            <div class="col-md-4 col-sm-10">
+                                                <div class="doctor-pic">
+                                                    <img src="" alt="">
                                                 </div>
-                                                <div class="footer-imagia"><span><i class="fa fa-plus"></i> More info</span></div>
                                             </div>
-                                            <div class="back-imagia">
-                                                <div class="content-imagia content-back-imagia">
-                                                    <div>
-                                                        <h4> Nguyen Van Sinh</h4>
-                                                        <div id="specific-speciality">Specific-speciality:<!-- < %= d.getSpeciality()%> --> </div>
-                                                        <div id="timework">Time :<!-- < %= d.getHours()%> --></div>
-                                                        <div id="">Abc : xyz </div>
-                                                        <div id="insurance">Insurance: <!--< %= d.getInsurance()%> --></div>
-                                                        <div id="">DOB : 6-9-1939</div>
-                                                        <div id="">Address : Tiệm Đồ Gỗ </div>
-                                                        <div id="">Insurance: <!--< %= d.getInsurance()%> --> </div>
-                                                    </div>
-                                                </div>
-                                                <div class="footer-imagia">
-                                                    <div class="text-center">
-                                                        <input class="card-button" type="submit" value="Make Appointment">
-                                                    </div>
-                                                    <div class="social-imagia text-center"><a href="#">View Profile</a></div>
-                                                </div>
+                                            <div class="col-md-7 col-sm-10">
+                                                <h3 class="name">Nguyen Van Sinh</h3>
+                                                <div class="doctor-text"> DOB: 11-01-1997<br> Gender: GAY </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div> 
-                                <!--    < %}
-                                }%>-->
+                                    <div class="doctor-information">
+                                        <div class="head">Personal Information</div><br> 
+                                        <table>
+                                            <tr><td><div class="info">Working Place: </div></td><td> <div class="info-text">Abc hospital</div></td></tr>
+                                            <tr><td><div class="info">Speciality: </div></td><td> <div class="info-text">Neurology</div></td></tr>
+                                            <tr><td><div class="info">Specific speciality: </div></td><td> <div class="info-text">Crazy</div></td></tr>
+                                            <tr><td><div class="info">Degree: </div></td><td> <div class="info-text">Kintergarden</div></div></td></tr>
+                                            <tr><td><div class="info">Insurance: </div></td><td> <div class="info-text">Accepted</div></div></td></tr>
+                                            <tr><td><div class="info">Language: </div></td><td> <div class="info-text">English</div></div></td></tr>
+                                            <tr><td><div class="info">Work-hour: </div></td><td> <div class="info-text">10AM-2PM</div></div></td></tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="edit">
+                                    Bulubaxoa bulu
+                                </div>
+                                <div class="clearfix"></div>
                             </div>
-
                         </div>
-                    </div> 
-                </div>
-                </div> 
-                </div>
+                    </div>
                 </div>
             </section>
         </main>
@@ -249,12 +200,11 @@
             </div>
         </footer>
 
-        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
         <script src="lib/jquery/jquery.min.js"></script>
         <script src="lib/jquery/jquery-migrate.min.js"></script>
         <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/easing/jquery.easing.1.3.js"></script>
         <script src="lib/flexslider/jquery.flexslider-min.js"></script>
         <script src="lib/bootstrap/js/bootstrap.min.js"></script>
         <script src="lib/superfish/hoverIntent.js"></script>
@@ -265,4 +215,6 @@
 
     </body>
 </html>
+
+
 

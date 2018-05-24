@@ -4,28 +4,27 @@
     Author     : MSI
 --%>
 
+<%@page import="User.DAO.PatientDAO"%>
+<%@page import="User.DTO.Patient"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<c:set var="language" value="${param.language}" scope="session" />
-<%String language = request.getParameter("language"), english = "", french = "", vietnamese = "";
+<c:set var="language" value="${param.language}"  />
+<%String language = request.getParameter("language"), english = "", vietnamese = "";
     if (language == null) {
         language = "en_US";
     }
     if (language.equals("en_US")) {
         language = "English";
         english = "active";
-    } else if (language.equals("fr_FR")) {
-        language = "Français";
-        french = "active";
     } else if (language.equals("vi_VN")) {
         language = "Tiếng Việt";
         vietnamese = "active";
     }
 %>
 <c:if test="${not empty language}">
-    <fmt:setLocale value="${language}" />
+    <fmt:setLocale value="${language}" scope="session"/>
 </c:if>
 <fmt:setBundle basename="text" />
 <!DOCTYPE html>
@@ -49,19 +48,36 @@
 
     <body>
 
+        <%
+            Patient patient = null;
+            PatientDAO patientDAO = new PatientDAO();
+
+            Cookie[] cookies = request.getCookies();
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    if (cookie.getName().equals("u_email")) {
+                        patient = patientDAO.login(cookie.getValue());
+                    }
+                }
+            }
+            if (session.getAttribute("user") != null) {
+                patient = (Patient) session.getAttribute("user");
+            }
+        %>
+
         <header id="header">
             <div class="container-fluid">
                 <div id="logo" class="pull-left">
-                    <h1><a href="#intro" class="scrollto">Doctor STRANGE</a></h1>
+                    <h1><a href="home.jsp" class="scrollto">Doctor STRANGE</a></h1>
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="#">Find Doctor</a>
+                        <li class="menu-has-children menu-active"><a href="/search.jsp"><fmt:message key="finddoc"/></a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
-                                        <form action="" method="">
-                                            <h3>Find Your Doctor</h3>
+                                        <form action="doctor" method="POST">
+                                            <h3><fmt:message key="finddoc"/></h3>
                                             <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
                                             <input class="dropdown-button" type="submit" value="Search Doctor">
                                         </form>
@@ -69,15 +85,19 @@
                                 </li>
                             </ul> 
                         </li>
-                        <li><a href="#">Appointment</a></li>
-                        <li class="menu-has-children"><a href="">Language</a>
+                        <li><a href="#"><fmt:message key="appt"/></a></li>
+                        <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
                             <ul>
-                                <li><a href="#">English</a></li>
-                                <li><a href="#">Tiếng Việt</a></li>
+                                <li><a href="home.jsp?language=en_US">English</a></li>
+                                <li><a href="home.jsp?language=vi_VN">Tiếng Việt</a></li>
                             </ul>
                         </li>
-                        <li><a href="#contact">Contact Us</a></li>
-                        <li class="menu-active"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true">Sign In/Sign Up</a></li>                     
+                        <li><a href="#contact"><fmt:message key="contact"/></a></li>
+                            <% if (patient != null) {%>
+                        <li class="menu"><a href="logout"><fmt:message key="signout"/></a></li>
+                            <% } else {%>
+                        <li class="menu"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true"><fmt:message key="signinup"/></a></li>
+                            <% }%>
                     </ul>
                 </nav>
             </div>
@@ -105,8 +125,9 @@
                                     </div>
 
                                     <div class="success-msg">
-                                        <p>Great! You are one of our members now</p>
-                                        <a href="#" class="profile">Your Profile</a>
+                                        <p>Great! You have logged in successfully.</p>
+                                        <a href="patient" class="profile">Your Profile</a><br>
+                                        <a href="home.jsp" class="btn-dark">Back to homepage</a>
                                     </div>
                                 </div>
 
@@ -116,19 +137,26 @@
 
                                     <!-- Login Form -->
                                     <div class="login form-peice switched">
-                                        <form class="login-form" action="login" method="post">
+                                        <form class="login-form" action="#" method="post">
+                                            <span id="user-result" style="color: red"></span>
+
                                             <div class="form-group">
-                                                <label for="loginemail">Email</label>
-                                                <input type="email" name="email" id="loginemail" required>
+                                                <label for="email">Email</label>
+                                                <input type="email" name="email" id="email" required>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="loginPassword">Password</label>
-                                                <input type="password" name="password" id="loginPassword" required>
+                                                <label for="password">Password</label>
+                                                <input type="password" name="password" id="password" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="remember">Remember me?</label>
+                                                <input type="checkbox" name="remember" id="remember" value="yes">
                                             </div>
 
                                             <div class="CTA">
-                                                <input type="submit" value="Login" name="action">
+                                                <input type="submit" value="Login" name="action" id="login">
                                                 <a href="#" class="switch">I'm New</a>
                                             </div>
                                         </form>
