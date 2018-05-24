@@ -44,6 +44,7 @@
         <link rel="stylesheet" href="lib/form/sidebar.css">
         <link rel="stylesheet" href="lib/form/form.css">
         <link rel="stylesheet" href="lib/form/sidebar1.css">
+        <link rel="stylesheet" href="lib/form/profile.css">
     </head>
     <style>
         .nav .nav-tabs .tabs-left li>a :hover{
@@ -89,61 +90,149 @@
         <main id="main">
             <!-- De choi thoi -->
             <div class="nothing-special-dark"></div>
-            <section class="card-section-imagia" style"height:70%">
-            <div id="wrapper">
-                <div id="sidebar-wrapper">
-                    <ul class="sidebar-nav nav">
-                        <li><h3>Options:</h3></li>
-                        <li class="active"><a class="general" href="#general" data-toggle="tab"><i class="fa fa-gears"></i>General</a></li>
-                        <li><a class="edit" href="#edit" data-toggle="tab"><i class="fa fa-pencil"></i>Edit Your Profile</a></li>
-                        <li><a class="change" href="#change" data-toggle="tab"><i class="fa fa-key"></i>Change password</a></li>
-                        <li><a class="bookmark" href="#bookmark" data-toggle="tab"><i class="fa fa-bookmark"></i>Bookmarks</a></li>
-                        <li><a class="other" href="#other" data-toggle="tab"><i class="fa fa-angle-double-right"></i>Others</a></li>
-                    </ul>
-                </div>
-                <div class="page-content-wrapper">
-                    <div class="container-fluid"><a class="btn btn-link" role="button" href="#menu-toggle" id="menu-toggle"><i class="fa fa-bars"></i></a>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="general">
-                                        <div class="doctor-name">
-                                            <div class="row" style="">             
-                                                <div class="col-md-4 col-sm-10">
-                                                    <div class="doctor-pic">
-                                                        <img src="" alt="">
+            <div class="container-fluid" style="height:800px;display: block;">
+                <div id="wrapper">
+                    <div id="sidebar-wrapper">
+                        <ul class="sidebar-nav nav">
+                            <li><h3>Options:</h3></li>
+                            <li class="active"><a class="general" href="#general" data-toggle="tab"><i class="fa fa-gears"></i>General</a></li>
+                            <li><a class="edit" href="#edit" data-toggle="tab"><i class="fa fa-pencil"></i>Edit Your Profile</a></li>
+                            <li><a class="change" href="#change" data-toggle="tab"><i class="fa fa-key"></i>Change password</a></li>
+                            <li><a class="bookmark" href="#bookmark" data-toggle="tab"><i class="fa fa-bookmark"></i>Bookmarks</a></li>
+                            <li><a class="other" href="#other" data-toggle="tab"><i class="fa fa-angle-double-right"></i>Others</a></li>
+                        </ul>
+                    </div>
+                    <div class="page-content-wrapper">
+                        <div class="container-fluid"><a class="btn btn-link" role="button" href="#menu-toggle" id="menu-toggle"><i class="fa fa-bars"></i></a>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="general">
+                                            <div class="user-name">
+                                                <div class="row" style="">             
+                                                    <div class="col-md-12 col-sm-12">
+                                                        <div class="user">
+                                                            <div class="user-information">
+                                                                <div class="userhead">Personal Information</div><br> 
+                                                                <table>
+                                                                    <tr><td><div class="userinfo">Name: </div></td><td> <div class="userinfo-text">Naruto</div></td></tr>
+                                                                    <tr><td><div class="userinfo">Email: </div></td><td> <div class="userinfo-text">sucsinhnguyen696969@gmail.com</div></td></tr>
+                                                                    <tr><td><div class="userinfo">Gender: </div></td><td> <div class="userinfo-text">Other</div></td></tr>
+                                                                    <tr><td><div class="userinfo">Address: </div></td><td> <div class="userinfo-text">1023 ABC Phuong 3, Quan 7, Ho Chi Minh City</div></div></td></tr>
+                                                                    <tr><td><div class="userinfo">Insurance Number: </div></td><td> <div class="userinfo-text">046556065</div></div></td></tr>
+                                                                    <tr><td><div class="userinfo">Language: </div></td><td> <div class="userinfo-text">English</div></div></td></tr>
+                                                                </table>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-7 col-sm-10">
-                                                    <h3 class="name">Nguyen Van Sinh</h3>
-                                                    <div class="doctor-text"> DOB: 11-01-1997<br> Gender: GAY </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="doctor-information">
-                                            <div class="head">Personal Information</div><br> 
-                                            <table>
-                                                <tr><td><div class="info">Working Place: </div></td><td> <div class="info-text">Abc hospital</div></td></tr>
-                                                <tr><td><div class="info">Speciality: </div></td><td> <div class="info-text">Neurology</div></td></tr>
-                                                <tr><td><div class="info">Specific speciality: </div></td><td> <div class="info-text">Crazy</div></td></tr>
-                                                <tr><td><div class="info">Degree: </div></td><td> <div class="info-text">Kintergarden</div></div></td></tr>
-                                                <tr><td><div class="info">Insurance: </div></td><td> <div class="info-text">Accepted</div></div></td></tr>
-                                                <tr><td><div class="info">Language: </div></td><td> <div class="info-text">English</div></div></td></tr>
-                                                <tr><td><div class="info">Work-hour: </div></td><td> <div class="info-text">10AM-2PM</div></div></td></tr>
-                                            </table>
+                                        <div class="tab-pane" id="edit">
+                                            <div class="user-name">
+                                                <div class="row" style="">             
+                                                    <div class="col-md-12 col-sm-12">
+                                                        <div class="user">
+                                                            <div class="user-information">
+                                                                <div class="userhead">Edit Profile</div><br>
+                                                                <form class="change" action="" method="">
+                                                                    <table>
+                                                                        <!--use value=user profile trong db -->
+                                                                        <tr><td><div class="userinfo">Name: </div></td><td><input class="form-change" type="text" name="address" value="Naruto"></td></tr>
+                                                                        <tr><td><div class="userinfo">Email: </div></td><td><input class="form-change" type="text" name="address" value="sucsinhnguyen696969@gmail.com"></td></tr>
+                                                                        <tr><td><div class="userinfo">Gender: </div></td>
+                                                                            <td>                        
+                                                                                <select class="form-change" name="gender">
+                                                                                    <option value="male">Male</option>
+                                                                                    <option value="female">Female</option>
+                                                                                    <option value="other">Other</option>
+                                                                                </select>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr><td><div class="userinfo">Address: </div></td><td><input class="form-change" type="text" name="address" value="1023 ABC Phuong 3, Quan 7, Ho Chi Minh City"></td></tr>
+                                                                        <tr><td><div class="userinfo">Insurance Number: </div></td><td><input class="form-change" type="text" name="address" value="046556065"></td></tr>
+                                                                        <tr><td><div class="userinfo">Language: </div></td><td><input class="form-change" type="text" name="address" value="English"></td></tr>
+                                                                    </table>
+                                                                    <input class="save" type="submit" value="Save change"> 
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="change">
+                                            <div class="user-name">
+                                                <div class="row" style="">             
+                                                    <div class="col-md-12 col-sm-12">
+                                                        <div class="user">
+                                                            <div class="user-information">
+                                                                <div class="userhead">Change your password</div><br>
+                                                                <form class="change" action="" method="">
+                                                                    <table>
+                                                                        <!--use value=user profile trong db -->
+                                                                        <tr><td><div class="userinfo">Current password: </div></td><td><input class="form-change" type="password" name="password" placeholder="Your Current Password"></td></tr>
+                                                                        <tr><td><div class="userinfo">New password: </div></td><td><input class="form-change" type="password" name="password" placeholder="Input New Password"></td></tr>             
+                                                                        <tr><td><div class="userinfo">Confirm new password: </div></td><td><input class="form-change" type="password" name="password" placeholder="Confirm New Password"></td></tr>
+                                                                        <tr><td></td><td><div class="validate-new-password"></div></td></tr>
+                                                                    </table>
+                                                                    <input class="save" type="submit" value="Confirm"> 
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="bookmark">
+                                            <div class="user-name">
+                                                <div class="row" style="">             
+                                                    <div class="col-md-12 col-sm-12">
+                                                        <div class="user">
+                                                            <div class="user-information">
+                                                                <div class="userhead">Your Favorite Doctor</div><br>
+                                                                <table>
+                                                                    <!--use value=user profile trong db -->
+                                                                    <tr><td><a target="_blank" href="sdsad">.Nguyen Van Sinh </td><td><input class="remove" type="submit" value="Remove"> </td></tr>
+                                                                    <tr><td><a target="_blank" href="" >.Doctor Strange </td><td><input class="remove" type="submit" value="Remove"></td></tr>             
+                                                                </table>
+                                                            </div>
+                                                            <div class="user-information">
+                                                                <div class="userhead">Your Favorite Hospital</div><br>
+                                                                <table>
+                                                                    <!--use value=user profile trong db -->
+                                                                    <tr><td><a target="_blank" href="" >.Crazy Hospital   </td><td><input class="remove" type="submit" value="Remove"> </td></tr>
+                                                                    <tr><td><a target="_blank" href="" >.Bien Hoa Hospital </td><td><input class="remove" type="submit" value="Remove"></td></tr>             
+                                                                </table>                                                     
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="other">
+                                            <div class="user-name">
+                                                <div class="row" style="">             
+                                                    <div class="col-md-12 col-sm-12">
+                                                        <div class="user">
+                                                            <div class="user-information">
+                                                                <div class="userhead">Deactive This Account</div>
+                                                                <form class="change" action="" method="">
+                                                                    <input class="save" type="submit" value="Deactive">
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane" id="edit">
-                                        Bulubaxoa bulu
-                                    </div>
-                                    <div class="clearfix"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            </section>
             <!--<section class="card-section-imagia">
                 <div class="container">
                     <div class="row">

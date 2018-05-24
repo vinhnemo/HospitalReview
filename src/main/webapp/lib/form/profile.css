@@ -101,7 +101,31 @@ and open the template in the editor.
 .comment{
     margin-top: 30px;
 }
-
+#menu-toggle i{
+    font-size:30px;
+    padding-top: 15px;
+}
+.user-information a {
+    color: #351b60;
+    font-weight: 600;
+}
+.user-information a:hover{
+    text-decoration: underline;
+}
+.remove {
+    text-align: center;
+    background: #e14242;
+    color: #fff;
+    transition: 0.4s;
+    cursor: pointer;
+    width: 100px;
+    border-radius: 10px;
+    font-size: 12px;
+    margin-left: 250px;
+}
+.remove:hover {
+    background-color: #ff6e6e;
+}
 /* Comment */
 /*Comment List styles*/
 .comment-list .row {
@@ -233,63 +257,87 @@ article {
     padding: 6px 15px;
 }
 
+.user-information {
+
+    margin-right: -30px;
+    margin-top: 30px;
+    color: #000;
+    background-color: #eee;
+    padding-left: 30px;
+    padding-top : 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+}
+.user-information .userhead {
+    font-size: 26px;
+    font-weight: 500;
+}
+.user-information .userinfo {
+    font-size: 14px;
+    font-weight : 700; 
+    display: inline;
+}
+.user-information .userinfo-text {
+    font-size: 14px;
+    margin-left: 50px;
+    color: #000;
+    overflow-wrap: break-word;
+}
+.change input.save {
+    text-align: center;
+    background: #351b60;
+    border: 0;
+    padding: 10px 30px;
+    color: #fff;
+    transition: 0.4s;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 10px;
+    width: 180px;
+}
+.change input.save:hover {
+    background: #5e27b8;
+}
+.form-change {
+    width: 500px;
+    margin-left: 50px;
+    font-size: 14px;
+}
+.form-change:focus {
+    border-color: #000;
+}
 /* Rating */
 /* Rating Star Widgets Style */
 .rating-stars {
     margin-top: 20px;
 }
 .rating-stars ul {
-  list-style-type:none;
-  padding:0;
-  
-  -moz-user-select:none;
-  -webkit-user-select:none;
+    list-style-type:none;
+    padding:0;
+
+    -moz-user-select:none;
+    -webkit-user-select:none;
 }
 .rating-stars ul > li.star {
-  display:inline-block;
-  
+    display:inline-block;
+
 }
 
 /* Idle State of the stars */
 .rating-stars ul > li.star > i.fa {
-  font-size:2.5em; /* Change the size of the stars */
-  color:#ccc; /* Color on idle state */
+    font-size:2.5em; /* Change the size of the stars */
+    color:#ccc; /* Color on idle state */
 }
 
 /* Hover state of the stars */
 .rating-stars ul > li.star.hover > i.fa {
-  color:#FFCC36;
+    color:#FFCC36;
 }
 
 /* Selected state of the stars */
 .rating-stars ul > li.star.selected > i.fa {
-  color:#FF912C;
+    color:#FF912C;
 }
 
-/* profile sidebar */
-#tablink a {
-    background-color: black;
-    border: 1px solid #000;
-    font-size: 18px;
-    display: block;
-    margin-bottom: 5px;
-}
-#tablink i{
-    font-size: 20px;
-    padding-right: 20px;
-}
-.general {
-    padding: 10px 117px 10px 10px;
-}
-.edit {
-    padding: 10px 47px 10px 10px;
-}
-.change {
-    padding: 10px 26px 10px 10px;
-}
-.bookmark {
-    padding: 10px 95px 10px 10px;
-}
-.other {
-    padding: 10px 141px 10px 10px;
-}
+
+

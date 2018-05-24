@@ -1,8 +1,11 @@
 .sidebar-nav li a,.sidebar-nav li a:active,.sidebar-nav li a:focus{
     text-decoration:none
 }
+.body{
+    overflow-x: hidden;
+}
+
 #wrapper{
-    margin-top: -60px;
     padding-left:0;
     -webkit-transition:all .5s ease;
     -moz-transition:all .5s ease;
@@ -10,14 +13,14 @@
     transition:all .5s ease
 }
 #wrapper.toggled{
-    padding-left:250px
+    padding-left:250px;
 }
 #sidebar-wrapper{
     border-top: 2px solid #18d26e;
     position: absolute;
     left:250px;
     width:0;
-    height:106%;
+    height:100%;
     margin-left:-250px;
     overflow-y:auto;
     background:#000;
@@ -27,6 +30,7 @@
 }
 #wrapper.toggled #sidebar-wrapper{
     width:250px
+       
 }
 #page-content-wrapper{
     width:100%;
@@ -92,7 +96,6 @@
         margin-right:0
     }
 }
-
 #sidebar-wrapper ul {
     margin-top: 20px;
 }
@@ -105,4 +108,20 @@
 #sidebar-wrapper i{
     font-size : 20px;
     margin-right: 20px;
+    max-width: 30px;
+}
+.general {
+    padding-right: 119px;
+}
+.edit {
+    padding-right: 58px;
+}
+.change {
+    padding-right: 45px;
+}
+.bookmark {
+    padding-right: 94px;
+}
+.other {
+    padding-right: 126px;
 }
