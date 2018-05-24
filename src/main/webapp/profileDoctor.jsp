@@ -3,6 +3,8 @@
     Created on : May 23, 2018, 6:31:10 PM
     Author     : MSI
 --%>
+<%@page import="User.DAO.DoctorDAO"%>
+<%@page import="User.DTO.Doctor"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -62,7 +64,7 @@
                                         <form action="doctor" method="POST">
                                             <h3>Find Your Doctor</h3>
                                             <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
-                                            <input class="dropdown-button" type="submit" value="Search Doctor" name="action">
+                                            <input class="dropdown-button" type="submit" value="Search Doctor">
                                         </form>
                                     </div>
                                 </li>
@@ -123,6 +125,11 @@
                                 <input class="side-button" type="submit" value="Make Appointment"><hr>
                                 <div class="side-text">Add to Bookmark:</div>
                                 <input class="side-button2" type="submit" value="Bookmark"><hr>
+                                <%
+                                    DoctorDAO doctorDAO = new DoctorDAO();
+                                    Doctor doctor = doctorDAO.getDoctor(1) ;
+                                    if (doctor.getAllowReview() == 1) {%>  
+                                    
                                 <div class="side-text">Your Rating:</div>
                                 <section class='rating-widget'>
                                     <!-- Rating Stars Box -->
@@ -147,9 +154,12 @@
                                     </div>
                                     <div class="text-msg"></div>
                                 </section>
+                                <% } %>
                             </div>
                         </div>
                     </div>
+                    <%
+                                   if (doctor.getAllowReview() == 1) {%>  
                     <div class="comment">
                         <div class="row">
                             <div class="col-md-10">
@@ -230,7 +240,11 @@
                                 <!--end comment list-->
                             </div>
                         </div>
+                         <% } %>
                         <!--comment box-->
+                        
+                         <%
+                                   if (doctor.getAllowReview() == 1) {%>  
                         <div class="comment-box">
                             <div class="row" style="margin-top: 30px;">
                                 <div class="col-md-8">
@@ -245,6 +259,7 @@
                                 </div>
                             </div>
                         </div>
+                         <% } %>
                     </div>
                 </div>
             </section>
