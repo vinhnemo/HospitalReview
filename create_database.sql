@@ -132,7 +132,7 @@ CREATE TABLE `bookmarkhospital` (
 
 CREATE TABLE `doctorreview` (
   `d_id` bigint(20) unsigned NOT NULL ,
-  `allowReview` INT NOT NULL DEFAULT '1',
+  `allowReview` INT DEFAULT '1',
   PRIMARY KEY (`d_id`),
   KEY `d_id` (`d_id`),
   CONSTRAINT `doctorreview_ibfk_1` FOREIGN KEY (`d_id`) REFERENCES `doctor` (`d_id`)
