@@ -20,11 +20,12 @@ public class Doctor {
     private String speciality;
     private String hours;
     private String lang;
+    private int allowReview;
 
     public Doctor() {
     }
 
-    public Doctor(int ID, String fname, String lname, String sex, String degree, boolean insurance, String speciality, String hours, String lang) {
+    public Doctor(int ID, String fname, String lname, String sex, String degree, boolean insurance, String speciality, String hours, String lang,int allowReview) {
         this.ID = ID;
         this.fname = fname;
         this.lname = lname;
@@ -34,7 +35,16 @@ public class Doctor {
         this.speciality = speciality;
         this.hours = hours;
         this.lang = lang;
+        this.allowReview = allowReview;
 
+    }
+
+    public int getAllowReview() {
+        return allowReview;
+    }
+
+    public void setAllowReview(int allowReview) {
+        this.allowReview = allowReview;
     }
 
     public int getID() {
