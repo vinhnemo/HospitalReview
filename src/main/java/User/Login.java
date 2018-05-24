@@ -36,8 +36,8 @@ public class Login extends HttpServlet {
         HttpSession session = request.getSession();
 
         String action = request.getParameter("action");
-        String error = "";
-        boolean adminLogin = false;
+        String error;
+        boolean adminLogin;
         Admin admin = new Admin();
         Patient patient = new Patient();
 
@@ -45,26 +45,23 @@ public class Login extends HttpServlet {
             rd = sc.getRequestDispatcher("/login.jsp");
             rd.forward(request, response);
         } else {
+            error = "";
+            adminLogin = false;
 
-            // Get input from jsp
             String email = request.getParameter("email");
             String pass = request.getParameter("password");
             String remember = request.getParameter("remember");
 
             if (email.equals("") || pass.equals("")) {
-                error += "Please enter all username and password";
+                error = "3";
             } else {
                 patient = patientDAO.login(email);
 
-                // Check if user does not exist
                 if (patient.getPass() == null) {
-                    error += "User does not exist.";
-                    adminLogin = true;  // In case user is not patient
-
-                    // If exist then check password
+                    error = "1";
+                    adminLogin = true;
                 } else if (!PasswordHashing.checkPassword(pass, patient.getPass())) {
-                    error += "Please enter valid username or password";
-                    adminLogin = true;  // In case user is not patient
+                    error = "2";
                 }
 
                 if (adminLogin) {
@@ -72,45 +69,41 @@ public class Login extends HttpServlet {
 
                     // Check if user does not exist
                     if (admin.getPass() == null) {
-                        error += "User does not exist.";
+                        error = "1";
                     } else if (!PasswordHashing.checkPassword(pass, admin.getPass())) {
-                        error += "Please enter valid username or password";
+                        error = "2";
                     }
                 }
             }
 
             // If something is wrong
             if (error.length() > 0) {
-                request.setAttribute("error", error);
-
-                rd = sc.getRequestDispatcher("/login.jsp");
-                rd.forward(request, response);
+                response.getWriter().write(error);
             } else {
-
                 // If this is an admin
                 if (adminLogin) {
-                    session.setAttribute("user", admin);
+                    session.setAttribute("admin", admin);
                 } else {
-                    session.setAttribute("user", patient);
+                    session.setAttribute("patient", patient);
                 }
 
                 // Save login cookie
-                if (remember != null) {
+                if (remember.equals("yes")) {
                     Cookie loginCookie;
                     if (adminLogin) {
-                        loginCookie = new Cookie("u_email", admin.getEmail());
+                        loginCookie = new Cookie("a_email", admin.getEmail());
                     } else {
                         loginCookie = new Cookie("u_email", patient.getEmail());
                     }
                     //setting cookie to expiry in 30 mins
-                    loginCookie.setMaxAge(60 * 60 * 24 * 365);
+                    loginCookie.setMaxAge(60 * 30);
                     response.addCookie(loginCookie);
                 }
 
-                response.sendRedirect("/profilePatient.jsp");
+                response.getWriter().write("success");
             }
-        }
 
+        }
     }
 
     @Override

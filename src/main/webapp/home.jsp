@@ -4,28 +4,26 @@
     Author     : MSI
 --%>
 
+<%@page import="User.DAO.*,User.DTO.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<c:set var="language" value="${param.language}" scope="session" />
-<%String language = request.getParameter("language"), english = "", french = "", vietnamese = "";
+<c:set var="language" value="${param.language}"  />
+<%String language = request.getParameter("language"), english = "", vietnamese = "";
     if (language == null) {
         language = "en_US";
     }
     if (language.equals("en_US")) {
         language = "English";
         english = "active";
-    } else if (language.equals("fr_FR")) {
-        language = "Français";
-        french = "active";
     } else if (language.equals("vi_VN")) {
         language = "Tiếng Việt";
         vietnamese = "active";
     }
 %>
 <c:if test="${not empty language}">
-    <fmt:setLocale value="${language}" />
+    <fmt:setLocale value="${language}" scope="session"/>
 </c:if>
 <fmt:setBundle basename="text" />
 <!DOCTYPE html>
@@ -43,28 +41,47 @@
         <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
         <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
+        <link href="css/modal.css" rel="stylesheet">
         <link rel="stylesheet" href="lib/form/form.css">
     </head>
 
     <body>
 
+        <%
+            Patient patient = null; Admin admin = null;
+            PatientDAO patientDAO = new PatientDAO();
+            AdminDAO adminDAO = new AdminDAO();
+
+            Cookie[] cookies = request.getCookies();
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    if (cookie.getName().equals("u_email")) {
+                        patient = patientDAO.login(cookie.getValue());
+                    } else if (cookie.getName().equals("a_email")) {
+                        admin = adminDAO.login(cookie.getValue());
+                    }
+                }
+            }
+            if (session.getAttribute("patient") != null) {
+                patient = (Patient) session.getAttribute("patient");
+            } else if (session.getAttribute("admin") != null) {
+                admin = (Admin) session.getAttribute("admin");
+            }
+        %>
+
         <header id="header">
             <div class="container-fluid">
                 <div id="logo" class="pull-left">
-                    <h1><a href="#intro" class="scrollto">Doctor STRANGE</a></h1>
+                    <h1><a href="home.jsp" class="scrollto">Doctor STRANGE</a></h1>
                 </div>
                 <nav id="nav-menu-container">
-<<<<<<< HEAD
-
-=======
->>>>>>> ff37197e66bb240e5d0c526236301158fd0f92d2
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="#">Find Doctor</a>
+                        <li class="menu-has-children menu-active"><a href="/search.jsp"><fmt:message key="finddoc"/></a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
-                                        <form action="" method="">
-                                            <h3>Find Your Doctor</h3>
+                                        <form action="doctor" method="POST">
+                                            <h3><fmt:message key="finddoc"/></h3>
                                             <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
                                             <input class="dropdown-button" type="submit" value="Search Doctor">
                                         </form>
@@ -72,19 +89,127 @@
                                 </li>
                             </ul> 
                         </li>
-                        <li><a href="#">Appointment</a></li>
-                        <li class="menu-has-children"><a href="">Language</a>
+                        <li><a href="#"><fmt:message key="appt"/></a></li>
+                        <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
                             <ul>
-                                <li><a href="#">English</a></li>
-                                <li><a href="#">Tiếng Việt</a></li>
+                                <li><a href="home.jsp?language=en_US">English</a></li>
+                                <li><a href="home.jsp?language=vi_VN">Tiếng Việt</a></li>
                             </ul>
                         </li>
-                        <li><a href="#contact">Contact Us</a></li>
-                        <li class="menu-active"><a href="login.jsp">Sign In/Sign Up</a></li>                     
+                        <li><a href="#contact"><fmt:message key="contact"/></a></li>
+                            <% if (patient != null) {%>
+                        <li class="menu"><a href="logout"><fmt:message key="signout"/></a></li>
+                            <% } else {%>
+                        <li class="menu"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true" onclick="animeEffectIn()"><fmt:message key="signinup"/></a></li>
+                            <% }%>
                     </ul>
                 </nav>
             </div>
         </header>
+
+        <!-- Login Popup -->
+        <!-- Modal -->
+        <div id="myLogin" class="modal fade" role="dialog" tabindex='-1'>
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <section id="formHolder">
+
+                            <div class="row">
+
+                                <!-- Brand Box -->
+                                <div class="col-sm-6 brand">
+                                    <a href="home.jsp" class="logo">Doctor <span>STRANGE</span></a>
+
+                                    <div class="heading">
+                                        <h2 class="effectAnime"><span id="heading">Sign Up</span></h2>
+                                    </div>
+
+                                    <div class="success-msg">
+                                        <p>Great! You have logged in successfully.</p>
+                                        <div class="success-btn"><a href="patient" class="profile">Your Profile</a></div>
+                                        <div class="success-btn"><a href="home.jsp" class="btn-info">Back to Homepage</a></div>
+                                    </div>
+                                </div>
+
+
+                                <!-- Form Box -->
+                                <div class="col-sm-6 form">
+
+                                    <!-- Login Form -->
+                                    <div class="login form-peice switched">
+                                        <form class="login-form" action="#" method="post">
+                                            <span id="user-result" style="color: red"></span>
+
+                                            <div class="form-group">
+                                                <label for="email">Email</label>
+                                                <input type="email" name="email" id="email" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="password">Password</label>
+                                                <input type="password" name="password" id="password" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="remember">Remember me?</label>
+                                                <input type="checkbox" name="remember" id="remember" value="yes">
+                                            </div>
+
+                                            <div class="CTA">
+                                                <input type="submit" value="Login" name="action" id="login">
+                                                <a href="#" class="switch" id="registersw">I'm New</a>
+                                            </div>
+                                        </form>
+                                    </div><!-- End Login Form -->
+
+
+                                    <!-- Signup Form -->
+                                    <div class="signup form-peice">
+                                        <form class="signup-form" action="register" method="post">
+
+                                            <div class="form-group">
+                                                <label for="fname">First Name</label>
+                                                <input type="text" name="fname" id="fname" class="fname" required>
+                                                <span class="error"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="lname">Last Name</label>
+                                                <input type="text" name="lname" id="lname" class="lname" required>
+                                                <span class="error"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="email">Email</label>
+                                                <input type="email" name="email" id="email" class="email" required>
+                                                <span class="error"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="address">Address</label>
+                                                <input type="text" name="address" id="address" class="address" required>
+                                                <span class="error"></span>
+                                            </div>
+
+                                            <div class="CTA">
+                                                <input type="submit" value="Signup Now" id="submit" name="action">
+                                                <a href="#" class="switch" id="loginsw">I have an account</a>
+                                            </div>
+                                        </form>
+                                    </div><!-- End Signup Form -->
+                                </div>
+                            </div>
+                        </section>
+                    </div> <!-- body -->
+                </div>
+
+            </div>
+        </div>
+
+
         <section id="intro">
             <div class="intro-container">
                 <div id="introCarousel" class="carousel  slide carousel-fade" data-ride="carousel">
@@ -137,19 +262,19 @@
 
                         <div class="col-lg-4 box">
                             <i class="ion-ios-bookmarks-outline"></i>
-                            <h4 class="title"><a href="">Find All Doctor</a></h4>
+                            <h4 class="title"><a href=""><fmt:message key="findalldoctor"/></a></h4>
                             <p class="description">List of all doctor with full information</p>
                         </div>
 
                         <div class="col-lg-4 box box-bg">
                             <i class="ion-ios-stopwatch-outline"></i>
-                            <h4 class="title"><a href="">Set An Appointment</a></h4>
+                            <h4 class="title"><a href=""><fmt:message key="setanappointment"/></a></h4>
                             <p class="description">Fill a simple form and make an appointment with the doctor you want</p>
                         </div>
 
                         <div class="col-lg-4 box">
                             <i class="ion-ios-heart-outline"></i>
-                            <h4 class="title"><a href="">Health</a></h4>
+                            <h4 class="title"><a href=""><fmt:message key="health"/></a></h4>
                             <p class="description">Blah blah blah Blah blah blah Blah blah blah Blah blah blah Blah blah blah</p>
                         </div>
 
@@ -160,7 +285,7 @@
                 <div class="container">
 
                     <header class="section-header">
-                        <h3>About Us</h3>
+                        <h3><fmt:message key="aboutus"/></h3>
                         <p>More than 500 doctors come from 8 biggest hospitals in Viet Nam with many kinds of speciality.</p>
                     </header>
 
@@ -217,7 +342,7 @@
                 <div class="container">
 
                     <header class="section-header wow fadeInUp">
-                        <h3>Services</h3>
+                        <h3><fmt:message key="services"/></h3>
                         <p>We provide many services for patient and hospital can connect each other easily</p>
                     </header>
 
@@ -265,7 +390,7 @@
                 <div class="container">
 
                     <header class="section-header">
-                        <h3>Facts</h3>
+                        <h3><fmt:message key="facts"/></h3>
                         <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
                     </header>
 
@@ -306,7 +431,7 @@
                 <div class="container">
 
                     <header class="section-header">
-                        <h3>Our Clients</h3>
+                        <h3><fmt:message key="clients"/></h3>
                     </header>
 
                     <div class="owl-carousel clients-carousel">
@@ -338,7 +463,7 @@
                                 <img src="img/team-1.jpg" class="img-fluid" alt="">
                                 <div class="member-info">
                                     <div class="member-info-content">
-                                        <h4>Tien Grimmes</h4>
+                                        <h4>Torai9</h4>
                                         <span>Chief Executive Officer</span>
                                         <div class="social">                          
                                             <a href=""><i class="fa fa-facebook"></i></a>
@@ -425,7 +550,7 @@
                 <div class="container">
 
                     <div class="section-header">
-                        <h3>Contact Us</h3>
+                        <h3><fmt:message key="contact"/></h3>
                         <p>Call us when you need</p>
                     </div>
 
@@ -434,7 +559,7 @@
                         <div class="col-md-4">
                             <div class="contact-address">
                                 <i class="ion-ios-location-outline"></i>
-                                <h3>Address</h3>
+                                <h3><fmt:message key="address"/></h3>
                                 <address>69, HCMIU, HCM City, Viet Nam</address>
                             </div>
                         </div>
@@ -442,7 +567,7 @@
                         <div class="col-md-4">
                             <div class="contact-phone">
                                 <i class="ion-ios-telephone-outline"></i>
-                                <h3>Phone Number</h3>
+                                <h3><fmt:message key="phonenumber"/></h3>
                                 <p><a href="tel:+113">113</a></p>
                             </div>
                         </div>
@@ -450,14 +575,14 @@
                         <div class="col-md-4">
                             <div class="contact-email">
                                 <i class="ion-ios-email-outline"></i>
-                                <h3>Email</h3>
+                                <h3><fmt:message key="email"/></h3>
                                 <p><a href="abc@gmail.com">abc@gmail.com</a></p>
                             </div>
                         </div>
 
                     </div>
 
-                    <div class="form">
+                    <div class="form2">
                         <form action="" method="post" role="form" class="contactForm">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
@@ -496,18 +621,18 @@
                         </div>
 
                         <div class="col-lg-3 col-md-6 footer-links">
-                            <h4>Useful Links</h4>
+                            <h4><fmt:message key="usefullinks"/></h4>
                             <ul>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Home</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">About us</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Services</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Terms of service</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="home"/></a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="aboutus"/></a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="services"/></a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="termsofservice"/></a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="privacypolicy"/></a></li>
                             </ul>
                         </div>
 
                         <div class="col-lg-3 col-md-6 footer-contact">
-                            <h4>Contact Us</h4>
+                            <h4><fmt:message key="contact"/></h4>
                             <p>
                                 69 IU Street <br>
                                 Ho Chi Minh City, <br>
@@ -527,7 +652,7 @@
                         </div>
 
                         <div class="col-lg-3 col-md-6 footer-newsletter">
-                            <h4>Other</h4>
+                            <h4><fmt:message key="other"/></h4>
                             <p>motherfucker không quen, tao không quen, đừng nói chuyện thân thiện như vậy với tao, tao không quen, cũng đừng nói chuyện đằng sau lưng của tao như vậy. </p>
                         </div>
 
@@ -558,10 +683,12 @@
         <script src="lib/isotope/isotope.pkgd.min.js"></script>
         <script src="lib/lightbox/js/lightbox.min.js"></script>
         <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
+        <script src="lib/anime/anime.min.js"></script>
 
         <script src="contactform/contactform.js"></script>
 
         <script src="js/main.js"></script>
+        <script src="js/modal.js"></script>
 
     </body>
 </html>

@@ -1,12 +1,34 @@
 <%-- 
-    Document   : login
-    Created on : May 17, 2018, 7:14:46 PM
-    Author     : MSI
+    Document   : profilePatient
+    Created on : May 19, 2018, 9:42:31 PM
+    Author     : NemoVinh
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<c:set var="language" value="${param.language}" scope="session" />
+<%String language = request.getParameter("language"), english = "", vietnamese = "", lang = "";
+    if (language == null) {
+        language = "en_US";
+    }
+    if (language.equals("en_US")) {
+        lang = "English";
+        english = "active";
+    } else if (language.equals("vi_VN")) {
+        lang = "Tiếng Việt";
+        vietnamese = "active";
+    }
+%>
+<c:if test="${not empty language}">
+    <fmt:setLocale value="${language}" />
+</c:if>
+<fmt:setBundle basename="text" />
+
 <!DOCTYPE html>
-<html>
+<html lang="${language}">
     <%
         // Call cookie
         Cookie isLogin[] = request.getCookies();
@@ -17,8 +39,9 @@
                     response.sendRedirect("/index.jsp");
                 }
             }
-        }
+        } else {
 
+        }
         String error = "";
         if (request.getAttribute("error") != null) {
             error = (String) request.getAttribute("error");
@@ -29,8 +52,6 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
-        <link href="img/favicon.png" rel="icon">
-        <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -39,12 +60,11 @@
         <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
         <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
-
         <link rel="stylesheet" href="lib/form/form.css">
     </head> 
 
     <body>
-
+        <!-- Header -->
         <header id="header">
             <div class="container-fluid">
                 <div id="logo" class="pull-left">
@@ -56,7 +76,7 @@
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
-                                        <form action="" method="">
+                                        <form action="doctor" method="POST">
                                             <h3>Find Your Doctor</h3>
                                             <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
                                             <input class="dropdown-button" type="submit" value="Search Doctor">
@@ -78,29 +98,48 @@
                 </nav>
             </div>
         </header>
+        <jsp:useBean id="user" scope="application" class="User.DTO.Patient"/>
 
+        <!-- MAIN : form -->
         <main id="main">
             <div class="login-dark">
-                <form class="login" action="login" method="post">
-                    <h1>Login</h1>
-                    <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
-
-                    <% if (error.length() > 0) {%>
-                    <div class="form-group has-danger"><input class="form-control" type="email" name="email" placeholder="Email"></div>
-                    <div class="form-group has-danger"><input class="form-control" type="password" name="password" placeholder="Password"></div>
-                    <% } else {%>
-                    <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
-                    <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
-                    <% }%>
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action">Log In</button></div>
+                <form class="PatientController" method="post" style="width:600px;">
+                    <h1>Patient Profile</h1>
+                    <br>
                     <div class="form-group">
-                        <input class="btn btn-primary2 btn-block" type="button" value="Register New Account" onclick="window.location.href = 'register'" />                        
+                        <input class="form-control d-inline" type="text" name="fname" placeholder="<jsp:getProperty name="user" property="fname"/>" style="width:200px;margin:0px 0px;" onkeyup="ValidateText(this)" required><input class="form-control d-inline" type="text" name="lname" placeholder="<jsp:getProperty name="user" property="lname"/>" style="width:200px;margin:0px 10px;" onkeyup="ValidateText(this)" required>
                     </div>
-                    <a href="forgot" class="forgot">Forgot your email or password?</a>
+                    <div class="form-group">
+                        <input class="form-control" type="email" name="email" placeholder="<jsp:getProperty name="user" property="email"/>" onchange="email_validate(this.value);" required>
+                        <div class="status" id="status"></div>
+                    </div>
+                    <div class="form-group"><input class="form-control d-inline-flex" type="password" name="password" placeholder="Password" style="width:200px;" minlength="4" maxlength="16" id="pass1" required></div>
+                    <div class="form-group">
+                        <input class="form-control d-inline-flex" type="password" name="password2" placeholder="Confirm Password" style="width:200px;" minlength="4" maxlength="16" id="pass2" onchange="checkPass(); return false;" required>
+                        <span id="confirmMessage" class="confirmMessage"></span>
+                    </div>
+                    <div class="form-group">
+                        <label style="color:#65757d; margin:0px 10px;">Gender:&nbsp;</label>
+                        <select class="form-control d-inline" name="gender" style="width:120px;color:#65757d;">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <!-- <div class="form-group"><input class="form-control" type="date" style="color:#65757d;"></div> -->
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="address" placeholder="<jsp:getProperty name="user" property="address"/>" style="width:420px;margin:0px 0px;" onkeyup = "add_validate(this.value)" required>
+                        <div id="statusAdd"></div>
+                    </div>
+                    <input type="hidden" name="language" value="<%=language%>">
+                   
+
+                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action" value="update">UpDate</button></div>
+
                 </form>
             </div>
         </main>
-
+        <!-- Footer -->
         <footer id="footer">
             <div class="footer-top">
                 <div class="container">
@@ -159,6 +198,7 @@
 
 
 
+
             <script src="lib/bootstrap/js/bootstrap.min.js"></script>
             <script src="lib/jquery/jquery.min.js"></script>
             <script src="lib/jquery/jquery-migrate.min.js"></script>
@@ -173,10 +213,7 @@
             <script src="lib/isotope/isotope.pkgd.min.js"></script>
             <script src="lib/lightbox/js/lightbox.min.js"></script>
             <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
-
-            <script src="contactform/contactform.js"></script>
-
+            <script src="js/registration.js"></script>
             <script src="js/main.js"></script>
     </body>
 </html>
-

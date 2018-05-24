@@ -33,6 +33,10 @@
         <servlet-class>User.Login</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>User.Logout</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>PatientController</servlet-name>
         <servlet-class>User.PatientController</servlet-class>
     </servlet>
@@ -70,12 +74,21 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>PatientController</servlet-name>
-        <url-pattern>/PatientController</url-pattern>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PatientController</servlet-name>
+        <url-pattern>/patient</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    
+    <welcome-file-list>  
+        <welcome-file>home.jsp</welcome-file>  
+    </welcome-file-list>  
 </web-app>

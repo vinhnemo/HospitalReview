@@ -1162,7 +1162,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   }
 }
 
-#contact .form #sendmessage {
+#contact .form2 #sendmessage {
   color: #18d26e;
   border: 1px solid #18d26e;
   display: none;
@@ -1172,7 +1172,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   margin-bottom: 15px;
 }
 
-#contact .form #errormessage {
+#contact .form2 #errormessage {
   color: red;
   display: none;
   border: 1px solid red;
@@ -1182,11 +1182,11 @@ body.mobile-nav-active #mobile-nav-toggle {
   margin-bottom: 15px;
 }
 
-#contact .form #sendmessage.show, #contact .form #errormessage.show, #contact .form .show {
+#contact .form2 #sendmessage.show, #contact .form2 #errormessage.show, #contact .form2 .show {
   display: block;
 }
 
-#contact .form .validation {
+#contact .form2 .validation {
   color: red;
   display: none;
   margin: 0 0 20px;
@@ -1194,14 +1194,14 @@ body.mobile-nav-active #mobile-nav-toggle {
   font-size: 13px;
 }
 
-#contact .form input, #contact .form textarea {
+#contact .form2 input, #contact .form2 textarea {
   padding: 10px 14px;
   border-radius: 0;
   box-shadow: none;
   font-size: 15px;
 }
 
-#contact .form button[type="submit"] {
+#contact .form2 button[type="submit"] {
   background: #18d26e;
   border: 0;
   padding: 10px 30px;
@@ -1210,7 +1210,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   cursor: pointer;
 }
 
-#contact .form button[type="submit"]:hover {
+#contact .form2 button[type="submit"]:hover {
   background: #13a456;
 }
 

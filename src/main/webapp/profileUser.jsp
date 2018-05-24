@@ -1,34 +1,34 @@
 <%-- 
-    Document   : register
-    Created on : May 16, 2018, 5:46:22 PM
+    Document   : profileUser
+    Created on : May 24, 2018, 1:43:34 AM
     Author     : MSI
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="language" value="${param.language}" scope="session" />
-<%String language = request.getParameter("language"), english = "", vietnamese = "", lang = "";
+<%String language = request.getParameter("language"), english = "", french = "", vietnamese = "";
     if (language == null) {
         language = "en_US";
     }
     if (language.equals("en_US")) {
-        lang = "English";
+        language = "English";
         english = "active";
+    } else if (language.equals("fr_FR")) {
+        language = "Français";
+        french = "active";
     } else if (language.equals("vi_VN")) {
-        lang = "Tiếng Việt";
+        language = "Tiếng Việt";
         vietnamese = "active";
     }
 %>
 <c:if test="${not empty language}">
-    <fmt:setLocale value="${language}" />
+    <fmt:setLocale value="${language}" scope="session"/>
 </c:if>
 <fmt:setBundle basename="text" />
-
 <!DOCTYPE html>
-<html>
+<html lang="${language}">
     <head>
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -37,20 +37,25 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-        <link href="lib/animate/animate.min.css" rel="stylesheet">
-        <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
         <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
         <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="lib/form/search.css">
+        <link rel="stylesheet" href="lib/form/sidebar.css">
         <link rel="stylesheet" href="lib/form/form.css">
-    </head> 
-
+        <link rel="stylesheet" href="lib/form/profile.css">
+    </head>
+    <style>
+        .nav .nav-tabs .tabs-left li>a :hover{
+            background-color: #000;
+        }
+    </style>
     <body>
-        <!-- Header -->
+
         <header id="header">
             <div class="container-fluid">
                 <div id="logo" class="pull-left">
-                    <h1><a href="home.jsp" class="scrollto">Doctor STRANGE</a></h1>
+                    <h1><a href="#intro" class="scrollto">Doctor STRANGE</a></h1>
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
@@ -58,7 +63,7 @@
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
-                                        <form action="" method="">
+                                        <form action="doctor" method="POST">
                                             <h3>Find Your Doctor</h3>
                                             <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
                                             <input class="dropdown-button" type="submit" value="Search Doctor">
@@ -74,59 +79,70 @@
                                 <li><a href="#">Tiếng Việt</a></li>
                             </ul>
                         </li>
-                        <li><a href="#footer">Contact Us</a></li>
-                        <li class="menu-active"><a href="login.jsp">Sign In/Sign Up</a></li>                     
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li class="menu-active"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true">Sign In/Sign Up</a></li>                     
                     </ul>
                 </nav>
             </div>
         </header>
-        
-        <!-- MAIN : form -->
+        <!--end of header -->
         <main id="main">
-            <div class="login-dark">
-                <form class="register" method="post" style="width:600px;">
-                    <h1>Register Account</h1>
-                    <br>
-                    <div class="form-group">
-                        <input class="form-control d-inline" type="text" name="fname" placeholder="First Name" style="width:200px;margin:0px 0px;" onkeyup="ValidateText(this)" required><input class="form-control d-inline" type="text" name="lname" placeholder="Last Name" style="width:200px;margin:0px 10px;" onkeyup="ValidateText(this)" required>
+            <!-- De choi thoi -->
+            <div class="nothing-special-dark"></div>
+            <div class="nothing-special-light"></div>
+            <section class="card-section-imagia">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3" style="background-color: #FFF;">
+                            <h4>Options</h4><hr>
+                            <ul class="nav nav-tabs tabs-left">
+                                <li class="active"><a href="#general" data-toggle="tab"><i class="fa fa-gears"></i>General</a></li>
+                                <li><a href="#edit" data-toggle="tab"><i class="fa fa-pencil"></i>Edit Your Profile</a></li>
+                                <li><div class="side-text"><i class="fa fa-key"></i>Change password</div></li>
+                                <li><div class="side-text"><i class="fa fa-bookmark"></i>Bookmarks</div></li>
+                                <li><div class="side-text"><i class="fa fa-angle-double-right"></i>Others</div></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-8 col-sm-8" style="background-color: #eee; margin-left: 10px;">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="general">
+                                    <div class="doctor-name">
+                                        <div class="row" style="margin-top: 40px;">             
+                                            <div class="col-md-4 col-sm-10">
+                                                <div class="doctor-pic">
+                                                    <img src="" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7 col-sm-10">
+                                                <h3 class="name">Nguyen Van Sinh</h3>
+                                                <div class="doctor-text"> DOB: 11-01-1997<br> Gender: GAY </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="doctor-information">
+                                        <div class="head">Personal Information</div><br> 
+                                        <table>
+                                            <tr><td><div class="info">Working Place: </div></td><td> <div class="info-text">Abc hospital</div></td></tr>
+                                            <tr><td><div class="info">Speciality: </div></td><td> <div class="info-text">Neurology</div></td></tr>
+                                            <tr><td><div class="info">Specific speciality: </div></td><td> <div class="info-text">Crazy</div></td></tr>
+                                            <tr><td><div class="info">Degree: </div></td><td> <div class="info-text">Kintergarden</div></div></td></tr>
+                                            <tr><td><div class="info">Insurance: </div></td><td> <div class="info-text">Accepted</div></div></td></tr>
+                                            <tr><td><div class="info">Language: </div></td><td> <div class="info-text">English</div></div></td></tr>
+                                            <tr><td><div class="info">Work-hour: </div></td><td> <div class="info-text">10AM-2PM</div></div></td></tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="edit">
+                                    Bulubaxoa bulu
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input class="form-control" type="email" name="email" placeholder="Email" onchange="email_validate(this.value);" required>
-                        <div class="status" id="status"></div>
-                    </div>
-                    <div class="form-group"><input class="form-control d-inline-flex" type="password" name="password" placeholder="Password" style="width:200px;" minlength="4" maxlength="16" id="pass1" required></div>
-                    <div class="form-group">
-                        <input class="form-control d-inline-flex" type="password" name="password2" placeholder="Confirm Password" style="width:200px;" minlength="4" maxlength="16" id="pass2" onchange="checkPass(); return false;" required>
-                        <span id="confirmMessage" class="confirmMessage"></span>
-                    </div>
-                    <div class="form-group">
-                        <label style="color:#65757d; margin:0px 10px;">Gender:&nbsp;</label>
-                        <select class="form-control d-inline" name="gender" style="width:120px;color:#65757d;">
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <!-- <div class="form-group"><input class="form-control" type="date" style="color:#65757d;"></div> -->
-                    <div class="form-group">
-                        <input class="form-control" type="text" name="address" placeholder="Address" style="width:420px;margin:0px 0px;" onkeyup = "add_validate(this.value)" required>
-                        <div id="statusAdd"></div>
-                    </div>
-                    <input type="hidden" name="language" value="<%=language%>">
-
-                    <div class="form-group">
-                        <hr>
-                        <input type="checkbox" required name="terms" onchange="this.setCustomValidity(validity.valueMissing ? 'Please indicate that you accept the Terms and Conditions' : '');" id="field_terms">   <label for="terms">I agree with the <a href="terms.php" title="You may read our terms and conditions by clicking on this link">terms and conditions</a> for Registration.</label>
-                    </div>
-
-                    <small>You will receive an email to complete the registration and validation process.</small>
-                    <small>Be sure to check your spam folders. </small>
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Sign Up</button></div>
-                    <a href="login" class="forgot">Already have account? Sign in.</a>
-                </form>
-            </div>
+                </div>
+            </section>
         </main>
-        <!-- Footer -->
+        <!-- End of Result -->
         <footer id="footer">
             <div class="footer-top">
                 <div class="container">
@@ -182,25 +198,23 @@
                     &copy; Copyright <strong>Doctor Strange</strong>. All Rights Reserved
                 </div>
             </div>
+        </footer>
 
 
+        <script src="lib/jquery/jquery.min.js"></script>
+        <script src="lib/jquery/jquery-migrate.min.js"></script>
+        <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/flexslider/jquery.flexslider-min.js"></script>
+        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+        <script src="lib/superfish/hoverIntent.js"></script>
+        <script src="lib/superfish/superfish.min.js"></script>
+        <script src="lib/wow/wow.min.js"></script>
+        <script src="lib/form/side.js"></script>
+        <script src="js/main.js"></script>
 
-
-            <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-            <script src="lib/jquery/jquery.min.js"></script>
-            <script src="lib/jquery/jquery-migrate.min.js"></script>
-            <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-            <script src="lib/easing/easing.min.js"></script>
-            <script src="lib/superfish/hoverIntent.js"></script>
-            <script src="lib/superfish/superfish.min.js"></script>
-            <script src="lib/wow/wow.min.js"></script>
-            <script src="lib/waypoints/waypoints.min.js"></script>
-            <script src="lib/counterup/counterup.min.js"></script>
-            <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-            <script src="lib/isotope/isotope.pkgd.min.js"></script>
-            <script src="lib/lightbox/js/lightbox.min.js"></script>
-            <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
-            <script src="js/registration.js"></script>
-            <script src="js/main.js"></script>
     </body>
 </html>
+
+
+

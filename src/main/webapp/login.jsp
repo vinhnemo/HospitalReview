@@ -5,23 +5,45 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<c:set var="language" value="${param.language}" />
+<%String language = request.getParameter("language"), english = "", french = "", vietnamese = "";
+    if (language == null) {
+        language = "en_US";
+    }
+    if (language.equals("en_US")) {
+        language = "English";
+        english = "active";
+    } else if (language.equals("fr_FR")) {
+        language = "Français";
+        french = "active";
+    } else if (language.equals("vi_VN")) {
+        language = "Tiếng Việt";
+        vietnamese = "active";
+    }
+%>
+<c:if test="${not empty language}">
+    <fmt:setLocale value="${language}" scope="session"/>
+</c:if>
+<fmt:setBundle basename="text" />
 <!DOCTYPE html>
-<html>
+<html lang="${language}">
     <%
         // Call cookie
         Cookie isLogin[] = request.getCookies();
 
         if (isLogin != null) {
             for (Cookie ck : isLogin) {
-                if (ck.getName().equals("u_email")) {
-                    response.sendRedirect("/index.jsp");
+                if (ck.getName().equals("u_email") || ck.getName().equals("a_email")) {
+                    response.sendRedirect("home.jsp");
                 }
             }
         }
-
-        String error = "";
-        if (request.getAttribute("error") != null) {
-            error = (String) request.getAttribute("error");
+        
+        if (session.getAttribute("patient") != null || session.getAttribute("admin") != null) {
+            response.sendRedirect("home.jsp");
         }
     %>
     <head>
@@ -29,8 +51,6 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
-        <link href="img/favicon.png" rel="icon">
-        <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -52,12 +72,12 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="#">Find Doctor</a>
+                        <li class="menu-has-children menu-active"><a href="/search.jsp"><fmt:message key="finddoc"/></a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
-                                        <form action="" method="">
-                                            <h3>Find Your Doctor</h3>
+                                        <form action="doctor" method="POST">
+                                            <h3><fmt:message key="finddoc"/></h3>
                                             <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
                                             <input class="dropdown-button" type="submit" value="Search Doctor">
                                         </form>
@@ -65,15 +85,15 @@
                                 </li>
                             </ul> 
                         </li>
-                        <li><a href="#">Appointment</a></li>
-                        <li class="menu-has-children"><a href="">Language</a>
+                        <li><a href="#"><fmt:message key="appt"/></a></li>
+                        <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
                             <ul>
-                                <li><a href="#">English</a></li>
-                                <li><a href="#">Tiếng Việt</a></li>
+                                <li><a href="login.jsp?language=en_US">English</a></li>
+                                <li><a href="login.jsp?language=vi_VN">Tiếng Việt</a></li>
                             </ul>
                         </li>
-                        <li><a href="#footer">Contact Us</a></li>
-                        <li class="menu-active"><a href="login.jsp">Sign In/Sign Up</a></li>                     
+                        <li><a href="#footer"><fmt:message key="contact"/></a></li>
+                        <li class="menu-active"><a href="login.jsp"><fmt:message key="signinup"/></a></li>                     
                     </ul>
                 </nav>
             </div>
@@ -81,20 +101,18 @@
 
         <main id="main">
             <div class="login-dark">
-                <form class="login" action="login" method="post">
+                <form class="login" action="#" id="login-form" method="POST">
                     <h1>Login</h1>
                     <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
 
-                    <% if (error.length() > 0) {%>
-                    <div class="form-group has-danger"><input class="form-control" type="email" name="email" placeholder="Email"></div>
-                    <div class="form-group has-danger"><input class="form-control" type="password" name="password" placeholder="Password"></div>
-                    <% } else {%>
-                    <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
-                    <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
-                    <% }%>
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action">Log In</button></div>
+                    <div class="form-group"><span id="user-result" style="color: red"></span></div>
+                    <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email" id="email"></div>
+                    <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password" id="password"></div>
+                    <div class="form-group">Remember me? <input class="form-control" type="checkbox" name="remember" id="remember"></div>
+                    
+                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Log In</button></div>
                     <div class="form-group">
-                        <input class="btn btn-primary2 btn-block" type="button" value="Register New Account" onclick="window.location.href = 'register'" />                        
+                        <input class="btn btn-primary2 btn-block" type="submit" value="Register New Account" onclick="window.location.href = 'register'" />                        
                     </div>
                     <a href="forgot" class="forgot">Forgot your email or password?</a>
                 </form>
@@ -177,6 +195,7 @@
             <script src="contactform/contactform.js"></script>
 
             <script src="js/main.js"></script>
+            <script src="js/login.js"></script>
     </body>
 </html>
 
