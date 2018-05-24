@@ -262,19 +262,19 @@
 
                         <div class="col-lg-4 box">
                             <i class="ion-ios-bookmarks-outline"></i>
-                            <h4 class="title"><a href="">Find All Doctor</a></h4>
+                            <h4 class="title"><a href=""><fmt:message key="findalldoctor"/></a></h4>
                             <p class="description">List of all doctor with full information</p>
                         </div>
 
                         <div class="col-lg-4 box box-bg">
                             <i class="ion-ios-stopwatch-outline"></i>
-                            <h4 class="title"><a href="">Set An Appointment</a></h4>
+                            <h4 class="title"><a href=""><fmt:message key="setanappointment"/></a></h4>
                             <p class="description">Fill a simple form and make an appointment with the doctor you want</p>
                         </div>
 
                         <div class="col-lg-4 box">
                             <i class="ion-ios-heart-outline"></i>
-                            <h4 class="title"><a href="">Health</a></h4>
+                            <h4 class="title"><a href=""><fmt:message key="health"/></a></h4>
                             <p class="description">Blah blah blah Blah blah blah Blah blah blah Blah blah blah Blah blah blah</p>
                         </div>
 
@@ -285,7 +285,7 @@
                 <div class="container">
 
                     <header class="section-header">
-                        <h3>About Us</h3>
+                        <h3><fmt:message key="aboutus"/></h3>
                         <p>More than 500 doctors come from 8 biggest hospitals in Viet Nam with many kinds of speciality.</p>
                     </header>
 
@@ -342,7 +342,7 @@
                 <div class="container">
 
                     <header class="section-header wow fadeInUp">
-                        <h3>Services</h3>
+                        <h3><fmt:message key="services"/></h3>
                         <p>We provide many services for patient and hospital can connect each other easily</p>
                     </header>
 
@@ -390,7 +390,7 @@
                 <div class="container">
 
                     <header class="section-header">
-                        <h3>Facts</h3>
+                        <h3><fmt:message key="facts"/></h3>
                         <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
                     </header>
 
@@ -431,7 +431,7 @@
                 <div class="container">
 
                     <header class="section-header">
-                        <h3>Our Clients</h3>
+                        <h3><fmt:message key="clients"/></h3>
                     </header>
 
                     <div class="owl-carousel clients-carousel">
@@ -550,7 +550,7 @@
                 <div class="container">
 
                     <div class="section-header">
-                        <h3>Contact Us</h3>
+                        <h3><fmt:message key="contact"/></h3>
                         <p>Call us when you need</p>
                     </div>
 
@@ -559,7 +559,7 @@
                         <div class="col-md-4">
                             <div class="contact-address">
                                 <i class="ion-ios-location-outline"></i>
-                                <h3>Address</h3>
+                                <h3><fmt:message key="address"/></h3>
                                 <address>69, HCMIU, HCM City, Viet Nam</address>
                             </div>
                         </div>
@@ -567,7 +567,7 @@
                         <div class="col-md-4">
                             <div class="contact-phone">
                                 <i class="ion-ios-telephone-outline"></i>
-                                <h3>Phone Number</h3>
+                                <h3><fmt:message key="phonenumber"/></h3>
                                 <p><a href="tel:+113">113</a></p>
                             </div>
                         </div>
@@ -575,7 +575,7 @@
                         <div class="col-md-4">
                             <div class="contact-email">
                                 <i class="ion-ios-email-outline"></i>
-                                <h3>Email</h3>
+                                <h3><fmt:message key="email"/></h3>
                                 <p><a href="abc@gmail.com">abc@gmail.com</a></p>
                             </div>
                         </div>
@@ -621,18 +621,18 @@
                         </div>
 
                         <div class="col-lg-3 col-md-6 footer-links">
-                            <h4>Useful Links</h4>
+                            <h4><fmt:message key="usefullinks"/></h4>
                             <ul>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Home</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">About us</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Services</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Terms of service</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="home"/></a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="aboutus"/></a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="services"/></a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="termsofservice"/></a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="privacypolicy"/></a></li>
                             </ul>
                         </div>
 
                         <div class="col-lg-3 col-md-6 footer-contact">
-                            <h4>Contact Us</h4>
+                            <h4><fmt:message key="contact"/></h4>
                             <p>
                                 69 IU Street <br>
                                 Ho Chi Minh City, <br>
@@ -652,7 +652,7 @@
                         </div>
 
                         <div class="col-lg-3 col-md-6 footer-newsletter">
-                            <h4>Other</h4>
+                            <h4><fmt:message key="other"/></h4>
                             <p>motherfucker không quen, tao không quen, đừng nói chuyện thân thiện như vậy với tao, tao không quen, cũng đừng nói chuyện đằng sau lưng của tao như vậy. </p>
                         </div>
 
