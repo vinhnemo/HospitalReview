@@ -1,3 +1,5 @@
+
+
 -- --------------------------------------------------------
     -- Table Patient
     -- ----------------------------
@@ -41,47 +43,32 @@
   `d_hour` varchar(150) NOT NULL,
   `languages` varchar(45) NOT NULL,
   PRIMARY KEY (`d_id`)
-<<<<<<< HEAD
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
---  --------------------------------------------------------
-=======
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
- -- ------------------------------------------------------
->>>>>>> 3104cf7406ec7d2ff33bbb2a531e0aa5d44d3a52
-    -- Table Rate
-    -- ----------------------------
+-- --------------------------------------------------------
+   -- Table Rate
+   -- ----------------------------
     DROP TABLE IF EXISTS `rate`;
     CREATE TABLE `rate` (
   `r_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `r_rate` float(10) unsigned NOT NULL,
-  `d_id` int(250) unsigned NOT NULL,
+  `d_id` bigint(20) unsigned NOT NULL,
   PRIMARY KEY (`r_id`),
   FOREIGN KEY (`d_id`) REFERENCES `doctor` (`d_id`)
-<<<<<<< HEAD
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
--- --------------------------------------------------------
-=======
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- ------------------------------------------------------
-
-    -- Table Comment
-    -- ----------------------------
+   -- Table Comment
+   -- ----------------------------
     DROP TABLE IF EXISTS `comment`;
     CREATE TABLE `comment` (
   `c_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `c_comment` varchar(255) NOT NULL,
-  `d_id` int(250) unsigned NOT NULL,
+  `d_id` bigint(20) unsigned NOT NULL,
   PRIMARY KEY (`c_id`),
   FOREIGN KEY (`d_id`) REFERENCES `doctor` (`d_id`)
-<<<<<<< HEAD
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
--- --------------------------------------------------------
-=======
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- ------------------------------------------------------
-
-    -- Table Hospital
-    -- ----------------------------
+   -- Table Hospital
+   -- ----------------------------
     DROP TABLE IF EXISTS `hospital`;
     CREATE TABLE `hospital` (
   `h_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -91,42 +78,66 @@
   `adname` varchar(150) NOT NULL,
   `ademail` varchar(150) NOT NULL,
   PRIMARY KEY (`h_id`)
-
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8
- -- --------------------------------------------------------
--- --------------table deactivePatient---------------------
--- ------------------------------------------------------ -- 
-=======
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 -- ------------------------------------------------------
 -- table deactivePatient
 -- ------------------------------------------------------
-
 CREATE TABLE `deactivepatien` (
-  `DP_id` int(250) unsigned NOT NULL,
-  `p_id` int(250) unsigned NOT NULL,
+  `DP_id` bigint(20) unsigned NOT NULL,
+  `p_id` bigint(20) unsigned NOT NULL,
   PRIMARY KEY (`DP_id`),
   KEY `p_id` (`p_id`),
   CONSTRAINT `deactivepatien_ibfk_1` FOREIGN KEY (`p_id`) REFERENCES `patient` (`p_id`)
-<<<<<<< HEAD
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
--- ------------------------------------------------------
--- -------------- table deactiveHospital---------------------
-=======
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- ------------------------------------------------------
 -- table deactiveHospital
-
 -- ------------------------------------------------------
 CREATE TABLE `deactivehospital` (
-  `DH_id` int(250) unsigned NOT NULL ,
-  `h_id` int(250) unsigned NOT NULL,
+  `DH_id` bigint(20) unsigned NOT NULL ,
+  `h_id` bigint(20) unsigned NOT NULL,
   PRIMARY KEY (`DH_id`),
   KEY `h_id` (`h_id`),
   CONSTRAINT `deactivehospital_ibfk_1` FOREIGN KEY (`h_id`) REFERENCES `hospital` (`h_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
-=======
+-- ------------------------------------------------------
+-- table bookmarkdoctor
+-- ------------------------------------------------------
+CREATE TABLE `bookmarkdoctor` (
+  `p_id` bigint(20) unsigned NOT NULL ,
+  `d_id` bigint(20) unsigned NOT NULL,
+  PRIMARY KEY (`p_id`,`d_id`),
+  KEY `d_id` (`d_id`),
+  CONSTRAINT `bookmarkdoctor_ibfk_1` FOREIGN KEY (`d_id`) REFERENCES `doctor` (`d_id`),
+  KEY `p_id` (`p_id`),
+  CONSTRAINT `bookmarkdoctor_ibfk_2` FOREIGN KEY (`p_id`) REFERENCES `patient` (`p_id`)
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ------------------------------------------------------
+-- table bookmarkhospital
+-- ------------------------------------------------------
+CREATE TABLE `bookmarkhospital` (
+  `p_id` bigint(20) unsigned NOT NULL ,
+  `h_id` bigint(20) unsigned NOT NULL,
+  PRIMARY KEY (`p_id`,`h_id`),
+  KEY `h_id` (`h_id`),
+  CONSTRAINT `bookmarkhospital_ibfk_1` FOREIGN KEY (`h_id`) REFERENCES `hospital` (`h_id`),
+  KEY `p_id` (`p_id`),
+  CONSTRAINT `bookmarkhospital_ibfk_2` FOREIGN KEY (`p_id`) REFERENCES `patient` (`p_id`)
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ------------------------------------------------------
+-- table doctorreview
+-- ------------------------------------------------------
+CREATE TABLE `doctorreview` (
+  `d_id` bigint(20) unsigned NOT NULL ,
+  `allowReview` INT DEFAULT '1',
+  PRIMARY KEY (`d_id`),
+  KEY `d_id` (`d_id`),
+  CONSTRAINT `doctorreview_ibfk_1` FOREIGN KEY (`d_id`) REFERENCES `doctor` (`d_id`)
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ------------------------------------------------------

@@ -4,21 +4,20 @@
     Author     : MSI
 --%>
 
+<%@page import="User.DAO.PatientDAO"%>
+<%@page import="User.DTO.Patient"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="language" value="${param.language}"  />
-<%String language = request.getParameter("language"), english = "", french = "", vietnamese = "";
+<%String language = request.getParameter("language"), english = "", vietnamese = "";
     if (language == null) {
         language = "en_US";
     }
     if (language.equals("en_US")) {
         language = "English";
         english = "active";
-    } else if (language.equals("fr_FR")) {
-        language = "Français";
-        french = "active";
     } else if (language.equals("vi_VN")) {
         language = "Tiếng Việt";
         vietnamese = "active";
@@ -49,6 +48,23 @@
 
     <body>
 
+        <%
+            Patient patient = null;
+            PatientDAO patientDAO = new PatientDAO();
+
+            Cookie[] cookies = request.getCookies();
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    if (cookie.getName().equals("u_email")) {
+                        patient = patientDAO.login(cookie.getValue());
+                    }
+                }
+            }
+            if (session.getAttribute("user") != null) {
+                patient = (Patient) session.getAttribute("user");
+            }
+        %>
+
         <header id="header">
             <div class="container-fluid">
                 <div id="logo" class="pull-left">
@@ -77,7 +93,11 @@
                             </ul>
                         </li>
                         <li><a href="#contact"><fmt:message key="contact"/></a></li>
-                        <li class="menu-active"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true"><fmt:message key="signinup"/></a></li>                     
+                            <% if (patient != null) {%>
+                        <li class="menu"><a href="logout"><fmt:message key="signout"/></a></li>
+                            <% } else {%>
+                        <li class="menu"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true"><fmt:message key="signinup"/></a></li>
+                            <% }%>
                     </ul>
                 </nav>
             </div>
@@ -106,7 +126,8 @@
 
                                     <div class="success-msg">
                                         <p>Great! You have logged in successfully.</p>
-                                        <a href="patient" class="profile">Your Profile</a>
+                                        <a href="patient" class="profile">Your Profile</a><br>
+                                        <a href="home.jsp" class="btn-dark">Back to homepage</a>
                                     </div>
                                 </div>
 
@@ -117,21 +138,21 @@
                                     <!-- Login Form -->
                                     <div class="login form-peice switched">
                                         <form class="login-form" action="#" method="post">
-                                            <span id="user-result"></span>
-                                            
+                                            <span id="user-result" style="color: red"></span>
+
                                             <div class="form-group">
-                                                <label for="loginemail">Email</label>
-                                                <input type="email" name="email" id="loginemail" required>
+                                                <label for="email">Email</label>
+                                                <input type="email" name="email" id="email" required>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="loginPassword">Password</label>
-                                                <input type="password" name="password" id="loginPassword" required>
+                                                <label for="password">Password</label>
+                                                <input type="password" name="password" id="password" required>
                                             </div>
-                                            
+
                                             <div class="form-group">
                                                 <label for="remember">Remember me?</label>
-                                                <input type="checkbox" name="remember" id="remember" value="yes" id="remember">
+                                                <input type="checkbox" name="remember" id="remember" value="yes">
                                             </div>
 
                                             <div class="CTA">
@@ -664,7 +685,6 @@
 
         <script src="js/main.js"></script>
         <script src="js/modal.js"></script>
-        <script src="js/login.js"></script>
 
     </body>
 </html>
