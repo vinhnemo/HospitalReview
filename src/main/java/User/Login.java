@@ -82,21 +82,21 @@ public class Login extends HttpServlet {
             } else {
                 // If this is an admin
                 if (adminLogin) {
-                    session.setAttribute("user", admin);
+                    session.setAttribute("admin", admin);
                 } else {
-                    session.setAttribute("user", patient);
+                    session.setAttribute("patient", patient);
                 }
 
                 // Save login cookie
                 if (remember.equals("yes")) {
                     Cookie loginCookie;
                     if (adminLogin) {
-                        loginCookie = new Cookie("u_email", admin.getEmail());
+                        loginCookie = new Cookie("a_email", admin.getEmail());
                     } else {
                         loginCookie = new Cookie("u_email", patient.getEmail());
                     }
                     //setting cookie to expiry in 30 mins
-                    loginCookie.setMaxAge(60 * 60 * 24 * 365);
+                    loginCookie.setMaxAge(60 * 30);
                     response.addCookie(loginCookie);
                 }
 

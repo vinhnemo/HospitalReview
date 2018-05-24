@@ -120,11 +120,6 @@ public class Registration extends HttpServlet {
                         System.out.println("Stop here!");
                         text = "Hello <strong>" + patient.getFname() + "</strong>,<br><br>" + text;
 
-                        Cookie loginCookie = new Cookie("email", email);
-                        //setting cookie to expiry in 30 mins
-                        loginCookie.setMaxAge(60 * 60 * 24 * 365);
-                        response.addCookie(loginCookie);
-
                         Mail mail = new Mail(patient.getEmail(), service, text, subject, mailserver);
                         MailController sm = new MailController();
                         sm.sendMail(mail);
@@ -184,11 +179,6 @@ public class Registration extends HttpServlet {
                     if (adminDAO.insertUser(admin)) {
 
                         text = "Hello <strong>" + admin.getEmail() + "</strong>,<br><br>" + text;
-
-                        Cookie loginCookie = new Cookie("username", username);
-                        //setting cookie to expiry in 1 year
-                        loginCookie.setMaxAge(60 * 60 * 24 * 365);
-                        response.addCookie(loginCookie);
 
                         Mail mail = new Mail(admin.getEmail(), service, text, subject, mailserver);
                         MailController sm = new MailController();

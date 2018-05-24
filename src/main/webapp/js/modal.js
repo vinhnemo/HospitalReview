@@ -32,7 +32,7 @@ $(document).ready(function () {
 
     // Form validation
     $('input').blur(function () {
-        
+
         // First Name
         if ($(this).hasClass('fname')) {
             if ($(this).val().length === 0) {
@@ -99,8 +99,19 @@ $(document).ready(function () {
 
     // form switch
     $('a.switch').click(function (e) {
-        $(this).toggleClass('active');
+        
+        $(this).removeClass('active');
         e.preventDefault();
+
+        if ($(this).is('#loginsw')) {
+            $('#heading').text("Login");
+            animeEffectIn();
+            $(this).addClass('active');
+        } else {
+            $('#heading').text("Sign Up");
+            animeEffectIn();
+            $(this).addClass('active');
+        }
 
         if ($('a.switch').hasClass('active')) {
             $(this).parents('.form-peice').addClass('switched').siblings('.form-peice').removeClass('switched');
@@ -108,7 +119,6 @@ $(document).ready(function () {
             $(this).parents('.form-peice').removeClass('switched').siblings('.form-peice').addClass('switched');
         }
     });
-
 
     // Form submit
     $('form.signup-form').submit(function (event) {
@@ -120,13 +130,15 @@ $(document).ready(function () {
 
     $('form.login-form').submit(function (event) {
         $('#user-result').show();
-        
+
         event.preventDefault();
 
         var email = $('#email').val();
         var pass = $('#password').val();
-        var remember = $('#remember').val();
-        
+        var remember;
+        if ($('#remember').is(":checked")) remember = "yes";
+        else remember = "no";
+
         clearTimeout(timer);
         $('#user-result').html('<img src="img/loading.gif" />');
         timer = setTimeout(function () {
@@ -150,26 +162,56 @@ $(document).ready(function () {
         location.reload(true);
     });
 
-    function loadEffect() {
-        $('.signup, .login').addClass('switched');
-
-        setTimeout(function () {
-            $('.signup, .login').hide();
-        }, 700);
-        setTimeout(function () {
-            $('.brand').addClass('active');
-        }, 300);
-        setTimeout(function () {
-            $('.heading').addClass('active');
-        }, 600);
-        setTimeout(function () {
-            $('.success-msg p').addClass('active');
-        }, 900);
-        setTimeout(function () {
-            $('.success-msg a').addClass('active');
-        }, 1050);
-        setTimeout(function () {
-            $('.form').hide();
-        }, 700);
-    }
 });
+
+function loadEffect() {
+    $('.signup, .login').addClass('switched');
+    $('#heading').fadeOut().delay(1000).hide();
+    setTimeout(function () {
+        $('.signup, .login').hide();
+    }, 700);
+    setTimeout(function () {
+        $('.brand').addClass('active');
+    }, 300);
+    setTimeout(function () {
+        $('.heading').addClass('active');
+    }, 600);
+    setTimeout(function () {
+        $('.success-msg p').addClass('active');
+    }, 900);
+    setTimeout(function () {
+        $('.success-msg a').addClass('active');
+    }, 1050);
+    setTimeout(function () {
+        $('.form').hide();
+    }, 700);
+}
+
+function animeEffectIn() {
+    $('#heading').each(function () {
+        $(this).html($(this).text().replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"));
+    });
+
+    anime.timeline({loop: true})
+            .add({
+                targets: '.effectAnime .letter',
+                translateY: [100, 0],
+                translateZ: 0,
+                opacity: [0, 1],
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: function (el, i) {
+                    return 300 + 30 * i;
+                }
+            })
+            .add({
+                targets: '.effectAnime .letter',
+                translateY: [0, -100],
+                opacity: [1, 0],
+                easing: "easeInExpo",
+                duration: 1200,
+                delay: function (el, i) {
+                    return 100 + 30 * i;
+                }
+            });
+}
