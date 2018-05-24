@@ -9,13 +9,11 @@ public class Database {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-<<<<<<< HEAD
 
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hospital", "root", "");
-=======
+
+            //conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hospital", "root", ""); database của ku
+
             conn = DriverManager.getConnection("jdbc:mysql://35.198.229.164:3306/hospital", "root", "12345");
-
->>>>>>> 8a14142a530d636b5880f8185aadbee533fc49ef
         } catch (ClassNotFoundException | SQLException e) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, e);
         }
