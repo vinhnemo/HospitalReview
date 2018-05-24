@@ -86,7 +86,7 @@ public class Login extends HttpServlet {
                 } else {
                     session.setAttribute("patient", patient);
                 }
-
+                
                 // Save login cookie
                 if (remember.equals("yes")) {
                     Cookie loginCookie;
