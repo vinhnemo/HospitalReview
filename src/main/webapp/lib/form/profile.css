@@ -267,8 +267,29 @@ article {
 }
 
 /* profile sidebar */
-
-
-
-
-
+#tablink a {
+    background-color: black;
+    border: 1px solid #000;
+    font-size: 18px;
+    display: block;
+    margin-bottom: 5px;
+}
+#tablink i{
+    font-size: 20px;
+    padding-right: 20px;
+}
+.general {
+    padding: 10px 117px 10px 10px;
+}
+.edit {
+    padding: 10px 47px 10px 10px;
+}
+.change {
+    padding: 10px 26px 10px 10px;
+}
+.bookmark {
+    padding: 10px 95px 10px 10px;
+}
+.other {
+    padding: 10px 141px 10px 10px;
+}
