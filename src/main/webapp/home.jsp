@@ -4,7 +4,7 @@
     Author     : MSI
 --%>
 
-<%@page import="User.DAO.PatientDAO,User.DTO.Patient"%>
+<%@page import="User.DAO.*,User.DTO.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -48,19 +48,24 @@
     <body>
 
         <%
-            Patient patient = null;
+            Patient patient = null; Admin admin = null;
             PatientDAO patientDAO = new PatientDAO();
+            AdminDAO adminDAO = new AdminDAO();
 
             Cookie[] cookies = request.getCookies();
             if (cookies != null) {
                 for (Cookie cookie : cookies) {
                     if (cookie.getName().equals("u_email")) {
                         patient = patientDAO.login(cookie.getValue());
+                    } else if (cookie.getName().equals("a_email")) {
+                        admin = adminDAO.login(cookie.getValue());
                     }
                 }
             }
-            if (session.getAttribute("user") != null) {
-                patient = (Patient) session.getAttribute("user");
+            if (session.getAttribute("patient") != null) {
+                patient = (Patient) session.getAttribute("patient");
+            } else if (session.getAttribute("admin") != null) {
+                admin = (Admin) session.getAttribute("admin");
             }
         %>
 
@@ -124,8 +129,8 @@
 
                                     <div class="success-msg">
                                         <p>Great! You have logged in successfully.</p>
-                                        <a href="patient" class="profile">Your Profile</a><br>
-                                        <a href="home.jsp" class="btn-dark">Back to Homepage</a>
+                                        <div class="success-btn"><a href="patient" class="profile">Your Profile</a></div>
+                                        <div class="success-btn"><a href="home.jsp" class="btn-info">Back to Homepage</a></div>
                                     </div>
                                 </div>
 

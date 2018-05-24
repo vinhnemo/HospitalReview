@@ -36,15 +36,14 @@
 
         if (isLogin != null) {
             for (Cookie ck : isLogin) {
-                if (ck.getName().equals("u_email")) {
-                    response.sendRedirect("/index.jsp");
+                if (ck.getName().equals("u_email") || ck.getName().equals("a_email")) {
+                    response.sendRedirect("home.jsp");
                 }
             }
         }
-
-        String error = "";
-        if (request.getAttribute("error") != null) {
-            error = (String) request.getAttribute("error");
+        
+        if (session.getAttribute("patient") != null || session.getAttribute("admin") != null) {
+            response.sendRedirect("home.jsp");
         }
     %>
     <head>
@@ -102,20 +101,18 @@
 
         <main id="main">
             <div class="login-dark">
-                <form class="login" action="login" method="post">
+                <form class="login" action="#" id="login-form" method="POST">
                     <h1>Login</h1>
                     <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
 
-                    <% if (error.length() > 0) {%>
-                    <div class="form-group has-danger"><input class="form-control" type="email" name="email" placeholder="Email"></div>
-                    <div class="form-group has-danger"><input class="form-control" type="password" name="password" placeholder="Password"></div>
-                        <% } else {%>
-                    <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
-                    <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
-                        <% }%>
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action" value="Login">Log In</button></div>
+                    <div class="form-group"><span id="user-result" style="color: red"></span></div>
+                    <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email" id="email"></div>
+                    <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password" id="password"></div>
+                    <div class="form-group">Remember me? <input class="form-control" type="checkbox" name="remember" id="remember"></div>
+                    
+                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Log In</button></div>
                     <div class="form-group">
-                        <input class="btn btn-primary2 btn-block" type="button" value="Register New Account" onclick="window.location.href = 'register'" />                        
+                        <input class="btn btn-primary2 btn-block" type="submit" value="Register New Account" onclick="window.location.href = 'register'" />                        
                     </div>
                     <a href="forgot" class="forgot">Forgot your email or password?</a>
                 </form>
@@ -198,6 +195,7 @@
             <script src="contactform/contactform.js"></script>
 
             <script src="js/main.js"></script>
+            <script src="js/login.js"></script>
     </body>
 </html>
 

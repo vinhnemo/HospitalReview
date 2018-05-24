@@ -135,7 +135,9 @@ $(document).ready(function () {
 
         var email = $('#email').val();
         var pass = $('#password').val();
-        var remember = $('#remember').val();
+        var remember;
+        if ($('#remember').is(":checked")) remember = "yes";
+        else remember = "no";
 
         clearTimeout(timer);
         $('#user-result').html('<img src="img/loading.gif" />');
@@ -164,7 +166,7 @@ $(document).ready(function () {
 
 function loadEffect() {
     $('.signup, .login').addClass('switched');
-
+    $('#heading').fadeOut().delay(1000).hide();
     setTimeout(function () {
         $('.signup, .login').hide();
     }, 700);
