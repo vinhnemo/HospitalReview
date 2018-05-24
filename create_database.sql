@@ -41,13 +41,8 @@
   `d_hour` varchar(150) NOT NULL,
   `languages` varchar(45) NOT NULL,
   PRIMARY KEY (`d_id`)
-<<<<<<< HEAD
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
---  --------------------------------------------------------
-=======
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
- -- ------------------------------------------------------
->>>>>>> 3104cf7406ec7d2ff33bbb2a531e0aa5d44d3a52
+--  --------------------------------------------------------
     -- Table Rate
     -- ----------------------------
     DROP TABLE IF EXISTS `rate`;
@@ -57,13 +52,8 @@
   `d_id` int(250) unsigned NOT NULL,
   PRIMARY KEY (`r_id`),
   FOREIGN KEY (`d_id`) REFERENCES `doctor` (`d_id`)
-<<<<<<< HEAD
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
--- --------------------------------------------------------
-=======
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- ------------------------------------------------------
->>>>>>> 3104cf7406ec7d2ff33bbb2a531e0aa5d44d3a52
     -- Table Comment
     -- ----------------------------
     DROP TABLE IF EXISTS `comment`;
@@ -73,13 +63,8 @@
   `d_id` int(250) unsigned NOT NULL,
   PRIMARY KEY (`c_id`),
   FOREIGN KEY (`d_id`) REFERENCES `doctor` (`d_id`)
-<<<<<<< HEAD
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
--- --------------------------------------------------------
-=======
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- ------------------------------------------------------
->>>>>>> 3104cf7406ec7d2ff33bbb2a531e0aa5d44d3a52
     -- Table Hospital
     -- ----------------------------
     DROP TABLE IF EXISTS `hospital`;
@@ -91,32 +76,19 @@
   `adname` varchar(150) NOT NULL,
   `ademail` varchar(150) NOT NULL,
   PRIMARY KEY (`h_id`)
-<<<<<<< HEAD
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8
- -- --------------------------------------------------------
--- --------------table deactivePatient---------------------
--- ------------------------------------------------------ -- 
-=======
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 -- ------------------------------------------------------
 -- table deactivePatient
 -- ------------------------------------------------------
->>>>>>> 3104cf7406ec7d2ff33bbb2a531e0aa5d44d3a52
 CREATE TABLE `deactivepatien` (
   `DP_id` int(250) unsigned NOT NULL,
   `p_id` int(250) unsigned NOT NULL,
   PRIMARY KEY (`DP_id`),
   KEY `p_id` (`p_id`),
   CONSTRAINT `deactivepatien_ibfk_1` FOREIGN KEY (`p_id`) REFERENCES `patient` (`p_id`)
-<<<<<<< HEAD
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
--- ------------------------------------------------------
--- -------------- table deactiveHospital---------------------
-=======
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- ------------------------------------------------------
 -- table deactiveHospital
->>>>>>> 3104cf7406ec7d2ff33bbb2a531e0aa5d44d3a52
 -- ------------------------------------------------------
 CREATE TABLE `deactivehospital` (
   `DH_id` int(250) unsigned NOT NULL ,
@@ -124,11 +96,7 @@ CREATE TABLE `deactivehospital` (
   PRIMARY KEY (`DH_id`),
   KEY `h_id` (`h_id`),
   CONSTRAINT `deactivehospital_ibfk_1` FOREIGN KEY (`h_id`) REFERENCES `hospital` (`h_id`)
-<<<<<<< HEAD
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
-=======
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
->>>>>>> 3104cf7406ec7d2ff33bbb2a531e0aa5d44d3a52
 -- ------------------------------------------------------
 -- ----------------------------------
 -- ------------------------------------------------------

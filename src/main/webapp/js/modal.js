@@ -12,7 +12,8 @@ $(document).ready(function () {
     var lnameError = true,
             fnameError = true,
             emailError = true,
-            address = true;
+            address = true,
+            timer;
 
     // Detect browser for css purpose
     if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
@@ -21,13 +22,17 @@ $(document).ready(function () {
 
     // Label effect
     $('input').focus(function () {
-
         $(this).siblings('label').addClass('active');
+    });
+
+    $('input').each(function () {
+        if ($(this).val().length > 0)
+            $(this).siblings('label').addClass('active');
     });
 
     // Form validation
     $('input').blur(function () {
-
+        
         // First Name
         if ($(this).hasClass('fname')) {
             if ($(this).val().length === 0) {
@@ -79,6 +84,7 @@ $(document).ready(function () {
                 address = false;
             }
         }
+
         // label effect
         if ($(this).val().length > 0) {
             $(this).siblings('label').addClass('active');
@@ -87,6 +93,9 @@ $(document).ready(function () {
         }
     });
 
+    $('input').keyup(function () {
+        $('#user-result').hide();
+    });
 
     // form switch
     $('a.switch').click(function (e) {
@@ -103,16 +112,45 @@ $(document).ready(function () {
 
     // Form submit
     $('form.signup-form').submit(function (event) {
-        
+
         if (fnameError === true || lnameError === true || emailError === true || address === true) {
             $('.fname, .lname, .email, .address').blur();
         }
     });
 
     $('form.login-form').submit(function (event) {
-
+        $('#user-result').show();
+        
         event.preventDefault();
-/*
+
+        var email = $('#email').val();
+        var pass = $('#password').val();
+        var remember = $('#remember').val();
+        
+        clearTimeout(timer);
+        $('#user-result').html('<img src="img/loading.gif" />');
+        timer = setTimeout(function () {
+            $.post('login', {'email': email, 'password': pass, 'remember': remember, 'action': "Ajax Login"}, function (data) {
+                if (data === "1") {
+                    $("#user-result").html("<i class=\"fa fa-close\"></i> User account does not exist");
+                } else if (data === "2") {
+                    $("#user-result").html("<i class=\"fa fa-close\"></i> Password is not correct");
+                } else if (data === "3") {
+                    $("#user-result").html("<i class=\"fa fa-close\"></i> Please type your email and password");
+                } else {
+                    loadEffect();
+                }
+            });
+        }, 1000);
+
+    });
+
+    // Reload page
+    $('a.btn-dark').on('click', function () {
+        location.reload(true);
+    });
+
+    function loadEffect() {
         $('.signup, .login').addClass('switched');
 
         setTimeout(function () {
@@ -133,13 +171,5 @@ $(document).ready(function () {
         setTimeout(function () {
             $('.form').hide();
         }, 700);
-*/
-    });
-
-    // Reload page
-    $('a.profile').on('click', function () {
-        location.reload(true);
-    });
-
-
+    }
 });
