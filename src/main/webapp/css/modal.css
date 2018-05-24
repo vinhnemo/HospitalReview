@@ -72,6 +72,11 @@ and open the template in the editor.
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 0;
+    margin: 0 -60px 0 -60px;
+}
+#heading .letter {
+  display: inline-block;
+  line-height: 1em;
 }
 .brand .heading p {
     font-size: 15px;

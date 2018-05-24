@@ -4,8 +4,7 @@
     Author     : MSI
 --%>
 
-<%@page import="User.DAO.PatientDAO"%>
-<%@page import="User.DTO.Patient"%>
+<%@page import="User.DAO.PatientDAO,User.DTO.Patient"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -96,7 +95,7 @@
                             <% if (patient != null) {%>
                         <li class="menu"><a href="logout"><fmt:message key="signout"/></a></li>
                             <% } else {%>
-                        <li class="menu"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true"><fmt:message key="signinup"/></a></li>
+                        <li class="menu"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true" onclick="animeEffectIn()"><fmt:message key="signinup"/></a></li>
                             <% }%>
                     </ul>
                 </nav>
@@ -117,17 +116,16 @@
 
                                 <!-- Brand Box -->
                                 <div class="col-sm-6 brand">
-                                    <a href="#" class="logo">Doctor <span>STRANGE</span></a>
+                                    <a href="home.jsp" class="logo">Doctor <span>STRANGE</span></a>
 
                                     <div class="heading">
-                                        <h2>Login</h2>
-                                        <p>Your Right Choice</p>
+                                        <h2 class="effectAnime"><span id="heading">Sign Up</span></h2>
                                     </div>
 
                                     <div class="success-msg">
                                         <p>Great! You have logged in successfully.</p>
                                         <a href="patient" class="profile">Your Profile</a><br>
-                                        <a href="home.jsp" class="btn-dark">Back to homepage</a>
+                                        <a href="home.jsp" class="btn-dark">Back to Homepage</a>
                                     </div>
                                 </div>
 
@@ -157,7 +155,7 @@
 
                                             <div class="CTA">
                                                 <input type="submit" value="Login" name="action" id="login">
-                                                <a href="#" class="switch">I'm New</a>
+                                                <a href="#" class="switch" id="registersw">I'm New</a>
                                             </div>
                                         </form>
                                     </div><!-- End Login Form -->
@@ -193,7 +191,7 @@
 
                                             <div class="CTA">
                                                 <input type="submit" value="Signup Now" id="submit" name="action">
-                                                <a href="#" class="switch">I have an account</a>
+                                                <a href="#" class="switch" id="loginsw">I have an account</a>
                                             </div>
                                         </form>
                                     </div><!-- End Signup Form -->
@@ -460,7 +458,7 @@
                                 <img src="img/team-1.jpg" class="img-fluid" alt="">
                                 <div class="member-info">
                                     <div class="member-info-content">
-                                        <h4>Tien Grimmes</h4>
+                                        <h4>Torai9</h4>
                                         <span>Chief Executive Officer</span>
                                         <div class="social">                          
                                             <a href=""><i class="fa fa-facebook"></i></a>
@@ -680,6 +678,7 @@
         <script src="lib/isotope/isotope.pkgd.min.js"></script>
         <script src="lib/lightbox/js/lightbox.min.js"></script>
         <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
+        <script src="lib/anime/anime.min.js"></script>
 
         <script src="contactform/contactform.js"></script>
 
