@@ -9,11 +9,8 @@ public class Database {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-<<<<<<< HEAD
-            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/", "root", "");
-=======
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hospital", "root", "");
->>>>>>> 542ae77ef131f3a0a0d1fc8f1c6f10d144cc2388
+            conn = DriverManager.getConnection("jdbc:mysql://35.198.229.164:3306/", "root", "12345");
+
         } catch (ClassNotFoundException | SQLException e) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, e);
         }
