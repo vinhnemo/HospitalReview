@@ -18,4 +18,5 @@ public class Info {
     public static final String MAIL_SMTP_HOST = "smtp.gmail.com"; // smtp.live.com
     public static final String MAIL_REGISTRATION_SITE_LINK = "http://localhost:8080/register";
     public static final String MAIL_FORGOTPASS_SITE_LINK = "http://localhost:8080/forgot";
+    public static final String HASH_SALT = "doctorstrange";
 }

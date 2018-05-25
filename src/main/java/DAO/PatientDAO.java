@@ -6,9 +6,6 @@ import DTO.Patient;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.transaction.Transaction;
 
 /**
  *
@@ -17,7 +14,7 @@ import javax.transaction.Transaction;
 public class PatientDAO {
 
     // Check existing email
-    public boolean validateUser(String email) {
+    public static boolean isExistUser(String email) {
 
         String query = "SELECT * FROM patient WHERE email = ?";
 
@@ -40,8 +37,8 @@ public class PatientDAO {
     }
 
     // Insert account
-    public boolean insertUser(Patient patient) {
-
+    public static String insertUser(Patient patient) {
+        String id = null;
         String query = "INSERT INTO patient"
                 + "("
                 + "p_fname,"
@@ -65,7 +62,7 @@ public class PatientDAO {
         Connection connection = Database.getConnection();
 
         try {
-            PreparedStatement ps = connection.prepareCall(query);
+            PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, patient.getFname());
             ps.setString(2, patient.getLname());
             ps.setString(3, patient.getSex());
@@ -75,60 +72,25 @@ public class PatientDAO {
             ps.setString(7, patient.getLang());
             ps.executeUpdate();
 
-            connection.close();
-            return true;
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-
-        return false;
-    }
-
-    // Check login
-    public Patient login(String email) {
-        Patient p = new Patient();
-        
-        String query = "SELECT * FROM patient WHERE email = ?";
-        /*
-        String query = "SELECT `patient`.`p_id`,"
-                + "    `patient`.`p_fname`,"
-                + "    `patient`.`p_lname`,"
-                + "    `patient`.`p_gender`,"
-                + "    `patient`.`email`,"
-                + "    `patient`.`password`,"
-                + "    `patient`.`p_address`,"
-                + "    `patient`.`languages`"
-                + "FROM patient, deactivepatien  where patient.email = ? and IFNULL(deactivepatien.p_id != patient.p_id , TRUE);";
-        */
-        // Connect to database
-        Connection connection = Database.getConnection();
-
-        try {
-            PreparedStatement ps = connection.prepareCall(query);
-            ps.setString(1, email);
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                p.setID(rs.getInt("p_id"));
-                p.setEmail(rs.getString("email"));
-                p.setLname(rs.getString("p_lname"));
-                p.setFname(rs.getString("p_fname"));
-                p.setPass(rs.getString("password"));
-                p.setAddress(rs.getString("p_address"));
-                p.setSex(rs.getString("p_gender"));
-                p.setLang(rs.getString("languages"));
+            PreparedStatement ps2 = connection.prepareStatement("SELECT p_id FROM patient WHERE email = ?");
+            ps2.setString(1, patient.getEmail());
+            ResultSet rs = ps2.executeQuery();
+            
+            if (rs != null) {
+                while (rs.next()) {
+                    id = rs.getString(1);
+                }
             }
-
             connection.close();
-            return p;
 
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return null;
+
+        return id;
     }
 
-    public void updateUser(Patient p) {
+    public static void updateUser(Patient p) {
         String query = "UPDATE patient"
                 + " SET "
                 + "p_fname = ?,"
@@ -162,7 +124,7 @@ public class PatientDAO {
 
     }
 
-    public List<Patient> searchPatien(String name) {
+    public static List<Patient> searchPatien(String name) {
         String query;
         List<Patient> list = new ArrayList<>();
 
@@ -194,13 +156,13 @@ public class PatientDAO {
 
             connection.close();
         } catch (SQLException ex) {
-            Logger.getLogger(Patient.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         return list;
     }
 
     // Get All News
-    public List<Patient> getAllPatient() {
+    public static List<Patient> getAllPatient() {
         List<Patient> list = new ArrayList<>();
         String query = "SELECT * FROM patient ";
 
@@ -225,13 +187,13 @@ public class PatientDAO {
             }
             connection.close();
         } catch (SQLException ex) {
-            Logger.getLogger(Patient.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
 
         return list;
     }
 
-    public Patient getPatient(int id) {
+    public static Patient getPatient(int id) {
         String query = "SELECT * FROM patient WHERE p_id = ?";
         Patient p = new Patient();
 
@@ -256,12 +218,12 @@ public class PatientDAO {
 
             connection.close();
         } catch (SQLException ex) {
-            Logger.getLogger(DoctorDAO.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         return p;
     }
 
-    public Patient getPatientfromEmail(String email) {
+    public static Patient getUserbyEmail(String email) {
         String query = "SELECT * FROM patient WHERE email = ?";
         Patient p = new Patient();
 
@@ -286,12 +248,12 @@ public class PatientDAO {
 
             connection.close();
         } catch (SQLException ex) {
-            Logger.getLogger(DoctorDAO.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         return p;
     }
 
-    public boolean removePatient(int id) {
+    public static boolean removePatient(int id) {
         // Connect to database
         Connection connection = Database.getConnection();
 
@@ -305,12 +267,12 @@ public class PatientDAO {
             connection.close();
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(DoctorDAO.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         return false;
     }
 
-    public boolean deactivePatient(int id) {
+    public static boolean deactivePatient(int id) {
 
         String query = "INSERT INTO deactivepatien"
                 + "(DP_id,"
@@ -337,10 +299,9 @@ public class PatientDAO {
         return false;
     }
 
-    public boolean active(int id) {
+    public static boolean active(int id) {
 
         String query = "DELETE FROM deactivepatien WHERE DP_id = ?";
-                
 
         // Connect to database
         Connection connection = Database.getConnection();

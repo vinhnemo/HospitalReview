@@ -54,10 +54,10 @@ public class Login extends HttpServlet {
             String pass = request.getParameter("password");
             String remember = request.getParameter("remember");
 
-            if (email.equals("") || pass.equals("")) {
+            if (email == null || pass == null) {
                 error = "3";
             } else {
-                patient = patientDAO.login(email);
+                patient = patientDAO.getUserbyEmail(email);
 
                 if (patient.getPass() == null) {
                     error = "1";
@@ -67,7 +67,7 @@ public class Login extends HttpServlet {
                 }
 
                 if (adminLogin) {
-                    admin = adminDAO.login(email);
+                    admin = adminDAO.getUserbyEmail(email);
 
                     // Check if user does not exist
                     if (admin.getPass() == null) {
