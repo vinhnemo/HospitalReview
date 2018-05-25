@@ -2,23 +2,23 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>Registration</servlet-name>
-        <servlet-class>User.Registration</servlet-class>
+        <servlet-class>Controller.Registration</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DoctorController</servlet-name>
-        <servlet-class>User.DoctorController</servlet-class>
+        <servlet-class>Controller.DoctorController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CommentController</servlet-name>
-        <servlet-class>User.CommentController</servlet-class>
+        <servlet-class>Controller.CommentController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>RateController</servlet-name>
-        <servlet-class>User.RateController</servlet-class>
+        <servlet-class>Controller.RateController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ForgotPass</servlet-name>
-        <servlet-class>User.ForgotPass</servlet-class>
+        <servlet-class>Controller.ForgotPass</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>HospitalReg</servlet-name>
@@ -30,15 +30,15 @@
     </servlet>
     <servlet>
         <servlet-name>Login</servlet-name>
-        <servlet-class>User.Login</servlet-class>
+        <servlet-class>Controller.Login</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Logout</servlet-name>
-        <servlet-class>User.Logout</servlet-class>
+        <servlet-class>Controller.Logout</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PatientController</servlet-name>
-        <servlet-class>User.PatientController</servlet-class>
+        <servlet-class>Controller.PatientController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Registration</servlet-name>
@@ -81,14 +81,12 @@
         <servlet-name>PatientController</servlet-name>
         <url-pattern>/patient</url-pattern>
     </servlet-mapping>
-    
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
-    <welcome-file-list>  
-        <welcome-file>home.jsp</welcome-file>  
-    </welcome-file-list>  
+    <welcome-file-list>
+        <welcome-file>home.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>
