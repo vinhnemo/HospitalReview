@@ -38,6 +38,24 @@ public class Registration extends HttpServlet {
         if (action == null) {
             rd = sc.getRequestDispatcher("/register.jsp");
             rd.forward(request, response);
+        } else if (action.equals("verify")) {
+            Integer pId = Integer.parseInt(request.getParameter("userId"));
+            String hash = BCrypt.hashpw(request.getParameter("key"), Info.HASH_SALT);
+            String message = null;
+
+            try {
+                // verify with database
+                if (PatientDAO.verifyEmail(pId, hash)) {
+                    //update status as active
+                    PatientDAO.updateStatus(pId, "active");
+                    PatientDAO.updateToken(pId, null);
+                    message = "Email verified successfully.";
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         } else if (action.equals("Signup Now")) {
             // Get Parameter in small form
             String fname = request.getParameter("fname");
@@ -106,7 +124,7 @@ public class Registration extends HttpServlet {
 
                             // send verification email
                             Mail.sendEmailRegistrationLink(id, email, hash);
-                            
+
                             // send output to user
                             response.getWriter().write("Register successfully! Please verify your email");
                         } else {

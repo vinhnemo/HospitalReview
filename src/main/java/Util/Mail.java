@@ -37,7 +37,7 @@ public class Mail {
             }
         });
 
-        String link = Info.MAIL_REGISTRATION_SITE_LINK + "?action=activation&userId=" + id + "&key=" + hash;
+        String link = Info.MAIL_REGISTRATION_SITE_LINK + "?action=verify&userId=" + id + "&key=" + hash;
 
         StringBuilder bodyText = new StringBuilder();
         bodyText.append("<div>")

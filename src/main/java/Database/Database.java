@@ -1,6 +1,12 @@
 package Database;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.*;
 
 public class Database {
@@ -21,6 +27,8 @@ public class Database {
     }
 
     public static void main(String[] args) {
-        System.out.println(Database.getConnection());
+        DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        System.out.println(sdf.format(date));
     }
 }
