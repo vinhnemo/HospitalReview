@@ -92,7 +92,7 @@
             <!-- De choi thoi -->
             <div class="nothing-special-dark"></div>
             <div class="search-field">
-                <h4> <%= listOfDoctor.size() %> doctors found by keyword (Keyword) </h4>
+                <h4> <%= listOfDoctor.size()%> doctors found by keyword (Keyword) </h4>
             </div>
             <!-- !! -->
             <section class="card-section-imagia">
@@ -105,13 +105,13 @@
                                     <h4>Filter Your Result</h4><hr>
                                     <div class="side-text">Your nearest location</div>
                                     <div class="search-container">
-                                         <form method="POST" action="doctor">
-                                             <input type="hidden" name="action" value="Doctor">
-                                             <input type="text" name="search" placeholder="Search..." class="search-input" value="">
-                                        <button class="btn btn-light search-btn" type="submit"> 
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                         </form>
+                                        <form method="POST" action="doctor">
+                                            <input type="hidden" name="action" value="Doctor">
+                                            <input type="text" name="search" placeholder="Search..." class="search-input" value="">
+                                            <button class="btn btn-light search-btn" type="submit"> 
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </form>
                                     </div><hr>
                                     <div class="side-text">Gender</div>
                                     <select class="side-select"> <!-- apply from db -->
@@ -152,22 +152,22 @@
                                                 <div class="cover-imagia"><!--<img src="https://unsplash.it/720/500?image=1067" alt="">--></div>
                                                 <div class="user-imagia"><img src="https://unsplash.it/120/120?image=64" class="img-circle" alt=""></div>
                                                 <div class="content-imagia">
-                                                    <h3 class="name-imagia"><%= d.getLname() + " " +  d.getFname()%> </h3>
+                                                    <h3 class="name-imagia"><%= d.getLname() + " " + d.getFname()%> </h3>
                                                     <p class="subtitle-imagia"><%= d.getSpeciality()%></p> <hr>
-                                                    <div id="gender"> Gender : <%= d.getSex() %></div>
+                                                    <div id="gender"> Gender : <%= d.getSex()%></div>
                                                     <div id="workplace"> Working at : HCMIU </div>
-                                                    <div id="degree"> Degree : <%= d.getDegree() %></div>
+                                                    <div id="degree"> Degree : <%= d.getDegree()%></div>
                                                 </div>
                                                 <div class="footer-imagia"><span><i class="fa fa-plus"></i> More info</span></div>
                                             </div>
                                             <div class="back-imagia">
                                                 <div class="content-imagia content-back-imagia">
                                                     <div>
-                                                        <h4><%= d.getLname() + d.getFname() %> </h4>
-                                                        <div id="specific-speciality">Specific-speciality: <%= d.getSpeciality() %>  </div>
-                                                        <div id="timework">Time : <%= d.getHours() %> </div>
+                                                        <h4><%= d.getLname() + d.getFname()%> </h4>
+                                                        <div id="specific-speciality">Specific-speciality: <%= d.getSpeciality()%>  </div>
+                                                        <div id="timework">Time : <%= d.getHours()%> </div>
                                                         <!--<div id="">Abc : xyz </div>-->
-                                                        <div id="insurance">Insurance: <%= d.getInsurance() %> </div>
+                                                        <div id="insurance">Insurance: <%= d.getInsurance()%> </div>
                                                         <!--<div id="">DOB : 6-9-1939</div>-->
                                                         <!--<div id="">Address : Tiệm Đồ Gỗ </div>-->
                                                         <!--<div id="">Insurance: < %= d.getInsurance()%>  </div>-->
@@ -175,16 +175,17 @@
                                                 </div>
                                                 <div class="footer-imagia">
                                                     <div class="text-center">
-                                                        <input type="hidden" name="id_doctor" value="<%= d.getID() %>" >
+                                                        <input type="hidden" name="id_doctor" value="<%= d.getID()%>" >
                                                         <input class="card-button" type="submit" value="Make Appointment">
                                                     </div>
-                                                    <div class="social-imagia text-center"><a href="http://localhost:8080/doctor?action=viewpro&id_doctor=<%= d.getID() %>">View Profile</a></div>
+                                                    <div class="social-imagia text-center"><a href="http://localhost:8080/doctor?action=viewpro&id_doctor=<%= d.getID()%>">View Profile</a></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div> 
-                                    <% }} %>
+                                <% }
+                                    }%>
                             </div>
 
                         </div>
