@@ -8,7 +8,6 @@ package Controller;
 import DTO.Patient;
 import DAO.PatientDAO;
 import Database.PasswordHashing;
-import Mail.*;
 
 import java.io.IOException;
 import javax.servlet.*;
@@ -25,9 +24,7 @@ public class ForgotPass extends HttpServlet {
     private final PatientDAO patientDAO = new PatientDAO();
 
     // Email Setting
-    private final String service = "service.gamelord@gmail.com";
-    private final String mailserver = "smtp.gmail.com";
-    private final String subject = "[Support] Reset Password | Hospital Review";
+    private final String subject = "[Support] Reset Password";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -69,18 +66,7 @@ public class ForgotPass extends HttpServlet {
 
                 patientDAO.updateUser(new_patient);
 
-                // Send Email
-                String text = "<b>Reset Password</b><br>"
-                        + "<p>Your email: <strong>" + email + "</strong></p>"
-                        + "<p>New password: <strong>" + randomStr + "</strong></p>"
-                        + "<p>Please login with your new password</p>";
-
-                Mail mail = new Mail(email, service, text, subject, mailserver);
-                MailController sendMail = new MailController();
-
-                if (sendMail.sendMail(mail)) {
-                    request.setAttribute("message", "Please check your email for your new password");
-                }
+                
 
                 url = "/forgotpass.jsp";
             }

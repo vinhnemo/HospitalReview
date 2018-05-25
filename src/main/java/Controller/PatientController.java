@@ -9,7 +9,6 @@ import Database.PasswordHashing;
 import DAO.PatientDAO;
 import DTO.Patient;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -50,7 +49,6 @@ public class PatientController extends HttpServlet {
         String action = request.getParameter("action");
 
         Patient patient = (Patient) session.getAttribute("user");   // get user
-        PatientDAO pDAO = new PatientDAO();
 
         Cookie isLogin[] = request.getCookies();
         if (patient == null) {
@@ -58,7 +56,7 @@ public class PatientController extends HttpServlet {
             if (isLogin != null) {
                 for (Cookie ck : isLogin) {
                     if (ck.getName().equals("u_email")) {
-                        patient = pDAO.getPatientfromEmail(ck.getValue());   //get email
+                        patient = PatientDAO.getUserbyEmail(ck.getValue());   //get email
                     }
 
                 }
@@ -112,7 +110,7 @@ public class PatientController extends HttpServlet {
                 patient.setSex(sex);
                 patient.setLang(language);
 
-                pDAO.updateUser(patient);
+                PatientDAO.updateUser(patient);
                 session.setAttribute("user", patient);
                 rd = sc.getRequestDispatcher("/profilePatient.jsp");
                 rd.forward(request, response);
@@ -120,7 +118,7 @@ public class PatientController extends HttpServlet {
         } // remove patient
         else if (action.equals("deletePatient")) {
 
-            if (pDAO.removePatient((int) patient.getID())) {
+            if (PatientDAO.removePatient((int) patient.getID())) {
                 // remove session
                 if (session.getAttribute("user") != null) {
                     session.removeAttribute("user");
@@ -136,7 +134,7 @@ public class PatientController extends HttpServlet {
             }
 
         } else if (action.equals("deactive")) {
-            if (pDAO.deactivePatient((int) patient.getID())) {
+            if (PatientDAO.deactivePatient((int) patient.getID())) {
                 
                 
                 rd = sc.getRequestDispatcher("/profilePatient.jsp");
@@ -144,7 +142,7 @@ public class PatientController extends HttpServlet {
             }
 
         } else if (action.equals("active")) {
-            if (pDAO.active((int) patient.getID())) {
+            if (PatientDAO.active((int) patient.getID())) {
                 
                 
                 rd = sc.getRequestDispatcher("/profilePatient.jsp");

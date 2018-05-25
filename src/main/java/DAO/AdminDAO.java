@@ -20,7 +20,7 @@ import java.sql.SQLException;
 public class AdminDAO {
 
     // Check existing username
-    public boolean validateUser(String email) {
+    public static boolean isExistUser(String email) {
 
         String query = "SELECT * FROM admin WHERE email = ?";
 
@@ -43,7 +43,7 @@ public class AdminDAO {
     }
     
     // Insert account
-    public boolean insertUser(Admin admin) {
+    public static boolean insertUser(Admin admin) {
 
         String query = "INSERT INTO admin"
                 + "("
@@ -73,7 +73,7 @@ public class AdminDAO {
     }
     
     // Check login
-    public Admin login(String email) {
+    public static Admin getUserbyEmail(String email) {
         Admin admin = new Admin();
 
         String query = "SELECT * FROM admin WHERE email = ?";
@@ -102,7 +102,7 @@ public class AdminDAO {
     }
     
     // Update info
-    public void updateUser(Admin admin) {
+    public static void updateUser(Admin admin) {
         String query = "UPDATE admin"
                 + " SET "
                 + "email = ? ,"

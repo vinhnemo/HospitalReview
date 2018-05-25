@@ -3,7 +3,7 @@
     Created on : May 16, 2018, 4:41:41 PM
     Author     : MSI
 --%>
-<%@page import="java.util.*, User.DTO.*, User.DAO.*"%>
+<%@page import="java.util.*, DTO.*, DAO.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
