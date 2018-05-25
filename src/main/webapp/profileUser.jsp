@@ -233,57 +233,6 @@
                     </div>
                 </div>
             </div>
-            <!--<section class="card-section-imagia">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-3" style="background-color: #FFF;">
-                            <br><h4>Options</h4><hr>
-                            <ul class="nav nav-tabs tabs-left" id="tablink">
-                                <li class="active"><a class="general" href="#general" data-toggle="tab"><i class="fa fa-gears"></i>General</a></li>
-                                <li><a class="edit" href="#edit" data-toggle="tab"><i class="fa fa-pencil"></i>Edit Your Profile</a></li>
-                                <li><a class="change" href="#change" data-toggle="tab"><i class="fa fa-key"></i>Change password</a></li>
-                                <li><a class="bookmark" href="#bookmark" data-toggle="tab"><i class="fa fa-bookmark"></i>Bookmarks</a></li>
-                                <li><a class="other" href="#other" data-toggle="tab"><i class="fa fa-angle-double-right"></i>Others</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-8 col-sm-8" style="background-color: #eee; margin-left: 10px;">
-                            <div class="tab-content">
-                                <div class="tab-pane active" id="general">
-                                    <div class="doctor-name">
-                                        <div class="row" style="margin-top: 40px;">             
-                                            <div class="col-md-4 col-sm-10">
-                                                <div class="doctor-pic">
-                                                    <img src="" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-7 col-sm-10">
-                                                <h3 class="name">Nguyen Van Sinh</h3>
-                                                <div class="doctor-text"> DOB: 11-01-1997<br> Gender: GAY </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="doctor-information">
-                                        <div class="head">Personal Information</div><br> 
-                                        <table>
-                                            <tr><td><div class="info">Working Place: </div></td><td> <div class="info-text">Abc hospital</div></td></tr>
-                                            <tr><td><div class="info">Speciality: </div></td><td> <div class="info-text">Neurology</div></td></tr>
-                                            <tr><td><div class="info">Specific speciality: </div></td><td> <div class="info-text">Crazy</div></td></tr>
-                                            <tr><td><div class="info">Degree: </div></td><td> <div class="info-text">Kintergarden</div></div></td></tr>
-                                            <tr><td><div class="info">Insurance: </div></td><td> <div class="info-text">Accepted</div></div></td></tr>
-                                            <tr><td><div class="info">Language: </div></td><td> <div class="info-text">English</div></div></td></tr>
-                                            <tr><td><div class="info">Work-hour: </div></td><td> <div class="info-text">10AM-2PM</div></div></td></tr>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="tab-pane" id="edit">
-                                    Bulubaxoa bulu
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>-->
         </main>
         <!-- End of Result -->
         <footer id="footer">
