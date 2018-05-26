@@ -56,9 +56,9 @@
             if (cookies != null) {
                 for (Cookie cookie : cookies) {
                     if (cookie.getName().equals("u_email")) {
-                        patient = patientDAO.login(cookie.getValue());
+                        PatientDAO.getUserbyEmail(cookie.getValue());
                     } else if (cookie.getName().equals("a_email")) {
-                        admin = adminDAO.login(cookie.getValue());
+                        AdminDAO.getUserbyEmail(cookie.getValue());
                     }
                 }
             }
