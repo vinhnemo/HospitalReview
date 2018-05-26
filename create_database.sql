@@ -173,7 +173,7 @@ CREATE TABLE `coordinate` (
   `y` float unsigned NOT NULL,
   PRIMARY KEY (`c_id`),
   KEY `h_id` (`h_id`),
-  CONSTRAINT `deactivehospital_ibfk_1` FOREIGN KEY (`h_id`) REFERENCES `hospital` (`h_id`)
+  CONSTRAINT `coordinate_ibfk_1` FOREIGN KEY (`h_id`) REFERENCES `hospital` (`h_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 -- ------------------------------------------------------
 -- ----------------------------------
