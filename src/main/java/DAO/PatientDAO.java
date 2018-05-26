@@ -306,7 +306,7 @@ public class PatientDAO {
                     return true;
                 }
             }
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -339,9 +339,10 @@ public class PatientDAO {
         try {
             PreparedStatement ps;
             if (hash == null) {
-                query = "DELETE FROM token WHERE p_id = ?;";
+                query = "UPDATE token SET key = ? WHERE p_id = ?;";
                 ps = connection.prepareStatement(query);
-                ps.setInt(1, id);
+                ps.setString(1, hash);
+                ps.setInt(2, id);
             } else {
                 query = "UPDATE token SET key = ?, date = NOW() WHERE p_id = ?;";
                 ps = connection.prepareStatement(query);
@@ -396,12 +397,29 @@ public class PatientDAO {
                     attempts = rs.getInt(1);
                 }
             }
-            
+
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return attempts;
+    }
+
+    public static void updatePassword(int id, String pass) {
+
+        // Connect to database
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareStatement("UPDATE patient SET password = ? WHERE p_id = ?");
+            ps.setString(1, pass);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

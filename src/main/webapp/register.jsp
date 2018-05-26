@@ -94,7 +94,7 @@
         <!-- MAIN : form -->
         <main id="main">
             <div class="login-dark">
-                <form class="register" method="post" style="width:600px;">
+                <form class="register" action="#" method="post" style="width:600px;">
                     <h1>Register Account</h1>
                     <br>
                     <% if (filled) {%>
@@ -102,7 +102,7 @@
                         <input class="form-control d-inline" type="text" name="fname" value="<%=patient.getFname()%>" style="width:200px;margin:0px 0px;" required><input class="form-control d-inline" type="text" name="lname" value="<%=patient.getLname()%>" style="width:200px;margin:0px 10px;" required>
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="email" name="email" value="<%=patient.getEmail()%>" onchange="email_validate(this.value);" required>
+                        <input class="form-control" type="email" id="email" name="email" value="<%=patient.getEmail()%>" onchange="email_validate(this.value);" required>
                         <div class="status" id="status"></div>
                     </div>
                     <% } else {%>
@@ -110,7 +110,7 @@
                         <input class="form-control d-inline" type="text" name="fname" placeholder="First Name" style="width:200px;margin:0px 0px;" required><input class="form-control d-inline" type="text" name="lname" placeholder="Last Name" style="width:200px;margin:0px 10px;" required>
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="email" name="email" placeholder="Email" onchange="email_validate(this.value);" required>
+                        <input class="form-control" type="email" name="email" id="email" placeholder="Email" onchange="email_validate(this.value);" required>
                         <div class="status" id="status"></div>
                     </div>
                     <% }%>

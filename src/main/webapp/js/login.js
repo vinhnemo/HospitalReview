@@ -26,6 +26,8 @@ $(document).ready(function () {
                     $("#user-result").html("<i class=\"fa fa-close\"></i> Password is not correct");
                 } else if (data === "3") {
                     $("#user-result").html("<i class=\"fa fa-close\"></i> Please type your email and password");
+                } else if (data === "4") {
+                    $("#user-result").html("<i class=\"fa fa-close\"></i> Your account is pending, please check your email");
                 } else {
                     window.location = 'home.jsp';
                 }

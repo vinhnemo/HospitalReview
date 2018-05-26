@@ -49,11 +49,12 @@
     <body>
         <main id="main">
             <div class="login-dark">
-                <form class="reset" action="login" method="post">
+                <form class="reset" action="#" method="post" id="forgot-form">
                     <h3> Reset your password </h3>
                     <div class="i2"><i class="icon ion-key"></i></div>
                     <p>Enter your email address and we will send you a link to reset your password.<p>
-                    <div class="form-group has-danger"><input class="form-control" type="email" name="email" placeholder="Email"></div>
+                    <div class="form-group"><span id="user-result" style="color: red"></span></div>
+                    <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
                     <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action">Send password reset email</button></div>
                 </form>
             </div>
@@ -64,6 +65,32 @@
         <script src="lib/jquery/jquery-migrate.min.js"></script>
         <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="js/main.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var timer;
+
+                $('#forgot-form').submit(function (event) {
+                    event.preventDefault();
+
+                    var email = $('#email').val();
+
+                    clearTimeout(timer);
+                    $('#user-result').html('<img src="img/loading.gif" />');
+                    timer = setTimeout(function () {
+                        $.post('forgotPass', {'email': email, 'action': "forgot"}, function (data) {
+                            var msg = JSON.parse(data);
+                            if (msg.code === 0) {
+                                $("#user-result").html("<i class=\"fa fa-close\" style=\"color: red\">" + msg.text + "</i>");
+                            } else {
+                                $("#user-result").html("<i class=\"fa fa-check\" style=\"color: green\">" + msg.text + "</i>");
+                            }
+                        });
+                    }, 1000);
+                });
+            });
+
+        </script>
     </body>
 </html>
 

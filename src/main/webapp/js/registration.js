@@ -86,15 +86,15 @@ function add_validate(address)
     }
 }
 
-function validatephone(phone) 
+function validatephone(phone)
 {
     var maintainplus = '';
     var numval = phone.value;
-    if ( numval.charAt(0)==='+' )
+    if (numval.charAt(0) === '+')
     {
         var maintainplus = '';
     }
-    curphonevar = numval.replace(/[\\A-Za-z!"£$%^&\,*+_={};:'@#~,.Š\/<>?|`¬\]\[]/g,'');
+    curphonevar = numval.replace(/[\\A-Za-z!"£$%^&\,*+_={};:'@#~,.Š\/<>?|`¬\]\[]/g, '');
     phone.value = maintainplus + curphonevar;
     var maintainplus = '';
     phone.focus;
@@ -102,20 +102,23 @@ function validatephone(phone)
 
 $(document).ready(function () {
     var x_timer;
-    $("#username").keyup(function (e) {
+    $("#email").keyup(function (e) {
         clearTimeout(x_timer);
-        $("#user-result").html('<img src="img/loading.gif" />');
-        var user_name = $(this).val();
+        $("#status").html('<img src="img/loading.gif" />');
+        var email = $(this).val();
         x_timer = setTimeout(function () {
-            check_username_ajax(user_name);
+            $.post('register', {'email': email, 'action': "Validate"}, function (data) {
+                var msg = JSON.parse(data);
+                
+                if (msg.code === 0) {
+                    $('#status').html("<i class=\"fa fa-close\" style=\"color: red\">" + msg.text + "</i>");
+                } else {
+                    $('#status').html("<i class=\"fa fa-check\" style=\"color: green\">"+ msg.text +"</i>");
+                }
+            });
         }, 1000);
     });
 
-    function check_username_ajax(username) {
-        $.post('validate', {'username': username}, function (data) {
-            $("#user-result").html(data);
-        });
-    }
 });
 
 document.getElementById("field_terms").setCustomValidity("Please indicate that you accept the Terms and Conditions");

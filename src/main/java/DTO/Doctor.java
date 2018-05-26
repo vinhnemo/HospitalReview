@@ -11,7 +11,7 @@ package DTO;
  */
 public class Doctor {
 
-    private int ID;
+    private Integer ID;
     private String fname;
     private String lname;
     private String sex;

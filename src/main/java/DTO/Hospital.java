@@ -10,7 +10,7 @@ package DTO;
  * @author TGMaster
  */
 public class Hospital {
-    private int ID;
+    private Integer ID;
     private String name;
     private String address;
     private String website;

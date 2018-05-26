@@ -12,7 +12,7 @@ package DTO;
 
 public class Patient {
 
-    private long ID;
+    private Integer ID;
     private String fname;
     private String lname;
     private String sex;
@@ -27,7 +27,7 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(long ID, String fname, String lname, String sex, String email, String pass, String address, String lang) {
+    public Patient(Integer ID, String fname, String lname, String sex, String email, String pass, String address, String lang) {
         this.ID = ID;
         this.fname = fname;
         this.lname = lname;
@@ -38,11 +38,11 @@ public class Patient {
         this.lang = lang;
     }
 
-    public long getID() {
+    public Integer getID() {
         return ID;
     }
 
-    public void setID(long ID) {
+    public void setID(Integer ID) {
         this.ID = ID;
     }
 

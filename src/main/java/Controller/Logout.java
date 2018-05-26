@@ -7,12 +7,14 @@ package Controller;
 
 import java.io.IOException;
 import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 /**
  *
  * @author TGMaster
  */
+@WebServlet("/logout")
 public class Logout extends HttpServlet {
 
     @Override
