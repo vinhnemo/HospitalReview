@@ -17,10 +17,6 @@
         <servlet-class>Controller.RateController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ForgotPass</servlet-name>
-        <servlet-class>Controller.ForgotPass</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>HospitalReg</servlet-name>
         <servlet-class>Hospital.HospitalReg</servlet-class>
     </servlet>
@@ -56,10 +52,6 @@
         <servlet-name>RateController</servlet-name>
         <url-pattern>/RateController</url-pattern>
         <url-pattern>/rate</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ForgotPass</servlet-name>
-        <url-pattern>/forgot</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>HospitalReg</servlet-name>

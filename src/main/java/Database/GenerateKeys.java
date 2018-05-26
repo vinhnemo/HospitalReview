@@ -59,7 +59,7 @@ public class GenerateKeys {
 	public static void main(String[] args) {
 		GenerateKeys gk;
 		try {
-			gk = new GenerateKeys(1024);
+			gk = new GenerateKeys(512);
 			gk.createKeys();
 			gk.writeToFile("KeyPair/publicKey", gk.getPublicKey().getEncoded());
 			gk.writeToFile("KeyPair/privateKey", gk.getPrivateKey().getEncoded());

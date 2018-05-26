@@ -1,5 +1,7 @@
 package Database;
 
+import Util.*;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -27,8 +29,17 @@ public class Database {
     }
 
     public static void main(String[] args) {
-        DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
-        System.out.println(sdf.format(date));
+//        DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+//        Date date = new Date();
+//        System.out.println(sdf.format(date));
+
+
+        String hash = Util.encrypt(Util.generateRandomStr());
+        String hashed = BCrypt.hashpw(hash, Info.HASH_SALT);
+        if (hashed.equals(BCrypt.hashpw(hash, Info.HASH_SALT))) {
+            System.out.println(hashed);
+            System.out.println(hash);
+            System.out.println(Util.decrypt(hash));
+        }
     }
 }
