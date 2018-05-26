@@ -154,17 +154,9 @@
 
                             </div>
                         </div>
-
-                        
-
                     </div>
                 </div>
-
-
-
-
-
-
+                
                 <div class="container" style="display: none; " id="patient">
                     <h3 class="page-header">List of Patients</h3>
                     <div class="row">
@@ -191,8 +183,6 @@
                                 </div>
                             </div>
                         </div>     
-
-                        
                     </div>
                 </div>
 
@@ -215,11 +205,9 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
-                
+
                 <div id ="detailpatient" class="addedform" style="margin-top: 2%; height:800px;display: 'none';">
                     <div id="wrapper">
                         <div id="sidebar-wrapper">
@@ -289,8 +277,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                    
-                                          
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -478,8 +466,8 @@
         <script src="lib/form/side.js"></script>
         <script src="js/main.js"></script>
         <script src="lib/form/sidebar1.js"></script>
-        
-    
+
+
 
 
     </body>
