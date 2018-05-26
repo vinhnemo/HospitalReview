@@ -4,8 +4,8 @@
     Author     : Duyet Pham
 --%>
 
-<%@page import="DAO.DoctorDAO"%>
-<%@page import="DTO.Doctor"%>
+<%@page import="User.DAO.DoctorDAO"%>
+<%@page import="User.DTO.Doctor"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -110,9 +110,47 @@
                                             <h4><strong> Nguyen Van Sinh </strong></h4>
                                             <p>DOB: 11-01-1997<br> Gender: GAY</p> 
                                         </div>
-
                                     </div>
                                 </div>
+                                <form method="post" action="activeReview" style="margin-top: -10%;margin-left: 0.5%;"> 
+                                    <div class="row" >  
+                                        <div class="col-md-4" >
+                                            <div class="container" >
+                                                <button type="submit" name="action" value="ActivateReview" style=" background-color: #4CAF50; 
+                                                        border: none;
+                                                        color: white; 
+                                                        padding: 
+                                                        1px 28px; 
+                                                        text-align: center; 
+                                                        font-size: 10px; 
+                                                        cursor: pointer;" >Enable Review</button>
+                                            </div> 
+                                        </div>     
+                                        <div class="col-md-4" >
+                                            <div class="container" style="margin-left: -15%;">
+                                                <button type="submit" name="action" value="DeactivateReview" style=" background-color: #4CAF50; 
+                                                        border: none; 
+                                                        color: white; 
+                                                        padding: 1px 28px; 
+                                                        text-align: center; 
+                                                        font-size: 10px;  
+                                                        cursor: pointer;">Disable Review</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4" >
+                                            <div class="container" style="margin-left: -30%;" >
+                                                <button type="submit" name="action" value="removeDoctor" style=" background-color: #4CAF50; 
+                                                        border: none; 
+                                                        color: white; 
+                                                        padding: 1px 28px; 
+                                                        text-align: center; 
+                                                        font-size: 10px;  
+                                                        cursor: pointer;">Remove Doctor</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
                             </div>
                         </div>
 
@@ -133,9 +171,47 @@
                                             <h4><strong> Nguyen Van Sinh </strong></h4>
                                             <p>DOB: 11-01-1997<br> Gender: GAY</p> 
                                         </div>
-
                                     </div>
                                 </div>
+                                <form method="post" action="activeReview" style="margin-top: -10%;margin-left: 0.5%;"> 
+                                    <div class="row" >  
+                                        <div class="col-md-4" >
+                                            <div class="container" >
+                                                <button type="submit" name="action" value="ActivateReview" style=" background-color: #4CAF50; 
+                                                        border: none;
+                                                        color: white; 
+                                                        padding: 
+                                                        1px 28px; 
+                                                        text-align: center; 
+                                                        font-size: 10px; 
+                                                        cursor: pointer;" >Enable Review</button>
+                                            </div> 
+                                        </div>     
+                                        <div class="col-md-4" >
+                                            <div class="container" style="margin-left: -15%;">
+                                                <button type="submit" name="action" value="DeactivateReview" style=" background-color: #4CAF50; 
+                                                        border: none; 
+                                                        color: white; 
+                                                        padding: 1px 28px; 
+                                                        text-align: center; 
+                                                        font-size: 10px;  
+                                                        cursor: pointer;">Disable Review</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4" >
+                                            <div class="container" style="margin-left: -30%;" >
+                                                <button type="submit" name="action" value="removeDoctor" style=" background-color: #4CAF50; 
+                                                        border: none; 
+                                                        color: white; 
+                                                        padding: 1px 28px; 
+                                                        text-align: center; 
+                                                        font-size: 10px;  
+                                                        cursor: pointer;">Remove Doctor</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
                             </div>
                         </div>
 
@@ -156,13 +232,57 @@
                                             <h4><strong> Nguyen Van Sinh </strong></h4>
                                             <p>DOB: 11-01-1997<br> Gender: GAY</p> 
                                         </div>
-
                                     </div>
                                 </div>
+                                <form method="post" action="activeReview" style="margin-top: -10%;margin-left: 0.5%;"> 
+                                    <div class="row" >  
+                                        <div class="col-md-4" >
+                                            <div class="container" >
+                                                <button type="submit" name="action" value="ActivateReview" style=" background-color: #4CAF50; 
+                                                        border: none;
+                                                        color: white; 
+                                                        padding: 
+                                                        1px 28px; 
+                                                        text-align: center; 
+                                                        font-size: 10px; 
+                                                        cursor: pointer;" >Enable Review</button>
+                                            </div> 
+                                        </div>     
+                                        <div class="col-md-4" >
+                                            <div class="container" style="margin-left: -15%;">
+                                                <button type="submit" name="action" value="DeactivateReview" style=" background-color: #4CAF50; 
+                                                        border: none; 
+                                                        color: white; 
+                                                        padding: 1px 28px; 
+                                                        text-align: center; 
+                                                        font-size: 10px;  
+                                                        cursor: pointer;">Disable Review</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4" >
+                                            <div class="container" style="margin-left: -30%;" >
+                                                <button type="submit" name="action" value="removeDoctor" style=" background-color: #4CAF50; 
+                                                        border: none; 
+                                                        color: white; 
+                                                        padding: 1px 28px; 
+                                                        text-align: center; 
+                                                        font-size: 10px;  
+                                                        cursor: pointer;">Remove Doctor</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
                             </div>
-                        </div>                    
+                        </div>
+
                     </div>
                 </div>
+
+
+
+
+
 
                 <div class="container" style="display: none; " id="patient">
                     <h3 class="page-header">List of Patients</h3>
@@ -242,8 +362,65 @@
 
 
             </section>
-            
-             <%-- pop up --%>
+        </main>
+        <!-- End of Result -->
+        <footer id="footer">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-3 col-md-6 footer-info">
+                            <h3>Doctor STRANGE</h3>
+                            <p> Man tao cá mày không được vui nữa kể từ khi cái này tao đến. Nhìn tao đứng trên top cái miệng mày câm như hến .Sẽ có ngày tới mày nhưng việc đầu tiên trước hết. Mày muốn thắng trò chơi này việc đầu tiên phải làm là giết tao chết</p>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 footer-links">
+                            <h4>Useful Links</h4>
+                            <ul>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Home</a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#">About us</a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Services</a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Terms of service</a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 footer-contact">
+                            <h4>Contact Us</h4>
+                            <p>
+                                69 IU Street <br>
+                                Ho Chi Minh City, <br>
+                                Viet Nam<br>
+                                <strong>Phone:</strong> 911 <br>
+                                <strong>Email:</strong> abc@gmail.com<br>
+                            </p>
+
+                            <div class="social-links">
+                                <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                                <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                                <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                                <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+                                <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 footer-newsletter">
+                            <h4>Other</h4>
+                            <p>motherfucker không quen, tao không quen, đừng nói chuyện thân thiện như vậy với tao, tao không quen, cũng đừng nói chuyện đằng sau lưng của tao như vậy. </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="copyright">
+                    &copy; Copyright <strong>Doctor Strange</strong>. All Rights Reserved
+                </div>
+            </div>
+
+            <%-- pop up --%>
             <div id="detaildoctor" class="addedform">
                 <form class="form-content" method="post" action="">
                     <div class="formContainer">
@@ -335,73 +512,14 @@
                             </div>
                         </div>
 
-                        <div class="clear" >  
-                            <div class="clear">
-                                <form class="form-content" method="post" action="controlbookmark"> 
-                                    <button type="submit" name="action" value="ActivateReview" >Active Review</button>
-                                    <button type="submit" name="action" value="DeactivateReview" >Deactive Review</button>
-                                </form>
-                            </div>
-                        </div>
-        </main>
-        <!-- End of Result -->
-        <footer id="footer">
-            <div class="footer-top">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-3 col-md-6 footer-info">
-                            <h3>Doctor STRANGE</h3>
-                            <p> Man tao cá mày không được vui nữa kể từ khi cái này tao đến. Nhìn tao đứng trên top cái miệng mày câm như hến .Sẽ có ngày tới mày nhưng việc đầu tiên trước hết. Mày muốn thắng trò chơi này việc đầu tiên phải làm là giết tao chết</p>
+                        <div class="clear">
+                            <button type="submit" class="loginbtn">Update</button>
+                            <button type="button" onclick="document.getElementById('detaildoctor').style.display = 'none'" class="cancelbtn">Cancel</button>
                         </div>
 
-                        <div class="col-lg-3 col-md-6 footer-links">
-                            <h4>Useful Links</h4>
-                            <ul>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Home</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">About us</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Services</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Terms of service</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
-                            </ul>
-                        </div>
 
-                        <div class="col-lg-3 col-md-6 footer-contact">
-                            <h4>Contact Us</h4>
-                            <p>
-                                69 IU Street <br>
-                                Ho Chi Minh City, <br>
-                                Viet Nam<br>
-                                <strong>Phone:</strong> 911 <br>
-                                <strong>Email:</strong> abc@gmail.com<br>
-                            </p>
-
-                            <div class="social-links">
-                                <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-                                <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-                                <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-                                <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-                                <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-3 col-md-6 footer-newsletter">
-                            <h4>Other</h4>
-                            <p>motherfucker không quen, tao không quen, đừng nói chuyện thân thiện như vậy với tao, tao không quen, cũng đừng nói chuyện đằng sau lưng của tao như vậy. </p>
-                        </div>
-
-                    </div>
-                </div>
+                </form>
             </div>
-
-            <div class="container">
-                <div class="copyright">
-                    &copy; Copyright <strong>Doctor Strange</strong>. All Rights Reserved
-                </div>
-            </div>
-
-            <%-- pop up --%>
 
 
 
