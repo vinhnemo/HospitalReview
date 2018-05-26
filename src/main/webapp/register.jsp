@@ -64,7 +64,7 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="/search.jsp">Find Doctor</a>
+                        <li class="menu-has-children menu-active"><a href="http://localhost:8080/doctor">Find Doctor</a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">

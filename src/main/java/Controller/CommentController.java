@@ -7,8 +7,10 @@ package Controller;
 
 import DAO.CommentDAO;
 import DTO.Comment;
+import DTO.Doctor;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -24,6 +26,7 @@ import javax.servlet.http.HttpSession;
 public class CommentController extends HttpServlet {
 
     private final CommentDAO cDAO = new CommentDAO();
+    private Doctor doc;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -39,13 +42,22 @@ public class CommentController extends HttpServlet {
         // Get action
         String action = request.getParameter("action");
         if (action == null) {
-            rd = sc.getRequestDispatcher("");
+            doc = (Doctor) session.getAttribute("prodoc");
+            int did = doc.getID();
+            List<Comment> listOfComment = cDAO.getAllComment(did);
+            session.setAttribute("commnetlist", listOfComment);
+            rd = sc.getRequestDispatcher("/viewdoctor.jsp");
             rd.forward(request, response);
         } else {
             if (action.equals("addComment")) {
                 String comment = request.getParameter("comment");
-                int did = Integer.parseInt(request.getParameter("d_id"));
+                doc = (Doctor) session.getAttribute("prodoc");
+                int did = doc.getID();
                 cDAO.addComment(comment, did);
+                List<Comment> listOfComment = cDAO.getAllComment(did);
+                session.setAttribute("commnetlist", listOfComment);
+                rd = sc.getRequestDispatcher("/viewdoctor.jsp");
+                rd.forward(request, response);
             }
         }
     }
