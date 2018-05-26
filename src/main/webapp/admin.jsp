@@ -241,6 +241,107 @@
 
 
             </section>
+            
+             <%-- pop up --%>
+            <div id="detaildoctor" class="addedform">
+                <form class="form-content" method="post" action="">
+                    <div class="formContainer">
+                        <h1>Doctor Information</h1>
+                        <hr>
+                        <div class="container" >
+                            <label><b>ID: 15071</b></label>
+                        </div>
+                        <div class="row" >  
+                            <div class="col-md-6" >
+                                <div class="container" >
+                                    <label><b>First Name: Sinh </b></label>
+                                    <input type="text" placeholder="Enter Your New First Name" name="dfname" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="container" >
+                                    <label><b>Last Name: Nguyen Van </b></label>
+                                    <input type="text" placeholder="Enter Your New Last Name" name="dlname" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" >  
+                            <div class="col-md-6" >
+                                <div class="container" >
+                                    <label><b>Gender: Female </b></label>
+                                    <select>
+                                        <option value="Famale">Female</option>
+                                        <option value="Male">Male</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="container" >
+                                    <label><b>Degree: Tao có bằng thạc sĩ </b></label>
+                                    <input type="text" placeholder="Enter Your New Degree" name="ddegree" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" >  
+                            <div class="col-md-6" >
+                                <div class="container" >
+                                    <label><b>Accepted insurance: </b></label>
+                                    <input type="checkbox" value="dinsure">
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="container" >
+                                    <label><b>Specific specialty: Metal </b></label>
+                                    <select> <%-- dòng for lấy từ list ra --%>
+                                        <option value="">Bệnh gì</option>
+                                        <option value="">Bệnh gì</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" >  
+                            <div class="col-md-6" >
+                                <div class="container" >
+                                    <label><b>Office Hours: 10am-24pm </b></label>
+                                    <input type="text" placeholder="Enter Your New office hours" name="dhour" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="container" >
+                                    <label><b>Language: English </b></label>
+                                    <input type="text" placeholder="Enter Your New Language" name="dlang" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" >  
+                            <div class="col-md-6" >
+                                <div class="container" >
+                                    <label><b>Office Hours: 10am-24pm </b></label>
+                                    <input type="text" placeholder="Enter Your New office hours" name="dhour" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="container" >
+                                    <label><b>Language: English </b></label>
+                                    <input type="text" placeholder="Enter Your New Language" name="dlang" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clear" >  
+                            <div class="clear">
+                                <form class="form-content" method="post" action="controlbookmark"> 
+                                    <button type="submit" name="action" value="ActivateReview" >Active Review</button>
+                                    <button type="submit" name="action" value="DeactivateReview" >Deactive Review</button>
+                                </form>
+                            </div>
+                        </div>
         </main>
         <!-- End of Result -->
         <footer id="footer">
