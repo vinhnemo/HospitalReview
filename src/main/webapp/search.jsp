@@ -103,7 +103,7 @@
                             <aside id="fh5co-aside" role="complementary" class="border js-fullheight">
                                 <div class="side-content">
                                     <h4>Filter Your Result</h4><hr>
-                                    <div class="side-text">Your nearest location</div>
+                                    <div class="side-text">Your Search</div>
                                     <div class="search-container">
                                         <form method="POST" action="doctor">
                                             <input type="hidden" name="action" value="Doctor">
@@ -128,8 +128,9 @@
                                         <option value="Crazy">Crazy</option>
                                         <option value="Mad">Mad</option>
                                     </select><hr>
-                                    <div class="side-text">Rating</div>
+                                    <div class="side-text">Sorting</div>
                                     <select class="side-select"> <!-- apply from db -->
+                                        <option value="location">Location</option>
                                         <option value="popular">Popular</option>
                                         <option value="highlow">High -> Low</option>
                                         <option value="lowhigh">Low -> High</option>
@@ -154,6 +155,7 @@
                                                 <div class="content-imagia">
                                                     <h3 class="name-imagia"><%= d.getLname() + " " + d.getFname()%> </h3>
                                                     <p class="subtitle-imagia"><%= d.getSpeciality()%></p> <hr>
+                                                    <div id="location"><i class="fa fa-map-marker"></i> 1822km </div>
                                                     <div id="gender"> Gender : <%= d.getSex()%></div>
                                                     <div id="workplace"> Working at : HCMIU </div>
                                                     <div id="degree"> Degree : <%= d.getDegree()%></div>

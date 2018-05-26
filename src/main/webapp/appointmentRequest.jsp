@@ -91,17 +91,57 @@
                         <div class="col-md-12 col-sm-12" style="background-color: #eee">
                             <div class="appointment">
                                 <h3> Request an Appointment </h3>
-                                <div class="head">Patient Information</div>
-                                <div class="text">Full Name: </div>
-                                <input class="input" name="" type="text" placeholder="Auto Filled From Session">
-                                <div class="text">Email: </div>
-                                <input class="input" name="" type="text" placeholder="Auto Filled From Session">
-                                <div class="text">Gender: </div>
-                                <select class="selectinput">
-                                    <option value="1">Male</option>
-                                    <option value="2">Female</option>
-                                    <option value="3">Other</option>
-                                </select>
+                                <form action="" method="">
+                                    <div class="head">Patient Information</div>
+                                    <div class="text">Full Name: </div>
+                                    <input class="input" name="" type="text" placeholder="Auto Filled From Session">
+                                    <div class="text">Email: </div>
+                                    <input class="input" name="" type="text" placeholder="Auto Filled From Session">
+                                    <div class="text">Gender: </div>
+                                    <select class="selectinput">
+                                        <option value="1">Male</option>
+                                        <option value="2">Female</option>
+                                        <option value="3">Other</option>
+                                    </select>
+                                    <div class="text">Home Address: </div>
+                                    <input class="input" name="" type="text" placeholder="Auto Filled From Session">
+                                    <br><br>
+                                    <div class="head">Appointment Detail</div>
+                                    <div class="text">Doctor: </div>
+                                    <input class="input" name="" type="text" placeholder="Auto Filled From Session or Ajax">
+                                    <div class="text">Speciality: </div>
+                                    <select class="selectspec"> <!-- get from DAO -->
+                                        <option value="1">Cảm</option>
+                                        <option value="2">Sốt</option>
+                                        <option value="3">Nhức Đầu</option>
+                                    </select>
+                                    <div class="text">Specific Speciality: </div>
+                                    <select class="selectspec"> <!-- get from DAO -->
+                                        <option value="1">Tired </option>
+                                        <option value="2">So Tired</option>
+                                    </select>
+                                    <div class="text">Other activities and diploma: </div>
+                                    <input class="input" name="" type="text" placeholder="Activities">
+                                    <div class="text">Date: </div>
+                                    <input class="input" name="" type="date">
+                                    <div class="text">Time: </div>
+                                    <select class="selectinput"> <!-- get from DAO -->
+                                        <% for (int i = 1; i <= 12; i++) { %>
+                                        <option value="<% out.print(i);%>"><% out.print(i);%></option>
+                                        <%}%>
+                                    </select>
+                                    <select class="selectinput"> <!-- get from DAO -->
+                                        <option value="0">00</option>
+                                        <option value="1">30</option>
+                                    </select>
+                                    <select class="selectinput"> <!-- get from DAO -->
+                                        <option value="AM">AM</option>
+                                        <option value="PM">PM</option>
+                                    </select>
+                                    <div class="text">Receive Appointment Information via Email <input type="checkbox"></div>
+                                    <div class="error"><span></span></div>
+                                    <input class="submition" type="submit" value="Request Appointment">
+                                </form>
                             </div>
                         </div>
                     </div>

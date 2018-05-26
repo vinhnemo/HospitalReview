@@ -91,6 +91,7 @@
                         <ul class="sidebar-nav nav">
                             <li><h3>Options:</h3></li>
                             <li class="active"><a class="general" href="#general" data-toggle="tab"><i class="fa fa-gears"></i>General</a></li>
+                            <li><a class="appoint" href="#appointment" data-toggle="tab"><i class="fa fa-address-book-o"></i>Your Appointment</a></li>
                             <li><a class="edit" href="#edit" data-toggle="tab"><i class="fa fa-pencil"></i>Edit Your Profile</a></li>
                             <li><a class="change" href="#change" data-toggle="tab"><i class="fa fa-key"></i>Change password</a></li>
                             <li><a class="bookmark" href="#bookmark" data-toggle="tab"><i class="fa fa-bookmark"></i>Bookmarks</a></li>
@@ -199,6 +200,23 @@
                                                                     <tr><td><a target="_blank" href="" >.Crazy Hospital   </td><td><input class="remove" type="submit" value="Remove"> </td></tr>
                                                                     <tr><td><a target="_blank" href="" >.Bien Hoa Hospital </td><td><input class="remove" type="submit" value="Remove"></td></tr>             
                                                                 </table>                                                     
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="appointment">
+                                            <div class="user-name">
+                                                <div class="row" style="">             
+                                                    <div class="col-md-12 col-sm-12">
+                                                        <div class="user">
+                                                            <div class="user-information">
+                                                                <div class="userhead">Your Appointment</div><br>
+                                                                <table>
+                                                                    <!--use value=user profile trong db -->
+                                                                    <tr><td><div class="userinfo">Date: 29-06-2018</div></td><td><div class="userinfo">Time: 8AM</div></td><td><div class="userinfo">Doctor: STRANGE</div></td></tr>             
+                                                                </table>
                                                             </div>
                                                         </div>
                                                     </div>
