@@ -50,7 +50,7 @@ public class ForgotPass extends HttpServlet {
             if (email.equals("")) {
                 error += "Please enter the valid email!";
             } else {
-                if (!patientDAO.validateUser(email)) {
+                if (!patientDAO.isExistUser(email)) {
                     error += "Your email does not exist!";
                 }
             }
@@ -61,10 +61,10 @@ public class ForgotPass extends HttpServlet {
                 url = "/forgotpass.jsp";
             } else {
 
-                Patient p = patientDAO.login(email);
-                Patient new_patient = new Patient(p.getID(), p.getFname(), p.getLname(), p.getSex(), p.getEmail(), PasswordHashing.hashPassword(randomStr), p.getAddress(), p.getLang());
+               // Patient p = patientDAO.login(email);
+               // Patient new_patient = new Patient(p.getID(), p.getFname(), p.getLname(), p.getSex(), p.getEmail(), PasswordHashing.hashPassword(randomStr), p.getAddress(), p.getLang());
 
-                patientDAO.updateUser(new_patient);
+               // patientDAO.updateUser(new_patient);
 
                 
 
