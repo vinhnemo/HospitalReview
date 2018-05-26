@@ -46,11 +46,6 @@
         <link rel="stylesheet" href="lib/form/sidebar1.css">
         <link rel="stylesheet" href="lib/form/profile.css">
     </head>
-    <style>
-        .nav .nav-tabs .tabs-left li>a :hover{
-            background-color: #000;
-        }
-    </style>
     <body>
 
         <header id="header">

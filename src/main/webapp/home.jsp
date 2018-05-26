@@ -47,7 +47,7 @@
 
     <body>
 
-        <%
+        <!--%
             Patient patient = null; Admin admin = null;
             PatientDAO patientDAO = new PatientDAO();
             AdminDAO adminDAO = new AdminDAO();
@@ -67,7 +67,7 @@
             } else if (session.getAttribute("admin") != null) {
                 admin = (Admin) session.getAttribute("admin");
             }
-        %>
+        %-->
 
         <header id="header">
             <div class="container-fluid">
@@ -97,11 +97,11 @@
                             </ul>
                         </li>
                         <li><a href="#contact"><fmt:message key="contact"/></a></li>
-                            <% if (patient != null) {%>
+                            <!--% if (patient != null) {%-->
                         <li class="menu"><a href="logout"><fmt:message key="signout"/></a></li>
-                            <% } else {%>
+                            <!--% } else {%-->
                         <li class="menu"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true" onclick="animeEffectIn()"><fmt:message key="signinup"/></a></li>
-                            <% }%>
+                            <!--% }%-->
                     </ul>
                 </nav>
             </div>
