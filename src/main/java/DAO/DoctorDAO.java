@@ -116,15 +116,10 @@ public class DoctorDAO {
     }
 
     public Doctor getDoctor(int id) {
-<<<<<<< HEAD
+
         //String query = "SELECT doctor.d_id,d_fname,d_lname,d_gender,d_degree,d_insurance,d_speciality,d_hour,languages, allowReview FROM doctor,doctorreview WHERE doctor.d_id = ? AND doctor.d_id = doctorreview.d_id;";
         String query = "select * from doctor where d_id = ? ;";
         Doctor doctor = new Doctor();
-=======
-        String query = "SELECT doctor.d_id,d_fname,d_lname,d_gender,d_degree,d_insurance,d_speciality,d_hour,languages, allowReview FROM doctor,doctorreview WHERE doctor.d_id = ? AND doctor.d_id = doctorreview.d_id;";
-    //    String query = "select * from doctor where d_id = ? ;";
-                Doctor doctor = new Doctor();
->>>>>>> a5592cc7f0ae0d112de6279642c98f31403be791
 
         // Connect to database
         Connection connection = Database.getConnection();
@@ -144,11 +139,7 @@ public class DoctorDAO {
                 doctor.setSpeciality(rs.getString("d_speciality"));
                 doctor.setHours(rs.getString("d_hour"));
                 doctor.setLang(rs.getString("languages"));
-<<<<<<< HEAD
                 //doctor.setAllowReview(rs.getInt("allowReview"));
-=======
-                doctor.setAllowReview(rs.getInt("allowReview"));
->>>>>>> a5592cc7f0ae0d112de6279642c98f31403be791
             }
 
             connection.close();
