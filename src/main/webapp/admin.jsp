@@ -47,6 +47,7 @@
         <link rel="stylesheet" href="lib/form/sidebar.css">
         <link rel="stylesheet" href="lib/form/form.css">
         <link rel="stylesheet" href="lib/form/profile.css">
+        <link rel="stylesheet" href="lib/form/duyet.css">
     </head>
 
     <body>
