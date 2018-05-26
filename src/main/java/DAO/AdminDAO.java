@@ -125,4 +125,68 @@ public class AdminDAO {
         }
 
     }
+    
+        public void activateReview(int did) {
+
+        String query = "UPDATE doctorreview SET allowReview = 1 WHERE d_id= ?;";
+        // create a mysql database connection
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareCall(query);
+            ps.setInt(1, did);
+
+            ps.executeUpdate();
+
+            connection.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void deactivateReview(int did) {
+
+        String query = "UPDATE doctorreview SET allowReview = 0 WHERE d_id= ?;";
+        // create a mysql database connection
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareCall(query);
+            ps.setInt(1, did);
+
+            ps.executeUpdate();
+
+            connection.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void removeDoctor(int did) {
+
+        String query1 = "DELETE FROM doctorreview WHERE d_id=" + did + ";";
+        String query2 = "DELETE FROM doctor WHERE did=" + did + ";";
+        Connection connection = Database.getConnection();
+        
+        try {
+            PreparedStatement ps = connection.prepareCall(query1);
+            ps.setInt(1, did);
+            ps.executeUpdate();
+
+            connection.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+         try {
+            PreparedStatement ps = connection.prepareCall(query2);
+            ps.setInt(1, did);
+            ps.executeUpdate();
+
+            connection.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+    }
 }
