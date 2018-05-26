@@ -53,16 +53,16 @@
         <header id="header">
             <div class="container-fluid">
                 <div id="logo" class="pull-left">
-                    <h1><a href="#intro" class="scrollto">Doctor STRANGE</a></h1>
+                   <h1><a href="home.jsp" class="scrollto">Doctor STRANGE</a></h1>
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="#">Find Doctor</a>
+                        <li class="menu-has-children menu-active"><a href="/search.jsp"><fmt:message key="finddoc"/></a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
                                         <form action="doctor" method="POST">
-                                            <h3>Find Your Doctor</h3>
+                                            <h3><fmt:message key="finddoc"/></h3>
                                             <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
                                             <input class="dropdown-button" type="submit" value="Search Doctor">
                                         </form>
@@ -70,15 +70,15 @@
                                 </li>
                             </ul> 
                         </li>
-                        <li><a href="#">Appointment</a></li>
-                        <li class="menu-has-children"><a href="">Language</a>
+                        <li><a href="#"><fmt:message key="appt"/></a></li>
+                        <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
                             <ul>
-                                <li><a href="#">English</a></li>
-                                <li><a href="#">Tiếng Việt</a></li>
+                                <li><a href="profileDoctor.jsp?language=en_US">English</a></li>
+                                <li><a href="profileDoctor.jsp?language=vi_VN">Tiếng Việt</a></li>
                             </ul>
                         </li>
-                        <li><a href="#contact">Contact Us</a></li>
-                        <li class="menu-active"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true">Sign In/Sign Up</a></li>                     
+                        <li><a href="#contact"><fmt:message key="contact"/></a></li>
+                        <li class="menu-active"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true"><fmt:message key="signinup"/></a></li>                     
                     </ul>
                 </nav>
             </div>
@@ -127,9 +127,9 @@
                                 <input class="side-button2" type="submit" value="Bookmark"><hr>
                                 <%
                                     DoctorDAO doctorDAO = new DoctorDAO();
-                                    Doctor doctor = doctorDAO.getDoctor(1) ;
+                                    Doctor doctor = doctorDAO.getDoctor(1);
                                     if (doctor.getAllowReview() == 1) {%>  
-                                    
+
                                 <div class="side-text">Your Rating:</div>
                                 <section class='rating-widget'>
                                     <!-- Rating Stars Box -->
@@ -159,7 +159,7 @@
                         </div>
                     </div>
                     <%
-                                   if (doctor.getAllowReview() == 1) {%>  
+                        if (doctor.getAllowReview() == 1) {%>  
                     <div class="comment">
                         <div class="row">
                             <div class="col-md-10">
@@ -240,11 +240,11 @@
                                 <!--end comment list-->
                             </div>
                         </div>
-                         <% } %>
+                        <% } %>
                         <!--comment box-->
-                        
-                         <%
-                                   if (doctor.getAllowReview() == 1) {%>  
+
+                        <%
+                            if (doctor.getAllowReview() == 1) {%>  
                         <div class="comment-box">
                             <div class="row" style="margin-top: 30px;">
                                 <div class="col-md-8">
@@ -259,7 +259,7 @@
                                 </div>
                             </div>
                         </div>
-                         <% } %>
+                        <% }%>
                     </div>
                 </div>
             </section>
@@ -276,18 +276,18 @@
                         </div>
 
                         <div class="col-lg-3 col-md-6 footer-links">
-                            <h4>Useful Links</h4>
+                            <h4><fmt:message key="usefullinks"/></h4>
                             <ul>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Home</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">About us</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Services</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Terms of service</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="home"/></a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="aboutus"/></a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="services"/></a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="termsofservice"/></a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="privacypolicy"/></a></li>
                             </ul>
                         </div>
 
                         <div class="col-lg-3 col-md-6 footer-contact">
-                            <h4>Contact Us</h4>
+                            <h4><fmt:message key="contact"/></h4>
                             <p>
                                 69 IU Street <br>
                                 Ho Chi Minh City, <br>
@@ -307,7 +307,7 @@
                         </div>
 
                         <div class="col-lg-3 col-md-6 footer-newsletter">
-                            <h4>Other</h4>
+                            <h4><fmt:message key="other"/></h4>
                             <p>motherfucker không quen, tao không quen, đừng nói chuyện thân thiện như vậy với tao, tao không quen, cũng đừng nói chuyện đằng sau lưng của tao như vậy. </p>
                         </div>
 
