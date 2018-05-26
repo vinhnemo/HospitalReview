@@ -41,8 +41,8 @@ public class PatientDAO {
     }
 
     // Insert account
-    public static String insertUser(Patient patient) {
-        String id = null;
+    public static Integer insertUser(Patient patient) {
+        Integer id = null;
         String query = "INSERT INTO patient"
                 + "("
                 + "p_fname,"
@@ -84,10 +84,11 @@ public class PatientDAO {
 
             if (rs != null) {
                 while (rs.next()) {
-                    id = rs.getString(1);
+                    id = rs.getInt(1);
                 }
             }
             connection.close();
+            insertToken(id, patient.getHashcode());
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -286,7 +287,6 @@ public class PatientDAO {
 
     /* VERIFY EMAIL */
     public static boolean verifyEmail(Integer id, String hash) {
-        boolean verified = false;
 
         // Connect to database
         Connection connection = Database.getConnection();
@@ -302,14 +302,15 @@ public class PatientDAO {
             ResultSet rs = ps.executeQuery();
             if (rs != null) {
                 while (rs.next()) {
-                    verified = true;
+                    connection.close();
+                    return true;
                 }
             }
-            connection.close();
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return verified;
+        return false;
     }
 
     public static void updateStatus(Integer id, String status) {
@@ -357,7 +358,7 @@ public class PatientDAO {
     }
 
     public static void insertToken(Integer id, String hash) {
-        String query = "INSERT token SET key = ?, attempt = ?, date = NOW() WHERE p_id = ?;";
+        String query = "INSERT INTO token (p_id, key, attempt, date) VALUES (?,?,?,NOW());";
 
         // Connect to database
         Connection connection = Database.getConnection();

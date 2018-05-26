@@ -47,6 +47,7 @@
         <link rel="stylesheet" href="lib/form/sidebar.css">
         <link rel="stylesheet" href="lib/form/form.css">
         <link rel="stylesheet" href="lib/form/profile.css">
+        <link rel="stylesheet" href="lib/form/duyet.css">
     </head>
 
     <body>
@@ -109,9 +110,47 @@
                                             <h4><strong> Nguyen Van Sinh </strong></h4>
                                             <p>DOB: 11-01-1997<br> Gender: GAY</p> 
                                         </div>
-
                                     </div>
                                 </div>
+                                <form method="post" action="activeReview" style="margin-top: -10%;margin-left: 0.5%;"> 
+                                    <div class="row" >  
+                                        <div class="col-md-4" >
+                                            <div class="container" >
+                                                <button type="submit" name="action" value="ActivateReview" style=" background-color: #4CAF50; 
+                                                        border: none;
+                                                        color: white; 
+                                                        padding: 
+                                                        1px 28px; 
+                                                        text-align: center; 
+                                                        font-size: 10px; 
+                                                        cursor: pointer;" >Enable Review</button>
+                                            </div> 
+                                        </div>     
+                                        <div class="col-md-4" >
+                                            <div class="container" style="margin-left: -15%;">
+                                                <button type="submit" name="action" value="DeactivateReview" style=" background-color: #4CAF50; 
+                                                        border: none; 
+                                                        color: white; 
+                                                        padding: 1px 28px; 
+                                                        text-align: center; 
+                                                        font-size: 10px;  
+                                                        cursor: pointer;">Disable Review</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4" >
+                                            <div class="container" style="margin-left: -30%;" >
+                                                <button type="submit" name="action" value="removeDoctor" style=" background-color: #4CAF50; 
+                                                        border: none; 
+                                                        color: white; 
+                                                        padding: 1px 28px; 
+                                                        text-align: center; 
+                                                        font-size: 10px;  
+                                                        cursor: pointer;">Remove Doctor</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
                             </div>
                         </div>
 
@@ -132,9 +171,47 @@
                                             <h4><strong> Nguyen Van Sinh </strong></h4>
                                             <p>DOB: 11-01-1997<br> Gender: GAY</p> 
                                         </div>
-
                                     </div>
                                 </div>
+                                <form method="post" action="activeReview" style="margin-top: -10%;margin-left: 0.5%;"> 
+                                    <div class="row" >  
+                                        <div class="col-md-4" >
+                                            <div class="container" >
+                                                <button type="submit" name="action" value="ActivateReview" style=" background-color: #4CAF50; 
+                                                        border: none;
+                                                        color: white; 
+                                                        padding: 
+                                                        1px 28px; 
+                                                        text-align: center; 
+                                                        font-size: 10px; 
+                                                        cursor: pointer;" >Enable Review</button>
+                                            </div> 
+                                        </div>     
+                                        <div class="col-md-4" >
+                                            <div class="container" style="margin-left: -15%;">
+                                                <button type="submit" name="action" value="DeactivateReview" style=" background-color: #4CAF50; 
+                                                        border: none; 
+                                                        color: white; 
+                                                        padding: 1px 28px; 
+                                                        text-align: center; 
+                                                        font-size: 10px;  
+                                                        cursor: pointer;">Disable Review</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4" >
+                                            <div class="container" style="margin-left: -30%;" >
+                                                <button type="submit" name="action" value="removeDoctor" style=" background-color: #4CAF50; 
+                                                        border: none; 
+                                                        color: white; 
+                                                        padding: 1px 28px; 
+                                                        text-align: center; 
+                                                        font-size: 10px;  
+                                                        cursor: pointer;">Remove Doctor</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
                             </div>
                         </div>
 
@@ -155,13 +232,57 @@
                                             <h4><strong> Nguyen Van Sinh </strong></h4>
                                             <p>DOB: 11-01-1997<br> Gender: GAY</p> 
                                         </div>
-
                                     </div>
                                 </div>
+                                <form method="post" action="activeReview" style="margin-top: -10%;margin-left: 0.5%;"> 
+                                    <div class="row" >  
+                                        <div class="col-md-4" >
+                                            <div class="container" >
+                                                <button type="submit" name="action" value="ActivateReview" style=" background-color: #4CAF50; 
+                                                        border: none;
+                                                        color: white; 
+                                                        padding: 
+                                                        1px 28px; 
+                                                        text-align: center; 
+                                                        font-size: 10px; 
+                                                        cursor: pointer;" >Enable Review</button>
+                                            </div> 
+                                        </div>     
+                                        <div class="col-md-4" >
+                                            <div class="container" style="margin-left: -15%;">
+                                                <button type="submit" name="action" value="DeactivateReview" style=" background-color: #4CAF50; 
+                                                        border: none; 
+                                                        color: white; 
+                                                        padding: 1px 28px; 
+                                                        text-align: center; 
+                                                        font-size: 10px;  
+                                                        cursor: pointer;">Disable Review</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4" >
+                                            <div class="container" style="margin-left: -30%;" >
+                                                <button type="submit" name="action" value="removeDoctor" style=" background-color: #4CAF50; 
+                                                        border: none; 
+                                                        color: white; 
+                                                        padding: 1px 28px; 
+                                                        text-align: center; 
+                                                        font-size: 10px;  
+                                                        cursor: pointer;">Remove Doctor</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
                             </div>
-                        </div>                    
+                        </div>
+
                     </div>
                 </div>
+
+
+
+
+
 
                 <div class="container" style="display: none; " id="patient">
                     <h3 class="page-header">List of Patients</h3>
@@ -300,6 +421,105 @@
             </div>
 
             <%-- pop up --%>
+            <div id="detaildoctor" class="addedform">
+                <form class="form-content" method="post" action="">
+                    <div class="formContainer">
+                        <h1>Doctor Information</h1>
+                        <hr>
+                        <div class="container" >
+                            <label><b>ID: 15071</b></label>
+                        </div>
+                        <div class="row" >  
+                            <div class="col-md-6" >
+                                <div class="container" >
+                                    <label><b>First Name: Sinh </b></label>
+                                    <input type="text" placeholder="Enter Your New First Name" name="dfname" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="container" >
+                                    <label><b>Last Name: Nguyen Van </b></label>
+                                    <input type="text" placeholder="Enter Your New Last Name" name="dlname" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" >  
+                            <div class="col-md-6" >
+                                <div class="container" >
+                                    <label><b>Gender: Female </b></label>
+                                    <select>
+                                        <option value="Famale">Female</option>
+                                        <option value="Male">Male</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="container" >
+                                    <label><b>Degree: Tao có bằng thạc sĩ </b></label>
+                                    <input type="text" placeholder="Enter Your New Degree" name="ddegree" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" >  
+                            <div class="col-md-6" >
+                                <div class="container" >
+                                    <label><b>Accepted insurance: </b></label>
+                                    <input type="checkbox" value="dinsure">
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="container" >
+                                    <label><b>Specific specialty: Metal </b></label>
+                                    <select> <%-- dòng for lấy từ list ra --%>
+                                        <option value="">Bệnh gì</option>
+                                        <option value="">Bệnh gì</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" >  
+                            <div class="col-md-6" >
+                                <div class="container" >
+                                    <label><b>Office Hours: 10am-24pm </b></label>
+                                    <input type="text" placeholder="Enter Your New office hours" name="dhour" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="container" >
+                                    <label><b>Language: English </b></label>
+                                    <input type="text" placeholder="Enter Your New Language" name="dlang" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" >  
+                            <div class="col-md-6" >
+                                <div class="container" >
+                                    <label><b>Office Hours: 10am-24pm </b></label>
+                                    <input type="text" placeholder="Enter Your New office hours" name="dhour" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="container" >
+                                    <label><b>Language: English </b></label>
+                                    <input type="text" placeholder="Enter Your New Language" name="dlang" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clear">
+                            <button type="submit" class="loginbtn">Update</button>
+                            <button type="button" onclick="document.getElementById('detaildoctor').style.display = 'none'" class="cancelbtn">Cancel</button>
+                        </div>
+
+
+                </form>
+            </div>
 
 
 

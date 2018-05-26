@@ -16,14 +16,14 @@
   `status` varchar(10) NOT NULL,
   PRIMARY KEY (`p_id`),
   UNIQUE KEY `patient_uindex` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 -- ------------------------------------------------------
--- table token
+-- Table Token
 -- ------------------------------------------------------
 DROP TABLE IF EXISTS `token`;
 CREATE TABLE `token` (
-	`id` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
-	`p_id` bigint(20) unsigned NOT NULL,
+    `id` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
+    `p_id` bigint(20) unsigned NOT NULL,
     `key` varchar(150) NOT NULL,
     `attempt` int(10) unsigned NOT NULL,
     `date` datetime NOT NULL,

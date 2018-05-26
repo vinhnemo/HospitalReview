@@ -22,7 +22,7 @@ import javax.mail.internet.MimeMessage;
  */
 public class Mail {
 
-    public static void sendEmailRegistrationLink(String id, String email, String hash) throws AddressException, MessagingException {
+    public static void sendEmailRegistrationLink(int id, String email, String hash) throws AddressException, MessagingException {
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
@@ -37,7 +37,7 @@ public class Mail {
             }
         });
 
-        String link = Info.MAIL_REGISTRATION_SITE_LINK + "?action=verify&userId=" + id + "&key=" + hash;
+        String link = Info.VERIFY_SITE + "?action=activation&userId=" + id + "&key=" + hash;
 
         StringBuilder bodyText = new StringBuilder();
         bodyText.append("<div>")
@@ -74,7 +74,7 @@ public class Mail {
             }
         });
 
-        String link = Info.MAIL_FORGOTPASS_SITE_LINK + "?userId=" + id + "&key=" + hash;
+        String link = Info.VERIFY_SITE + "?userId=" + id + "&key=" + hash;
 
         StringBuilder bodyText = new StringBuilder();
         bodyText.append("<div>")
