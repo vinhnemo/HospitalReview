@@ -155,127 +155,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4" >
-                            <div class="doctor-name" style="background-color: white;  margin-right: 1%; margin-bottom: 1%;">
-                                <div class="row" >             
-                                    <div class="col-md-4" >
-                                        <div class="container" style="margin-top: 15%; ">
-                                            <img src="" alt="" style="background-color: #17a2b8; border: 1px solid #000; border-radius:50%;
-                                                 display:block;
-                                                 height:90px;
-                                                 width:90px; ">
-                                            <button type="submit" onclick="document.getElementById('detaildoctor').style.display = 'block'"  style=" background-color: #4CAF50; border: none; color: white; padding: 2px 30px; text-align: center; font-size: 16px; margin: 4px 2px; cursor: pointer;"> Edit</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="container" style="margin-top: 7%; ">
-                                            <h4><strong> Nguyen Van Sinh </strong></h4>
-                                            <p>DOB: 11-01-1997<br> Gender: GAY</p> 
-                                        </div>
-                                    </div>
-                                </div>
-                                <form method="post" action="activeReview" style="margin-top: -10%;margin-left: 0.5%;"> 
-                                    <div class="row" >  
-                                        <div class="col-md-4" >
-                                            <div class="container" >
-                                                <button type="submit" name="action" value="ActivateReview" style=" background-color: #4CAF50; 
-                                                        border: none;
-                                                        color: white; 
-                                                        padding: 
-                                                        1px 28px; 
-                                                        text-align: center; 
-                                                        font-size: 10px; 
-                                                        cursor: pointer;" >Enable Review</button>
-                                            </div> 
-                                        </div>     
-                                        <div class="col-md-4" >
-                                            <div class="container" style="margin-left: -15%;">
-                                                <button type="submit" name="action" value="DeactivateReview" style=" background-color: #4CAF50; 
-                                                        border: none; 
-                                                        color: white; 
-                                                        padding: 1px 28px; 
-                                                        text-align: center; 
-                                                        font-size: 10px;  
-                                                        cursor: pointer;">Disable Review</button>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4" >
-                                            <div class="container" style="margin-left: -30%;" >
-                                                <button type="submit" name="action" value="removeDoctor" style=" background-color: #4CAF50; 
-                                                        border: none; 
-                                                        color: white; 
-                                                        padding: 1px 28px; 
-                                                        text-align: center; 
-                                                        font-size: 10px;  
-                                                        cursor: pointer;">Remove Doctor</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-
-                            </div>
-                        </div>
-
-                        <div class="col-md-4" >
-                            <div class="doctor-name" style="background-color: white;  margin-right: 1%; margin-bottom: 1%;">
-                                <div class="row" >             
-                                    <div class="col-md-4" >
-                                        <div class="container" style="margin-top: 15%; ">
-                                            <img src="" alt="" style="background-color: #17a2b8; border: 1px solid #000; border-radius:50%;
-                                                 display:block;
-                                                 height:90px;
-                                                 width:90px; ">
-                                            <button type="submit" onclick="document.getElementById('detaildoctor').style.display = 'block'"  style=" background-color: #4CAF50; border: none; color: white; padding: 2px 30px; text-align: center; font-size: 16px; margin: 4px 2px; cursor: pointer;"> Edit</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="container" style="margin-top: 7%; ">
-                                            <h4><strong> Nguyen Van Sinh </strong></h4>
-                                            <p>DOB: 11-01-1997<br> Gender: GAY</p> 
-                                        </div>
-                                    </div>
-                                </div>
-                                <form method="post" action="activeReview" style="margin-top: -10%;margin-left: 0.5%;"> 
-                                    <div class="row" >  
-                                        <div class="col-md-4" >
-                                            <div class="container" >
-                                                <button type="submit" name="action" value="ActivateReview" style=" background-color: #4CAF50; 
-                                                        border: none;
-                                                        color: white; 
-                                                        padding: 
-                                                        1px 28px; 
-                                                        text-align: center; 
-                                                        font-size: 10px; 
-                                                        cursor: pointer;" >Enable Review</button>
-                                            </div> 
-                                        </div>     
-                                        <div class="col-md-4" >
-                                            <div class="container" style="margin-left: -15%;">
-                                                <button type="submit" name="action" value="DeactivateReview" style=" background-color: #4CAF50; 
-                                                        border: none; 
-                                                        color: white; 
-                                                        padding: 1px 28px; 
-                                                        text-align: center; 
-                                                        font-size: 10px;  
-                                                        cursor: pointer;">Disable Review</button>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4" >
-                                            <div class="container" style="margin-left: -30%;" >
-                                                <button type="submit" name="action" value="removeDoctor" style=" background-color: #4CAF50; 
-                                                        border: none; 
-                                                        color: white; 
-                                                        padding: 1px 28px; 
-                                                        text-align: center; 
-                                                        font-size: 10px;  
-                                                        cursor: pointer;">Remove Doctor</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-
-                            </div>
-                        </div>
+                        
 
                     </div>
                 </div>
@@ -312,28 +192,7 @@
                             </div>
                         </div>     
 
-                        <div class="col-md-4" >
-                            <div class="doctor-name" style="background-color: white;  margin-right: 1%; margin-bottom: 1%;">
-                                <div class="row" >             
-                                    <div class="col-md-4" >
-                                        <div class="container" style="margin-top: 15%; ">
-                                            <img src="" alt="" style="background-color: #17a2b8; border: 1px solid #000; border-radius:50%;
-                                                 display:block;
-                                                 height:90px;
-                                                 width:90px; ">
-                                            <button type="submit" onclick="document.getElementById('detailpatient').style.display = 'block'"  style=" background-color: #4CAF50; border: none; color: white; padding: 2px 30px; text-align: center; font-size: 16px; margin: 4px 2px; cursor: pointer;"> Edit</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="container" style="margin-top: 7%; ">
-                                            <h4><strong> Nguyen Van Sinh </strong></h4>
-                                            <p>DOB: 11-01-1997<br> Gender: GAY</p> 
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>     
+                        
                     </div>
                 </div>
 
@@ -360,6 +219,7 @@
 
                     </div>
                 </div>
+                
                 <div id ="detailpatient" class="addedform" style="margin-top: 2%; height:800px;display: 'none';">
                     <div id="wrapper">
                         <div id="sidebar-wrapper">
