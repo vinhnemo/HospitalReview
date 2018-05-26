@@ -17,10 +17,6 @@
         <servlet-class>Controller.RateController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ForgotPass</servlet-name>
-        <servlet-class>Controller.ForgotPass</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>HospitalReg</servlet-name>
         <servlet-class>Hospital.HospitalReg</servlet-class>
     </servlet>
@@ -40,6 +36,14 @@
         <servlet-name>PatientController</servlet-name>
         <servlet-class>Controller.PatientController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>controlBookmark</servlet-name>
+        <servlet-class>Controller.controlBookmark</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>activeReview</servlet-name>
+        <servlet-class>Controller.activeReview</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registration</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -56,10 +60,6 @@
         <servlet-name>RateController</servlet-name>
         <url-pattern>/RateController</url-pattern>
         <url-pattern>/rate</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ForgotPass</servlet-name>
-        <url-pattern>/forgot</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>HospitalReg</servlet-name>
@@ -80,6 +80,14 @@
     <servlet-mapping>
         <servlet-name>PatientController</servlet-name>
         <url-pattern>/patient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>controlBookmark</servlet-name>
+        <url-pattern>/controlBookmark</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>activeReview</servlet-name>
+        <url-pattern>/activeReview</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

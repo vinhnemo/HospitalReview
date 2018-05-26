@@ -3,7 +3,11 @@ package DAO;
 import Database.*;
 import DTO.Patient;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +20,7 @@ public class PatientDAO {
     // Check existing email
     public static boolean isExistUser(String email) {
 
-        String query = "SELECT * FROM patient WHERE email = ?";
+        String query = "SELECT * FROM patient WHERE email = ?;";
 
         // Connect to database
         Connection connection = Database.getConnection();
@@ -37,8 +41,8 @@ public class PatientDAO {
     }
 
     // Insert account
-    public static String insertUser(Patient patient) {
-        String id = null;
+    public static Integer insertUser(Patient patient) {
+        Integer id = null;
         String query = "INSERT INTO patient"
                 + "("
                 + "p_fname,"
@@ -50,6 +54,7 @@ public class PatientDAO {
                 + "languages)"
                 + " VALUES "
                 + "("
+                + "?,"
                 + "?,"
                 + "?,"
                 + "?,"
@@ -70,18 +75,20 @@ public class PatientDAO {
             ps.setString(5, patient.getPass());
             ps.setString(6, patient.getAddress());
             ps.setString(7, patient.getLang());
+            ps.setString(8, patient.getStatus());
             ps.executeUpdate();
 
             PreparedStatement ps2 = connection.prepareStatement("SELECT p_id FROM patient WHERE email = ?");
             ps2.setString(1, patient.getEmail());
             ResultSet rs = ps2.executeQuery();
-            
+
             if (rs != null) {
                 while (rs.next()) {
-                    id = rs.getString(1);
+                    id = rs.getInt(1);
                 }
             }
             connection.close();
+            insertToken(id, patient.getHashcode());
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -99,7 +106,8 @@ public class PatientDAO {
                 + "email = ? ,"
                 + "password = ?,"
                 + "p_address = ?,"
-                + "languages = ?"
+                + "languages = ?,"
+                + "status = ?"
                 + " WHERE p_id = ?;";
 
         // Connect to database
@@ -114,7 +122,8 @@ public class PatientDAO {
             ps.setString(5, p.getPass());
             ps.setString(6, p.getAddress());
             ps.setString(7, p.getLang());
-            ps.setLong(8, p.getID());
+            ps.setString(8, p.getStatus());
+            ps.setLong(9, p.getID());
             ps.executeUpdate();
 
             connection.close();
@@ -124,7 +133,7 @@ public class PatientDAO {
 
     }
 
-    public static List<Patient> searchPatien(String name) {
+    public static List<Patient> searchPatient(String name) {
         String query;
         List<Patient> list = new ArrayList<>();
 
@@ -151,6 +160,7 @@ public class PatientDAO {
                 p.setPass(rs.getString("password"));
                 p.setAddress(rs.getString("p_address"));
                 p.setLang(rs.getString("languages"));
+                p.setStatus(rs.getString("status"));
                 list.add(p);
             }
 
@@ -164,7 +174,7 @@ public class PatientDAO {
     // Get All News
     public static List<Patient> getAllPatient() {
         List<Patient> list = new ArrayList<>();
-        String query = "SELECT * FROM patient ";
+        String query = "SELECT * FROM patient;";
 
         // Connect to database
         Connection connection = Database.getConnection();
@@ -183,6 +193,7 @@ public class PatientDAO {
                 p.setPass(rs.getString("password"));
                 p.setAddress(rs.getString("p_address"));
                 p.setLang(rs.getString("languages"));
+                p.setStatus(rs.getString("status"));
                 list.add(p);
             }
             connection.close();
@@ -194,7 +205,7 @@ public class PatientDAO {
     }
 
     public static Patient getPatient(int id) {
-        String query = "SELECT * FROM patient WHERE p_id = ?";
+        String query = "SELECT * FROM patient WHERE p_id = ?;";
         Patient p = new Patient();
 
         // Connect to database
@@ -214,6 +225,7 @@ public class PatientDAO {
                 p.setPass(rs.getString("password"));
                 p.setAddress(rs.getString("p_address"));
                 p.setLang(rs.getString("languages"));
+                p.setStatus(rs.getString("status"));
             }
 
             connection.close();
@@ -224,7 +236,7 @@ public class PatientDAO {
     }
 
     public static Patient getUserbyEmail(String email) {
-        String query = "SELECT * FROM patient WHERE email = ?";
+        String query = "SELECT * FROM patient WHERE email = ?;";
         Patient p = new Patient();
 
         // Connect to database
@@ -244,6 +256,7 @@ public class PatientDAO {
                 p.setPass(rs.getString("password"));
                 p.setAddress(rs.getString("p_address"));
                 p.setLang(rs.getString("languages"));
+                p.setStatus(rs.getString("status"));
             }
 
             connection.close();
@@ -257,7 +270,7 @@ public class PatientDAO {
         // Connect to database
         Connection connection = Database.getConnection();
 
-        String query = " DELETE FROM deactivepatien WHERE DP_id = ? ; DELETE FROM patient WHERE p_id = ? ;";
+        String query = "DELETE FROM patient WHERE p_id = ?;";
 
         try {
             PreparedStatement ps = connection.prepareCall(query);
@@ -272,53 +285,123 @@ public class PatientDAO {
         return false;
     }
 
-    public static boolean deactivePatient(int id) {
-
-        String query = "INSERT INTO deactivepatien"
-                + "(DP_id,"
-                + "p_id)"
-                + " VALUES "
-                + "(?,"
-                + "?);";
+    /* VERIFY EMAIL */
+    public static boolean verifyEmail(Integer id, String hash) {
 
         // Connect to database
         Connection connection = Database.getConnection();
 
         try {
-            PreparedStatement ps = connection.prepareCall(query);
-            ps.setLong(1, id);
-            ps.setLong(2, id);
-            ps.executeUpdate();
-
-            connection.close();
-            return true;
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+            PreparedStatement ps = connection.prepareStatement("SELECT * "
+                    + "FROM patient p,token t "
+                    + "WHERE p.p_id = ? "
+                    + "AND p.p_id = t.p_id "
+                    + "AND t.key = ?;");
+            ps.setInt(1, id);
+            ps.setString(2, hash);
+            ResultSet rs = ps.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    connection.close();
+                    return true;
+                }
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
         return false;
     }
 
-    public static boolean active(int id) {
-
-        String query = "DELETE FROM deactivepatien WHERE DP_id = ?";
+    public static void updateStatus(Integer id, String status) {
 
         // Connect to database
         Connection connection = Database.getConnection();
 
         try {
-            PreparedStatement ps = connection.prepareCall(query);
-            ps.setLong(1, id);
+            PreparedStatement ps = connection.prepareStatement("UPDATE patient SET status = ? WHERE p_id = ?");
+            ps.setString(1, status);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void updateToken(Integer id, String hash) {
+        String query;
+
+        // Connect to database
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps;
+            if (hash == null) {
+                query = "DELETE FROM token WHERE p_id = ?;";
+                ps = connection.prepareStatement(query);
+                ps.setInt(1, id);
+            } else {
+                query = "UPDATE token SET key = ?, date = NOW() WHERE p_id = ?;";
+                ps = connection.prepareStatement(query);
+                ps.setString(1, hash);
+                ps.setInt(2, id);
+            }
 
             ps.executeUpdate();
 
             connection.close();
-            return true;
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+    }
 
-        return false;
+    public static void insertToken(Integer id, String hash) {
+        String query = "INSERT INTO token (p_id, key, attempt, date) VALUES (?,?,?,NOW());";
+
+        // Connect to database
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, hash);
+            ps.setInt(2, 0);
+            ps.setInt(3, id);
+
+            ps.executeUpdate();
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static int increaseAttempt(Integer id) {
+        int attempts = 0;
+
+        // Connect to database
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareStatement("UPDATE token SET attempt = attempt + 1 where p_id = ?");
+            ps.setInt(1, id);
+            ps.executeUpdate();
+
+            PreparedStatement ps2 = connection.prepareStatement("SELECT attempt FROM token");
+            ResultSet rs = ps2.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    attempts = rs.getInt(1);
+                }
+            }
+            
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return attempts;
     }
 
 }

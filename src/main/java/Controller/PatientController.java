@@ -5,9 +5,9 @@
  */
 package Controller;
 
-import Database.PasswordHashing;
 import DAO.PatientDAO;
 import DTO.Patient;
+import Database.BCrypt;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -86,14 +86,6 @@ public class PatientController extends HttpServlet {
                 }
             }
 
-            String text
-                    = "Thanks for signing up to keep in touch with <strong>GAMELORD</strong>. From now on there might be a few things about GAMELORD you would like to know:<br>"
-                    + "First , you will find more than 1000 games online and offline at GAMELORD<br>"
-                    + "Second, you can place your order online and then collect at the same time<br>"
-                    + "Third, we have a fantastic website that updates daily<br>"
-                    + "Final, we have an active online community<br><br>"
-                    + "Keep your eyes peeled for a special offer email from us. In the meantime, see the latest and greatest game from the website.";
-
             if (error.length() > 0) {
 
                 request.setAttribute("error", error);
@@ -104,7 +96,7 @@ public class PatientController extends HttpServlet {
             } else {
                 patient.setFname(fname);
                 patient.setLname(lname);
-                patient.setPass(PasswordHashing.hashPassword(pass));
+                patient.setPass(BCrypt.hashpw(pass,BCrypt.gensalt()));
                 patient.setEmail(email);
                 patient.setAddress(address);
                 patient.setSex(sex);
@@ -133,26 +125,10 @@ public class PatientController extends HttpServlet {
                 rd.forward(request, response);
             }
 
-        } else if (action.equals("deactive")) {
-            if (PatientDAO.deactivePatient((int) patient.getID())) {
-                
-                
-                rd = sc.getRequestDispatcher("/profilePatient.jsp");
-                rd.forward(request, response);
-            }
-
-        } else if (action.equals("active")) {
-            if (PatientDAO.active((int) patient.getID())) {
-                
-                
-                rd = sc.getRequestDispatcher("/profilePatient.jsp");
-                rd.forward(request, response);
-
-        }
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

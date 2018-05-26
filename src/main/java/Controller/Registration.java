@@ -96,17 +96,17 @@ public class Registration extends HttpServlet {
                     p.setStatus("unactive");
 
                     // generate hash code for email verification
-                    String hash = Util.encrypt("verification");
+                    String hash = Util.encrypt(Util.generateRandomStr());
                     p.setHashcode(BCrypt.hashpw(hash, Info.HASH_SALT));
 
                     try {
                         if (!PatientDAO.isExistUser(email)) {
                             // create account if email not exists
-                            String id = PatientDAO.insertUser(p);
+                            int id = PatientDAO.insertUser(p);
 
                             // send verification email
                             Mail.sendEmailRegistrationLink(id, email, hash);
-                            
+
                             // send output to user
                             response.getWriter().write("Register successfully! Please verify your email");
                         } else {

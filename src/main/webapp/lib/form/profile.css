@@ -48,6 +48,9 @@ and open the template in the editor.
     padding-bottom: 30px;
     margin-bottom: 30px;
 }
+.doctor-information h3 {
+    color: #18d26e;
+}
 .doctor-information .head {
     font-size: 26px;
     font-weight: 500;

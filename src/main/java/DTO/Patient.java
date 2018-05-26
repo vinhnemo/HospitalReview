@@ -22,7 +22,7 @@ public class Patient {
     private String lang;
     private String hashcode;
     private String status;
-    private int attempt;
+    private Integer attempt;
 
     public Patient() {
     }
@@ -118,11 +118,11 @@ public class Patient {
         this.status = status;
     }
 
-    public int getAttempt() {
+    public Integer getAttempt() {
         return attempt;
     }
 
-    public void setAttempt(int attempt) {
+    public void setAttempt(Integer attempt) {
         this.attempt = attempt;
     }
 }
