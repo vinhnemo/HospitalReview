@@ -10,16 +10,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="language" value="${param.language}" scope="session" />
-<%String language = request.getParameter("language"), english = "", french = "", vietnamese = "";
+<%String language = request.getParameter("language"), english = "", vietnamese = "";
     if (language == null) {
         language = "en_US";
     }
     if (language.equals("en_US")) {
         language = "English";
         english = "active";
-    } else if (language.equals("fr_FR")) {
-        language = "Français";
-        french = "active";
     } else if (language.equals("vi_VN")) {
         language = "Tiếng Việt";
         vietnamese = "active";

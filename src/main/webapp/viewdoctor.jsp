@@ -4,23 +4,21 @@
     Author     : NemoVinh
 --%>
 
-<%@page import="DAO.DoctorDAO"%>
-<%@page import="DTO.Doctor"%>
+<%@page import="java.util.*"%>
+<%@page import="DAO.*"%>
+<%@page import="DTO.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="language" value="${param.language}" scope="session" />
-<%String language = request.getParameter("language"), english = "", french = "", vietnamese = "";
+<%String language = request.getParameter("language"), english = "", vietnamese = "";
     if (language == null) {
         language = "en_US";
     }
     if (language.equals("en_US")) {
         language = "English";
         english = "active";
-    } else if (language.equals("fr_FR")) {
-        language = "Français";
-        french = "active";
     } else if (language.equals("vi_VN")) {
         language = "Tiếng Việt";
         vietnamese = "active";
@@ -94,6 +92,9 @@
 //            DoctorDAO dao  = new DoctorDAO();
 //            doc = (Doctor) dao.getDoctor(i);
 
+            CommentDAO commentDAO = new CommentDAO();
+            List<Comment> listOfComment = commentDAO.getAllComment(doc.getID());
+
         %> 
 
         <main id="main">
@@ -113,7 +114,7 @@
                                     </div>
                                     <div class="col-md-7 col-sm-10">
                                         <h3 class="name"><%= doc.getLname() + " " + doc.getFname()%></h3>
-                                        <div class="doctor-text"> DOB: 11-01-1997<br> Gender: <%= doc.getSex()%></div>
+                                        <div class="doctor-text"> <fmt:message key="dob"/>: 11-01-1997<br> <fmt:message key="gender"/>: <%= doc.getSex()%></div>
                                     </div>
                                 </div>
                             </div>
@@ -170,8 +171,7 @@
                             </div>
                         </div>
                     </div>
-                    <%
-                        if (doctor.getAllowReview() == 1) {%>  
+
                     <div class="comment">
                         <div class="row">
                             <div class="col-md-10">
@@ -252,7 +252,6 @@
                                 <!--end comment list-->
                             </div>
                         </div>
-                        <% } %>
                         <!--comment box-->
 
                         <%
