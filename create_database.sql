@@ -166,3 +166,16 @@ INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance
 INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Toan', 'Duong', 'Male', 'Masters', '1', 'Pediatrics', '6', 'English');
 -- ------------------------------------------------------
 -- -------------- ---------------------
+CREATE TABLE `coordinate` (
+  `c_id` bigint(20) unsigned NOT NULL,
+  `h_id` bigint(20) unsigned NOT NULL,
+  `x` float unsigned NOT NULL,
+  `y` float unsigned NOT NULL,
+  PRIMARY KEY (`c_id`),
+  KEY `h_id` (`h_id`),
+  CONSTRAINT `deactivehospital_ibfk_1` FOREIGN KEY (`h_id`) REFERENCES `hospital` (`h_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+-- ------------------------------------------------------
+-- ----------------------------------
+-- ------------------------------------------------------
+-- -----------------------------------------------
