@@ -51,32 +51,32 @@
         <header id="header">
             <div class="container-fluid">
                 <div id="logo" class="pull-left">
-                    <h1><a href="#intro" class="scrollto">Doctor STRANGE</a></h1>
+                    <h1><a href="home.jsp" class="scrollto">Doctor STRANGE</a></h1>
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="#">Find Doctor</a>
+                        <li class="menu-has-children menu-active"><a href="/doctor"><fmt:message key="finddoc"/></a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
                                         <form action="doctor" method="POST">
-                                            <h3>Find Your Doctor</h3>
-                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
-                                            <input class="dropdown-button" type="submit" value="Search Doctor">
+                                            <h3><fmt:message key="finddoc"/></h3>
+                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="<fmt:message key="searchdotorbyname"/>"/>                                 
+                                            <input class="dropdown-button" type="submit" name="action" value="Search Doctor">
                                         </form>
                                     </div>
                                 </li>
                             </ul> 
                         </li>
-                        <li><a href="#">Appointment</a></li>
-                        <li class="menu-has-children"><a href="">Language</a>
+                        <li><a href="#"><fmt:message key="appt"/></a></li>
+                        <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
                             <ul>
-                                <li><a href="#">English</a></li>
-                                <li><a href="#">Tiếng Việt</a></li>
+                                <li><a href="appointmentRequest.jsp?language=en_US">English</a></li>
+                                <li><a href="appointmentRequest.jsp?language=vi_VN">Tiếng Việt</a></li>
                             </ul>
                         </li>
-                        <li><a href="#contact">Contact Us</a></li>
-                        <li class="menu-active"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true">Sign In/Sign Up</a></li>                     
+                        <li><a href="#contact"><fmt:message key="contact"/></a></li>
+                        <li class="menu-active"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true"><fmt:message key="signinup"/></a></li>                     
                     </ul>
                 </nav>
             </div>
@@ -90,41 +90,41 @@
                     <div class="row">
                         <div class="col-md-12 col-sm-12" style="background-color: #eee">
                             <div class="appointment">
-                                <h3> Request an Appointment </h3>
+                                <h3> <fmt:message key="setanappointment"/> </h3>
                                 <form action="" method="">
-                                    <div class="head">Patient Information</div>
-                                    <div class="text">Full Name: </div>
+                                    <div class="head"><fmt:message key="patientinformation"/></div>
+                                    <div class="text"><fmt:message key="fullname"/>: </div>
                                     <input class="input" name="" type="text" placeholder="Auto Filled From Session">
                                     <div class="text">Email: </div>
                                     <input class="input" name="" type="text" placeholder="Auto Filled From Session">
-                                    <div class="text">Gender: </div>
+                                    <div class="text"><fmt:message key="gender"/>: </div>
                                     <select class="selectinput">
-                                        <option value="1">Male</option>
-                                        <option value="2">Female</option>
-                                        <option value="3">Other</option>
+                                        <option value="1"><fmt:message key="male"/></option>
+                                        <option value="2"><fmt:message key="female"/></option>
+                                        <option value="3"><fmt:message key="other"/></option>
                                     </select>
-                                    <div class="text">Home Address: </div>
+                                    <div class="text"><fmt:message key="address"/>: </div>
                                     <input class="input" name="" type="text" placeholder="Auto Filled From Session">
                                     <br><br>
-                                    <div class="head">Appointment Detail</div>
-                                    <div class="text">Doctor: </div>
+                                    <div class="head"><fmt:message key="appointmentdetail"/></div>
+                                    <div class="text"><fmt:message key="doctor"/>: </div>
                                     <input class="input" name="" type="text" placeholder="Auto Filled From Session or Ajax">
-                                    <div class="text">Speciality: </div>
+                                    <div class="text"><fmt:message key="speciality"/>: </div>
                                     <select class="selectspec"> <!-- get from DAO -->
                                         <option value="1">Cảm</option>
                                         <option value="2">Sốt</option>
                                         <option value="3">Nhức Đầu</option>
                                     </select>
-                                    <div class="text">Specific Speciality: </div>
+                                    <div class="text"><fmt:message key="specificspeciality"/>: </div>
                                     <select class="selectspec"> <!-- get from DAO -->
                                         <option value="1">Tired </option>
                                         <option value="2">So Tired</option>
                                     </select>
-                                    <div class="text">Other activities and diploma: </div>
+                                    <div class="text"><fmt:message key="otheractivitiesdiploma"/>: </div>
                                     <input class="input" name="" type="text" placeholder="Activities">
-                                    <div class="text">Date: </div>
+                                    <div class="text"><fmt:message key="date"/>: </div>
                                     <input class="input" name="" type="date">
-                                    <div class="text">Time: </div>
+                                    <div class="text"><fmt:message key="time"/>: </div>
                                     <select class="selectinput"> <!-- get from DAO -->
                                         <% for (int i = 1; i <= 12; i++) { %>
                                         <option value="<% out.print(i);%>"><% out.print(i);%></option>
@@ -138,7 +138,7 @@
                                         <option value="AM">AM</option>
                                         <option value="PM">PM</option>
                                     </select>
-                                    <div class="text">Receive Appointment Information via Email <input type="checkbox"></div>
+                                    <div class="text"><fmt:message key="receiceapptviaemail"/><input type="checkbox"></div>
                                     <div class="error"><span></span></div>
                                     <input class="submition" type="submit" value="Request Appointment">
                                 </form>
@@ -160,23 +160,23 @@
                         </div>
 
                         <div class="col-lg-3 col-md-6 footer-links">
-                            <h4>Useful Links</h4>
+                            <h4><fmt:message key="usefullinks"/></h4>
                             <ul>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Home</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">About us</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Services</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Terms of service</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="home"/></a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="aboutus"/></a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="services"/></a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="termsofservice"/></a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="privacypolicy"/></a></li>
                             </ul>
                         </div>
 
                         <div class="col-lg-3 col-md-6 footer-contact">
-                            <h4>Contact Us</h4>
+                            <h4><fmt:message key="contact"/></h4>
                             <p>
                                 69 IU Street <br>
                                 Ho Chi Minh City, <br>
                                 Viet Nam<br>
-                                <strong>Phone:</strong> 911 <br>
+                                <strong><fmt:message key="phonenumber"/>:</strong> 911 <br>
                                 <strong>Email:</strong> abc@gmail.com<br>
                             </p>
 
@@ -191,7 +191,7 @@
                         </div>
 
                         <div class="col-lg-3 col-md-6 footer-newsletter">
-                            <h4>Other</h4>
+                            <h4><fmt:message key="other"/></h4>
                             <p>motherfucker không quen, tao không quen, đừng nói chuyện thân thiện như vậy với tao, tao không quen, cũng đừng nói chuyện đằng sau lưng của tao như vậy. </p>
                         </div>
 

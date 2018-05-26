@@ -41,7 +41,7 @@
                 }
             }
         }
-        
+
         if (session.getAttribute("patient") != null || session.getAttribute("admin") != null) {
             response.sendRedirect("home.jsp");
         }
@@ -72,14 +72,14 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="http://localhost:8080/doctor"><fmt:message key="finddoc"/></a>
+                        <li class="menu-has-children menu-active"><a href="/doctor"><fmt:message key="finddoc"/></a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
                                         <form action="doctor" method="POST">
                                             <h3><fmt:message key="finddoc"/></h3>
-                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
-                                            <input class="dropdown-button" type="submit" value="Search Doctor">
+                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="<fmt:message key="searchdotorbyname"/>"/>                        
+                                            <input class="dropdown-button" type="submit" name="action" value="Search Doctor">
                                         </form>
                                     </div>
                                 </li>
@@ -88,12 +88,12 @@
                         <li><a href="#"><fmt:message key="appt"/></a></li>
                         <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
                             <ul>
-                                <li><a href="login.jsp?language=en_US">English</a></li>
-                                <li><a href="login.jsp?language=vi_VN">Tiếng Việt</a></li>
+                                <li><a href="appointmentRequest.jsp?language=en_US">English</a></li>
+                                <li><a href="appointmentRequest.jsp?language=vi_VN">Tiếng Việt</a></li>
                             </ul>
                         </li>
-                        <li><a href="#footer"><fmt:message key="contact"/></a></li>
-                        <li class="menu-active"><a href="login.jsp"><fmt:message key="signinup"/></a></li>                     
+                        <li><a href="#contact"><fmt:message key="contact"/></a></li>
+                        <li class="menu-active"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true"><fmt:message key="signinup"/></a></li>                     
                     </ul>
                 </nav>
             </div>
@@ -109,7 +109,7 @@
                     <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email" id="email"></div>
                     <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password" id="password"></div>
                     <div class="form-group">Remember me? <input class="form-control" type="checkbox" name="remember" id="remember"></div>
-                    
+
                     <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Log In</button></div>
                     <div class="form-group">
                         <input class="btn btn-primary2 btn-block" type="submit" value="Register New Account" onclick="window.location.href = 'register'" />                        
@@ -130,23 +130,23 @@
                         </div>
 
                         <div class="col-lg-3 col-md-6 footer-links">
-                            <h4>Useful Links</h4>
+                            <h4><fmt:message key="usefullinks"/></h4>
                             <ul>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Home</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">About us</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Services</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Terms of service</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="home"/></a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="aboutus"/></a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="services"/></a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="termsofservice"/></a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="privacypolicy"/></a></li>
                             </ul>
                         </div>
 
                         <div class="col-lg-3 col-md-6 footer-contact">
-                            <h4>Contact Us</h4>
+                            <h4><fmt:message key="contact"/></h4>
                             <p>
                                 69 IU Street <br>
                                 Ho Chi Minh City, <br>
                                 Viet Nam<br>
-                                <strong>Phone:</strong> 911 <br>
+                                <strong><fmt:message key="phonenumber"/>:</strong> 911 <br>
                                 <strong>Email:</strong> abc@gmail.com<br>
                             </p>
 
@@ -161,7 +161,7 @@
                         </div>
 
                         <div class="col-lg-3 col-md-6 footer-newsletter">
-                            <h4>Other</h4>
+                            <h4><fmt:message key="other"/></h4>
                             <p>motherfucker không quen, tao không quen, đừng nói chuyện thân thiện như vậy với tao, tao không quen, cũng đừng nói chuyện đằng sau lưng của tao như vậy. </p>
                         </div>
 
