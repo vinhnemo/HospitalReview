@@ -3,7 +3,7 @@
     Created on : May 16, 2018, 4:41:41 PM
     Author     : MSI
 --%>
-<%@page import="java.util.*, User.DTO.*, User.DAO.*"%>
+<%@page import="java.util.*, DTO.*, DAO.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -52,38 +52,39 @@
         <header id="header">
             <div class="container-fluid">
                 <div id="logo" class="pull-left">
-                    <h1><a href="#intro" class="scrollto">Doctor STRANGE</a></h1>
+                    <h1><a href="home.jsp" class="scrollto">Doctor STRANGE</a></h1>
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="http://localhost:8080/doctor">Find Doctor</a>
+                        <li class="menu-has-children menu-active"><a href="http://localhost:8080/doctor"><fmt:message key="finddoc"/></a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
-                                        <form method="POST" action="doctor">
-                                            <h3>Find Your Doctor</h3>
+                                        <form action="doctor" method="POST">
+                                            <h3><fmt:message key="finddoc"/></h3>
                                             <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
-                                            <input class="dropdown-button" type="submit" name="action" value="Search Doctor">
+                                            <input class="dropdown-button" type="submit" value="Search Doctor">
                                         </form>
                                     </div>
                                 </li>
                             </ul> 
                         </li>
-                        <li><a href="#">Appointment</a></li>
-                        <li class="menu-has-children"><a href="">Language</a>
+                        <li><a href="#"><fmt:message key="appt"/></a></li>
+                        <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
                             <ul>
-                                <li><a href="#">English</a></li>
-                                <li><a href="#">Tiếng Việt</a></li>
+                                <li><a href="search.jsp?language=en_US">English</a></li>
+                                <li><a href="search.jsp?language=vi_VN">Tiếng Việt</a></li>
                             </ul>
                         </li>
-                        <li><a href="#contact">Contact Us</a></li>
-                        <li class="menu-active"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true">Sign In/Sign Up</a></li>                     
+                        <li><a href="#contact"><fmt:message key="contact"/></a></li>
+                        <li class="menu-active"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true"><fmt:message key="signinup"/></a></li>                     
                     </ul>
                 </nav>
             </div>
         </header> 
         <%
             DoctorDAO doctorDAO = new DoctorDAO();
+            //List<Doctor> listOfDoctor = doctorDAO.getAllDoctor();
             List<Doctor> listOfDoctor = (ArrayList<Doctor>) session.getAttribute("doctorlist");
 
         %>
@@ -92,7 +93,7 @@
             <!-- De choi thoi -->
             <div class="nothing-special-dark"></div>
             <div class="search-field">
-                <h4> <%= listOfDoctor.size() %> doctors found by keyword (Keyword) </h4>
+                <h4> <%= listOfDoctor.size()%> doctors found by keyword (Keyword) </h4>
             </div>
             <!-- !! -->
             <section class="card-section-imagia">
@@ -103,15 +104,15 @@
                             <aside id="fh5co-aside" role="complementary" class="border js-fullheight">
                                 <div class="side-content">
                                     <h4>Filter Your Result</h4><hr>
-                                    <div class="side-text">Your nearest location</div>
+                                    <div class="side-text">Your Search</div>
                                     <div class="search-container">
-                                         <form method="POST" action="doctor">
-                                             <input type="hidden" name="action" value="Doctor">
-                                             <input type="text" name="search" placeholder="Search..." class="search-input" value="">
-                                        <button class="btn btn-light search-btn" type="submit"> 
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                         </form>
+                                        <form method="POST" action="doctor">
+                                            <input type="hidden" name="action" value="Doctor">
+                                            <input type="text" name="search" placeholder="Search..." class="search-input" value="">
+                                            <button class="btn btn-light search-btn" type="submit"> 
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </form>
                                     </div><hr>
                                     <div class="side-text">Gender</div>
                                     <select class="side-select"> <!-- apply from db -->
@@ -128,8 +129,9 @@
                                         <option value="Crazy">Crazy</option>
                                         <option value="Mad">Mad</option>
                                     </select><hr>
-                                    <div class="side-text">Rating</div>
+                                    <div class="side-text">Sorting</div>
                                     <select class="side-select"> <!-- apply from db -->
+                                        <option value="location">Location</option>
                                         <option value="popular">Popular</option>
                                         <option value="highlow">High -> Low</option>
                                         <option value="lowhigh">Low -> High</option>
@@ -152,22 +154,23 @@
                                                 <div class="cover-imagia"><!--<img src="https://unsplash.it/720/500?image=1067" alt="">--></div>
                                                 <div class="user-imagia"><img src="https://unsplash.it/120/120?image=64" class="img-circle" alt=""></div>
                                                 <div class="content-imagia">
-                                                    <h3 class="name-imagia"><%= d.getLname() + " " +  d.getFname()%> </h3>
+                                                    <h3 class="name-imagia"><%= d.getLname() + " " + d.getFname()%> </h3>
                                                     <p class="subtitle-imagia"><%= d.getSpeciality()%></p> <hr>
-                                                    <div id="gender"> Gender : <%= d.getSex() %></div>
+                                                    <div id="location"><i class="fa fa-map-marker"></i> 1822km </div>
+                                                    <div id="gender"> Gender : <%= d.getSex()%></div>
                                                     <div id="workplace"> Working at : HCMIU </div>
-                                                    <div id="degree"> Degree : <%= d.getDegree() %></div>
+                                                    <div id="degree"> Degree : <%= d.getDegree()%></div>
                                                 </div>
                                                 <div class="footer-imagia"><span><i class="fa fa-plus"></i> More info</span></div>
                                             </div>
                                             <div class="back-imagia">
                                                 <div class="content-imagia content-back-imagia">
                                                     <div>
-                                                        <h4><%= d.getLname() + d.getFname() %> </h4>
-                                                        <div id="specific-speciality">Specific-speciality: <%= d.getSpeciality() %>  </div>
-                                                        <div id="timework">Time : <%= d.getHours() %> </div>
+                                                        <h4><%= d.getLname() + d.getFname()%> </h4>
+                                                        <div id="specific-speciality">Specific-speciality: <%= d.getSpeciality()%>  </div>
+                                                        <div id="timework">Time : <%= d.getHours()%> </div>
                                                         <!--<div id="">Abc : xyz </div>-->
-                                                        <div id="insurance">Insurance: <%= d.getInsurance() %> </div>
+                                                        <div id="insurance">Insurance: <%= d.getInsurance()%> </div>
                                                         <!--<div id="">DOB : 6-9-1939</div>-->
                                                         <!--<div id="">Address : Tiệm Đồ Gỗ </div>-->
                                                         <!--<div id="">Insurance: < %= d.getInsurance()%>  </div>-->
@@ -175,16 +178,17 @@
                                                 </div>
                                                 <div class="footer-imagia">
                                                     <div class="text-center">
-                                                        <input type="hidden" name="id_doctor" value="<%= d.getID() %>" >
+                                                        <input type="hidden" name="id_doctor" value="<%= d.getID()%>" >
                                                         <input class="card-button" type="submit" value="Make Appointment">
                                                     </div>
-                                                    <div class="social-imagia text-center"><a href="http://localhost:8080/doctor?action=viewpro&id_doctor=<%= d.getID() %>">View Profile</a></div>
+                                                    <div class="social-imagia text-center"><a href="http://localhost:8080/doctor?action=viewpro&id_doctor=<%= d.getID()%>">View Profile</a></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div> 
-                                    <% }} %>
+                                <% }
+                                    }%>
                             </div>
 
                         </div>
@@ -207,18 +211,18 @@
                         </div>
 
                         <div class="col-lg-3 col-md-6 footer-links">
-                            <h4>Useful Links</h4>
+                            <h4><fmt:message key="usefullinks"/></h4>
                             <ul>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Home</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">About us</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Services</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Terms of service</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="home"/></a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="aboutus"/></a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="services"/></a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="termsofservice"/></a></li>
+                                <li><i class="ion-ios-arrow-right"></i> <a href="#"><fmt:message key="privacypolicy"/></a></li>
                             </ul>
                         </div>
 
                         <div class="col-lg-3 col-md-6 footer-contact">
-                            <h4>Contact Us</h4>
+                            <h4><fmt:message key="contact"/></h4>
                             <p>
                                 69 IU Street <br>
                                 Ho Chi Minh City, <br>
@@ -238,7 +242,7 @@
                         </div>
 
                         <div class="col-lg-3 col-md-6 footer-newsletter">
-                            <h4>Other</h4>
+                            <h4><fmt:message key="other"/></h4>
                             <p>motherfucker không quen, tao không quen, đừng nói chuyện thân thiện như vậy với tao, tao không quen, cũng đừng nói chuyện đằng sau lưng của tao như vậy. </p>
                         </div>
 

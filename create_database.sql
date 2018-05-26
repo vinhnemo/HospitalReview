@@ -13,9 +13,24 @@
   `password` varchar(150) NOT NULL,
   `p_address` varchar(150) NOT NULL,
   `languages` varchar(45) NOT NULL,
+  `status` varchar(10) NOT NULL,
   PRIMARY KEY (`p_id`),
   UNIQUE KEY `patient_uindex` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+-- ------------------------------------------------------
+-- Table Token
+-- ------------------------------------------------------
+DROP TABLE IF EXISTS `token`;
+CREATE TABLE `token` (
+    `id` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
+    `p_id` bigint(20) unsigned NOT NULL,
+    `key` varchar(150) NOT NULL,
+    `attempt` int(10) unsigned NOT NULL,
+    `date` datetime NOT NULL,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`p_id`) REFERENCES `patient`(`p_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
 -- --------------------------------------------------------
     -- Table Admin
     -- ----------------------------
@@ -79,16 +94,7 @@
   `ademail` varchar(150) NOT NULL,
   PRIMARY KEY (`h_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
--- ------------------------------------------------------
--- table deactivePatient
--- ------------------------------------------------------
-CREATE TABLE `deactivepatien` (
-  `DP_id` bigint(20) unsigned NOT NULL,
-  `p_id` bigint(20) unsigned NOT NULL,
-  PRIMARY KEY (`DP_id`),
-  KEY `p_id` (`p_id`),
-  CONSTRAINT `deactivepatien_ibfk_1` FOREIGN KEY (`p_id`) REFERENCES `patient` (`p_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 -- ------------------------------------------------------
 -- table deactiveHospital
 -- ------------------------------------------------------
@@ -160,3 +166,16 @@ INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance
 INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Toan', 'Duong', 'Male', 'Masters', '1', 'Pediatrics', '6', 'English');
 -- ------------------------------------------------------
 -- -------------- ---------------------
+CREATE TABLE `coordinate` (
+  `c_id` bigint(20) unsigned NOT NULL,
+  `h_id` bigint(20) unsigned NOT NULL,
+  `x` float unsigned NOT NULL,
+  `y` float unsigned NOT NULL,
+  PRIMARY KEY (`c_id`),
+  KEY `h_id` (`h_id`),
+  CONSTRAINT `coordinate_ibfk_1` FOREIGN KEY (`h_id`) REFERENCES `hospital` (`h_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+-- ------------------------------------------------------
+-- ----------------------------------
+-- ------------------------------------------------------
+-- -----------------------------------------------

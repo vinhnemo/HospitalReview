@@ -9,7 +9,7 @@ import DTO.Admin;
 import DTO.Patient;
 import DAO.AdminDAO;
 import DAO.PatientDAO;
-import Database.PasswordHashing;
+import Database.BCrypt;
 
 import java.io.IOException;
 import javax.servlet.*;
@@ -54,25 +54,25 @@ public class Login extends HttpServlet {
             String pass = request.getParameter("password");
             String remember = request.getParameter("remember");
 
-            if (email.equals("") || pass.equals("")) {
+            if (email == null || pass == null) {
                 error = "3";
             } else {
-                patient = patientDAO.login(email);
+                patient = patientDAO.getUserbyEmail(email);
 
                 if (patient.getPass() == null) {
                     error = "1";
                     adminLogin = true;
-                } else if (!PasswordHashing.checkPassword(pass, patient.getPass())) {
+                } else if (!BCrypt.checkpw(pass, patient.getPass())) {
                     error = "2";
                 }
 
                 if (adminLogin) {
-                    admin = adminDAO.login(email);
+                    admin = adminDAO.getUserbyEmail(email);
 
                     // Check if user does not exist
                     if (admin.getPass() == null) {
                         error = "1";
-                    } else if (!PasswordHashing.checkPassword(pass, admin.getPass())) {
+                    } else if (!BCrypt.checkpw(pass, admin.getPass())) {
                         error = "2";
                     }
                 }

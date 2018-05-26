@@ -5,19 +5,13 @@
  */
 package DTO;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
 /**
  *
  * @author TGMaster
  */
 
-@Entity(name = "users")
-public class Patient implements Serializable{
-    
-    @Id
+public class Patient {
+
     private long ID;
     private String fname;
     private String lname;
@@ -26,6 +20,9 @@ public class Patient implements Serializable{
     private String pass;
     private String address;
     private String lang;
+    private String hashcode;
+    private String status;
+    private Integer attempt;
 
     public Patient() {
     }
@@ -105,4 +102,27 @@ public class Patient implements Serializable{
         this.lang = lang;
     }
 
+    public String getHashcode() {
+        return hashcode;
+    }
+
+    public void setHashcode(String hashcode) {
+        this.hashcode = hashcode;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Integer getAttempt() {
+        return attempt;
+    }
+
+    public void setAttempt(Integer attempt) {
+        this.attempt = attempt;
+    }
 }

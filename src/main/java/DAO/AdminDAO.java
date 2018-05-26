@@ -20,7 +20,7 @@ import java.sql.SQLException;
 public class AdminDAO {
 
     // Check existing username
-    public boolean validateUser(String email) {
+    public static boolean isExistUser(String email) {
 
         String query = "SELECT * FROM admin WHERE email = ?";
 
@@ -43,7 +43,7 @@ public class AdminDAO {
     }
     
     // Insert account
-    public boolean insertUser(Admin admin) {
+    public static boolean insertUser(Admin admin) {
 
         String query = "INSERT INTO admin"
                 + "("
@@ -73,7 +73,7 @@ public class AdminDAO {
     }
     
     // Check login
-    public Admin login(String email) {
+    public static Admin getUserbyEmail(String email) {
         Admin admin = new Admin();
 
         String query = "SELECT * FROM admin WHERE email = ?";
@@ -102,7 +102,7 @@ public class AdminDAO {
     }
     
     // Update info
-    public void updateUser(Admin admin) {
+    public static void updateUser(Admin admin) {
         String query = "UPDATE admin"
                 + " SET "
                 + "email = ? ,"
@@ -117,6 +117,70 @@ public class AdminDAO {
             ps.setString(1, admin.getEmail());
             ps.setString(2, admin.getPass());
             ps.setInt(3, admin.getID());
+            ps.executeUpdate();
+
+            connection.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+    
+        public void activateReview(int did) {
+
+        String query = "UPDATE doctorreview SET allowReview = 1 WHERE d_id= ?;";
+        // create a mysql database connection
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareCall(query);
+            ps.setInt(1, did);
+
+            ps.executeUpdate();
+
+            connection.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void deactivateReview(int did) {
+
+        String query = "UPDATE doctorreview SET allowReview = 0 WHERE d_id= ?;";
+        // create a mysql database connection
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareCall(query);
+            ps.setInt(1, did);
+
+            ps.executeUpdate();
+
+            connection.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void removeDoctor(int did) {
+
+        String query1 = "DELETE FROM doctorreview WHERE d_id=" + did + ";";
+        String query2 = "DELETE FROM doctor WHERE did=" + did + ";";
+        Connection connection = Database.getConnection();
+        
+        try {
+            PreparedStatement ps = connection.prepareCall(query1);
+            ps.setInt(1, did);
+            ps.executeUpdate();
+
+            connection.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+         try {
+            PreparedStatement ps = connection.prepareCall(query2);
+            ps.setInt(1, did);
             ps.executeUpdate();
 
             connection.close();
