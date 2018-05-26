@@ -73,15 +73,16 @@ public class RateDAO {
         return rate;
     }
 
-    public List<Rate> getAllRate() {
+    public List<Rate> getAllRate(int id) {
         List<Rate> list = new ArrayList<>();
-        String query = "SELECT * FROM rate ";
+        String query = "SELECT * FROM rate WHERE d_id = ?";
 
         // Connect to database
         Connection connection = Database.getConnection();
 
         try {
             PreparedStatement ps = connection.prepareCall(query);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {

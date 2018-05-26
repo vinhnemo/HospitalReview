@@ -36,6 +36,14 @@
         <servlet-name>PatientController</servlet-name>
         <servlet-class>Controller.PatientController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>controlBookmark</servlet-name>
+        <servlet-class>Controller.controlBookmark</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>activeReview</servlet-name>
+        <servlet-class>Controller.activeReview</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registration</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -72,6 +80,14 @@
     <servlet-mapping>
         <servlet-name>PatientController</servlet-name>
         <url-pattern>/patient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>controlBookmark</servlet-name>
+        <url-pattern>/controlBookmark</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>activeReview</servlet-name>
+        <url-pattern>/activeReview</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

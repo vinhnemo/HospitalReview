@@ -57,7 +57,7 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="/search.jsp"><fmt:message key="finddoc"/></a>
+                        <li class="menu-has-children menu-active"><a href="http://localhost:8080/doctor"><fmt:message key="finddoc"/></a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
@@ -127,7 +127,7 @@
                                 <input class="side-button2" type="submit" value="Bookmark"><hr>
                                 <%
                                     DoctorDAO doctorDAO = new DoctorDAO();
-                                    Doctor doctor = doctorDAO.getDoctor(1);
+                                    Doctor doctor = doctorDAO.getDoctor(2);
                                     if (doctor.getAllowReview() == 1) {%>  
 
                                 <div class="side-text">Your Rating:</div>

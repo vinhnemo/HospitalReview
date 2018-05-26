@@ -6,8 +6,12 @@
 package Controller;
 
 import DAO.RateDAO;
+import DTO.Comment;
+import DTO.Doctor;
+import DTO.Rate;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -23,6 +27,7 @@ import javax.servlet.http.HttpSession;
 public class RateController extends HttpServlet {
 
     private final RateDAO rateDAO = new RateDAO();
+    private Doctor doc;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -38,13 +43,22 @@ public class RateController extends HttpServlet {
         // Get action
         String action = request.getParameter("action");
         if (action == null) {
-            rd = sc.getRequestDispatcher("");
+            doc = (Doctor) session.getAttribute("prodoc");
+            int did = doc.getID();
+            List<Rate> listOfRate = rateDAO.getAllRate(did);
+            session.setAttribute("ratelist", listOfRate);
+            rd = sc.getRequestDispatcher("/viewdoctor.jsp");
             rd.forward(request, response);
         } else {
             if (action.equals("addRate")) {
+                doc = (Doctor) session.getAttribute("prodoc");
+                int did = doc.getID();
                 float rate = Float.parseFloat(request.getParameter("rate"));
-                int did = Integer.parseInt(request.getParameter("d_id"));
                 rateDAO.addRate(rate, did);
+                List<Rate> listOfRate = rateDAO.getAllRate(did);
+                session.setAttribute("ratelist", listOfRate);
+                rd = sc.getRequestDispatcher("/viewdoctor.jsp");
+                rd.forward(request, response);
             }
         }
     }

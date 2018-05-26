@@ -47,17 +47,16 @@
 
     <body>
 
-<<<<<<< HEAD
+
         <!--%
             Patient patient = null; Admin admin = null;
             PatientDAO patientDAO = new PatientDAO();
             AdminDAO adminDAO = new AdminDAO();
-=======
+        -->
 
         <%
             Patient patient = null;
             Admin admin = null;
->>>>>>> 63437f63f5ebc8c314e695f48f416b891e37dcce
 
             Cookie[] cookies = request.getCookies();
             if (cookies != null) {
@@ -74,7 +73,7 @@
             } else if (session.getAttribute("admin") != null) {
                 admin = (Admin) session.getAttribute("admin");
             }
-        %-->
+        %>
 
 
         <header id="header">
@@ -84,7 +83,7 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="/search.jsp"><fmt:message key="finddoc"/></a>
+                        <li class="menu-has-children menu-active"><a href="http://localhost:8080/doctor"><fmt:message key="finddoc"/></a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
@@ -105,19 +104,13 @@
                             </ul>
                         </li>
                         <li><a href="#contact"><fmt:message key="contact"/></a></li>
-<<<<<<< HEAD
-                            <!--% if (patient != null) {%-->
-                        <li class="menu"><a href="logout"><fmt:message key="signout"/></a></li>
-                            <!--% } else {%-->
-                        <li class="menu"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true" onclick="animeEffectIn()"><fmt:message key="signinup"/></a></li>
-                            <!--% }%-->
-=======
+
                         <% if (patient != null) {%>
                         <li class="menu"><a href="logout"><fmt:message key="signout"/></a></li>
-                        <% } else {%>
+                            <% } else {%>
                         <li class="menu"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true" onclick="animeEffectIn()"><fmt:message key="signinup"/></a></li>
-                        <% }%>
->>>>>>> 63437f63f5ebc8c314e695f48f416b891e37dcce
+                            <% }%>
+
                     </ul>
                 </nav>
             </div>
