@@ -47,6 +47,7 @@
 
     <body>
 
+<<<<<<< HEAD
         <!-- < %
              Patient patient = null; Admin admin = null;
              PatientDAO patientDAO = new PatientDAO();
@@ -68,6 +69,29 @@
                  admin = (Admin) session.getAttribute("admin");
              }
          %> -->
+=======
+        <%
+            Patient patient = null; Admin admin = null;
+            PatientDAO patientDAO = new PatientDAO();
+            AdminDAO adminDAO = new AdminDAO();
+
+            Cookie[] cookies = request.getCookies();
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    if (cookie.getName().equals("u_email")) {
+                        PatientDAO.getUserbyEmail(cookie.getValue());
+                    } else if (cookie.getName().equals("a_email")) {
+                        AdminDAO.getUserbyEmail(cookie.getValue());
+                    }
+                }
+            }
+            if (session.getAttribute("patient") != null) {
+                patient = (Patient) session.getAttribute("patient");
+            } else if (session.getAttribute("admin") != null) {
+                admin = (Admin) session.getAttribute("admin");
+            }
+        %>
+>>>>>>> 260602db44949e20f45216229299388e705cd1fd
 
         <header id="header">
             <div class="container-fluid">

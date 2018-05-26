@@ -5,9 +5,9 @@
  */
 package Controller;
 
-import Database.PasswordHashing;
 import DAO.PatientDAO;
 import DTO.Patient;
+import Database.BCrypt;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -96,7 +96,7 @@ public class PatientController extends HttpServlet {
             } else {
                 patient.setFname(fname);
                 patient.setLname(lname);
-                patient.setPass(PasswordHashing.hashPassword(pass));
+                patient.setPass(BCrypt.hashpw(pass,BCrypt.gensalt()));
                 patient.setEmail(email);
                 patient.setAddress(address);
                 patient.setSex(sex);

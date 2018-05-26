@@ -7,7 +7,7 @@ package Controller;
 
 import DTO.Patient;
 import DAO.PatientDAO;
-import Database.PasswordHashing;
+import Database.BCrypt;
 
 import java.io.IOException;
 import javax.servlet.*;
