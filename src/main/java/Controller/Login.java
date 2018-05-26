@@ -58,7 +58,9 @@ public class Login extends HttpServlet {
                 error = "3";
             } else {
                 patient = patientDAO.getUserbyEmail(email);
-
+                if (patient.getStatus().equals("unactive") || patient.getStatus().equals("forgot")) {
+                    error = "4";
+                }
                 if (patient.getPass() == null) {
                     error = "1";
                     adminLogin = true;

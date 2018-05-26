@@ -34,7 +34,7 @@ public class Database {
 //        System.out.println(sdf.format(date));
 
 
-        String hash = Util.encrypt(Util.generateRandomStr());
+        String hash = Util.encrypt(Util.generateRandomStr(8));
         String hashed = BCrypt.hashpw(hash, Info.HASH_SALT);
         if (hashed.equals(BCrypt.hashpw(hash, Info.HASH_SALT))) {
             System.out.println(hashed);

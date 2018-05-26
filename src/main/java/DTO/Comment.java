@@ -11,9 +11,9 @@ package DTO;
  */
 public class Comment {
 
-    private int ID;
+    private Integer ID;
     private String comment;
-    private int dID;
+    private Integer dID;
 
     public Comment(int ID, String comment, int dID) {
         this.ID = ID;

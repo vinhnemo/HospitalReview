@@ -9,16 +9,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="language" value="${param.language}" scope="session" />
-<%String language = request.getParameter("language"), english = "", french = "", vietnamese = "";
+<%String language = request.getParameter("language"), english = "", vietnamese = "";
     if (language == null) {
         language = "en_US";
     }
     if (language.equals("en_US")) {
         language = "English";
         english = "active";
-    } else if (language.equals("fr_FR")) {
-        language = "Français";
-        french = "active";
     } else if (language.equals("vi_VN")) {
         language = "Tiếng Việt";
         vietnamese = "active";
@@ -47,9 +44,17 @@
     </head> 
 
     <body>
+        <%
+            Integer pId = (Integer)session.getAttribute("userId");
+            if (pId == null) {
+                response.sendRedirect("forgotPassword");
+            }
+        %>
+        
+        
         <main id="main">
             <div class="login-dark">
-                <form class="reset" action="login" method="post">
+                <form class="reset" action="#" method="post" id="reset-form">
                     <h3> New Password </h3>
                     <div class="i3"><i class="icon ion-ios-unlocked-outline"></i></div>
                     <div class="text">Enter your new password :</div>
@@ -67,6 +72,33 @@
         <script src="lib/jquery/jquery-migrate.min.js"></script>
         <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="js/main.js"></script>
+        
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var timer;
+
+                $('#reset-form').submit(function (event) {
+                    event.preventDefault();
+
+                    var pass1 = $('#pass1').val();
+                    var pass2 = $('#pass2').val();
+                    var userId = <%=pId%>;
+
+                    clearTimeout(timer);
+                    $('#user-result').html('<img src="img/loading.gif" />');
+                    timer = setTimeout(function () {
+                        $.post('forgotPass', {'password': pass1, 'password2': pass2, 'userId': userId, 'action': "resetPass"}, function (data) {
+                            var msg = JSON.parse(data);
+                            if (msg.code === 0) {
+                                $("#user-result").html("<i class=\"fa fa-close\" style=\"color: red\"></i>" + msg.text);
+                            } else {
+                                $("#user-result").html("<i class=\"fa fa-check\" style=\"color: green\"></i>" + msg.text);
+                            }
+                        });
+                    }, 1000);
+                });
+            });
+        </script>
     </body>
 </html>
 

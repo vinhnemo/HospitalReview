@@ -5,9 +5,7 @@ import DTO.Patient;
 import DAO.AdminDAO;
 import DAO.PatientDAO;
 import Database.BCrypt;
-import Util.Info;
-import Util.Mail;
-import Util.Util;
+import Util.*;
 
 import java.io.IOException;
 import javax.mail.MessagingException;
@@ -34,10 +32,25 @@ public class Registration extends HttpServlet {
 
         // Get action
         String action = request.getParameter("action");
+        
+        // Message object
+        Message msg = new Message();
 
         if (action == null) {
             rd = sc.getRequestDispatcher("/register.jsp");
             rd.forward(request, response);
+        } else if (action.equals("Validate")) {
+            String email = request.getParameter("email");
+            if (PatientDAO.isExistUser(email)) {
+                msg.setCode(0);
+                msg.setText("Email has already registered");
+            } else {
+                msg.setCode(1);
+                msg.setText("Email is available");
+            }
+            
+            response.getWriter().write(Util.toJson(msg));
+            
         } else if (action.equals("Signup Now")) {
             // Get Parameter in small form
             String fname = request.getParameter("fname");
@@ -96,7 +109,7 @@ public class Registration extends HttpServlet {
                     p.setStatus("unactive");
 
                     // generate hash code for email verification
-                    String hash = Util.encrypt(Util.generateRandomStr());
+                    String hash = Util.generateRandomStr(8);
                     p.setHashcode(BCrypt.hashpw(hash, Info.HASH_SALT));
 
                     try {
@@ -108,7 +121,7 @@ public class Registration extends HttpServlet {
                             Mail.sendEmailRegistrationLink(id, email, hash);
 
                             // send output to user
-                            response.getWriter().write("Register successfully! Please verify your email");
+                            response.getWriter().write("Register successfully! We have sent the verification link to your email.");
                         } else {
                             response.getWriter().write("Your email has already registered.");
                         }
