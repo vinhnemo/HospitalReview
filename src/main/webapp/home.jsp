@@ -47,18 +47,25 @@
 
     <body>
 
+<<<<<<< HEAD
         <!--%
             Patient patient = null; Admin admin = null;
             PatientDAO patientDAO = new PatientDAO();
             AdminDAO adminDAO = new AdminDAO();
+=======
+
+        <%
+            Patient patient = null;
+            Admin admin = null;
+>>>>>>> 63437f63f5ebc8c314e695f48f416b891e37dcce
 
             Cookie[] cookies = request.getCookies();
             if (cookies != null) {
                 for (Cookie cookie : cookies) {
                     if (cookie.getName().equals("u_email")) {
-                        patient = patientDAO.login(cookie.getValue());
+                        patient = PatientDAO.getUserbyEmail(cookie.getValue());
                     } else if (cookie.getName().equals("a_email")) {
-                        admin = adminDAO.login(cookie.getValue());
+                        admin = AdminDAO.getUserbyEmail(cookie.getValue());
                     }
                 }
             }
@@ -68,6 +75,7 @@
                 admin = (Admin) session.getAttribute("admin");
             }
         %-->
+
 
         <header id="header">
             <div class="container-fluid">
@@ -97,11 +105,19 @@
                             </ul>
                         </li>
                         <li><a href="#contact"><fmt:message key="contact"/></a></li>
+<<<<<<< HEAD
                             <!--% if (patient != null) {%-->
                         <li class="menu"><a href="logout"><fmt:message key="signout"/></a></li>
                             <!--% } else {%-->
                         <li class="menu"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true" onclick="animeEffectIn()"><fmt:message key="signinup"/></a></li>
                             <!--% }%-->
+=======
+                        <% if (patient != null) {%>
+                        <li class="menu"><a href="logout"><fmt:message key="signout"/></a></li>
+                        <% } else {%>
+                        <li class="menu"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true" onclick="animeEffectIn()"><fmt:message key="signinup"/></a></li>
+                        <% }%>
+>>>>>>> 63437f63f5ebc8c314e695f48f416b891e37dcce
                     </ul>
                 </nav>
             </div>
@@ -124,13 +140,13 @@
                                     <a href="home.jsp" class="logo">Doctor <span>STRANGE</span></a>
 
                                     <div class="heading">
-                                        <h2 class="effectAnime"><span id="heading">Sign Up</span></h2>
+                                        <h2 class="effectAnime"><span id="heading"><fmt:message key="signup"/></span></h2>
                                     </div>
 
                                     <div class="success-msg">
                                         <p>Great! You have logged in successfully.</p>
-                                        <div class="success-btn"><a href="patient" class="profile">Your Profile</a></div>
-                                        <div class="success-btn"><a href="home.jsp" class="btn-info">Back to Homepage</a></div>
+                                        <div class="success-btn"><a href="patient" class="profile"><fmt:message key="yourprofile"/></a></div>
+                                        <div class="success-btn"><a href="home.jsp" class="btn-info"><fmt:message key="backtohomepage"/></a></div>
                                     </div>
                                 </div>
 
@@ -144,23 +160,23 @@
                                             <span id="user-result" style="color: red"></span>
 
                                             <div class="form-group">
-                                                <label for="email">Email</label>
+                                                <label for="email"><fmt:message key="email"/></label>
                                                 <input type="email" name="email" id="email" required>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="password">Password</label>
+                                                <label for="password"><fmt:message key="password"/></label>
                                                 <input type="password" name="password" id="password" required>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="remember">Remember me?</label>
+                                                <label for="remember"><fmt:message key="rememberme"/></label>
                                                 <input type="checkbox" name="remember" id="remember" value="yes">
                                             </div>
 
                                             <div class="CTA">
                                                 <input type="submit" value="Login" name="action" id="login">
-                                                <a href="#" class="switch" id="registersw">I'm New</a>
+                                                <a href="#" class="switch" id="registersw"><fmt:message key="imnew"/></a>
                                             </div>
                                         </form>
                                     </div><!-- End Login Form -->
@@ -171,32 +187,32 @@
                                         <form class="signup-form" action="register" method="post">
 
                                             <div class="form-group">
-                                                <label for="fname">First Name</label>
+                                                <label for="fname"><fmt:message key="firstname"/></label>
                                                 <input type="text" name="fname" id="fname" class="fname" required>
                                                 <span class="error"></span>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="lname">Last Name</label>
+                                                <label for="lname"><fmt:message key="lastname"/></label>
                                                 <input type="text" name="lname" id="lname" class="lname" required>
                                                 <span class="error"></span>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="email">Email</label>
+                                                <label for="email"><fmt:message key="email"/></label>
                                                 <input type="email" name="email" id="email" class="email" required>
                                                 <span class="error"></span>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="address">Address</label>
+                                                <label for="address"><fmt:message key="address"/></label>
                                                 <input type="text" name="address" id="address" class="address" required>
                                                 <span class="error"></span>
                                             </div>
 
                                             <div class="CTA">
                                                 <input type="submit" value="Signup Now" id="submit" name="action">
-                                                <a href="#" class="switch" id="loginsw">I have an account</a>
+                                                <a href="#" class="switch" id="loginsw"><fmt:message key="ihaveanaccount"/></a>
                                             </div>
                                         </form>
                                     </div><!-- End Signup Form -->
@@ -224,7 +240,7 @@
                                 <div class="carousel-content">
                                     <h2>All doctors you need are here</h2>
                                     <p>Doctor Strange provide a new solution to connect to all hospitals and doctors you need. What makes us better, makes you better.</p>
-                                    <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
+                                    <a href="#featured-services" class="btn-get-started scrollto"><fmt:message key="getstarted"/></a>
                                 </div>
                             </div>
                         </div>
@@ -297,7 +313,7 @@
                                     <img src="img/about-mission.jpg" alt="" class="img-fluid">
                                     <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
                                 </div>
-                                <h2 class="title"><a href="#">Our Mission</a></h2>
+                                <h2 class="title"><a href="#"><fmt:message key="mission"/></a></h2>
                                 <p>
                                     Provide the fastest way to connect patient to doctor
                                 </p>
@@ -310,7 +326,7 @@
                                     <img src="img/about-plan.jpg" alt="" class="img-fluid">
                                     <div class="icon"><i class="ion-ios-list-outline"></i></div>
                                 </div>
-                                <h2 class="title"><a href="#">Our Plan</a></h2>
+                                <h2 class="title"><a href="#"><fmt:message key="plan"/></a></h2>
                                 <p>
                                     Cooperate with 20 hospitals 1000 doctors in 2020
                                 </p>
@@ -323,7 +339,7 @@
                                     <img src="img/about-vision.jpg" alt="" class="img-fluid">
                                     <div class="icon"><i class="ion-ios-eye-outline"></i></div>
                                 </div>
-                                <h2 class="title"><a href="#">Our Vision</a></h2>
+                                <h2 class="title"><a href="#"><fmt:message key="vision"/></a></h2>
                                 <p>
                                     Beoome the biggest healthcare ecosystem in Southeast Asia in 2020
                                 </p>
@@ -350,32 +366,32 @@
 
                         <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
                             <div class="icon"><i class="ion-ios-analytics-outline"></i></div>
-                            <h4 class="title"><a href="">Find Your Doctor</a></h4>
+                            <h4 class="title"><a href=""><fmt:message key="finddoc"/></a></h4>
                             <p class="description">Rap tao giết mày k cần dao</p>
                         </div>
                         <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
                             <div class="icon"><i class="ion-ios-bookmarks-outline"></i></div>
-                            <h4 class="title"><a href="">Become Our Member</a></h4>
+                            <h4 class="title"><a href=""><fmt:message key="becomeamember"/></a></h4>
                             <p class="description">Trong bài Real rap 2x2=4 thêm 3+3=6 ngày hôm nay</p>
                         </div>
                         <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
                             <div class="icon"><i class="ion-ios-paper-outline"></i></div>
-                            <h4 class="title"><a href="">Bookmark Your Doctor</a></h4>
+                            <h4 class="title"><a href=""><fmt:message key="bookmarkyourdoctor"/></a></h4>
                             <p class="description">Mở miệng là phản động, 3 sọc</p>
                         </div>
                         <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
                             <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
-                            <h4 class="title"><a href="">Make An Appointment</a></h4>
+                            <h4 class="title"><a href=""><fmt:message key="setanappointment"/></a></h4>
                             <p class="description">Mày coi lại mày đi thằng con bà Ngọc</p>
                         </div>
                         <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
                             <div class="icon"><i class="ion-ios-barcode-outline"></i></div>
-                            <h4 class="title"><a href="">Get Health Information</a></h4>
+                            <h4 class="title"><a href=""><fmt:message key="gethealthinformation"/></a></h4>
                             <p class="description">Trời trên đầu mày không phải Việt Bắc, trời trên đầu mày là Việt Nam</p>
                         </div>
                         <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
                             <div class="icon"><i class="ion-ios-people-outline"></i></div>
-                            <h4 class="title"><a href="">Something Else</a></h4>
+                            <h4 class="title"><a href=""><fmt:message key="community"/></a></h4>
                             <p class="description">Chạy ngay đi trước khi mọi chuyện dần tồi tệ hơn</p>
                         </div>
 
@@ -398,22 +414,22 @@
 
                         <div class="col-lg-3 col-6 text-center">
                             <span data-toggle="counter-up">1</span>
-                            <p>Health Service</p>
+                            <p><fmt:message key="healthservice"/></p>
                         </div>
 
                         <div class="col-lg-3 col-6 text-center">
                             <span data-toggle="counter-up">40</span>
-                            <p>Medical Specialities</p>
+                            <p><fmt:message key="medicalspecialities"/></p>
                         </div>
 
                         <div class="col-lg-3 col-6 text-center">
                             <span data-toggle="counter-up">696</span>
-                            <p>Number of Doctor</p>
+                            <p><fmt:message key="numberofdoctor"/></p>
                         </div>
 
                         <div class="col-lg-3 col-6 text-center">
                             <span data-toggle="counter-up">24</span>
-                            <p>Hours a Day</p>
+                            <p><fmt:message key="hoursaday"/></p>
                         </div>
                     </div>
 
@@ -586,23 +602,23 @@
                         <form action="" method="post" role="form" class="contactForm">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="<fmt:message key="name"/>" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
                                     <div class="validation"></div>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="<fmt:message key="email"/>" data-rule="email" data-msg="Please enter a valid email" />
                                     <div class="validation"></div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                                <input type="text" class="form-control" name="subject" id="subject" placeholder="<fmt:message key="subject"/>" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
                                 <div class="validation"></div>
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="<fmt:message key="message"/>"></textarea>
                                 <div class="validation"></div>
                             </div>
-                            <div class="text-center"><button type="submit">Send Message</button></div>
+                            <div class="text-center"><button type="submit"><fmt:message key="sendmessage"/></button></div>
                         </form>
                     </div>
 
