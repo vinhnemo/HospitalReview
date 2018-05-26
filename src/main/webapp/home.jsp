@@ -47,7 +47,7 @@
 
     <body>
 
-<<<<<<< HEAD
+
         <!-- < %
              Patient patient = null; Admin admin = null;
              PatientDAO patientDAO = new PatientDAO();
@@ -69,7 +69,7 @@
                  admin = (Admin) session.getAttribute("admin");
              }
          %> -->
-=======
+
         <%
             Patient patient = null; Admin admin = null;
             PatientDAO patientDAO = new PatientDAO();
@@ -91,7 +91,7 @@
                 admin = (Admin) session.getAttribute("admin");
             }
         %>
->>>>>>> 260602db44949e20f45216229299388e705cd1fd
+
 
         <header id="header">
             <div class="container-fluid">
