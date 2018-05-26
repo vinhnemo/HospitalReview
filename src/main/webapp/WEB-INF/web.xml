@@ -38,11 +38,11 @@
     </servlet>
     <servlet>
         <servlet-name>controlBookmark</servlet-name>
-        <servlet-class>bookmark.controlBookmark</servlet-class>
+        <servlet-class>Controller.controlBookmark</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>activeReview</servlet-name>
-        <servlet-class>bookmark.activeReview</servlet-class>
+        <servlet-class>Controller.activeReview</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Registration</servlet-name>
