@@ -20,7 +20,8 @@ public class PatientDAO {
 
     // Check existing email
     public static boolean isExistUser(String email) {
-
+        boolean checked = false;
+        
         String query = "SELECT * FROM patient WHERE email = ?;";
 
         // Connect to database
@@ -31,14 +32,15 @@ public class PatientDAO {
             ps.setString(1, email);
             ResultSet rs = ps.executeQuery();
 
-            while (rs.next()) {
-                connection.close();
-                return true;
-            }
+            if (rs != null)
+                while (rs.next()) {
+                    checked = true;
+                }
+            connection.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return false;
+        return checked;
     }
 
     // Insert account

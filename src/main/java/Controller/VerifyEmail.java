@@ -34,81 +34,85 @@ public class VerifyEmail extends HttpServlet {
         String action = request.getParameter("action");
         if (action == null) {
             response.sendRedirect("/404.html");
-            
+
         } else {
             Integer pId = Integer.parseInt(request.getParameter("userId"));
             String hash = BCrypt.hashpw(request.getParameter("key"), Info.HASH_SALT);
             Message message = new Message();
 
-            try {
+            // Verify with database
+            if (action.equals(Info.ACTIVATION) && PatientDAO.verifyEmail(pId, hash)) {
 
-                // Verify with database
-                if (action.equals(Info.ACTIVATION) && PatientDAO.verifyEmail(pId, hash)) {
+                Date now = new Date();  // Get time now
+                Date date = PatientDAO.getDatefromToken(pId, hash); // Get time store in database
 
-                    Date now = new Date();  // Get time now
-                    Date date = PatientDAO.getDatefromToken(pId, hash); // Get time store in database
+                // 30 mins expired
+                if (now.getTime() - date.getTime() <= 30L * 60 * 1000) {
 
-                    // 30 mins expired
-                    if (now.after(date) && (now.getTime() - date.getTime() <= 30L * 60 * 1000)) {
-
-                        // Update status as active
-                        PatientDAO.updateStatus(pId, "active");
-                        PatientDAO.updateToken(pId, null);
-                        message.setCode(-1);
-                        message.setText("Email verified successfully. Please <a href=\"login.jsp\">log in</a> with your account to continue");
-
-                    } else {
-                        message.setCode(-1);
-                        message.setText("The link has expired. Click <a href=\"home.jsp\">here</a> to continue");
-                    }
-
-                } else if (action.equals(Info.RESET_PASSWORD) && PatientDAO.verifyEmail(pId, hash)) {
-                    Date now = new Date();  // Get time now
-                    Date date = PatientDAO.getDatefromToken(pId, hash); // Get time store in database
-
-                    // 30 mins expired
-                    if (now.after(date) && (now.getTime() - date.getTime() <= 30L * 60 * 1000)) {
-
-                        // Update status as active
-                        PatientDAO.updateStatus(pId, "active");
-                        PatientDAO.updateToken(pId, null);
-
-                        // Send something
-                        request.setAttribute("userId", pId);
-                        request.getRequestDispatcher("/resetpass.jsp").forward(request, response);
-                    } else {
-                        message.setCode(-1);
-                        message.setText("The link has expired. Click <a href=\"home.jsp\">here</a> to continue");
-                    }
+                    // Update status as active
+                    PatientDAO.updateStatus(pId, "active");
+                    PatientDAO.updateToken(pId, null);
+                    message.setCode(0);
+                    message.setText("Email has been verified successfully");
 
                 } else {
-                    // Increase attempts
-                    int attempts = PatientDAO.increaseAttempt(pId);
-                    if (attempts == 20) {
-
-                        // Reset verification code if attempts = 20
-                        String hashcode = Util.generateRandomStr(8);
-                        PatientDAO.updateToken(pId, BCrypt.hashpw(hashcode, Info.HASH_SALT));
-                        Patient p = PatientDAO.getPatient(pId);
-                        if (action.equals(Info.ACTIVATION)) {
-                            Mail.sendEmailRegistrationLink(pId, p.getEmail(), hashcode);
-                        }
-                        if (action.equals(Info.RESET_PASSWORD)) {
-                            Mail.sendResetPasswordLink(pId, p.getEmail(), hashcode);
-                        }
-                        message.setCode(-1);
-                        message.setText("20 times Wrong Email Validation Input Given. So we are sending a new activation link to your Email");
-                    } else {
-                        message.setCode(-1);
-                        message.setText("There was something wrong with the link. Please try again later");
-                    }
+                    message.setCode(-1);
+                    message.setText("The link has expired (more than 30 minutes)");
+                    increaseAttempt(action, pId, message);
                 }
-                
-                response.getWriter().write(message.getText());
 
-            } catch (Exception e) {
-                e.printStackTrace();
+            } else if (action.equals(Info.RESET_PASSWORD) && PatientDAO.verifyEmail(pId, hash)) {
+                Date now = new Date();  // Get time now
+                Date date = PatientDAO.getDatefromToken(pId, hash); // Get time store in database
+
+                // 30 mins expired
+                if (now.getTime() - date.getTime() <= 30L * 60 * 1000) {
+
+                    // Update status as active
+                    PatientDAO.updateStatus(pId, "active");
+                    PatientDAO.updateToken(pId, null);
+
+                    // Send something
+                    request.setAttribute("userId", pId);
+                    request.getRequestDispatcher("/resetpass.jsp").forward(request, response);
+                } else {
+                    message.setCode(-1);
+                    message.setText("The link has expired (more than 30 minutes)");
+                    increaseAttempt(action, pId, message);
+                }
+
+            } else {
+                increaseAttempt(action, pId, message);
             }
+
+            request.setAttribute("message", Util.toJson(message));
+            request.getServletContext().getRequestDispatcher("/forwardEverything.jsp").forward(request, response);
+
+        }
+    }
+
+    private static void increaseAttempt(String action, int pId, Message message) {
+        try {
+            // Increase attempts
+            int attempts = PatientDAO.increaseAttempt(pId);
+            if (attempts == 20) {
+
+                // Reset verification code if attempts = 20
+                String hashcode = Util.generateRandomStr(8);
+                PatientDAO.updateToken(pId, BCrypt.hashpw(hashcode, Info.HASH_SALT));
+                Patient p = PatientDAO.getPatient(pId);
+                if (action.equals(Info.ACTIVATION)) {
+                    Mail.sendEmailRegistrationLink(pId, p.getEmail(), hashcode);
+                }
+                if (action.equals(Info.RESET_PASSWORD)) {
+                    Mail.sendResetPasswordLink(pId, p.getEmail(), hashcode);
+                }
+                message.setCode(-1);
+                message.setText("20 times Wrong Email Validation Input Given. So we are sending a new activation link to your Email");
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

@@ -8,7 +8,6 @@ import Database.BCrypt;
 import Util.*;
 
 import java.io.IOException;
-import java.util.logging.Logger;
 import javax.mail.MessagingException;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -21,9 +20,6 @@ public class Registration extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        // Logger
-        Logger log = Logger.getLogger(Registration.class.getName());
         
         // Call Servlet Context
         ServletContext sc = getServletContext();
@@ -54,7 +50,6 @@ public class Registration extends HttpServlet {
                 msg.setText("Email is available");
             }
             
-            log.warning(Util.toJson(msg));
             response.getWriter().write(Util.toJson(msg));
 
         } else if (action.equals("Signup Now")) {
@@ -126,7 +121,6 @@ public class Registration extends HttpServlet {
                             // send output to user
                             msg.setCode(0);
                             msg.setText("Register successfully! We have sent the verification link to your email.");
-                            log.warning("Successful!");
                         } else {
                             msg.setCode(-1);
                             msg.setText("Your email has already registered.");
@@ -170,7 +164,6 @@ public class Registration extends HttpServlet {
                 }
             }
             
-            log.warning(Util.toJson(msg));
             response.getWriter().write(Util.toJson(msg));
         }
     }
