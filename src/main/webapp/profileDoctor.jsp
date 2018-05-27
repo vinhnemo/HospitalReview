@@ -53,11 +53,11 @@
         <header id="header">
             <div class="container-fluid">
                 <div id="logo" class="pull-left">
-                   <h1><a href="home.jsp" class="scrollto">Doctor STRANGE</a></h1>
+                    <h1><a href="home.jsp" class="scrollto">Doctor STRANGE</a></h1>
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="http://localhost:8080/doctor"><fmt:message key="finddoc"/></a>
+                        <li class="menu-has-children menu-active"><a href="/search.jsp"><fmt:message key="finddoc"/></a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
@@ -124,10 +124,15 @@
                                 <div class="side-text">Make an Appointment:</div>
                                 <input class="side-button" type="submit" value="Make Appointment"><hr>
                                 <div class="side-text">Add to Bookmark:</div>
-                                <input class="side-button2" type="submit" value="Bookmark"><hr>
+                                <form method="POST" action="controlBookmark">
+                                    <input type="hidden" name="pID" value="1">
+                                    <input type="hidden" name="dID" value="1">
+                                    <button class="side-button2" value="bookmarkdoctor" name="action">Bookmark </button><hr>
+                                </form>
+
                                 <%
                                     DoctorDAO doctorDAO = new DoctorDAO();
-                                    Doctor doctor = doctorDAO.getDoctor(2);
+                                    Doctor doctor = doctorDAO.getDoctor(1);
                                     if (doctor.getAllowReview() == 1) {%>  
 
                                 <div class="side-text">Your Rating:</div>

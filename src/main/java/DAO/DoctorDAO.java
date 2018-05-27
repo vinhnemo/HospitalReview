@@ -293,4 +293,36 @@ public class DoctorDAO {
         }
 
     }
+    
+        public ArrayList<Doctor> getAllDoctorBookmark(int pID) {
+        ArrayList<Doctor> list = new ArrayList<>();
+        String query = "SELECT doctor.d_id,d_fname,d_lname,d_gender,d_degree,d_insurance,d_speciality,d_hour,languages,p_id FROM doctor,bookmarkdoctor WHERE p_id = '" + pID + "' AND doctor.d_id = bookmarkdoctor.d_id;";
+
+        // Connect to database
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareCall(query);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Doctor doctor = new Doctor();
+                doctor.setID(rs.getInt("d_id"));
+                doctor.setFname(rs.getString("d_fname"));
+                doctor.setLname(rs.getString("d_lname"));
+                doctor.setSex(rs.getString("d_gender"));
+                doctor.setDegree(rs.getString("d_degree"));
+                doctor.setInsurance(rs.getBoolean("d_insurance"));
+                doctor.setSpeciality(rs.getString("d_speciality"));
+                doctor.setHours(rs.getString("d_hour"));
+                doctor.setLang(rs.getString("languages"));
+                list.add(doctor);
+            }
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DoctorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return list;
+    }
 }
