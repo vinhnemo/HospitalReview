@@ -10,13 +10,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="language" value="${param.language}" scope="session" />
-<%String language = request.getParameter("language"), english = "", vietnamese = "";
+<%String language = request.getParameter("language"), english = "", french = "", vietnamese = "";
     if (language == null) {
         language = "en_US";
     }
     if (language.equals("en_US")) {
         language = "English";
         english = "active";
+    } else if (language.equals("fr_FR")) {
+        language = "Français";
+        french = "active";
     } else if (language.equals("vi_VN")) {
         language = "Tiếng Việt";
         vietnamese = "active";
@@ -54,14 +57,14 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="/doctor"><fmt:message key="finddoc"/></a>
+                        <li class="menu-has-children menu-active"><a href="/search.jsp"><fmt:message key="finddoc"/></a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
                                         <form action="doctor" method="POST">
                                             <h3><fmt:message key="finddoc"/></h3>
-                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="<fmt:message key="searchdotorbyname"/>"/>                                 
-                                            <input class="dropdown-button" type="submit" name="action" value="Search Doctor">
+                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
+                                            <input class="dropdown-button" type="submit" value="Search Doctor">
                                         </form>
                                     </div>
                                 </li>
@@ -98,36 +101,41 @@
                                     </div>
                                     <div class="col-md-7 col-sm-10">
                                         <h3 class="name">Nguyen Van Sinh</h3>
-                                        <div class="doctor-text"> <fmt:message key="dob"/>: 11-01-1997<br> <fmt:message key="gender"/>: GAY </div>
+                                        <div class="doctor-text"> DOB: 11-01-1997<br> Gender: GAY </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="doctor-information">
-                                <div class="head">P<fmt:message key="personalinformation"/></div><br> 
+                                <div class="head">Personal Information</div><br> 
                                 <table>
-                                    <tr><td><div class="info"><fmt:message key="workingplace"/>: </div></td><td> <div class="info-text">Abc hospital</div></td></tr>
-                                    <tr><td><div class="info"><fmt:message key="speciality"/>: </div></td><td> <div class="info-text">Neurology</div></td></tr>
-                                    <tr><td><div class="info"><fmt:message key="specificspeciality"/>: </div></td><td> <div class="info-text">Crazy</div></td></tr>
-                                    <tr><td><div class="info"><fmt:message key="degree"/>: </div></td><td> <div class="info-text">Kintergarden</div></div></td></tr>
-                                    <tr><td><div class="info"><fmt:message key="insurance"/>: </div></td><td> <div class="info-text">Accepted</div></div></td></tr>
-                                    <tr><td><div class="info"><fmt:message key="language"/>: </div></td><td> <div class="info-text">English</div></div></td></tr>
-                                    <tr><td><div class="info"><fmt:message key="workhour"/>: </div></td><td> <div class="info-text">10AM-2PM</div></div></td></tr>
+                                    <tr><td><div class="info">Working Place: </div></td><td> <div class="info-text">Abc hospital</div></td></tr>
+                                    <tr><td><div class="info">Speciality: </div></td><td> <div class="info-text">Neurology</div></td></tr>
+                                    <tr><td><div class="info">Specific speciality: </div></td><td> <div class="info-text">Crazy</div></td></tr>
+                                    <tr><td><div class="info">Degree: </div></td><td> <div class="info-text">Kintergarden</div></div></td></tr>
+                                    <tr><td><div class="info">Insurance: </div></td><td> <div class="info-text">Accepted</div></div></td></tr>
+                                    <tr><td><div class="info">Language: </div></td><td> <div class="info-text">English</div></div></td></tr>
+                                    <tr><td><div class="info">Work-hour: </div></td><td> <div class="info-text">10AM-2PM</div></div></td></tr>
                                 </table>
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-4" style="background-color: #FFF;">  
                             <div class="side-doctor">
                                 <h4>Options</h4><hr>
-                                <div class="side-text"><fmt:message key="setanappointment"/>:</div>
+                                <div class="side-text">Make an Appointment:</div>
                                 <input class="side-button" type="submit" value="Make Appointment"><hr>
-                                <div class="side-text"><fmt:message key="addtobookmark"/>:</div>
-                                <input class="side-button2" type="submit" value="Bookmark"><hr>
+                                <div class="side-text">Add to Bookmark:</div>
+                                <form method="POST" action="controlBookmark">
+                                    <input type="hidden" name="pID" value="1">
+                                    <input type="hidden" name="dID" value="1">
+                                    <button class="side-button2" value="bookmarkdoctor" name="action">Bookmark </button><hr>
+                                </form>
+
                                 <%
                                     DoctorDAO doctorDAO = new DoctorDAO();
-                                    Doctor doctor = doctorDAO.getDoctor(2);
+                                    Doctor doctor = doctorDAO.getDoctor(1);
                                     if (doctor.getAllowReview() == 1) {%>  
 
-                                <div class="side-text"><fmt:message key="yourrating"/>:</div>
+                                <div class="side-text">Your Rating:</div>
                                 <section class='rating-widget'>
                                     <!-- Rating Stars Box -->
                                     <div class='rating-stars text-center'>
@@ -160,7 +168,7 @@
                     <div class="comment">
                         <div class="row">
                             <div class="col-md-10">
-                                <h3 class="page-header"><fmt:message key="comment"/></h3>
+                                <h3 class="page-header">Comments</h3>
                                 <hr>
                                 <section class="comment-list">
                                     <!-- for commentDAO blah blah { -->
@@ -289,7 +297,7 @@
                                 69 IU Street <br>
                                 Ho Chi Minh City, <br>
                                 Viet Nam<br>
-                                <strong><fmt:message key="phonenumber"/>:</strong> 911 <br>
+                                <strong>Phone:</strong> 911 <br>
                                 <strong>Email:</strong> abc@gmail.com<br>
                             </p>
 
