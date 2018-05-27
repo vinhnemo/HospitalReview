@@ -21,21 +21,21 @@ import java.util.logging.Logger;
 public class HospitalDAO {
 
     public boolean insertHospital(Hospital hospital) {
-        String query = "INSERT INTO hospital"
-                + "("
-                + "h_name,"
-                + "h_address,"
-                + "h_website,"
-                + "adname,"
-                + "ademail,"
+        String query = "INSERT INTO hospital "
+                + " ( "
+                + " h_name, "
+                + " h_address, "
+                + " h_website, "
+                + " adname, "
+                + " ademail, "
                 + " VALUES "
-                + "("
-                + "?,"
-                + "?,"
-                + "?,"
-                + "?,"
-                + "?);";
-
+                + " ( "
+                + " ? , "
+                + " ? , "
+                + " ? ,"
+                + " ? ,"
+                + " ? );";
+        System.out.println(query);
         // Connect to database
         Connection connection = Database.getConnection();
 
@@ -181,6 +181,34 @@ public class HospitalDAO {
         }
         return h;
     }
+    
+//    public Hospital getHospitalfromname(String name ) {
+//        String query = "SELECT * FROM hospital WHERE h_name = ?";
+//        Hospital h = new Hospital();
+//
+//        // Connect to database
+//        Connection connection = Database.getConnection();
+//
+//        try {
+//            PreparedStatement ps = connection.prepareCall(query);
+//            ps.setString(1, name);
+//            ResultSet rs = ps.executeQuery();
+//
+//            while (rs.next()) {
+//                h.setID(rs.getInt("h_id"));
+//                h.setName(rs.getString("h_name"));
+//                h.setAddress(rs.getString("h_address"));
+//                h.setWebsite(rs.getString("h_website"));
+//                h.setAdName(rs.getString("adname"));
+//                h.setAdEmail(rs.getString("ademail"));
+//            }
+//
+//            connection.close();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Hospital.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return h;
+//    }
 
     public boolean removeHospital(int id) {
         // Connect to database
