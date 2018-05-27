@@ -231,7 +231,7 @@
 //            int i = 1;
 //            HospitalDAO dao  = new HospitalDAO();
 //            hos = (Hospital) dao.getHospital(i); 
-            {
+
 
         %> 
 
@@ -272,36 +272,41 @@
 
                         </article>
 
-                        <% }%>
+
 
 
                         <!--edit-->
 
-                        <form action="hospital" method="post">
-                          <div class="form-group">
-                                <label for="name">Name: </label>
-                                <input type="name" class="form-control" id="name">
+                        <form action="hospital" method="POST">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="name" class="form-control" id="name" name="name" value="<%= hos.getName()%>">
                             </div>
                             <div class="form-group">
-                                <label for="address">Address:</label>
-                                <input type="address" class="form-control" id="address">
+                                <label for="address">Addres</label>
+                                <input type="address" class="form-control" id="address"  name="address" value="<%= hos.getAddress()%>">
                             </div>
                             <div class="form-group">
-                                <label for="website">Address:</label>
-                                <input type="website" class="form-control" id="website">
+                                <label for="website">Website</label>
+                                <input type="website" class="form-control" id="website" name="website" value="<%= hos.getWebsite()%>">
                             </div>
                             <div class="form-group">
-                                <label for="name">Hospital Admin Name :</label>
-                                <input type="name" class="form-control" id="adname">
+                                <label for="name">Hospital Admin Name</label>
+                                <input type="name" class="form-control" id="name" name="admin" value="<%= hos.getAdName()%>" >
                             </div>
                             <div class="form-group">
                                 <label for="email">Hospital Admin Email Address </label>
-                                <input type="email" class="form-control" id="email">
+                                <input type="email" class="form-control" id="email" name="email" value="<%= hos.getAdEmail()%>">
                             </div>
+                            <input type="hidden" name="id" value="<%= hos.getID()%>" >
                             <input type="hidden" name="action" value="update">
                             <button type="submit" class="btn btn-default">Edit</button>
                         </form>
-
+                        <form action="hospital" method="POST">
+                            <input type="hidden" name="id" value="<%= hos.getID()%>" >
+                            <input type="hidden" name="action" value="remove">
+                            <button type="submit" class="btn btn-default">Remove</button>
+                        </form>        
                         <!--end of edit-->
 
 

@@ -45,7 +45,7 @@ public class HospitalController extends HttpServlet {
             session.setAttribute("hospitallist", listofHospital);
             rd = sc.getRequestDispatcher("/showhospital.jsp");
             rd.forward(request, response);
-        } else if (action.equals("hospital")) {
+        } else if (action.equals("find")) {
             String search = escapeHtml4(request.getParameter("search"));
             HospitalDAO dao = new HospitalDAO();
             List<Hospital> listOfHospital = dao.searchHospital(search);
@@ -55,16 +55,35 @@ public class HospitalController extends HttpServlet {
         } else if (action.equals("viewprohos")) {
             int id = Integer.parseInt(request.getParameter("id_hospital"));
             HospitalDAO dao = new HospitalDAO();
-            Hospital hos ;
+            Hospital hos;
             hos = (Hospital) dao.getHospital(id);
             session.setAttribute("prohos", hos);
             rd = sc.getRequestDispatcher("/viewhospital.jsp");
             rd.forward(request, response);
+        } else if (action.equals("nearest")) {
+
+        } else if (action.equals("update")) {
+            String name = request.getParameter("name");
+            String address = request.getParameter("address");
+            String website = request.getParameter("website");
+            String admin = request.getParameter("admin");
+            String email = request.getParameter("email");
+            int id = Integer.parseInt(request.getParameter("id"));
+            HospitalDAO d = new HospitalDAO();
+            Hospital hosp = new Hospital(id, name, address, website, admin, email);
+            d.updateHospital(hosp);
+            response.sendRedirect("http://localhost:8080/hospital?action=viewprohos&id_hospital=" + id);
         }
-        
-        else if(action.equals("nearest"))
+        else if(action.equals("remove"))
         {
-            
+              int id = Integer.parseInt(request.getParameter("id"));
+              
+                  HospitalDAO d = new HospitalDAO();
+                  d.removeHospital(id);
+                 List<Hospital> listofHospital = hospitalDAO.getAllHospital();
+            session.setAttribute("hospitallist", listofHospital);
+            rd = sc.getRequestDispatcher("/showhospital.jsp");
+            rd.forward(request, response);
         }
 //else {
 //
