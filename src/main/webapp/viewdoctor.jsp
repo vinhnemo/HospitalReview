@@ -62,12 +62,11 @@
                                     <div class="dropdown-form">
                                         <form action="doctor" method="POST">
                                             <h3><fmt:message key="finddoc"/></h3>
-                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
+                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="<fmt:message key="searchdotorbyname"/>"/>                               
                                             <input class="dropdown-button" type="submit" name="action" value="Search Doctor">
                                         </form>
                                     </div>
-                                </li>
-                            </ul> 
+                                </li>                            </ul> 
                         </li>
                         <li><a href="#"><fmt:message key="appt"/></a></li>
                         <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
@@ -95,6 +94,10 @@
             CommentDAO commentDAO = new CommentDAO();
             List<Comment> listOfComment = commentDAO.getAllComment(doc.getID());
             PatientDAO patientDAO = new PatientDAO();
+            Patient patient = null;
+            if (session.getAttribute("patient") != null) {
+                patient = (Patient) session.getAttribute("patient");
+            }
         %> 
 
         <main id="main">
@@ -219,14 +222,18 @@
                         <!--comment box-->
 
                         <%
-                            if (doctor.getAllowReview() == 1) {%>  
+                            if (doctor.getAllowReview() == 1) {
+                                if (patient != null) {
+
+
+                        %>  
                         <div class="comment-box">
                             <div class="row" style="margin-top: 30px;">
                                 <div class="col-md-8">
                                     <div class="widget-area no-padding blank">
                                         <div class="status-upload">
                                             <form action="comment" method="POST">
-                                                <textarea placeholder="What are your opinion about him/her" ></textarea>
+                                                <textarea placeholder="What are your opinion about him/her" name="comment" ></textarea>
                                                 <button type="submit" class="btn btn-success green" name="action" value="addComment"><i class="fa fa-share"></i>Post</button>
                                             </form>
                                         </div><!-- Status Upload  -->
@@ -234,7 +241,8 @@
                                 </div>
                             </div>
                         </div>
-                        <% }%>
+                        <% }
+                            }%>
                     </div>
                 </div>
             </section>

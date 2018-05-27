@@ -1374,3 +1374,28 @@ body.mobile-nav-active #mobile-nav-toggle {
   font-size: 13px;
   color: #ddd;
 }
+
+.redirect {
+     background-color:#18d36e;
+     color:#fff;
+     margin-left: -15px;
+     margin-right: -15px;
+     font-size: 20px;
+     font-weight: 700;
+     padding: 10px; 
+}
+.thank {
+    font-size: 24px;
+    text-align: center;
+    padding-top: 50px;
+    font-weight: 600;
+}
+.auto-redirect a:hover{
+    text-decoration: underline;
+}
+.auto-redirect {
+    font-size: 16px;
+    text-align: center;
+    padding-top: 20px;
+}
+
