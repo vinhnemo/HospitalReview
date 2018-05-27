@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,7 +27,7 @@ public class PatientDAO {
         Connection connection = Database.getConnection();
 
         try {
-            PreparedStatement ps = connection.prepareCall(query);
+            PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, email);
             ResultSet rs = ps.executeQuery();
 
@@ -51,7 +52,8 @@ public class PatientDAO {
                 + "email,"
                 + "password,"
                 + "p_address,"
-                + "languages)"
+                + "languages,"
+                + "status)"
                 + " VALUES "
                 + "("
                 + "?,"
@@ -285,9 +287,14 @@ public class PatientDAO {
         return false;
     }
 
-    /* VERIFY EMAIL */
-    public static boolean verifyEmail(Integer id, String hash) {
-
+    /* 
+    *
+    * VERIFY EMAIL
+    *
+    */
+    public static boolean verifyEmail(int id, String hash) {
+        String date = "";
+        
         // Connect to database
         Connection connection = Database.getConnection();
 
@@ -306,14 +313,40 @@ public class PatientDAO {
                     return true;
                 }
             }
-            
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
     }
+    
+    public static Date getDatefromToken(int id, String hash) {
+        Date date = null;
+        
+        // Connect to database
+        Connection connection = Database.getConnection();
 
-    public static void updateStatus(Integer id, String status) {
+        try {
+            PreparedStatement ps = connection.prepareStatement("SELECT date "
+                    + "FROM patient p,token t "
+                    + "WHERE p.p_id = ? "
+                    + "AND p.p_id = t.p_id "
+                    + "AND t.key = ?;");
+            ps.setInt(1, id);
+            ps.setString(2, hash);
+            ResultSet rs = ps.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    date = rs.getTimestamp("date");
+                }
+            }
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+
+    public static void updateStatus(int id, String status) {
 
         // Connect to database
         Connection connection = Database.getConnection();
@@ -339,14 +372,16 @@ public class PatientDAO {
         try {
             PreparedStatement ps;
             if (hash == null) {
-                query = "DELETE FROM token WHERE p_id = ?;";
-                ps = connection.prepareStatement(query);
-                ps.setInt(1, id);
-            } else {
-                query = "UPDATE token SET key = ?, date = NOW() WHERE p_id = ?;";
+                query = "UPDATE token SET `key` = ? WHERE `p_id` = ?;";
                 ps = connection.prepareStatement(query);
                 ps.setString(1, hash);
                 ps.setInt(2, id);
+            } else {
+                query = "UPDATE token SET `key` = ?, `date` = NOW(), `attempt` = ? WHERE `p_id` = ?;";
+                ps = connection.prepareStatement(query);
+                ps.setString(1, hash);
+                ps.setInt(2, 0);
+                ps.setInt(3, id);
             }
 
             ps.executeUpdate();
@@ -358,16 +393,16 @@ public class PatientDAO {
     }
 
     public static void insertToken(Integer id, String hash) {
-        String query = "INSERT INTO token (p_id, key, attempt, date) VALUES (?,?,?,NOW());";
+        String query = "INSERT INTO token (`p_id`, `key`, `attempt`, `date`) VALUES (?,?,?,NOW());";
 
         // Connect to database
         Connection connection = Database.getConnection();
 
         try {
             PreparedStatement ps = connection.prepareStatement(query);
-            ps.setString(1, hash);
-            ps.setInt(2, 0);
-            ps.setInt(3, id);
+            ps.setInt(1, id);
+            ps.setString(2, hash);
+            ps.setInt(3, 0);
 
             ps.executeUpdate();
 
@@ -396,12 +431,29 @@ public class PatientDAO {
                     attempts = rs.getInt(1);
                 }
             }
-            
+
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return attempts;
+    }
+
+    public static void updatePassword(int id, String pass) {
+
+        // Connect to database
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareStatement("UPDATE patient SET password = ? WHERE p_id = ?");
+            ps.setString(1, pass);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

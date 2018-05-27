@@ -8,16 +8,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="language" value="${param.language}" scope="session" />
-<%String language = request.getParameter("language"), english = "", french = "", vietnamese = "";
+<%String language = request.getParameter("language"), english = "", vietnamese = "";
     if (language == null) {
         language = "en_US";
     }
     if (language.equals("en_US")) {
         language = "English";
         english = "active";
-    } else if (language.equals("fr_FR")) {
-        language = "Français";
-        french = "active";
     } else if (language.equals("vi_VN")) {
         language = "Tiếng Việt";
         vietnamese = "active";
@@ -55,14 +52,14 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                       <li class="menu-has-children menu-active"><a href="http://localhost:8080/doctor"><fmt:message key="finddoc"/></a>
+                        <li class="menu-has-children menu-active"><a href="/doctor"><fmt:message key="finddoc"/></a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
                                         <form action="doctor" method="POST">
                                             <h3><fmt:message key="finddoc"/></h3>
-                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
-                                            <input class="dropdown-button" type="submit" value="Search Doctor">
+                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="<fmt:message key="searchdotorbyname"/>"/>                                 
+                                            <input class="dropdown-button" type="submit" name="action" value="Search Doctor">
                                         </form>
                                     </div>
                                 </li>
@@ -93,23 +90,23 @@
                             <div class="doctor-name">
                                 <div class="row" style="margin-top: 40px;">             
                                     <div class="col-sm-10">
-                                        <h3 class="name">Bệnh viện: Phụ Sản trung ương blah blah</h3>
+                                        <h3 class="name"><fmt:message key="hospital"/>: Phụ Sản trung ương blah blah</h3>
                                     </div>
                                 </div>
                             </div>
                             <div class="doctor-information">
-                                <div class="head">Hospital Information</div><br> 
+                                <div class="head"><fmt:message key="hospitalinformation"/></div><br> 
                                 <table>
-                                    <tr><td><div class="info">Address: </div></td><td> <div class="info-text">dsadsadsadsa</div></td></tr>
-                                    <tr><td><div class="info">Director: </div></td><td> <div class="info-text">Neurology</div></td></tr>
-                                    <tr><td><div class="info">Website: </div></td><td> <div class="info-text">Crazy</div></td></tr>
+                                    <tr><td><div class="info"><fmt:message key="address"/>: </div></td><td> <div class="info-text">dsadsadsadsa</div></td></tr>
+                                    <tr><td><div class="info"><fmt:message key="director"/>: </div></td><td> <div class="info-text">Neurology</div></td></tr>
+                                    <tr><td><div class="info"><fmt:message key="website"/>: </div></td><td> <div class="info-text">Crazy</div></td></tr>
                                 </table>
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-4" style="background-color: #FFF;">  
                             <div class="side-doctor">
-                                <h4>Option</h4><hr>
-                                <div class="side-text">Add to Bookmark:</div>
+                                <h4><fmt:message key="option"/></h4><hr>
+                                <div class="side-text"><fmt:message key="addtobookmark"/>:</div>
                                 <input class="side-button2" type="submit" value="Bookmark Hospital">                                 
                             </div>
                         </div>

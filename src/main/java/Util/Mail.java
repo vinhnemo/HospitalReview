@@ -37,7 +37,7 @@ public class Mail {
             }
         });
 
-        String link = Info.VERIFY_SITE + "?action=activation&userId=" + id + "&key=" + hash;
+        String link = Info.VERIFY_SITE + "?action=" + Info.ACTIVATION + "&userId=" + id + "&key=" + hash;
 
         StringBuilder bodyText = new StringBuilder();
         bodyText.append("<div>")
@@ -58,7 +58,7 @@ public class Mail {
         Transport.send(message);
     }
 
-    public static void sendResetPasswordLink(String id, String email, String hash) throws AddressException, MessagingException {
+    public static void sendResetPasswordLink(int id, String email, String hash) throws AddressException, MessagingException {
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -74,7 +74,7 @@ public class Mail {
             }
         });
 
-        String link = Info.VERIFY_SITE + "?userId=" + id + "&key=" + hash;
+        String link = Info.VERIFY_SITE + "?action=" + Info.RESET_PASSWORD + "&userId=" + id + "&key=" + hash;
 
         StringBuilder bodyText = new StringBuilder();
         bodyText.append("<div>")

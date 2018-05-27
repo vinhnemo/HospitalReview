@@ -3,6 +3,9 @@
     Created on : May 24, 2018, 1:43:34 AM
     Author     : MSI
 --%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="DTO.Doctor"%>
+<%@page import="DAO.DoctorDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -55,7 +58,7 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="http://localhost:8080/doctor"><fmt:message key="finddoc"/></a>
+                        <li class="menu-has-children menu-active"><a href="/search.jsp"><fmt:message key="finddoc"/></a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
@@ -91,7 +94,6 @@
                         <ul class="sidebar-nav nav">
                             <li><h3>Options:</h3></li>
                             <li class="active"><a class="general" href="#general" data-toggle="tab"><i class="fa fa-gears"></i>General</a></li>
-                            <li><a class="appoint" href="#appointment" data-toggle="tab"><i class="fa fa-address-book-o"></i>Your Appointment</a></li>
                             <li><a class="edit" href="#edit" data-toggle="tab"><i class="fa fa-pencil"></i>Edit Your Profile</a></li>
                             <li><a class="change" href="#change" data-toggle="tab"><i class="fa fa-key"></i>Change password</a></li>
                             <li><a class="bookmark" href="#bookmark" data-toggle="tab"><i class="fa fa-bookmark"></i>Bookmarks</a></li>
@@ -187,11 +189,25 @@
                                                         <div class="user">
                                                             <div class="user-information">
                                                                 <div class="userhead">Your Favorite Doctor</div><br>
+                                                                <% ArrayList<Doctor> listOfDoctor = new DoctorDAO().getAllDoctorBookmark(1);
+
+                                                                    for (int i = 0; i < listOfDoctor.size(); i++) {%>
                                                                 <table>
                                                                     <!--use value=user profile trong db -->
-                                                                    <tr><td><a target="_blank" href="sdsad">.Nguyen Van Sinh </td><td><input class="remove" type="submit" value="Remove"> </td></tr>
-                                                                    <tr><td><a target="_blank" href="" >.Doctor Strange </td><td><input class="remove" type="submit" value="Remove"></td></tr>             
+                                                                    <tr>
+                                                                        <td><a target="_blank" href="sdsad"><%=listOfDoctor.get(i).getFname()%>&nbsp;<%=listOfDoctor.get(i).getLname()%> </td>
+                                                                        <td>
+                                                                            <form method="POST" action="controlBookmark">
+                                                                                <input type="hidden" name="pID" value="1">
+                                                                                <input type="hidden" name="dID" value="<%=listOfDoctor.get(i).getID()%>">
+                                                                                <button class="remove" value="removebookmarkdoctor" name="action">Remove </button><hr>
+                                                                            </form>
+
+                                                                        </td>
+                                                                    </tr>
+
                                                                 </table>
+                                                                <%}%>
                                                             </div>
                                                             <div class="user-information">
                                                                 <div class="userhead">Your Favorite Hospital</div><br>
@@ -200,23 +216,6 @@
                                                                     <tr><td><a target="_blank" href="" >.Crazy Hospital   </td><td><input class="remove" type="submit" value="Remove"> </td></tr>
                                                                     <tr><td><a target="_blank" href="" >.Bien Hoa Hospital </td><td><input class="remove" type="submit" value="Remove"></td></tr>             
                                                                 </table>                                                     
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane" id="appointment">
-                                            <div class="user-name">
-                                                <div class="row" style="">             
-                                                    <div class="col-md-12 col-sm-12">
-                                                        <div class="user">
-                                                            <div class="user-information">
-                                                                <div class="userhead">Your Appointment</div><br>
-                                                                <table>
-                                                                    <!--use value=user profile trong db -->
-                                                                    <tr><td><div class="userinfo">Date: 29-06-2018</div></td><td><div class="userinfo">Time: 8AM</div></td><td><div class="userinfo">Doctor: STRANGE</div></td></tr>             
-                                                                </table>
                                                             </div>
                                                         </div>
                                                     </div>

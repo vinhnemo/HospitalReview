@@ -50,9 +50,9 @@ public class Util {
         return null;
     }
     
-    public static String generateRandomStr() {
+    public static String generateRandomStr(int length) {
         char[] possibleCharacters = ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789").toCharArray();
-        String randomStr = RandomStringUtils.random(8, 0, possibleCharacters.length - 1, false, false, possibleCharacters, new SecureRandom());
+        String randomStr = RandomStringUtils.random(length, 0, possibleCharacters.length - 1, false, false, possibleCharacters, new SecureRandom());
 
         return randomStr;
     }
