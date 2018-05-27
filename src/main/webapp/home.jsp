@@ -187,6 +187,7 @@
                                                 <label for="email"><fmt:message key="email"/></label>
                                                 <input type="email" name="email" id="email" class="email" required>
                                                 <span class="error"></span>
+                                                <span id="isExist"></span>
                                             </div>
 
                                             <div class="form-group">

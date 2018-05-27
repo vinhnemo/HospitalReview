@@ -155,7 +155,7 @@
 
                     <small>You will receive an email to complete the registration and validation process.</small>
                     <small>Be sure to check your spam folders. </small>
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action" value="Signup">Sign Up</button></div>
+                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action" value="Signup" id="submit-btn">Sign Up</button></div>
                     <a href="login" class="forgot">Already have account? Sign in.</a>
                 </form>
             </div>

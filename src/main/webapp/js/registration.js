@@ -10,21 +10,7 @@ $(document).ready(function () {
     // Validate Email
     $("#email").focusout(function (e) {
         if (emailError === false) {
-            $('#status').hide();
-            $('#isExist').show();
-            clearTimeout(x_timer);
-            $("#isExist").html('<img src="img/loading.gif" />');
-            var email = $(this).val();
-            x_timer = setTimeout(function () {
-                $.post('register', {'email': email, 'action': "Validate"}, function (data) {
-                    var msg = JSON.parse(data);
-                    if (msg.code == -1) {
-                        $('#isExist').html("<i class=\"fa fa-close\" style=\"color: #ff6666\"> " + msg.text + "</i>");
-                    } else {
-                        $('#isExist').html("<i class=\"fa fa-check\" style=\"color: #66cc66\"> " + msg.text + "</i>");
-                    }
-                });
-            }, 1000);
+            isExist();
         }
     });
 
@@ -60,6 +46,25 @@ $(document).ready(function () {
             $('#status').html("<i class=\"fa fa-check\" style=\"color: #66cc66\"> Your email is correct</i>");
             emailError = false;
         }
+    }
+
+    function isExist() {
+        $('#status').hide();
+        $('#isExist').show();
+        clearTimeout(x_timer);
+        $("#isExist").html('<img src="img/loading.gif" />');
+        var email = $('#email').val();
+        x_timer = setTimeout(function () {
+            $.post('register', {'email': email, 'action': "Validate"}, function (data) {
+                var msg = JSON.parse(data);
+                if (msg.code == -1) {
+                    $('#isExist').html("<i class=\"fa fa-close\" style=\"color: #ff6666\"> " + msg.text + "</i>");
+                    emailError = true;
+                } else {
+                    $('#isExist').html("<i class=\"fa fa-check\" style=\"color: #66cc66\"> " + msg.text + "</i>");
+                }
+            });
+        }, 1000);
     }
 
     // Name
@@ -113,21 +118,28 @@ $(document).ready(function () {
         }
     });
 
-    $('#pass2').focusout(function (e) {
-        checkPassword();
-    });
+    $('#pass2').blur(checkPassword());
 
     function checkPassword() {
-        if ($('#pass1').val() !== $('#pass2').val()) {
-            $('#pass2').css({'background' : '#ff6666'});
+        if ($('#pass1').val().length === 0) {
+            passwordConfirm = true;
+        } else if ($('#pass1').val() !== $('#pass2').val()) {
+            $('#pass2').css({'background': '#ff6666'});
             $('#confirmMessage').html("<i class=\"fa fa-close\" style=\"color: #ff6666\"> Passwords do not match</i>");
             passwordConfirm = true;
         } else {
-            $('#pass2').css({'background' : '#66cc66'});
+            $('#pass2').css({'background': '#66cc66'});
             $('#confirmMessage').html("<i class=\"fa fa-check\" style=\"color: #66cc66\"> Passwords match!</i>");
             passwordConfirm = false;
         }
     }
+
+    // Submit
+    $('#submit-btn').hover(function (e) {
+        checkEmail();
+        if (emailError === false)
+            isExist();
+    });
 
     $('.register').submit(function (e) {
         e.preventDefault();
@@ -161,11 +173,14 @@ $(document).ready(function () {
                     var msg = JSON.parse(data);
                     //alert(msg.text);
                     if (msg.code == -1) {
-                        $('#user-result').show();
-                        $('#user-result').html("<i class=\"fa fa-close\" style=\"color: #ff6666\">" + msg.text + "</i>");
+                        $('#form-result').show();
+                        $('#form-result').html("<i class=\"fa fa-close\" style=\"color: #ff6666\">" + msg.text + "</i>");
                     } else {
-                        $('#user-result').hide();
+                        $('#form-result').hide();
                         alert(msg.text);
+                        setTimeout(function () {
+                            location.href = 'home.jsp';
+                        }, 2000);
                     }
                 });
             }, 1000);
