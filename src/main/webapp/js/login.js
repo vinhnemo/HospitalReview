@@ -22,10 +22,13 @@ $(document).ready(function () {
             $.post('login', {'email': email, 'password': pass, 'remember': remember, 'action': "Ajax Login"}, function (data) {
                 var msg = JSON.parse(data);
                 
-                if (msg.code === 0) {
-                    $('#user-result').html("<i class=\"fa fa-close\" style=\"color: red\">" + msg.text + "</i>");
+                if (msg.code == -1) {
+                    $('#user-result').show();
+                    $('#user-result').html("<i class=\"fa fa-close\" style=\"color: #ff6666\">" + msg.text + "</i>");
                 } else {
-                    $('#user-result').html("<i class=\"fa fa-check\" style=\"color: green\">" + msg.text + "</i>");
+                    $('#user-result').hide();
+                    alert(msg.text);
+                    setTimeout(function(){location.href='home.jsp';},2000);
                 }
             });
         }, 1000);

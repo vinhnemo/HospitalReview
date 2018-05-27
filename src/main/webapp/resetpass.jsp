@@ -100,7 +100,7 @@
                             } else {
                                 $('#user-result').hide();
                                 alert(msg.text);
-                                setTimeout(function(){location.href="home.jsp"} , 2000); 
+                                setTimeout(function(){location.href="home.jsp";} , 2000); 
                             }
                         });
                     }, 1000);

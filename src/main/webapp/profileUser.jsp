@@ -11,16 +11,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="language" value="${param.language}" scope="session" />
-<%String language = request.getParameter("language"), english = "", french = "", vietnamese = "";
+<%String language = request.getParameter("language"), english = "", vietnamese = "";
     if (language == null) {
         language = "en_US";
     }
     if (language.equals("en_US")) {
         language = "English";
         english = "active";
-    } else if (language.equals("fr_FR")) {
-        language = "Français";
-        french = "active";
     } else if (language.equals("vi_VN")) {
         language = "Tiếng Việt";
         vietnamese = "active";
@@ -58,14 +55,14 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="/search.jsp"><fmt:message key="finddoc"/></a>
+                        <li class="menu-has-children menu-active"><a href="/doctor"><fmt:message key="finddoc"/></a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
                                         <form action="doctor" method="POST">
                                             <h3><fmt:message key="finddoc"/></h3>
-                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
-                                            <input class="dropdown-button" type="submit" value="Search Doctor">
+                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="<fmt:message key="searchdotorbyname"/>"/>                               
+                                            <input class="dropdown-button" type="submit" name="action" value="Search Doctor">
                                         </form>
                                     </div>
                                 </li>
@@ -93,11 +90,11 @@
                     <div id="sidebar-wrapper">
                         <ul class="sidebar-nav nav">
                             <li><h3>Options:</h3></li>
-                            <li class="active"><a class="general" href="#general" data-toggle="tab"><i class="fa fa-gears"></i>General</a></li>
-                            <li><a class="edit" href="#edit" data-toggle="tab"><i class="fa fa-pencil"></i>Edit Your Profile</a></li>
-                            <li><a class="change" href="#change" data-toggle="tab"><i class="fa fa-key"></i>Change password</a></li>
-                            <li><a class="bookmark" href="#bookmark" data-toggle="tab"><i class="fa fa-bookmark"></i>Bookmarks</a></li>
-                            <li><a class="other" href="#other" data-toggle="tab"><i class="fa fa-angle-double-right"></i>Others</a></li>
+                            <li class="active"><a class="general" href="#general" data-toggle="tab"><i class="fa fa-gears"></i><fmt:message key="general"/></a></li>
+                            <li><a class="edit" href="#edit" data-toggle="tab"><i class="fa fa-pencil"></i><fmt:message key="edityourprofile"/></a></li>
+                            <li><a class="change" href="#change" data-toggle="tab"><i class="fa fa-key"></i><fmt:message key="changepassword"/></a></li>
+                            <li><a class="bookmark" href="#bookmark" data-toggle="tab"><i class="fa fa-bookmark"></i><fmt:message key="bookmark"/></a></li>
+                            <li><a class="other" href="#other" data-toggle="tab"><i class="fa fa-angle-double-right"></i><fmt:message key="other"/></a></li>
                         </ul>
                     </div>
                     <div class="page-content-wrapper">
@@ -111,14 +108,14 @@
                                                     <div class="col-md-12 col-sm-12">
                                                         <div class="user">
                                                             <div class="user-information">
-                                                                <div class="userhead">Personal Information</div><br> 
+                                                                <div class="userhead"><fmt:message key="personalinformation"/></div><br> 
                                                                 <table>
-                                                                    <tr><td><div class="userinfo">Name: </div></td><td> <div class="userinfo-text">Naruto</div></td></tr>
-                                                                    <tr><td><div class="userinfo">Email: </div></td><td> <div class="userinfo-text">sucsinhnguyen696969@gmail.com</div></td></tr>
-                                                                    <tr><td><div class="userinfo">Gender: </div></td><td> <div class="userinfo-text">Other</div></td></tr>
-                                                                    <tr><td><div class="userinfo">Address: </div></td><td> <div class="userinfo-text">1023 ABC Phuong 3, Quan 7, Ho Chi Minh City</div></div></td></tr>
-                                                                    <tr><td><div class="userinfo">Insurance Number: </div></td><td> <div class="userinfo-text">046556065</div></div></td></tr>
-                                                                    <tr><td><div class="userinfo">Language: </div></td><td> <div class="userinfo-text">English</div></div></td></tr>
+                                                                    <tr><td><div class="userinfo"><fmt:message key="name"/>: </div></td><td> <div class="userinfo-text">Naruto</div></td></tr>
+                                                                    <tr><td><div class="userinfo"><fmt:message key="email"/>: </div></td><td> <div class="userinfo-text">sucsinhnguyen696969@gmail.com</div></td></tr>
+                                                                    <tr><td><div class="userinfo"><fmt:message key="gender"/>: </div></td><td> <div class="userinfo-text">Other</div></td></tr>
+                                                                    <tr><td><div class="userinfo"><fmt:message key="address"/>: </div></td><td> <div class="userinfo-text">1023 ABC Phuong 3, Quan 7, Ho Chi Minh City</div></div></td></tr>
+                                                                    <tr><td><div class="userinfo"><fmt:message key="insurancenumber"/>: </div></td><td> <div class="userinfo-text">046556065</div></div></td></tr>
+                                                                    <tr><td><div class="userinfo"><fmt:message key="language"/> :</div></td><td> <div class="userinfo-text">English</div></div></td></tr>
                                                                 </table>
                                                             </div>
                                                         </div>
@@ -132,13 +129,13 @@
                                                     <div class="col-md-12 col-sm-12">
                                                         <div class="user">
                                                             <div class="user-information">
-                                                                <div class="userhead">Edit Profile</div><br>
+                                                                <div class="userhead"><fmt:message key="edityourprofile"/></div><br>
                                                                 <form class="change" action="" method="">
                                                                     <table>
                                                                         <!--use value=user profile trong db -->
-                                                                        <tr><td><div class="userinfo">Name: </div></td><td><input class="form-change" type="text" name="address" value="Naruto"></td></tr>
-                                                                        <tr><td><div class="userinfo">Email: </div></td><td><input class="form-change" type="text" name="address" value="sucsinhnguyen696969@gmail.com"></td></tr>
-                                                                        <tr><td><div class="userinfo">Gender: </div></td>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="name"/>: </div></td><td><input class="form-change" type="text" name="address" value="Naruto"></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="email"/>: </div></td><td><input class="form-change" type="text" name="address" value="sucsinhnguyen696969@gmail.com"></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="gender"/>: </div></td>
                                                                             <td>                        
                                                                                 <select class="form-change" name="gender">
                                                                                     <option value="male">Male</option>
@@ -147,9 +144,9 @@
                                                                                 </select>
                                                                             </td>
                                                                         </tr>
-                                                                        <tr><td><div class="userinfo">Address: </div></td><td><input class="form-change" type="text" name="address" value="1023 ABC Phuong 3, Quan 7, Ho Chi Minh City"></td></tr>
-                                                                        <tr><td><div class="userinfo">Insurance Number: </div></td><td><input class="form-change" type="text" name="address" value="046556065"></td></tr>
-                                                                        <tr><td><div class="userinfo">Language: </div></td><td><input class="form-change" type="text" name="address" value="English"></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="address"/>: </div></td><td><input class="form-change" type="text" name="address" value="1023 ABC Phuong 3, Quan 7, Ho Chi Minh City"></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="insurancenumber"/>: </div></td><td><input class="form-change" type="text" name="address" value="046556065"></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="language"/>: </div></td><td><input class="form-change" type="text" name="address" value="English"></td></tr>
                                                                     </table>
                                                                     <input class="save" type="submit" value="Save change"> 
                                                                 </form>
@@ -165,13 +162,13 @@
                                                     <div class="col-md-12 col-sm-12">
                                                         <div class="user">
                                                             <div class="user-information">
-                                                                <div class="userhead">Change your password</div><br>
+                                                                <div class="userhead"><fmt:message key="changepassword"/></div><br>
                                                                 <form class="change" action="" method="">
                                                                     <table>
                                                                         <!--use value=user profile trong db -->
-                                                                        <tr><td><div class="userinfo">Current password: </div></td><td><input class="form-change" type="password" name="password" placeholder="Your Current Password"></td></tr>
-                                                                        <tr><td><div class="userinfo">New password: </div></td><td><input class="form-change" type="password" name="password" placeholder="Input New Password"></td></tr>             
-                                                                        <tr><td><div class="userinfo">Confirm new password: </div></td><td><input class="form-change" type="password" name="password" placeholder="Confirm New Password"></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="currentpassword"/>: </div></td><td><input class="form-change" type="password" name="password" placeholder="Your Current Password"></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="newpassword"/>: </div></td><td><input class="form-change" type="password" name="password" placeholder="Input New Password"></td></tr>             
+                                                                        <tr><td><div class="userinfo"><fmt:message key="confirmnewpassword"/>: </div></td><td><input class="form-change" type="password" name="password" placeholder="Confirm New Password"></td></tr>
                                                                         <tr><td></td><td><div class="validate-new-password"></div></td></tr>
                                                                     </table>
                                                                     <input class="save" type="submit" value="Confirm"> 
@@ -188,7 +185,7 @@
                                                     <div class="col-md-12 col-sm-12">
                                                         <div class="user">
                                                             <div class="user-information">
-                                                                <div class="userhead">Your Favorite Doctor</div><br>
+                                                                <div class="userhead"><fmt:message key="yourfavoritedoctor"/></div><br>
                                                                 <% ArrayList<Doctor> listOfDoctor = new DoctorDAO().getAllDoctorBookmark(1);
 
                                                                     for (int i = 0; i < listOfDoctor.size(); i++) {%>
@@ -210,7 +207,7 @@
                                                                 <%}%>
                                                             </div>
                                                             <div class="user-information">
-                                                                <div class="userhead">Your Favorite Hospital</div><br>
+                                                                <div class="userhead"><fmt:message key="yourfavoritehospital"/></div><br>
                                                                 <table>
                                                                     <!--use value=user profile trong db -->
                                                                     <tr><td><a target="_blank" href="" >.Crazy Hospital   </td><td><input class="remove" type="submit" value="Remove"> </td></tr>
@@ -228,7 +225,7 @@
                                                     <div class="col-md-12 col-sm-12">
                                                         <div class="user">
                                                             <div class="user-information">
-                                                                <div class="userhead">Deactive This Account</div>
+                                                                <div class="userhead"><fmt:message key="deactivethisaccount"/></div>
                                                                 <form class="change" action="" method="">
                                                                     <input class="save" type="submit" value="Deactive">
                                                                 </form>
