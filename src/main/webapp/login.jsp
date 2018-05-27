@@ -102,7 +102,7 @@
                     <h1>Login</h1>
                     <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
 
-                    <div class="form-group"><span id="user-result" style="color: red"></span></div>
+                    <div class="form-group"><span id="user-result"></span></div>
                     <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email" id="email"></div>
                     <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password" id="password"></div>
                     <div class="form-group">Remember me? <input class="form-control" type="checkbox" name="remember" id="remember"></div>
