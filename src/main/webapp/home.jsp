@@ -46,14 +46,6 @@
     </head>
 
     <body>
-
-
-        <!--%
-            Patient patient = null; Admin admin = null;
-            PatientDAO patientDAO = new PatientDAO();
-            AdminDAO adminDAO = new AdminDAO();
-        -->
-
         <%
             Patient patient = null;
             Admin admin = null;

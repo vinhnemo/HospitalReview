@@ -114,7 +114,7 @@
                     <div class="form-group">
                         <input class="btn btn-primary2 btn-block" type="submit" value="Register New Account" onclick="window.location.href = 'register'" />                        
                     </div>
-                    <a href="forgot" class="forgot">Forgot your email or password?</a>
+                    <a href="forgotPassword" class="forgot">Forgot your email or password?</a>
                 </form>
             </div>
         </main>

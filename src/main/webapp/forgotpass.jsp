@@ -54,7 +54,7 @@
                     <div class="i2"><i class="icon ion-key"></i></div>
                     <p>Enter your email address and we will send you a link to reset your password.<p>
                     <div class="form-group"><span id="user-result" style="color: red"></span></div>
-                    <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
+                    <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email" id="email"></div>
                     <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action">Send password reset email</button></div>
                 </form>
             </div>
@@ -78,12 +78,14 @@
                     clearTimeout(timer);
                     $('#user-result').html('<img src="img/loading.gif" />');
                     timer = setTimeout(function () {
-                        $.post('forgotPass', {'email': email, 'action': "forgot"}, function (data) {
+                        $.post('forgotPassword', {'email': email, 'action': "forgot"}, function (data) {
                             var msg = JSON.parse(data);
-                            if (msg.code === 0) {
-                                $("#user-result").html("<i class=\"fa fa-close\" style=\"color: red\">" + msg.text + "</i>");
+                            if (msg.code == -1) {
+                                $('#user-result').show();
+                                $('#user-result').html("<i class=\"fa fa-close\" style=\"color: #ff6666\">" + msg.text + "</i>");
                             } else {
-                                $("#user-result").html("<i class=\"fa fa-check\" style=\"color: green\">" + msg.text + "</i>");
+                                $('#user-result').hide();
+                                alert(msg.text);
                             }
                         });
                     }, 1000);

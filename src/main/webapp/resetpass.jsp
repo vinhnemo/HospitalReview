@@ -45,23 +45,28 @@
 
     <body>
         <%
-            Integer pId = (Integer)session.getAttribute("userId");
+            Integer pId = (Integer) request.getAttribute("userId");
             if (pId == null) {
                 response.sendRedirect("forgotPassword");
             }
         %>
-        
-        
+
+
         <main id="main">
             <div class="login-dark">
                 <form class="reset" action="#" method="post" id="reset-form">
                     <h3> New Password </h3>
                     <div class="i3"><i class="icon ion-ios-unlocked-outline"></i></div>
                     <div class="text">Enter your new password :</div>
-                    <div class="form-group"><input class="form-control" type="password" name="password" id="pass1" minlength="4" maxlength="16" placeholder="Your password" required></div>
+                    <div class="form-group">
+                        <input class="form-control" type="password" name="password" id="pass1" minlength="6" maxlength="16" placeholder="Your password" required>
+                        <span id="pass-status"></span>
+                    </div>
                     <div class="text"> Re-enter your password :</div>
-                    <div class="form-group"><input class="form-control" type="password" name="repassword" id="pass2" minlength="4" maxlength="16" placeholder="Re-enter password" onchange="checkPass(); return false;" required></div>
-                    <span id="confirmMessage" class="confirmMessage"></span>
+                    <div class="form-group">
+                        <input class="form-control" type="password" name="repassword" id="pass2" minlength="6" maxlength="16" placeholder="Re-enter password" required>
+                        <span id="confirmMessage"></span>
+                    </div>
                     <div class="form-group"><button class="btn btn-primary2 btn-block" type="submit" name="action">Reset your password</button></div>
                 </form>
             </div>
@@ -72,7 +77,7 @@
         <script src="lib/jquery/jquery-migrate.min.js"></script>
         <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="js/main.js"></script>
-        
+
         <script type="text/javascript">
             $(document).ready(function () {
                 var timer;
@@ -87,12 +92,15 @@
                     clearTimeout(timer);
                     $('#user-result').html('<img src="img/loading.gif" />');
                     timer = setTimeout(function () {
-                        $.post('forgotPass', {'password': pass1, 'password2': pass2, 'userId': userId, 'action': "resetPass"}, function (data) {
+                        $.post('forgotPassword', {'password': pass1, 'password2': pass2, 'userId': userId, 'action': "resetPass"}, function (data) {
                             var msg = JSON.parse(data);
-                            if (msg.code === 0) {
-                                $("#user-result").html("<i class=\"fa fa-close\" style=\"color: red\"></i>" + msg.text);
+                            if (msg.code == -1) {
+                                $('#user-result').show();
+                                $('#user-result').html("<i class=\"fa fa-close\" style=\"color: #ff6666\">" + msg.text + "</i>");
                             } else {
-                                $("#user-result").html("<i class=\"fa fa-check\" style=\"color: green\"></i>" + msg.text);
+                                $('#user-result').hide();
+                                alert(msg.text);
+                                setTimeout(function(){location.href="home.jsp"} , 2000); 
                             }
                         });
                     }, 1000);

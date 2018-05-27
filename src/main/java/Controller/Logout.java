@@ -22,7 +22,8 @@ public class Logout extends HttpServlet {
             throws ServletException, IOException {
 
         // Destroy session
-        request.getSession().removeAttribute("user");
+        request.getSession().removeAttribute("patient");
+        request.getSession().removeAttribute("admin");
 
         Cookie loginCookie = null;
         Cookie[] cookies = request.getCookies();

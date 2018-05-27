@@ -44,13 +44,13 @@ public class ResetPassword extends HttpServlet {
         
         String action = request.getParameter("action");
         if (action == null) {
-            rd = sc.getRequestDispatcher("forgotpass.jsp");
+            rd = sc.getRequestDispatcher("/forgotpass.jsp");
             rd.forward(request, response);
 
         } else if (action.equals("forgot")) {
             String email = request.getParameter("email");
             if (email == null) {
-                msg.setCode(0);
+                msg.setCode(-1);
                 msg.setText("Please enter your email to get your password");
             } else {
                 try {
@@ -60,11 +60,11 @@ public class ResetPassword extends HttpServlet {
                         PatientDAO.updateStatus(p.getID(), "forgot");
                         PatientDAO.updateToken(p.getID(), BCrypt.hashpw(hash, Info.HASH_SALT));
 
-                        Mail.sendResetPasswordLink(p.getID()+"", email, hash);
-                        msg.setCode(1);
+                        Mail.sendResetPasswordLink(p.getID(), email, hash);
+                        msg.setCode(0);
                         msg.setText("We have sent reset password link to your email");
                     } else {
-                        msg.setCode(0);
+                        msg.setCode(-1);
                         msg.setText("This email does not exist");
                     }
                 } catch (MessagingException e) {
@@ -79,16 +79,16 @@ public class ResetPassword extends HttpServlet {
             String pass2 = request.getParameter("password2");
 
             if (pass == null || pass2 == null) {
-                msg.setCode(0);
+                msg.setCode(-1);
                 msg.setText("Please input new password");
             } else if (!pass.equals(pass2)) {
-                msg.setCode(0);
+                msg.setCode(-1);
                 msg.setText("Your password and confirmation password do not match");
             } else {
                 PatientDAO.updateStatus(pId, "active");
                 PatientDAO.updatePassword(pId, BCrypt.hashpw(pass, BCrypt.gensalt()));
                 
-                msg.setCode(1);
+                msg.setCode(0);
                 msg.setText("Password changed successfully!");
             }
             response.getWriter().write(Util.toJson(msg));

@@ -20,16 +20,12 @@ $(document).ready(function () {
         $('#user-result').html('<img src="img/loading.gif" />');
         timer = setTimeout(function () {
             $.post('login', {'email': email, 'password': pass, 'remember': remember, 'action': "Ajax Login"}, function (data) {
-                if (data === "1") {
-                    $("#user-result").html("<i class=\"fa fa-close\"></i> User account does not exist");
-                } else if (data === "2") {
-                    $("#user-result").html("<i class=\"fa fa-close\"></i> Password is not correct");
-                } else if (data === "3") {
-                    $("#user-result").html("<i class=\"fa fa-close\"></i> Please type your email and password");
-                } else if (data === "4") {
-                    $("#user-result").html("<i class=\"fa fa-close\"></i> Your account is pending, please check your email");
+                var msg = JSON.parse(data);
+                
+                if (msg.code === 0) {
+                    $('#user-result').html("<i class=\"fa fa-close\" style=\"color: red\">" + msg.text + "</i>");
                 } else {
-                    window.location = 'home.jsp';
+                    $('#user-result').html("<i class=\"fa fa-check\" style=\"color: green\">" + msg.text + "</i>");
                 }
             });
         }, 1000);

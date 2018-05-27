@@ -10,6 +10,7 @@ import DTO.Patient;
 import DAO.AdminDAO;
 import DAO.PatientDAO;
 import Database.BCrypt;
+import Util.*;
 
 import java.io.IOException;
 import javax.servlet.*;
@@ -38,7 +39,7 @@ public class Login extends HttpServlet {
         HttpSession session = request.getSession();
 
         String action = request.getParameter("action");
-        String error;
+
         boolean adminLogin;
         Admin admin = new Admin();
         Patient patient = new Patient();
@@ -47,7 +48,7 @@ public class Login extends HttpServlet {
             rd = sc.getRequestDispatcher("/login.jsp");
             rd.forward(request, response);
         } else {
-            error = "";
+            Message msg = new Message();
             adminLogin = false;
 
             String email = request.getParameter("email");
@@ -55,58 +56,61 @@ public class Login extends HttpServlet {
             String remember = request.getParameter("remember");
 
             if (email == null || pass == null) {
-                error = "3";
+                msg.setCode(0);
+                msg.setText("Please type your email and password");
             } else {
                 patient = patientDAO.getUserbyEmail(email);
-                if (patient.getStatus().equals("unactive") || patient.getStatus().equals("forgot")) {
-                    error = "4";
-                }
+                
+                String error = "";
                 if (patient.getPass() == null) {
-                    error = "1";
-                    adminLogin = true;
-                } else if (!BCrypt.checkpw(pass, patient.getPass())) {
-                    error = "2";
-                }
 
-                if (adminLogin) {
                     admin = adminDAO.getUserbyEmail(email);
 
                     // Check if user does not exist
                     if (admin.getPass() == null) {
-                        error = "1";
+                        error = "User account does not exist";
                     } else if (!BCrypt.checkpw(pass, admin.getPass())) {
-                        error = "2";
-                    }
-                }
-            }
-
-            // If something is wrong
-            if (error.length() > 0) {
-                response.getWriter().write(error);
-            } else {
-                // If this is an admin
-                if (adminLogin) {
-                    session.setAttribute("admin", admin);
-                } else {
-                    session.setAttribute("patient", patient);
-                }
-                
-                // Save login cookie
-                if (remember.equals("yes")) {
-                    Cookie loginCookie;
-                    if (adminLogin) {
-                        loginCookie = new Cookie("a_email", admin.getEmail());
+                        error = "Your password is not correct";
                     } else {
-                        loginCookie = new Cookie("u_email", patient.getEmail());
+                        adminLogin = true;
                     }
-                    //setting cookie to expiry in 30 mins
-                    loginCookie.setMaxAge(60 * 30);
-                    response.addCookie(loginCookie);
+
+                } else if (!BCrypt.checkpw(pass, patient.getPass())) {
+                    error = "Your password is not correct";
+
+                } else if (patient.getStatus().equals("inactive") || patient.getStatus().equals("forgot")) {
+                    error = "Your account is pending. Please check your email";
+
                 }
 
-                response.getWriter().write("success");
-            }
+                if (error.length() == 0) {
+                    // If this is an admin
+                    if (adminLogin) {
+                        session.setAttribute("admin", admin);
+                    } else {
+                        session.setAttribute("patient", patient);
+                    }
 
+                    // Save login cookie
+                    if (remember.equals("yes")) {
+                        Cookie loginCookie;
+                        if (adminLogin) {
+                            loginCookie = new Cookie("a_email", admin.getEmail());
+                        } else {
+                            loginCookie = new Cookie("u_email", patient.getEmail());
+                        }
+                        //setting cookie to expiry in 30 mins
+                        loginCookie.setMaxAge(60 * 30);
+                        response.addCookie(loginCookie);
+                    }
+                    msg.setCode(0);
+                    msg.setText("You have logged in successfully");
+                } else {
+                    msg.setCode(-1);
+                    msg.setText(error);
+                }
+            }
+            response.getWriter().write(Util.toJson(msg));
         }
     }
 
