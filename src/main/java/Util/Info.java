@@ -11,10 +11,11 @@ package Util;
  */
 public class Info {
 
-    //public static final String DB_URL = "jdbc:mysql://localhost:3306/hospital";
-    public static final String DB_URL = "jdbc:mysql://35.198.229.164:3306/hospital";
+    public static final String DB_URL = "jdbc:mysql://localhost:3306/hospital";
+    //public static final String DB_URL = "jdbc:mysql://35.198.229.164:3306/hospital";
     public static final String DB_USERNAME = "root";
-    public static final String DB_PASSWORD = "12345";
+    // public static final String DB_PASSWORD = "12345";
+    public static final String DB_PASSWORD = "";
     public static final String MAIL_USERNAME = "service.gamelord@gmail.com"; // like example@outlook.com
     public static final String MAIL_PASSWORD = "gamelord123";  // your mail password here
     public static final String MAIL_SMTP_HOST = "smtp.gmail.com"; // smtp.live.com
