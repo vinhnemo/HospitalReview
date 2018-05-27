@@ -94,7 +94,7 @@
 
             CommentDAO commentDAO = new CommentDAO();
             List<Comment> listOfComment = commentDAO.getAllComment(doc.getID());
-
+            PatientDAO patientDAO = new PatientDAO();
         %> 
 
         <main id="main">
@@ -179,68 +179,28 @@
                                 <hr>
                                 <section class="comment-list">
                                     <!-- for commentDAO blah blah { -->
+                                    <%
+                                        if (listOfComment.size() > 0) {
+                                            for (Comment comment : listOfComment) {
+                                                Patient p = patientDAO.getPatient(comment.getpID());
+
+                                    %>
                                     <article class="row">
                                         <div class="col-md-2 col-sm-2">
                                             <figure class="thumbnail">
-                                                <figcaption class="text-center">Sinh Nguyenssssss</figcaption>
+                                                <figcaption class="text-center"><%= p.getFname() + " " + p.getFname()%></figcaption>
                                             </figure>
                                         </div>
                                         <div class="col-md-8 col-sm-9" style="margin-left:20px; ">
                                             <div class="panel panel-default arrow left">
                                                 <div class="panel-body">
                                                     <header class="text-left">
-                                                        <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
+                                                        <div class="comment-user"><i class="fa fa-user"></i> <%= p.getFname() + " " + p.getFname()%> </div> 
                                                         <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
-                                                    </header>
+                                                    </header> 
                                                     <div class="comment-post">
                                                         <p>
-                                                            This doctor is extremely bad, he is the real bullshit dsajdsad dsadksahdnksa sadhkasjdhsaj dsahkjdhsadkj hkjhdjkdh hjkdsahjkdhsa hkjsadhsajkd 
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </article>
-
-                                    <article class="row">
-                                        <div class="col-md-2 col-sm-2">
-                                            <figure class="thumbnail">
-                                                <figcaption class="text-center">Sinh Nguyenssssss</figcaption>
-                                            </figure>
-                                        </div>
-                                        <div class="col-md-8 col-sm-8" style="margin-left:20px; ">
-                                            <div class="panel panel-default arrow left">
-                                                <div class="panel-body">
-                                                    <header class="text-left">
-                                                        <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
-                                                        <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Jan 16, 2019</time>
-                                                    </header>
-                                                    <div class="comment-post">
-                                                        <p>
-                                                            This doctor is extremely bad, he is the real bullshit dsajdsad dahjkdhsa hkjsadhsajkd 
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </article>
-
-                                    <article class="row">
-                                        <div class="col-md-2 col-sm-2">
-                                            <figure class="thumbnail">
-                                                <figcaption class="text-center">Sinh Nguyenssssss</figcaption>
-                                            </figure>
-                                        </div>
-                                        <div class="col-md-8 col-sm-9" style="margin-left:20px; ">
-                                            <div class="panel panel-default arrow left">
-                                                <div class="panel-body">
-                                                    <header class="text-left">
-                                                        <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
-                                                        <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 32, 2094</time>
-                                                    </header>
-                                                    <div class="comment-post">
-                                                        <p>
-                                                            This doctor is extkdh hjkdsahjkdhsa hkjsadhsajkd 
+                                                            <%= comment.getComment()%>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -248,6 +208,10 @@
                                         </div>
                                     </article>
                                     <!-- end loop -->
+                                    <% }
+                                        }
+                                    %>
+
                                 </section>
                                 <!--end comment list-->
                             </div>
