@@ -1,16 +1,10 @@
 <%-- 
-    Document   : forwardLogin
-    Created on : May 27, 2018, 3:26:28 PM
-    Author     : MSI
---%>
-
-<%-- 
     Document   : home
     Created on : May 16, 2018, 4:41:41 PM
     Author     : MSI
 --%>
 
-<%@page import="DAO.*,DTO.*"%>
+<%@page import="Util.Message"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -49,6 +43,13 @@
     </head>
 
     <body>
+        <%
+            Message msg = (Message) request.getAttribute("message");
+            if (msg == null) {
+                response.sendRedirect("/home.jsp");
+            }
+        %>
+        
         <header id="header">
             <div class="container-fluid">
                 <div id="logo" class="pull-left">
@@ -78,6 +79,7 @@
                 </div>
             </div>
         </div>
+        
         <main id="main">
             <section id="featured-services">
                 <div class="container" style="background-color: #000;height: 900px;;">
@@ -85,12 +87,17 @@
                     <div class="col-md-2"></div>
                     <div class="col-md-8" style="background-color: #fff; width: 100%; height: 250px; margin-top: 20%;border: 2px solid #18d36e;border-radius: 5px;">
                         <div class="redirect"> Redirecting...</div>
-                        <div class="thank">Thank you for logging in, ???. </div>
-                        <div class="auto-redirect">Click <a href="">here</a> if your browser does not automatically re-direct you</div>
+                        <div class="thank"><%=msg.getText()%> </div>
+                        <%if (msg.getCode() == 0) { %>
+                            <div class="auto-redirect"><a href="/login.jsp">Please log in with your account to continue</a></div>
+                        <% } else {%>
+                            <div class="auto-redirect"><a href="/home.jsp">Click here to go back to homepage.</a></div>
+                        <% }%>
                     </div>
                     <div class="col-md-2"></div>
                    </div>
-                </div>                                  
+                </div>   
+            </section>
         </main>
        
 
@@ -113,6 +120,15 @@
 
         <script src="js/main.js"></script>
         <script src="js/modal.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function (event){
+                <%if (msg.getCode() == 0) { %>
+                    setTimeout(function(){location.href='login.jsp'}, 3000);
+                <% } else {%>
+                    setTimeout(function(){location.href='home.jsp'}, 3000);
+                <% }%>
+            });
+        </script>
 
     </body>
 </html>
