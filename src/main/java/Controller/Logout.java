@@ -7,12 +7,14 @@ package Controller;
 
 import java.io.IOException;
 import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 /**
  *
  * @author TGMaster
  */
+@WebServlet("/logout")
 public class Logout extends HttpServlet {
 
     @Override
@@ -20,7 +22,8 @@ public class Logout extends HttpServlet {
             throws ServletException, IOException {
 
         // Destroy session
-        request.getSession().removeAttribute("user");
+        request.getSession().removeAttribute("patient");
+        request.getSession().removeAttribute("admin");
 
         Cookie loginCookie = null;
         Cookie[] cookies = request.getCookies();

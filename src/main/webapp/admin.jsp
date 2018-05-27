@@ -9,16 +9,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="language" value="${param.language}" scope="session" />
-<%String language = request.getParameter("language"), english = "", french = "", vietnamese = "";
+<%String language = request.getParameter("language"), english = "", vietnamese = "";
     if (language == null) {
         language = "en_US";
     }
     if (language.equals("en_US")) {
         language = "English";
         english = "active";
-    } else if (language.equals("fr_FR")) {
-        language = "Français";
-        french = "active";
     } else if (language.equals("vi_VN")) {
         language = "Tiếng Việt";
         vietnamese = "active";
@@ -154,17 +151,9 @@
 
                             </div>
                         </div>
-
-                        
-
                     </div>
                 </div>
-
-
-
-
-
-
+                
                 <div class="container" style="display: none; " id="patient">
                     <h3 class="page-header">List of Patients</h3>
                     <div class="row">
@@ -191,8 +180,6 @@
                                 </div>
                             </div>
                         </div>     
-
-                        
                     </div>
                 </div>
 
@@ -215,11 +202,9 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
-                
+
                 <div id ="detailpatient" class="addedform" style="margin-top: 2%; height:800px;display: 'none';">
                     <div id="wrapper">
                         <div id="sidebar-wrapper">
@@ -289,8 +274,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                    
-                                          
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -478,8 +463,8 @@
         <script src="lib/form/side.js"></script>
         <script src="js/main.js"></script>
         <script src="lib/form/sidebar1.js"></script>
-        
-    
+
+
 
 
     </body>

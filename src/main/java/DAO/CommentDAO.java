@@ -20,14 +20,16 @@ import java.util.logging.Logger;
  */
 public class CommentDAO {
 
-    public void addComment(String comment, int d_id) {
+    public void addComment(String comment, int d_id, int p_id) {
 
         String query = "INSERT INTO comment"
                 + "("
                 + "c_comment,"
-                + "d_id)"
+                + "d_id,"
+                + "p_id)"
                 + " VALUES "
                 + "("
+                + "?,"
                 + "?,"
                 + "?);";
 
@@ -38,6 +40,7 @@ public class CommentDAO {
             PreparedStatement ps = connection.prepareCall(query);
             ps.setString(1, comment);
             ps.setInt(2, d_id);
+             ps.setInt(3, p_id);
             ps.executeUpdate();
 
             connection.close();
@@ -64,6 +67,7 @@ public class CommentDAO {
                 c.setID(rs.getInt("c_id"));
                 c.setComment(rs.getString("c_comment"));
                 c.setdID(rs.getInt("d_id"));
+                c.setpID(rs.getInt("p_id"));
             }
 
             connection.close();
@@ -90,6 +94,7 @@ public class CommentDAO {
                 c.setID(rs.getInt("c_id"));
                 c.setComment(rs.getString("c_comment"));
                 c.setdID(rs.getInt("d_id"));
+                c.setpID(rs.getInt("p_id"));
                 list.add(c);
             }
             connection.close();

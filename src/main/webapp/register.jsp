@@ -64,14 +64,14 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="http://localhost:8080/doctor">Find Doctor</a>
+                        <li class="menu-has-children menu-active"><a href="/doctor"><fmt:message key="finddoc"/></a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
                                         <form action="doctor" method="POST">
                                             <h3><fmt:message key="finddoc"/></h3>
-                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
-                                            <input class="dropdown-button" type="submit" value="Search Doctor">
+                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="<fmt:message key="searchdotorbyname"/>"/>                                 
+                                            <input class="dropdown-button" type="submit" name="action" value="Search Doctor">
                                         </form>
                                     </div>
                                 </li>
@@ -94,34 +94,42 @@
         <!-- MAIN : form -->
         <main id="main">
             <div class="login-dark">
-                <form class="register" method="post" style="width:600px;">
+                <form class="register" action="#" method="post" style="width:600px;">
                     <h1>Register Account</h1>
                     <br>
-                    <% if (filled) {%>
+                    <div class="form-group"><span id="form-result"></span></div>
+                        <% if (filled) {%>
                     <div class="form-group">
-                        <input class="form-control d-inline" type="text" name="fname" value="<%=patient.getFname()%>" style="width:200px;margin:0px 0px;" required><input class="form-control d-inline" type="text" name="lname" value="<%=patient.getLname()%>" style="width:200px;margin:0px 10px;" required>
+                        <span id="name-status"></span><br>
+                        <input class="form-control d-inline" type="text" name="fname" id="fname" value="<%=patient.getFname()%>" style="width:200px;margin:0px 0px;" required><input class="form-control d-inline" type="text" name="lname" id="lname" value="<%=patient.getLname()%>" style="width:200px;margin:0px 10px;" required>
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="email" name="email" value="<%=patient.getEmail()%>" onchange="email_validate(this.value);" required>
-                        <div class="status" id="status"></div>
+                        <span id="status"></span>
+                        <input class="form-control" type="email" id="email" name="email" value="<%=patient.getEmail()%>" required>
+                        <span id="isExist"></span>
                     </div>
                     <% } else {%>
                     <div class="form-group">
-                        <input class="form-control d-inline" type="text" name="fname" placeholder="First Name" style="width:200px;margin:0px 0px;" required><input class="form-control d-inline" type="text" name="lname" placeholder="Last Name" style="width:200px;margin:0px 10px;" required>
+                        <span id="name-status"></span><br>
+                        <input class="form-control d-inline" type="text" name="fname" id="fname" placeholder="First Name" style="width:200px;margin:0px 0px;" required><input class="form-control d-inline" type="text" name="lname" id="lname" placeholder="Last Name" style="width:200px;margin:0px 10px;" required>
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="email" name="email" placeholder="Email" onchange="email_validate(this.value);" required>
-                        <div class="status" id="status"></div>
+                        <span id="status"></span>
+                        <input class="form-control" type="email" id="email" name="email" placeholder="Email" required>
+                        <span id="isExist"></span>
                     </div>
                     <% }%>
-                    <div class="form-group"><input class="form-control d-inline-flex" type="password" name="password" placeholder="Password" style="width:200px;" minlength="4" maxlength="16" id="pass1" required></div>
                     <div class="form-group">
-                        <input class="form-control d-inline-flex" type="password" name="password2" placeholder="Confirm Password" style="width:200px;" minlength="4" maxlength="16" id="pass2" onchange="checkPass(); return false;" required>
-                        <span id="confirmMessage" class="confirmMessage"></span>
+                        <input class="form-control d-inline-flex" type="password" name="password" placeholder="Password" style="width:200px;" minlength="6" maxlength="16" id="pass1" required>
+                        <span id="pass-status"></span>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control d-inline-flex" type="password" name="password2" placeholder="Confirm Password" style="width:200px;" minlength="6" maxlength="16" id="pass2" required>
+                        <span id="confirmMessage"></span>
                     </div>
                     <div class="form-group">
                         <label style="color:#65757d; margin:0px 10px;">Gender:&nbsp;</label>
-                        <select class="form-control d-inline" name="gender" style="width:120px;color:#65757d;">
+                        <select class="form-control d-inline" name="gender" id="gender" style="width:120px;color:#65757d;">
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                             <option value="other">Other</option>
@@ -130,17 +138,16 @@
                     <!-- <div class="form-group"><input class="form-control" type="date" style="color:#65757d;"></div> -->
                     <% if (filled) {%>
                     <div class="form-group">
-                        <input class="form-control" type="text" name="address" value="<%=patient.getAddress()%>" style="width:420px;margin:0px 0px;" onkeyup = "add_validate(this.value)" required>
-                        <div id="statusAdd"></div>
+                        <input class="form-control" type="text" name="address" id="address" value="<%=patient.getAddress()%>" style="width:420px;margin:0px 0px;" required>
+                        <span id="statusAdd"></span>
                     </div>
                     <% } else {%>
                     <div class="form-group">
-                        <input class="form-control" type="text" name="address" placeholder="Address" style="width:420px;margin:0px 0px;" onkeyup = "add_validate(this.value)" required>
-                        <div id="statusAdd"></div>
+                        <input class="form-control" type="text" name="address" id="address" placeholder="Address" style="width:420px;margin:0px 0px;" required>
+                        <span id="statusAdd"></span>
                     </div>
                     <% }%>
-                    <input type="hidden" name="language" value="<%=language%>">
-                    <input type="hidden" name="type" value="patient">
+                    <input type="hidden" name="language" id="language" value="<%=language%>">
                     <div class="form-group">
                         <hr>
                         <input type="checkbox" required name="terms" onchange="this.setCustomValidity(validity.valueMissing ? 'Please indicate that you accept the Terms and Conditions' : '');" id="field_terms">   <label for="terms">I agree with the <a href="terms.php" title="You may read our terms and conditions by clicking on this link">terms and conditions</a> for Registration.</label>

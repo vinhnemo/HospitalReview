@@ -11,18 +11,28 @@ package DTO;
  */
 public class Comment {
 
-    private int ID;
+    private Integer ID;
     private String comment;
-    private int dID;
+    private Integer dID;
+    private Integer pID;
 
-    public Comment(int ID, String comment, int dID) {
+    public Comment(int ID, String comment, int dID, int pID) {
         this.ID = ID;
         this.comment = comment;
         this.dID = dID;
+        this.pID = pID;
     }
 
     public Comment() {
 
+    }
+
+    public Integer getpID() {
+        return pID;
+    }
+
+    public void setpID(Integer pID) {
+        this.pID = pID;
     }
 
     public int getID() {

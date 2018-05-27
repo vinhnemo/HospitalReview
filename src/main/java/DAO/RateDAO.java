@@ -19,9 +19,9 @@ import java.util.logging.Logger;
  * @author Kuro
  */
 public class RateDAO {
-
+    
     public void addRate(float rate, int d_id) {
-
+        
         String query = "INSERT INTO rate"
                 + "("
                 + "r_rate,"
@@ -33,58 +33,58 @@ public class RateDAO {
 
         // Connect to database
         Connection connection = Database.getConnection();
-
+        
         try {
             PreparedStatement ps = connection.prepareCall(query);
             ps.setFloat(1, rate);
             ps.setInt(2, d_id);
             ps.executeUpdate();
-
+            
             connection.close();
-
+            
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
+        
     }
-
+    
     public Rate getRate(int id) {
         String query = "SELECT * FROM rate INNER JOIN doctor ON rate.d_id = doctor.d_id WHERE rate.d_id = ?";
         Rate rate = new Rate();
 
         // Connect to database
         Connection connection = Database.getConnection();
-
+        
         try {
             PreparedStatement ps = connection.prepareCall(query);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-
+            
             while (rs.next()) {
                 rate.setID(rs.getInt("r_id"));
                 rate.setRate(rs.getFloat("r_rate"));
                 rate.setdID(rs.getInt("d_id"));
             }
-
+            
             connection.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return rate;
     }
-
+    
     public List<Rate> getAllRate(int id) {
         List<Rate> list = new ArrayList<>();
         String query = "SELECT * FROM rate WHERE d_id = ?";
 
         // Connect to database
         Connection connection = Database.getConnection();
-
+        
         try {
             PreparedStatement ps = connection.prepareCall(query);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-
+            
             while (rs.next()) {
                 Rate rate = new Rate();
                 rate.setID(rs.getInt("r_id"));
@@ -96,22 +96,23 @@ public class RateDAO {
         } catch (SQLException ex) {
             Logger.getLogger(RateDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         return list;
     }
-
-    public float getRatingPoint() {
+    
+    public float getRatingPoint(int id) {
         float rating = 0;
         int count = 0;
-        String query = "SELECT * FROM rate ";
+        String query = "SELECT * FROM rate WHERE d_id = ?";
 
         // Connect to database
         Connection connection = Database.getConnection();
-
+        
         try {
             PreparedStatement ps = connection.prepareCall(query);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-
+            
             while (rs.next()) {
                 count++;
                 rating += rs.getFloat("r_rate");
@@ -120,7 +121,7 @@ public class RateDAO {
         } catch (SQLException ex) {
             Logger.getLogger(RateDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         return rating / count;
     }
 }

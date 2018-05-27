@@ -5,11 +5,10 @@ import DTO.Patient;
 import DAO.AdminDAO;
 import DAO.PatientDAO;
 import Database.BCrypt;
-import Util.Info;
-import Util.Mail;
-import Util.Util;
+import Util.*;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 import javax.mail.MessagingException;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -23,6 +22,9 @@ public class Registration extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        // Logger
+        Logger log = Logger.getLogger(Registration.class.getName());
+        
         // Call Servlet Context
         ServletContext sc = getServletContext();
 
@@ -35,9 +37,26 @@ public class Registration extends HttpServlet {
         // Get action
         String action = request.getParameter("action");
 
+        // Message object
+        Message msg = new Message();
+
         if (action == null) {
             rd = sc.getRequestDispatcher("/register.jsp");
             rd.forward(request, response);
+
+        } else if (action.equals("Validate")) {
+            String email = request.getParameter("email");
+            if (PatientDAO.isExistUser(email)) {
+                msg.setCode(-1);
+                msg.setText("Email has already registered");
+            } else {
+                msg.setCode(0);
+                msg.setText("Email is available");
+            }
+            
+            log.warning(Util.toJson(msg));
+            response.getWriter().write(Util.toJson(msg));
+
         } else if (action.equals("Signup Now")) {
             // Get Parameter in small form
             String fname = request.getParameter("fname");
@@ -60,7 +79,7 @@ public class Registration extends HttpServlet {
                 rd.forward(request, response);
             }
 
-        } else {
+        } else if (action.equals("Register")) {
             String type = request.getParameter("type");
 
             if (type.equals("patient")) {
@@ -74,15 +93,12 @@ public class Registration extends HttpServlet {
                 String sex = request.getParameter("gender");
                 String language = request.getParameter("language");
 
-                String error = "";
                 if (fname == null || lname == null || email == null || pass == null || address == null || sex == null) {
-                    error = "Please input all required fields.";
+                    msg.setCode(-1);
+                    msg.setText("Please input all required fields");
                 } else if (!pass.equals(pass2)) {
-                    error = "Your password and confirmation password do not match";
-                }
-
-                if (error.length() > 0) {
-                    response.getWriter().write(error);
+                    msg.setCode(-1);
+                    msg.setText("Your password and confirmation password do not match");
                 } else {
                     // Patient object
                     Patient p = new Patient();
@@ -93,10 +109,10 @@ public class Registration extends HttpServlet {
                     p.setAddress(address);
                     p.setSex(sex);
                     p.setLang(language);
-                    p.setStatus("unactive");
+                    p.setStatus("inactive");
 
                     // generate hash code for email verification
-                    String hash = Util.encrypt(Util.generateRandomStr());
+                    String hash = Util.generateRandomStr(8);
                     p.setHashcode(BCrypt.hashpw(hash, Info.HASH_SALT));
 
                     try {
@@ -108,14 +124,16 @@ public class Registration extends HttpServlet {
                             Mail.sendEmailRegistrationLink(id, email, hash);
 
                             // send output to user
-                            response.getWriter().write("Register successfully! Please verify your email");
+                            msg.setCode(0);
+                            msg.setText("Register successfully! We have sent the verification link to your email.");
+                            log.warning("Successful!");
                         } else {
-                            response.getWriter().write("Your email has already registered.");
+                            msg.setCode(-1);
+                            msg.setText("Your email has already registered.");
                         }
                     } catch (MessagingException ex) {
                         ex.printStackTrace();
                     }
-
                 }
 
             } else {
@@ -128,18 +146,12 @@ public class Registration extends HttpServlet {
                 String pass = request.getParameter("password");
                 String pass2 = request.getParameter("password2");
 
-                String error = "";
-
                 if (username.equals("") || email.equals("") || pass.equals("")) {
-                    error = "Please input all required fields.";
-                } else {
-                    if (!pass.equals(pass2)) {
-                        error = "Your password and confirmation password do not match";
-                    }
-                }
-
-                if (error.length() > 0) {
-                    response.getWriter().write(error);
+                    msg.setCode(-1);
+                    msg.setText("Please input all required fields");
+                } else if (!pass.equals(pass2)) {
+                    msg.setCode(-1);
+                    msg.setText("Your password and confirmation password do not match");
                 } else {
 
                     admin.setEmail(email);
@@ -148,13 +160,18 @@ public class Registration extends HttpServlet {
                     // Check if adding is successful
                     if (!AdminDAO.isExistUser(email)) {
                         if (AdminDAO.insertUser(admin)) {
-                            response.getWriter().write("Register admin successfully!");
+                            msg.setCode(0);
+                            msg.setText("Register admin successfully!");
                         }
                     } else {
-                        response.getWriter().write("This email has already registered.");
+                        msg.setCode(-1);
+                        msg.setText("This email has already registered.");
                     }
                 }
             }
+            
+            log.warning(Util.toJson(msg));
+            response.getWriter().write(Util.toJson(msg));
         }
     }
 

@@ -11,7 +11,7 @@ package DTO;
  */
 public class Rate {
 
-    private int ID;
+    private Integer ID;
     private float rate;
     private int dID;
 
