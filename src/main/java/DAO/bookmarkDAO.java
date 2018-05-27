@@ -51,21 +51,14 @@ public class bookmarkDAO {
         try {
             String sqlStatement1 = "DELETE FROM bookmarkdoctor WHERE p_id=" + pID + " AND d_id=" + dID + " ;";
             // create a mysql database connection
-            String myDriver = "com.mysql.jdbc.Driver";
-            String myUrl = "jdbc:mysql://localhost:3306/hospitalreview?useUnicode=true&characterEncoding=UTF-8&useFastDateParsing=false";
-            Class.forName(myDriver);
-            Connection conn = DriverManager.getConnection(myUrl, "root", "7777777");
+            Connection connection = Database.getConnection();
 
-            Statement st = conn.createStatement();
+            Statement st = connection.createStatement();
 
             st.executeUpdate(sqlStatement1);
-            conn.close();
-        } catch (ClassNotFoundException | SQLException e) {
-            System.err.println("Got an exception!");
-            System.err.println(e.getMessage());
+            connection.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
-
     }
-    
-
 }
