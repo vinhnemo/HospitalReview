@@ -44,7 +44,7 @@ public class DoctorController extends HttpServlet {
         if (action == null) {
             List<Doctor> listOfDoctor = doctorDAO.getAllDoctor();
             session.setAttribute("doctorlist", listOfDoctor);
-            rd = sc.getRequestDispatcher("/search.jsp");
+            rd = sc.getRequestDispatcher("/showdoctor.jsp");
             rd.forward(request, response);
         } else {
             // add Doctor
@@ -76,7 +76,7 @@ public class DoctorController extends HttpServlet {
                 String search = escapeHtml4(request.getParameter("search"));
                 List<Doctor> listOfDoctor = doctorDAO.searchDoctor(search);
                 session.setAttribute("doctorlist", listOfDoctor);
-                rd = sc.getRequestDispatcher("/search.jsp");
+                rd = sc.getRequestDispatcher("/showdoctor.jsp");
                 rd.forward(request, response);
             } // remove Doctor
             else if (action.equals("removeDoctor")) {

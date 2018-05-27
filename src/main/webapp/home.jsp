@@ -131,7 +131,7 @@
                                     <div class="success-msg">
                                         <p>Great! You have logged in successfully.</p>
                                         <div class="success-btn"><a href="patient" class="profile"><fmt:message key="yourprofile"/></a></div>
-                                        <div class="success-btn"><a href="home.jsp" class="btn-info"><fmt:message key="backtohomepage"/></a></div>
+                                        <div class="success-btn"><a href="http://localhost:8080/hospital" class="btn-info"><fmt:message key="backtohomepage"/></a></div>
                                     </div>
                                 </div>
 
