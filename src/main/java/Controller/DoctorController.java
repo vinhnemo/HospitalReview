@@ -72,7 +72,7 @@ public class DoctorController extends HttpServlet {
                 response.sendRedirect("");
 
             } // search Doctor UC1
-            else if (action.equals("Doctor")) {
+            else if (action.equals("Doctor") || action.equals("Search Doctor")) {
                 String search = escapeHtml4(request.getParameter("search"));
                 List<Doctor> listOfDoctor = doctorDAO.searchDoctor(search);
                 session.setAttribute("doctorlist", listOfDoctor);

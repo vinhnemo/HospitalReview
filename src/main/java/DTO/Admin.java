@@ -5,24 +5,24 @@ package DTO;
  * @author TGMaster
  */
 public class Admin {
-    private int ID;
+    private Integer ID;
     private String email;
     private String pass;
 
     public Admin() {
     }
 
-    public Admin(int ID, String username, String email, String pass) {
+    public Admin(Integer ID, String username, String email, String pass) {
         this.ID = ID;
         this.email = email;
         this.pass = pass;
     }
 
-    public int getID() {
+    public Integer getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(Integer ID) {
         this.ID = ID;
     }
 

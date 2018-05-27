@@ -46,14 +46,6 @@
     </head>
 
     <body>
-
-
-        <!--%
-            Patient patient = null; Admin admin = null;
-            PatientDAO patientDAO = new PatientDAO();
-            AdminDAO adminDAO = new AdminDAO();
-        -->
-
         <%
             Patient patient = null;
             Admin admin = null;
@@ -83,14 +75,14 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="http://localhost:8080/doctor"><fmt:message key="finddoc"/></a>
+                        <li class="menu-has-children menu-active"><a href="/doctor"><fmt:message key="finddoc"/></a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
                                         <form action="doctor" method="POST">
                                             <h3><fmt:message key="finddoc"/></h3>
-                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
-                                            <input class="dropdown-button" type="submit" value="Search Doctor">
+                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="<fmt:message key="searchdotorbyname"/>"/>                               
+                                            <input class="dropdown-button" type="submit" name="action" value="Search Doctor">
                                         </form>
                                     </div>
                                 </li>
@@ -195,6 +187,7 @@
                                                 <label for="email"><fmt:message key="email"/></label>
                                                 <input type="email" name="email" id="email" class="email" required>
                                                 <span class="error"></span>
+                                                <span id="isExist"></span>
                                             </div>
 
                                             <div class="form-group">
@@ -646,7 +639,7 @@
                                 69 IU Street <br>
                                 Ho Chi Minh City, <br>
                                 Viet Nam<br>
-                                <strong>Phone:</strong> 911 <br>
+                                <strong><fmt:message key="phonenumber"/>:</strong> 911 <br>
                                 <strong>Email:</strong> abc@gmail.com<br>
                             </p>
 

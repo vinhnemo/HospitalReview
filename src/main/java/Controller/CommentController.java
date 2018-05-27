@@ -5,9 +5,8 @@
  */
 package Controller;
 
-import DAO.CommentDAO;
-import DTO.Comment;
-import DTO.Doctor;
+import DAO.*;
+import DTO.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -27,6 +26,7 @@ public class CommentController extends HttpServlet {
 
     private final CommentDAO cDAO = new CommentDAO();
     private Doctor doc;
+    private Patient p;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -52,8 +52,10 @@ public class CommentController extends HttpServlet {
             if (action.equals("addComment")) {
                 String comment = request.getParameter("comment");
                 doc = (Doctor) session.getAttribute("prodoc");
+                p = (Patient) session.getAttribute("patient");
                 int did = doc.getID();
-                cDAO.addComment(comment, did);
+                int pid = p.getID();
+                cDAO.addComment(comment, did, pid);
                 List<Comment> listOfComment = cDAO.getAllComment(did);
                 session.setAttribute("commnetlist", listOfComment);
                 rd = sc.getRequestDispatcher("/viewdoctor.jsp");

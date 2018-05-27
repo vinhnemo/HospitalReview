@@ -68,6 +68,25 @@ $(document).ready(function () {
                 $(this).siblings('.error').text('').fadeOut().parent('.form-group').removeClass('hasError');
                 emailError = false;
             }
+            if (emailError === false) {
+                isExistEmail($(this).val());
+            }
+        }
+
+        function isExistEmail(email) {
+            clearTimeout(timer);
+            $('#isExist').html('<img src="img/loading.gif" />');
+            timer = setTimeout(function () {
+                $.post('register', {'email': email, 'action': "Validate"}, function (data) {
+                    var msg = JSON.parse(data);
+                    if (msg.code == -1) {
+                        $('#isExist').html("<i class=\"fa fa-close\" style=\"color: #ff6666\"> " + msg.text + "</i>");
+                        emailError = true;
+                    } else {
+                        $('#isExist').html("<i class=\"fa fa-check\" style=\"color: #66cc66\"> " + msg.text + "</i>");
+                    }
+                });
+            }, 1000);
         }
 
         // Address
@@ -99,7 +118,7 @@ $(document).ready(function () {
 
     // form switch
     $('a.switch').click(function (e) {
-        
+
         $(this).removeClass('active');
         e.preventDefault();
 
@@ -122,8 +141,8 @@ $(document).ready(function () {
 
     // Form submit
     $('form.signup-form').submit(function (event) {
-
         if (fnameError === true || lnameError === true || emailError === true || address === true) {
+            event.preventDefault();
             $('.fname, .lname, .email, .address').blur();
         }
     });
@@ -136,19 +155,18 @@ $(document).ready(function () {
         var email = $('#email').val();
         var pass = $('#password').val();
         var remember;
-        if ($('#remember').is(":checked")) remember = "yes";
-        else remember = "no";
+        if ($('#remember').is(":checked"))
+            remember = "yes";
+        else
+            remember = "no";
 
         clearTimeout(timer);
         $('#user-result').html('<img src="img/loading.gif" />');
         timer = setTimeout(function () {
             $.post('login', {'email': email, 'password': pass, 'remember': remember, 'action': "Ajax Login"}, function (data) {
-                if (data === "1") {
-                    $("#user-result").html("<i class=\"fa fa-close\"></i> User account does not exist");
-                } else if (data === "2") {
-                    $("#user-result").html("<i class=\"fa fa-close\"></i> Password is not correct");
-                } else if (data === "3") {
-                    $("#user-result").html("<i class=\"fa fa-close\"></i> Please type your email and password");
+                var msg = JSON.parse(data);
+                if (msg.code == -1) {
+                    $('#user-result').html("<i class=\"fa fa-close\" style=\"color: red\">" + msg.text + "</i>");
                 } else {
                     loadEffect();
                 }

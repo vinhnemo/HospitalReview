@@ -1,8 +1,7 @@
-
-
 -- --------------------------------------------------------
     -- Table Patient
     -- ----------------------------
+    SET FOREIGN_KEY_CHECKS=1;
     DROP TABLE IF EXISTS `patient`;
     CREATE TABLE `patient` (
   `p_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -17,14 +16,15 @@
   PRIMARY KEY (`p_id`),
   UNIQUE KEY `patient_uindex` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
 -- ------------------------------------------------------
--- Table Token
+-- table token
 -- ------------------------------------------------------
 DROP TABLE IF EXISTS `token`;
 CREATE TABLE `token` (
     `id` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
     `p_id` bigint(20) unsigned NOT NULL,
-    `key` varchar(150) NOT NULL,
+    `key` varchar(150) NULL,
     `attempt` int(10) unsigned NOT NULL,
     `date` datetime NOT NULL,
     PRIMARY KEY (`id`),
@@ -67,19 +67,23 @@ CREATE TABLE `token` (
   `r_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `r_rate` float(10) unsigned NOT NULL,
   `d_id` bigint(20) unsigned NOT NULL,
+	`p_id` bigint(20) unsigned NOT NULL,
   PRIMARY KEY (`r_id`),
-  FOREIGN KEY (`d_id`) REFERENCES `doctor` (`d_id`)
+  FOREIGN KEY (`d_id`) REFERENCES `doctor` (`d_id`),
+  FOREIGN KEY (`p_id`) REFERENCES `patient` (`p_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- ------------------------------------------------------
    -- Table Comment
    -- ----------------------------
-    DROP TABLE IF EXISTS `comment`;
+ DROP TABLE IF EXISTS `comment`;
     CREATE TABLE `comment` (
   `c_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `c_comment` varchar(255) NOT NULL,
   `d_id` bigint(20) unsigned NOT NULL,
+  `p_id` bigint(20) unsigned NOT NULL,
   PRIMARY KEY (`c_id`),
-  FOREIGN KEY (`d_id`) REFERENCES `doctor` (`d_id`)
+  FOREIGN KEY (`d_id`) REFERENCES `doctor` (`d_id`),
+  FOREIGN KEY (`p_id`) REFERENCES `patient` (`p_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- ------------------------------------------------------
    -- Table Hospital

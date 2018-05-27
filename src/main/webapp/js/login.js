@@ -20,14 +20,15 @@ $(document).ready(function () {
         $('#user-result').html('<img src="img/loading.gif" />');
         timer = setTimeout(function () {
             $.post('login', {'email': email, 'password': pass, 'remember': remember, 'action': "Ajax Login"}, function (data) {
-                if (data === "1") {
-                    $("#user-result").html("<i class=\"fa fa-close\"></i> User account does not exist");
-                } else if (data === "2") {
-                    $("#user-result").html("<i class=\"fa fa-close\"></i> Password is not correct");
-                } else if (data === "3") {
-                    $("#user-result").html("<i class=\"fa fa-close\"></i> Please type your email and password");
+                var msg = JSON.parse(data);
+                
+                if (msg.code == -1) {
+                    $('#user-result').show();
+                    $('#user-result').html("<i class=\"fa fa-close\" style=\"color: #ff6666\">" + msg.text + "</i>");
                 } else {
-                    window.location = 'home.jsp';
+                    $('#user-result').hide();
+                    alert(msg.text);
+                    setTimeout(function(){location.href='home.jsp';},2000);
                 }
             });
         }, 1000);

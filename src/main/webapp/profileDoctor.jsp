@@ -53,11 +53,11 @@
         <header id="header">
             <div class="container-fluid">
                 <div id="logo" class="pull-left">
-                   <h1><a href="home.jsp" class="scrollto">Doctor STRANGE</a></h1>
+                    <h1><a href="home.jsp" class="scrollto">Doctor STRANGE</a></h1>
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="http://localhost:8080/doctor"><fmt:message key="finddoc"/></a>
+                        <li class="menu-has-children menu-active"><a href="/search.jsp"><fmt:message key="finddoc"/></a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
@@ -124,36 +124,43 @@
                                 <div class="side-text">Make an Appointment:</div>
                                 <input class="side-button" type="submit" value="Make Appointment"><hr>
                                 <div class="side-text">Add to Bookmark:</div>
-                                <input class="side-button2" type="submit" value="Bookmark"><hr>
+                                <form method="POST" action="controlBookmark">
+                                    <input type="hidden" name="pID" value="1">
+                                    <input type="hidden" name="dID" value="1">
+                                    <button class="side-button2" value="bookmarkdoctor" name="action">Bookmark </button><hr>
+                                </form>
+
                                 <%
                                     DoctorDAO doctorDAO = new DoctorDAO();
-                                    Doctor doctor = doctorDAO.getDoctor(2);
+                                    Doctor doctor = doctorDAO.getDoctor(1);
                                     if (doctor.getAllowReview() == 1) {%>  
 
                                 <div class="side-text">Your Rating:</div>
+                                <form action="" method="">
                                 <section class='rating-widget'>
                                     <!-- Rating Stars Box -->
                                     <div class='rating-stars text-center'>
                                         <ul id='stars'>
-                                            <li class='star' title='Poor' data-value='1'>
+                                            <li class='star' title='Poor' data-value='1' value="1">
                                                 <i class='fa fa-star fa-fw'></i>
                                             </li>
-                                            <li class='star' title='Fair' data-value='2'>
+                                            <li class='star' title='Fair' data-value='2' value="2">
                                                 <i class='fa fa-star fa-fw'></i>
                                             </li>
-                                            <li class='star' title='Good' data-value='3'>
+                                            <li class='star' title='Good' data-value='3' value="3">
                                                 <i class='fa fa-star fa-fw'></i>
                                             </li>
-                                            <li class='star' title='Excellent' data-value='4'>
+                                            <li class='star' title='Excellent' data-value='4' value="4">
                                                 <i class='fa fa-star fa-fw'></i>
                                             </li>
-                                            <li class='star' title='WOW!!!' data-value='5'>
+                                            <li class='star' title='WOW!!!' data-value='5' value="5">
                                                 <i class='fa fa-star fa-fw'></i>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="text-msg"></div>
                                 </section>
+                                </form>
                                 <% } %>
                             </div>
                         </div>
