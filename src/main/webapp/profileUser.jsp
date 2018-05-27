@@ -139,7 +139,7 @@
                                                             <div class="user-information">
                                                                 <div class="userhead"><fmt:message key="personalinformation"/></div><br> 
                                                                 <table>
-                                                                    <tr><td><div class="userinfo"><fmt:message key="name"/>: </div></td><td> <div class="userinfo-text"><%out.print(patient.getFname()+" "+patient.getLname());%></div></td></tr>
+                                                                    <tr><td><div class="userinfo"><fmt:message key="name"/>: </div></td><td> <div class="userinfo-text"><%out.print(patient.getFname() + " " + patient.getLname());%></div></td></tr>
                                                                     <tr><td><div class="userinfo"><fmt:message key="email"/>: </div></td><td> <div class="userinfo-text"><%out.print(patient.getEmail());%></div></td></tr>
                                                                     <tr><td><div class="userinfo"><fmt:message key="gender"/>: </div></td><td> <div class="userinfo-text"><%out.print(patient.getSex());%></div></td></tr>
                                                                     <tr><td><div class="userinfo"><fmt:message key="address"/>: </div></td><td> <div class="userinfo-text"><%out.print(patient.getAddress());%></div></div></td></tr>
@@ -217,30 +217,26 @@
                                                             <div class="user-information">
                                                                 <div class="userhead"><fmt:message key="yourfavoritedoctor"/></div><br>
                                                                 <% ArrayList<Doctor> listOfDoctor = new DoctorDAO().getAllDoctorBookmark(1);
-
-                                                                    for (int i = 0; i < listOfDoctor.size(); i++) {%>
-                                                                <table>
-                                                                    <!--use value=user profile trong db -->
+                                                                    for (Doctor doctor : listOfDoctor) {%>
+                                                                <table class="">
                                                                     <tr>
-                                                                        <td><a target="_blank" href="sdsad"><%=listOfDoctor.get(i).getFname()%>&nbsp;<%=listOfDoctor.get(i).getLname()%> </td>
+                                                                        <td><a target="_blank" href="/doctor?action=viewpro&id_doctor=<%=doctor.getID()%>"><%=doctor.getFname()%>&nbsp;<%=doctor.getLname()%> </td>
                                                                         <td>
                                                                             <form method="POST" action="controlBookmark">
-                                                                                <input type="hidden" name="pID" value="1">
-                                                                                <input type="hidden" name="dID" value="<%=listOfDoctor.get(i).getID()%>">
-                                                                                <button class="remove" value="removebookmarkdoctor" name="action">Remove </button><hr>
+                                                                                <input type="hidden" name="pID" value="<%=patient.getID()%>">
+                                                                                <input type="hidden" name="dID" value="<%=doctor.getID()%>">
+                                                                                <button class="remove" value="removebookmarkdoctor" name="action">Remove</button><hr>
                                                                             </form>
-
                                                                         </td>
                                                                     </tr>
-
                                                                 </table>
-                                                                <%}%>
+                                                                <%}%>   
                                                             </div>
                                                             <div class="user-information">
                                                                 <div class="userhead"><fmt:message key="yourfavoritehospital"/></div><br>
                                                                 <table>
                                                                     <!--use value=user profile trong db -->
-                                                                    <tr><td><a target="_blank" href="" >.Crazy Hospital   </td><td><input class="remove" type="submit" value="Remove"> </td></tr>
+                                                                    <tr><td>  </td><td> </td></tr>
                                                                     <tr><td><a target="_blank" href="" >.Bien Hoa Hospital </td><td><input class="remove" type="submit" value="Remove"></td></tr>             
                                                                 </table>                                                     
                                                             </div>
