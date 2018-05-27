@@ -77,7 +77,7 @@ public class HospitalDAO {
             ps.setString(2, h.getAddress());
             ps.setString(3, h.getWebsite());
             ps.setString(4, h.getAdName());
-            ps.setString(5, h.getWebsite());
+            ps.setString(5, h.getAdEmail());
             ps.setLong(6, h.getID());
             ps.executeUpdate();
 

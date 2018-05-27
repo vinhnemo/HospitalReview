@@ -10,7 +10,7 @@ package DTO;
  * @author TGMaster
  */
 public class Hospital {
-    private Integer ID;
+    private int ID;
     private String name;
     private String address;
     private String website;
@@ -20,13 +20,16 @@ public class Hospital {
     public Hospital() {
     }
 
-    public Hospital(int ID, String name, String address, String adName, String adEmail) {
+    public Hospital(int ID, String name, String address, String website, String adName, String adEmail) {
         this.ID = ID;
         this.name = name;
         this.address = address;
+        this.website = website;
         this.adName = adName;
         this.adEmail = adEmail;
     }
+
+   
 
     public int getID() {
         return ID;

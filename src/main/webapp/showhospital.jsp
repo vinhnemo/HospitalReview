@@ -240,7 +240,7 @@
                                     <div class="side-text">Your Search</div>
                                     <div class="search-container">
                                         <form method="POST" action="hospital">
-                                            <input type="hidden" name="action" value="hospital">
+                                            <input type="hidden" name="action" value="find">
                                             <input type="text" name="search" placeholder="Search..." class="search-input" value="">
                                             <button class="btn btn-light search-btn" type="submit"> 
                                                 <i class="fa fa-search"></i>
