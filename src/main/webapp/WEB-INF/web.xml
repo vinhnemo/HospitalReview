@@ -44,6 +44,10 @@
         <servlet-name>activeReview</servlet-name>
         <servlet-class>Controller.activeReview</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>hospital</servlet-name>
+        <servlet-class>Controller.HospitalController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registration</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -88,6 +92,10 @@
     <servlet-mapping>
         <servlet-name>activeReview</servlet-name>
         <url-pattern>/activeReview</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>hospital</servlet-name>
+        <url-pattern>/hospital</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

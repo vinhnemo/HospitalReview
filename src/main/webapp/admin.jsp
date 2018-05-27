@@ -4,6 +4,10 @@
     Author     : Duyet Pham
 --%>
 
+<%@page import="DTO.Doctor"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="DAO.DoctorDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -91,6 +95,122 @@
             <section class="card-section-imagia">
 
                 <div class="container" id="doctor">
+                    
+                     <%
+            DoctorDAO doctorDAO = new DoctorDAO();
+            //List<Doctor> listOfDoctor = doctorDAO.getAllDoctor();
+            List<Doctor> listOfDoctor = (ArrayList<Doctor>) session.getAttribute("doctorlist");
+
+        %>
+                     <section class="card-section-imagia">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+                            <aside id="fh5co-aside" role="complementary" class="border js-fullheight">
+                                <div class="side-content">
+                                    <h4>Filter Your Result</h4><hr>
+                                    <div class="side-text">Your Search</div>
+                                    <div class="search-container">
+                                        <form method="POST" action="doctor">
+                                            <input type="hidden" name="action" value="Doctor">
+                                            <input type="text" name="search" placeholder="Search..." class="search-input" value="">
+                                            <button class="btn btn-light search-btn" type="submit"> 
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </form>
+                                    </div><hr>
+                                    <div class="side-text">Gender</div>
+                                    <select class="side-select"> <!-- apply from db -->
+                                        <option value="1">Male</option>
+                                        <option value="2">Female</option>
+                                    </select><hr>
+                                    <div class="side-text">Last Name</div>
+                                    <select class="side-select"> <!-- apply from db -->
+                                        <option value="1">A -> Z</option>
+                                        <option value="2">Z -> A</option>
+                                    </select><hr>
+                                    <div class="side-text">Speciality</div>
+                                    <select class="side-select"> <!-- apply from db -->
+                                        <option value="Crazy">Crazy</option>
+                                        <option value="Mad">Mad</option>
+                                    </select><hr>
+                                    <div class="side-text">Sorting</div>
+                                    <select class="side-select"> <!-- apply from db -->
+                                        <option value="location">Location</option>
+                                        <option value="popular">Popular</option>
+                                        <option value="highlow">High -> Low</option>
+                                        <option value="lowhigh">Low -> High</option>
+                                    </select>
+                                </div>                            
+                            </aside>
+                        </div>
+
+                        <div class="col-md-9">
+                            <div class="row">                        
+                                <%
+                                    if (listOfDoctor.size() > 0) {
+                                        for (Doctor d : listOfDoctor) {
+                                %> 
+                                <div class="col-md-3">
+
+                                    <div class="card-container-imagia">
+                                        <div class="card-imagia">
+                                            <div class="front-imagia">
+                                                <div class="cover-imagia"><!--<img src="https://unsplash.it/720/500?image=1067" alt="">--></div>
+                                                <div class="user-imagia"><img src="https://unsplash.it/120/120?image=64" class="img-circle" alt=""></div>
+                                                <div class="content-imagia">
+                                                    <h3 class="name-imagia"><%= d.getLname() + " " + d.getFname()%> </h3>
+                                                    <p class="subtitle-imagia"><%= d.getSpeciality()%></p> <hr>
+                                                    <div id="location"><i class="fa fa-map-marker"></i> 1822km </div>
+                                                    <div id="gender"> Gender : <%= d.getSex()%></div>
+                                                    <div id="workplace"> Working at : HCMIU </div>
+                                                    <div id="degree"> Degree : <%= d.getDegree()%></div>
+                                                </div>
+                                                <div class="footer-imagia"><span><i class="fa fa-plus"></i> More info</span></div>
+                                            </div>
+                                            <div class="back-imagia">
+                                                <div class="content-imagia content-back-imagia">
+                                                    <div>
+                                                        <h4><%= d.getLname() + d.getFname()%> </h4>
+                                                        <div id="specific-speciality">Specific-speciality: <%= d.getSpeciality()%>  </div>
+                                                        <div id="timework">Time : <%= d.getHours()%> </div>
+                                                        <!--<div id="">Abc : xyz </div>-->
+                                                        <div id="insurance">Insurance: <%= d.getInsurance()%> </div>
+                                                        <!--<div id="">DOB : 6-9-1939</div>-->
+                                                        <!--<div id="">Address : Tiệm Đồ Gỗ </div>-->
+                                                        <!--<div id="">Insurance: < %= d.getInsurance()%>  </div>-->
+                                                    </div>
+                                                </div>
+                                                <div class="footer-imagia">
+                                                    <div class="text-center">
+                                                        <input type="hidden" name="id_doctor" value="<%= d.getID()%>" >
+                                                        <input class="card-button" type="submit" value="Make Appointment">
+                                                    </div>
+                                                    <div class="social-imagia text-center"><a href="http://localhost:8080/doctor?action=viewpro&id_doctor=<%= d.getID()%>">View Profile</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <% }
+                                    }%>
+                            </div>
+
+                        </div>
+                    </div> 
+                </div>
+                </div> 
+                </div>
+                </div>
+            </section>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     <h3 class="page-header">List of Doctors</h3>
                     <div class="row">
 
@@ -155,127 +275,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4" >
-                            <div class="doctor-name" style="background-color: white;  margin-right: 1%; margin-bottom: 1%;">
-                                <div class="row" >             
-                                    <div class="col-md-4" >
-                                        <div class="container" style="margin-top: 15%; ">
-                                            <img src="" alt="" style="background-color: #17a2b8; border: 1px solid #000; border-radius:50%;
-                                                 display:block;
-                                                 height:90px;
-                                                 width:90px; ">
-                                            <button type="submit" onclick="document.getElementById('detaildoctor').style.display = 'block'"  style=" background-color: #4CAF50; border: none; color: white; padding: 2px 30px; text-align: center; font-size: 16px; margin: 4px 2px; cursor: pointer;"> Edit</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="container" style="margin-top: 7%; ">
-                                            <h4><strong> Nguyen Van Sinh </strong></h4>
-                                            <p>DOB: 11-01-1997<br> Gender: GAY</p> 
-                                        </div>
-                                    </div>
-                                </div>
-                                <form method="post" action="activeReview" style="margin-top: -10%;margin-left: 0.5%;"> 
-                                    <div class="row" >  
-                                        <div class="col-md-4" >
-                                            <div class="container" >
-                                                <button type="submit" name="action" value="ActivateReview" style=" background-color: #4CAF50; 
-                                                        border: none;
-                                                        color: white; 
-                                                        padding: 
-                                                        1px 28px; 
-                                                        text-align: center; 
-                                                        font-size: 10px; 
-                                                        cursor: pointer;" >Enable Review</button>
-                                            </div> 
-                                        </div>     
-                                        <div class="col-md-4" >
-                                            <div class="container" style="margin-left: -15%;">
-                                                <button type="submit" name="action" value="DeactivateReview" style=" background-color: #4CAF50; 
-                                                        border: none; 
-                                                        color: white; 
-                                                        padding: 1px 28px; 
-                                                        text-align: center; 
-                                                        font-size: 10px;  
-                                                        cursor: pointer;">Disable Review</button>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4" >
-                                            <div class="container" style="margin-left: -30%;" >
-                                                <button type="submit" name="action" value="removeDoctor" style=" background-color: #4CAF50; 
-                                                        border: none; 
-                                                        color: white; 
-                                                        padding: 1px 28px; 
-                                                        text-align: center; 
-                                                        font-size: 10px;  
-                                                        cursor: pointer;">Remove Doctor</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
 
-                            </div>
-                        </div>
-
-                        <div class="col-md-4" >
-                            <div class="doctor-name" style="background-color: white;  margin-right: 1%; margin-bottom: 1%;">
-                                <div class="row" >             
-                                    <div class="col-md-4" >
-                                        <div class="container" style="margin-top: 15%; ">
-                                            <img src="" alt="" style="background-color: #17a2b8; border: 1px solid #000; border-radius:50%;
-                                                 display:block;
-                                                 height:90px;
-                                                 width:90px; ">
-                                            <button type="submit" onclick="document.getElementById('detaildoctor').style.display = 'block'"  style=" background-color: #4CAF50; border: none; color: white; padding: 2px 30px; text-align: center; font-size: 16px; margin: 4px 2px; cursor: pointer;"> Edit</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="container" style="margin-top: 7%; ">
-                                            <h4><strong> Nguyen Van Sinh </strong></h4>
-                                            <p>DOB: 11-01-1997<br> Gender: GAY</p> 
-                                        </div>
-                                    </div>
-                                </div>
-                                <form method="post" action="activeReview" style="margin-top: -10%;margin-left: 0.5%;"> 
-                                    <div class="row" >  
-                                        <div class="col-md-4" >
-                                            <div class="container" >
-                                                <button type="submit" name="action" value="ActivateReview" style=" background-color: #4CAF50; 
-                                                        border: none;
-                                                        color: white; 
-                                                        padding: 
-                                                        1px 28px; 
-                                                        text-align: center; 
-                                                        font-size: 10px; 
-                                                        cursor: pointer;" >Enable Review</button>
-                                            </div> 
-                                        </div>     
-                                        <div class="col-md-4" >
-                                            <div class="container" style="margin-left: -15%;">
-                                                <button type="submit" name="action" value="DeactivateReview" style=" background-color: #4CAF50; 
-                                                        border: none; 
-                                                        color: white; 
-                                                        padding: 1px 28px; 
-                                                        text-align: center; 
-                                                        font-size: 10px;  
-                                                        cursor: pointer;">Disable Review</button>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4" >
-                                            <div class="container" style="margin-left: -30%;" >
-                                                <button type="submit" name="action" value="removeDoctor" style=" background-color: #4CAF50; 
-                                                        border: none; 
-                                                        color: white; 
-                                                        padding: 1px 28px; 
-                                                        text-align: center; 
-                                                        font-size: 10px;  
-                                                        cursor: pointer;">Remove Doctor</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-
-                            </div>
-                        </div>
 
                     </div>
                 </div>
@@ -312,28 +312,7 @@
                             </div>
                         </div>     
 
-                        <div class="col-md-4" >
-                            <div class="doctor-name" style="background-color: white;  margin-right: 1%; margin-bottom: 1%;">
-                                <div class="row" >             
-                                    <div class="col-md-4" >
-                                        <div class="container" style="margin-top: 15%; ">
-                                            <img src="" alt="" style="background-color: #17a2b8; border: 1px solid #000; border-radius:50%;
-                                                 display:block;
-                                                 height:90px;
-                                                 width:90px; ">
-                                            <button type="submit" onclick="document.getElementById('detailpatient').style.display = 'block'"  style=" background-color: #4CAF50; border: none; color: white; padding: 2px 30px; text-align: center; font-size: 16px; margin: 4px 2px; cursor: pointer;"> Edit</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="container" style="margin-top: 7%; ">
-                                            <h4><strong> Nguyen Van Sinh </strong></h4>
-                                            <p>DOB: 11-01-1997<br> Gender: GAY</p> 
-                                        </div>
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>     
                     </div>
                 </div>
 
@@ -360,6 +339,7 @@
 
                     </div>
                 </div>
+
                 <div id ="detailpatient" class="addedform" style="margin-top: 2%; height:800px;display: 'none';">
                     <div id="wrapper">
                         <div id="sidebar-wrapper">
@@ -429,8 +409,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                    
-                                          
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -597,9 +577,9 @@
                         </div>
 
 
-                </form>
+               
             </div>
-
+ </form>
 
 
         </footer>
@@ -618,8 +598,8 @@
         <script src="lib/form/side.js"></script>
         <script src="js/main.js"></script>
         <script src="lib/form/sidebar1.js"></script>
-        
-    
+
+
 
 
     </body>

@@ -85,6 +85,9 @@
             </div>
         </header>
         <!--end of header -->
+        
+        
+        
 
         <%
             Doctor doc;
@@ -98,6 +101,10 @@
 
         <main id="main">
             <!-- De choi thoi -->
+
+            <!--but-->
+
+            <!--end-->
             <div class="nothing-special-dark"></div>
             <div class="nothing-special-light"></div>
             <section class="card-section-imagia">
@@ -105,17 +112,28 @@
                     <div class="row">
                         <div class="col-md-7 col-sm-7" style="background-color: #eee; margin-right: 10px;">
                             <div class="doctor-name">
-                                <div class="row" style="margin-top: 40px;">             
-                                    <div class="col-md-4 col-sm-10">
-                                        <div class="doctor-pic">
-                                            <img src="" alt="">
+                                <form>
+
+                                    <div class="row" style="margin-top: 40px;">             
+                                        <div class="col-md-4 col-sm-10">
+                                            <div class="doctor-pic">
+                                                <img src="" alt="">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="row button-section">
+                                                <div class="large-12 columns">
+                                                    <a class="button small radius save-button">Save</a>
+                                                    <a class="button small radius cancel-button">Cancel</a>
+                                                    <a class="button small radius edit-button">Edit</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7 col-sm-10">
+                                            <h3 class="name"><%= doc.getLname() + " " + doc.getFname()%></h3>
+                                            <div class="doctor-text"> DOB: 11-01-1997<br> Gender: <%= doc.getSex()%></div>
                                         </div>
                                     </div>
-                                    <div class="col-md-7 col-sm-10">
-                                        <h3 class="name"><%= doc.getLname() + " " + doc.getFname()%></h3>
-                                        <div class="doctor-text"> DOB: 11-01-1997<br> Gender: <%= doc.getSex()%></div>
-                                    </div>
-                                </div>
                             </div>
                             <div class="doctor-information">
                                 <div class="head">Personal Information</div><br> 
@@ -129,7 +147,9 @@
                                     <tr><td><div class="info">Work-hour: </div></td><td> <div class="info-text"><%= doc.getHours()%></div></div></td></tr>
                                 </table>
                             </div>
+                            </form>
                         </div>
+
                         <div class="col-md-4 col-sm-4" style="background-color: #FFF;">  
                             <div class="side-doctor">
                                 <h4>Options</h4><hr>
@@ -277,6 +297,82 @@
             </section>
         </main>
         <!-- End of Result -->
+
+
+ 
+
+<form>
+  <div class="row button-section">
+  <div class="large-12 columns">
+<a class="button small radius save-button">Save</a>
+<a class="button small radius cancel-button">Cancel</a>
+<a class="button small radius edit-button">Edit</a>
+  </div>
+  </div>
+  
+  
+    <div class="row">
+    <div class="large-12 columns">
+      <label>Input Label
+        <input type="text" placeholder="some example text" />
+      </label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-4 columns">
+      <label>Input Label
+        <input type="text" placeholder="some example text" />
+      </label>
+    </div>
+    <div class="large-4 columns">
+      <label>Input Label
+        <input type="text" placeholder="some example text" />
+      </label>
+    </div>
+    <div class="large-4 columns">
+      <div class="row collapse">
+        <label>Input Label</label>
+        <div class="small-9 columns">
+          <input type="text" placeholder="some example text" />
+        </div>
+        <div class="small-3 columns">
+          <span class="postfix">.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-12 columns">
+      <label>Select Box
+        <select>
+          <option value="husker">Husker</option>
+          <option value="starbuck">Starbuck</option>
+          <option value="hotdog">Hot Dog</option>
+          <option value="apollo">Apollo</option>
+        </select>
+      </label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-6 columns">
+      <label>Choose Your Favorite</label>
+      <input type="radio" name="pokemon" value="Red" id="pokemonRed"><label for="pokemonRed">Red</label>
+      <input type="radio" name="pokemon" value="Blue" id="pokemonBlue"><label for="pokemonBlue">Blue</label>
+    </div>
+    <div class="large-6 columns">
+      <label>Check these out</label>
+      <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
+      <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
+    </div>
+  </div>
+
+</form>
+   
+
+
+
+
+
         <footer id="footer">
             <div class="footer-top">
                 <div class="container">
@@ -347,7 +443,7 @@
         <script src="lib/form/rating.js"></script>
         <script src="lib/form/side.js"></script>
         <script src="js/main.js"></script>
-
+        <script src="js/editform.js"></script>
     </body>
 </html>
 

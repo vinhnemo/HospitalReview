@@ -48,6 +48,43 @@
 
     <body>
 
+        
+        <!-- Signup Form -->
+                                    <div class="signup form-peice">
+                                        <form class="signup-form" action="register" method="post">
+
+                                            <div class="form-group">
+                                                <label for="fname"><fmt:message key="firstname"/></label>
+                                                <input type="text" name="fname" id="fname" class="fname" required>
+                                                <span class="error"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="lname"><fmt:message key="lastname"/></label>
+                                                <input type="text" name="lname" id="lname" class="lname" required>
+                                                <span class="error"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="email"><fmt:message key="email"/></label>
+                                                <input type="email" name="email" id="email" class="email" required>
+                                                <span class="error"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="address"><fmt:message key="address"/></label>
+                                                <input type="text" name="address" id="address" class="address" required>
+                                                <span class="error"></span>
+                                            </div>
+
+                                            <div class="CTA">
+                                                <input type="submit" value="Signup Now" id="submit" name="action">
+                                                <a href="#" class="switch" id="loginsw"><fmt:message key="ihaveanaccount"/></a>
+                                            </div>
+                                        </form>
+                                    </div><!-- End Signup Form -->
+        
+        
         <header id="header">
             <div class="container-fluid">
                 <div id="logo" class="pull-left">
