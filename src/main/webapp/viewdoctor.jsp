@@ -120,15 +120,7 @@
                                                 <img src="" alt="">
                                             </div>
                                         </div>
-                                        <div>
-                                            <div class="row button-section">
-                                                <div class="large-12 columns">
-                                                    <a class="button small radius save-button">Save</a>
-                                                    <a class="button small radius cancel-button">Cancel</a>
-                                                    <a class="button small radius edit-button">Edit</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                      
                                         <div class="col-md-7 col-sm-10">
                                             <h3 class="name"><%= doc.getLname() + " " + doc.getFname()%></h3>
                                             <div class="doctor-text"> DOB: 11-01-1997<br> Gender: <%= doc.getSex()%></div>
@@ -301,72 +293,7 @@
 
  
 
-<form>
-  <div class="row button-section">
-  <div class="large-12 columns">
-<a class="button small radius save-button">Save</a>
-<a class="button small radius cancel-button">Cancel</a>
-<a class="button small radius edit-button">Edit</a>
-  </div>
-  </div>
-  
-  
-    <div class="row">
-    <div class="large-12 columns">
-      <label>Input Label
-        <input type="text" placeholder="some example text" />
-      </label>
-    </div>
-  </div>
-  <div class="row">
-    <div class="large-4 columns">
-      <label>Input Label
-        <input type="text" placeholder="some example text" />
-      </label>
-    </div>
-    <div class="large-4 columns">
-      <label>Input Label
-        <input type="text" placeholder="some example text" />
-      </label>
-    </div>
-    <div class="large-4 columns">
-      <div class="row collapse">
-        <label>Input Label</label>
-        <div class="small-9 columns">
-          <input type="text" placeholder="some example text" />
-        </div>
-        <div class="small-3 columns">
-          <span class="postfix">.com</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="large-12 columns">
-      <label>Select Box
-        <select>
-          <option value="husker">Husker</option>
-          <option value="starbuck">Starbuck</option>
-          <option value="hotdog">Hot Dog</option>
-          <option value="apollo">Apollo</option>
-        </select>
-      </label>
-    </div>
-  </div>
-  <div class="row">
-    <div class="large-6 columns">
-      <label>Choose Your Favorite</label>
-      <input type="radio" name="pokemon" value="Red" id="pokemonRed"><label for="pokemonRed">Red</label>
-      <input type="radio" name="pokemon" value="Blue" id="pokemonBlue"><label for="pokemonBlue">Blue</label>
-    </div>
-    <div class="large-6 columns">
-      <label>Check these out</label>
-      <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
-      <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
-    </div>
-  </div>
 
-</form>
    
 
 
