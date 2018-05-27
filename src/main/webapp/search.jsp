@@ -45,7 +45,26 @@
     </head>
 
     <body>
+        <%
+            Patient patient = null;
+            Admin admin = null;
 
+            Cookie[] cookies = request.getCookies();
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    if (cookie.getName().equals("u_email")) {
+                        patient = PatientDAO.getUserbyEmail(cookie.getValue());
+                    } else if (cookie.getName().equals("a_email")) {
+                        admin = AdminDAO.getUserbyEmail(cookie.getValue());
+                    }
+                }
+            }
+            if (session.getAttribute("patient") != null) {
+                patient = (Patient) session.getAttribute("patient");
+            } else if (session.getAttribute("admin") != null) {
+                admin = (Admin) session.getAttribute("admin");
+            }
+        %>
         <header id="header">
             <div class="container-fluid">
                 <div id="logo" class="pull-left">
@@ -74,7 +93,16 @@
                             </ul>
                         </li>
                         <li><a href="#contact"><fmt:message key="contact"/></a></li>
-                        <li class="menu-active"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true"><fmt:message key="signinup"/></a></li>                     
+                            <% if (patient != null) {%>
+                        <li class="menu-has-children"><a href=""><fmt:message key="greeting"/>, <%out.print(patient.getFname() + " " + patient.getLname());%></a>
+                            <ul>
+                                <li><a href="profileUser.jsp"><fmt:message key="yourprofile"/></a></li>
+                                <li><a href="logout"><fmt:message key="signout"/></a></li>
+                            </ul>
+                        </li>
+                        <% } else {%>
+                        <li class="menu"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true" onclick="animeEffectIn()"><fmt:message key="signinup"/></a></li>
+                            <% }%>                     
                     </ul>
                 </nav>
             </div>

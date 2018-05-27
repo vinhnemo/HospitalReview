@@ -98,7 +98,12 @@
                         <li><a href="#contact"><fmt:message key="contact"/></a></li>
 
                         <% if (patient != null) {%>
-                        <li class="menu"><a href="logout"><fmt:message key="signout"/></a></li>
+                        <li class="menu-has-children"><a href=""><fmt:message key="greeting"/>, <%out.print(patient.getFname()+" "+patient.getLname());%></a>
+                            <ul>
+                                <li><a href="profileUser.jsp"><fmt:message key="yourprofile"/></a></li>
+                                <li><a href="logout"><fmt:message key="signout"/></a></li>
+                            </ul>
+                        </li>
                             <% } else {%>
                         <li class="menu"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true" onclick="animeEffectIn()"><fmt:message key="signinup"/></a></li>
                             <% }%>
@@ -130,7 +135,7 @@
 
                                     <div class="success-msg">
                                         <p>Great! You have logged in successfully.</p>
-                                        <div class="success-btn"><a href="patient" class="profile"><fmt:message key="yourprofile"/></a></div>
+                                        <div class="success-btn"><a href="profileUser.jsp" class="profile"><fmt:message key="yourprofile"/></a></div>
                                         <div class="success-btn"><a href="home.jsp" class="btn-info"><fmt:message key="backtohomepage"/></a></div>
                                     </div>
                                 </div>

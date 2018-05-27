@@ -6,6 +6,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="DTO.Doctor"%>
 <%@page import="DAO.DoctorDAO"%>
+<%@page import="DAO.*,DTO.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -47,7 +48,26 @@
         <link rel="stylesheet" href="lib/form/profile.css">
     </head>
     <body>
+        <%
+            Patient patient = null;
+            Admin admin = null;
 
+            Cookie[] cookies = request.getCookies();
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    if (cookie.getName().equals("u_email")) {
+                        patient = PatientDAO.getUserbyEmail(cookie.getValue());
+                    } else if (cookie.getName().equals("a_email")) {
+                        admin = AdminDAO.getUserbyEmail(cookie.getValue());
+                    }
+                }
+            }
+            if (session.getAttribute("patient") != null) {
+                patient = (Patient) session.getAttribute("patient");
+            } else if (session.getAttribute("admin") != null) {
+                admin = (Admin) session.getAttribute("admin");
+            }
+        %>
         <header id="header">
             <div class="container-fluid">
                 <div id="logo" class="pull-left">
@@ -76,7 +96,16 @@
                             </ul>
                         </li>
                         <li><a href="#contact"><fmt:message key="contact"/></a></li>
-                        <li class="menu-active"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true"><fmt:message key="signinup"/></a></li>                     
+                            <% if (patient != null) {%>
+                        <li class="menu-has-children"><a href=""><fmt:message key="greeting"/>, <%out.print(patient.getFname() + " " + patient.getLname());%></a>
+                            <ul>
+                                <li><a href="profileUser.jsp"><fmt:message key="yourprofile"/></a></li>
+                                <li><a href="logout"><fmt:message key="signout"/></a></li>
+                            </ul>
+                        </li>
+                        <% } else {%>
+                        <li class="menu"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true" onclick="animeEffectIn()"><fmt:message key="signinup"/></a></li>
+                            <% }%>                     
                     </ul>
                 </nav>
             </div>
@@ -110,12 +139,12 @@
                                                             <div class="user-information">
                                                                 <div class="userhead"><fmt:message key="personalinformation"/></div><br> 
                                                                 <table>
-                                                                    <tr><td><div class="userinfo"><fmt:message key="name"/>: </div></td><td> <div class="userinfo-text">Naruto</div></td></tr>
-                                                                    <tr><td><div class="userinfo"><fmt:message key="email"/>: </div></td><td> <div class="userinfo-text">sucsinhnguyen696969@gmail.com</div></td></tr>
-                                                                    <tr><td><div class="userinfo"><fmt:message key="gender"/>: </div></td><td> <div class="userinfo-text">Other</div></td></tr>
-                                                                    <tr><td><div class="userinfo"><fmt:message key="address"/>: </div></td><td> <div class="userinfo-text">1023 ABC Phuong 3, Quan 7, Ho Chi Minh City</div></div></td></tr>
-                                                                    <tr><td><div class="userinfo"><fmt:message key="insurancenumber"/>: </div></td><td> <div class="userinfo-text">046556065</div></div></td></tr>
-                                                                    <tr><td><div class="userinfo"><fmt:message key="language"/> :</div></td><td> <div class="userinfo-text">English</div></div></td></tr>
+                                                                    <tr><td><div class="userinfo"><fmt:message key="name"/>: </div></td><td> <div class="userinfo-text"><%out.print(patient.getFname()+" "+patient.getLname());%></div></td></tr>
+                                                                    <tr><td><div class="userinfo"><fmt:message key="email"/>: </div></td><td> <div class="userinfo-text"><%out.print(patient.getEmail());%></div></td></tr>
+                                                                    <tr><td><div class="userinfo"><fmt:message key="gender"/>: </div></td><td> <div class="userinfo-text"><%out.print(patient.getSex());%></div></td></tr>
+                                                                    <tr><td><div class="userinfo"><fmt:message key="address"/>: </div></td><td> <div class="userinfo-text"><%out.print(patient.getAddress());%></div></div></td></tr>
+                                                                    <tr><td><div class="userinfo"><fmt:message key="insurancenumber"/>: </div></td><td> <div class="userinfo-text">Not Update Yet</div></div></td></tr>
+                                                                    <tr><td><div class="userinfo"><fmt:message key="language"/> :</div></td><td> <div class="userinfo-text"><%out.print(patient.getLang());%></div></div></td></tr>
                                                                 </table>
                                                             </div>
                                                         </div>
@@ -133,8 +162,9 @@
                                                                 <form class="change" action="" method="">
                                                                     <table>
                                                                         <!--use value=user profile trong db -->
-                                                                        <tr><td><div class="userinfo"><fmt:message key="name"/>: </div></td><td><input class="form-change" type="text" name="address" value="Naruto"></td></tr>
-                                                                        <tr><td><div class="userinfo"><fmt:message key="email"/>: </div></td><td><input class="form-change" type="text" name="address" value="sucsinhnguyen696969@gmail.com"></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="name"/>: </div></td><td><input class="form-change" type="text" name="fname" value="<%out.print(patient.getFname());%>"></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="name"/>: </div></td><td><input class="form-change" type="text" name="lname" value="<%out.print(patient.getLname());%>"></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="email"/>: </div></td><td><input class="form-change" type="text" name="email" value="<%out.print(patient.getEmail());%>"></td></tr>
                                                                         <tr><td><div class="userinfo"><fmt:message key="gender"/>: </div></td>
                                                                             <td>                        
                                                                                 <select class="form-change" name="gender">
@@ -144,9 +174,9 @@
                                                                                 </select>
                                                                             </td>
                                                                         </tr>
-                                                                        <tr><td><div class="userinfo"><fmt:message key="address"/>: </div></td><td><input class="form-change" type="text" name="address" value="1023 ABC Phuong 3, Quan 7, Ho Chi Minh City"></td></tr>
-                                                                        <tr><td><div class="userinfo"><fmt:message key="insurancenumber"/>: </div></td><td><input class="form-change" type="text" name="address" value="046556065"></td></tr>
-                                                                        <tr><td><div class="userinfo"><fmt:message key="language"/>: </div></td><td><input class="form-change" type="text" name="address" value="English"></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="address"/>: </div></td><td><input class="form-change" type="text" name="address" value="<%out.print(patient.getAddress());%>"></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="insurancenumber"/>: </div></td><td><input class="form-change" type="text" name="insurance" value="Not Update Yet"></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="language"/>: </div></td><td><input class="form-change" type="text" name="lang" value="<%out.print(patient.getLang());%>"></td></tr>
                                                                     </table>
                                                                     <input class="save" type="submit" value="Save change"> 
                                                                 </form>
