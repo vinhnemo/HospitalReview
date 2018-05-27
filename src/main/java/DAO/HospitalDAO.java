@@ -77,7 +77,7 @@ public class HospitalDAO {
             ps.setString(2, h.getAddress());
             ps.setString(3, h.getWebsite());
             ps.setString(4, h.getAdName());
-            ps.setString(5, h.getWebsite());
+            ps.setString(5, h.getAdEmail());
             ps.setLong(6, h.getID());
             ps.executeUpdate();
 
@@ -98,10 +98,11 @@ public class HospitalDAO {
         try {
             PreparedStatement ps;
 
-            query = "SELECT * FROM hospital WHERE p_fname LIKE ? OR p_lname LIKE ?";
+            query = "SELECT * FROM hospital WHERE h_name LIKE ?";
+           
             ps = connection.prepareCall(query);
             ps.setString(1, "%" + name + "%");
-            ps.setString(2, "%" + name + "%");
+           
 
             ResultSet rs = ps.executeQuery();
 
@@ -118,7 +119,7 @@ public class HospitalDAO {
 
             connection.close();
         } catch (SQLException ex) {
-            Logger.getLogger(Hospital.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HospitalDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
     }
