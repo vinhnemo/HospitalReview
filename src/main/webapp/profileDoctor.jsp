@@ -132,7 +132,7 @@
 
                                 <%
                                     DoctorDAO doctorDAO = new DoctorDAO();
-                                    Doctor doctor = doctorDAO.getDoctor(1);
+                                    Doctor doctor = doctorDAO.getDoctorReview(1);
                                     if (doctor.getAllowReview() == 1) {%>  
 
                                 <div class="side-text">Your Rating:</div>

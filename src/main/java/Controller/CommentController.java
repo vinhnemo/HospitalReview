@@ -58,8 +58,8 @@ public class CommentController extends HttpServlet {
                 cDAO.addComment(comment, did, pid);
                 List<Comment> listOfComment = cDAO.getAllComment(did);
                 session.setAttribute("commnetlist", listOfComment);
-                rd = sc.getRequestDispatcher("/viewdoctor.jsp");
-                rd.forward(request, response);
+                response.sendRedirect("http://localhost:8080/doctor?action=viewpro&id_doctor=" + did);
+                //rd.forward(request, response);
             }
         }
     }

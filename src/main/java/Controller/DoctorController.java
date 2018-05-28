@@ -121,7 +121,7 @@ public class DoctorController extends HttpServlet {
                 DoctorDAO dao = new DoctorDAO();
                 Doctor doc = (Doctor) dao.getDoctor(id);
                 session.setAttribute("prodoc", doc);
-                rd = sc.getRequestDispatcher("/viewdoctor.jsp");
+                rd = sc.getRequestDispatcher("/profileDoctor.jsp");
                 rd.forward(request, response);
             }
 
