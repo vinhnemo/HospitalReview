@@ -197,7 +197,7 @@
                                     <section class='rating-widget'>
                                         <!-- Rating Stars Box -->
                                         <div class='rating-stars text-center'>
-                                            <ul id='stars' name="action" value="addRate">
+                                            <ul id='stars' name="action"  value="addRate" onclick="submit()">
                                                 <li class='star' title='Poor' data-value='1' value="1" name="rate">
                                                     <i class='fa fa-star fa-fw'></i>
                                                 </li>
