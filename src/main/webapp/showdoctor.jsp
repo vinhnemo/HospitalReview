@@ -72,8 +72,8 @@
                         <li><a href="#"><fmt:message key="appt"/></a></li>
                         <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
                             <ul>
-                                <li><a href="search.jsp?language=en_US">English</a></li>
-                                <li><a href="search.jsp?language=vi_VN">Tiếng Việt</a></li>
+                                <li><a href="doctor?language=en_US">English</a></li>
+                                <li><a href="doctor?language=vi_VN">Tiếng Việt</a></li>
                             </ul>
                         </li>
                         <li><a href="#contact"><fmt:message key="contact"/></a></li>
