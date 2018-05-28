@@ -51,13 +51,12 @@ public class RateController extends HttpServlet {
             rd.forward(request, response);
         } else {
             if (action.equals("addRate")) {
-                doc = (Doctor) session.getAttribute("prodoc");
-                int did = doc.getID();
+                int did = Integer.parseInt(request.getParameter("did"));
                 float rate = Float.parseFloat(request.getParameter("rate"));
                 rateDAO.addRate(rate, did);
                 List<Rate> listOfRate = rateDAO.getAllRate(did);
                 session.setAttribute("ratelist", listOfRate);
-                response.sendRedirect("http://localhost:8080/doctor?action=viewpro&id_doctor=" + did);
+                response.sendRedirect("/doctor?action=viewpro&id_doctor=" + did);
                 //rd.forward(request, response);
             }
         }

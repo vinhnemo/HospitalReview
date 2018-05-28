@@ -115,7 +115,7 @@ public class DoctorController extends HttpServlet {
                 DoctorDAO dao = new DoctorDAO();
                 Doctor doc = new Doctor(id, fname, lname, hour, degree, insurance, speciality, hour, language);
                 dao.updateDoctor(doc);
-                response.sendRedirect("http://localhost:8080/doctor?action=viewpro&id_doctor=" + id);
+                response.sendRedirect("/doctor?action=viewpro&id_doctor=" + id);
             } else if (action.equals("viewpro")) {
                 int id = Integer.parseInt(request.getParameter("id_doctor"));
                 DoctorDAO dao = new DoctorDAO();
