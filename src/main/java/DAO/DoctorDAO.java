@@ -150,6 +150,10 @@ public class DoctorDAO {
     }
 
     public boolean insertDoctor(Doctor d) {
+      
+        String query1 ="INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ( ? , ? , ? , ? , ? , ? , ? , ? );" ;
+        
+        
         String query = "INSERT INTO doctor"
                 + "("
                 + " d_fname , "
@@ -170,13 +174,13 @@ public class DoctorDAO {
                 + " ? ,"
                 + " ? ,"
                 + " ? );";
-        System.out.println(query);
+        System.out.println(query1 + "ssssssssssssssssssssssssssssssssssssssssssssssss");
         // Connect to database
         Connection connection = Database.getConnection();
 
         // Prepare Statement
         try {
-            PreparedStatement ps = connection.prepareCall(query);
+            PreparedStatement ps = connection.prepareCall(query1);
             ps.setString(1, d.getFname());
             ps.setString(2, d.getLname());
             ps.setString(3, d.getSex());
