@@ -305,18 +305,14 @@
                         <form action="hospital" method="POST">
                             <input type="hidden" name="id" value="<%= hos.getID()%>" >
                             <input type="hidden" name="action" value="remove">
-<<<<<<< HEAD
                             <button type="submit" class="btn btn-default"><fmt:message key="remove"/></button>
                         </form>        
-=======
-                            <button type="submit" class="btn btn-default">Remove</button>
-                        </form>  
+  
                         <form method="POST" action="controlBookmark">
                             <input type="hidden" name="pID" value="<%= patient.getID()%>">
                             <input type="hidden" name="hID" value="<%= hos.getID()%>">
-                            <button class="side-button2" value="bookmarkhospital" name="action">Bookmark </button><hr>
+                            <button class="side-button2" value="bookmarkhospital" name="action"><fmt:message key="bookmark"/> </button><hr>
                         </form> 
->>>>>>> 17ee487a5e3edb50f795d30d470c96565d74fc38
                         <!--end of edit-->
 
 
