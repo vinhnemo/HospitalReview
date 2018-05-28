@@ -88,7 +88,7 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="/doctor"><fmt:message key="finddoc"/></a>
+                        <li class="menu-has-children menu-active"><a href="http://localhost:8080/doctor"><fmt:message key="finddoc"/></a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
@@ -104,8 +104,8 @@
                         <li><a href="#"><fmt:message key="appt"/></a></li>
                         <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
                             <ul>
-                                <li><a href="insert.jsp?language=en_US">English</a></li>
-                                <li><a href="insert.jsp?language=vi_VN">Tiếng Việt</a></li>
+                                <li><a href="home.jsp?language=en_US">English</a></li>
+                                <li><a href="home.jsp?language=vi_VN">Tiếng Việt</a></li>
                             </ul>
                         </li>
                         <li><a href="#contact"><fmt:message key="contact"/></a></li>
@@ -142,7 +142,7 @@
                                     </div>
 
                                     <div class="success-msg">
-                                        <p><fmt:message key="loginsuccess"/></p>
+                                        <p>Great! You have logged in successfully.</p>
                                         <div class="success-btn"><a href="patient" class="profile"><fmt:message key="yourprofile"/></a></div>
                                         <div class="success-btn"><a href="home.jsp" class="btn-info"><fmt:message key="backtohomepage"/></a></div>
                                     </div>
@@ -243,71 +243,49 @@
 
                         <form action="admin" method="POST">
                             <div class="form-group">
-                                <label for="name"><fmt:message key="name"/></label>
+                                <label for="name">Name</label>
                                 <input type="text" class="form-control" id="name" name="name" value="">
                             </div>
                             <div class="form-group">
-                                <label for="address"><fmt:message key="address"/></label>
+                                <label for="address">Addres</label>
                                 <input type="text" class="form-control" id="address"  name="address" value="">
                             </div>
                             <div class="form-group">
-                                <label for="website"><fmt:message key="website"/></label>
+                                <label for="website">Website</label>
                                 <input type="text" class="form-control" id="website" name="website" value="">
                             </div>
                             <div class="form-group">
-                                <label for="name"><fmt:message key="hospitaladminname"/></label>
+                                <label for="name">Hospital Admin Name</label>
                                 <input type="text" class="form-control" id="name" name="admin" value="" >
                             </div>
                             <div class="form-group">
-                                <label for="email"><fmt:message key="hospitaladminemail"/> </label>
+                                <label for="email">Hospital Admin Email Address </label>
                                 <input type="text" class="form-control" id="email" name="email" value="">
                             </div>
-
+                           
                             <input type="hidden" name="action" value="hospital">
-                            <button type="submit" class="btn btn-default"><fmt:message key="add"/></button>
+                            <button type="submit" class="btn btn-default">add</button>
                         </form>
 
                         <!--______________________--->
 
                         <form action="admin" method="POST">
                             <div class="form-group">
-                                <label for="name"><fmt:message key="firstname"/> </label>
+                                <label for="name">First name </label>
                                 <input type="name" class="form-control" id="name" name="fname" value="">
                             </div>
                             <div class="form-group">
-                                <label for="name"><fmt:message key="lastname"/> </label>
+                                <label for="name">Last name </label>
                                 <input type="name" class="form-control" id="name" name="lname" value="">
                             </div>
                             <div class="form-group">
-<<<<<<< HEAD
-                                <label for="name"><fmt:message key="gender"/></label>
-                                <input type="name" class="form-control" id="address"  name="sex" value="">
-=======
                                 <label for="name">Gender</label>
                                 <input type="name" class="form-control" id="address"  name="gender" value="">
->>>>>>> 17ee487a5e3edb50f795d30d470c96565d74fc38
                             </div>
                             <div class="form-group">
-                                <label for="name"><fmt:message key="degree"/></label>
+                                <label for="name">Degree</label>
                                 <input type="name" class="form-control" id="website" name="degree" value="">
                             </div>
-<<<<<<< HEAD
-                            <div class="form-group">
-                                <label for="name"><fmt:message key="acceptinsurance"/></label>
-                                <input type="name" class="form-control" id="website" name="ai" value="">
-                            </div>
-                            <div class="form-group">
-                                <label for="name"><fmt:message key="specificspeciality"/> </label>
-                                <input type="name" class="form-control" id="name" name="ss" value="" >
-                            </div>
-                            <div class="form-group">
-                                <label for="name"><fmt:message key="workhour"/> </label>
-                                <input type="name" class="form-control" id="email" name="time" value="">
-                            </div>
-                            <div class="form-group">
-                                <label for="name"><fmt:message key="language"/> </label>
-                                <input type="name" class="form-control" id="email" name="lang" value="">
-=======
                              <div class="form-group">
                                 <label for="name">Accepted insurance</label>
                                 <input type="name" class="form-control" id="website" name="insurance" value="">
@@ -323,11 +301,10 @@
                             <div class="form-group">
                                 <label for="name">Languages </label>
                                 <input type="name" class="form-control" id="email" name="language" value="">
->>>>>>> 17ee487a5e3edb50f795d30d470c96565d74fc38
                             </div>
                             <!--<input type="hidden" name="id" value="" >-->
                             <input type="hidden" name="action" value="doctor">
-                            <button type="submit" class="btn btn-default"><fmt:message key="add"/></button>
+                            <button type="submit" class="btn btn-default">add</button>
                         </form>
 
                         <!--end of edit-->
@@ -362,7 +339,7 @@
                                                 69 IU Street <br>
                                                 Ho Chi Minh City, <br>
                                                 Viet Nam<br>
-                                                <strong><fmt:message key="phone"/>:</strong> 911 <br>
+                                                <strong>Phone:</strong> 911 <br>
                                                 <strong>Email:</strong> abc@gmail.com<br>
                                             </p>
 
