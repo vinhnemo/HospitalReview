@@ -54,7 +54,7 @@ public class controlBookmark extends HttpServlet {
                 int d_id = Integer.parseInt(doID);
                 bookmark.bookmarkDoctor(p_id, d_id);
 
-                response.sendRedirect("profileDoctor.jsp");
+                response.sendRedirect("viewdoctor.jsp");
                 break;
             }
             case "removebookmarkdoctor": {
@@ -72,7 +72,7 @@ public class controlBookmark extends HttpServlet {
                 int p_id = Integer.parseInt(paID);
                 int h_id = Integer.parseInt(hoID);
                 bookmark.bookmarkHospital(p_id, h_id);
-                response.sendRedirect("profileHospital.jsp");
+                response.sendRedirect("viewhospital.jsp");
                 break;
             }
             case "removebookmarkhospital": {
