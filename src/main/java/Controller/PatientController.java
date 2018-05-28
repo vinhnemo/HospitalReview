@@ -66,45 +66,48 @@ public class PatientController extends HttpServlet {
         if (action == null) {
 //            rd = sc.getRequestDispatcher(url);
 //            rd.forward(request, response);
-        } else if (action.equals("update")) {
+        } else if (action.equals("Save Change")) {
             //get input
+            int id = Integer.parseInt(request.getParameter("id"));
             String fname = request.getParameter("fname");
             String lname = request.getParameter("lname");
             String email = request.getParameter("email");
-            String pass = request.getParameter("password");
-            String pass2 = request.getParameter("password2");
+//            String pass = request.getParameter("password");
+//            String pass2 = request.getParameter("password2");
             String address = request.getParameter("address");
             String sex = request.getParameter("gender");
             String language = request.getParameter("language");
 
             String error = "";
-            if (fname.equals("") || lname.equals("") || email.equals("") || pass.equals("") || address.equals("") || sex.equals("")) {
+            if (fname.equals("") || lname.equals("") || email.equals("")  || address.equals("") || sex.equals("")) {
                 error += "Please fill out all required fields.";
-            } else {
-                if (!pass.equals(pass2)) {
-                    error += "Your password and confirmation password do not match";
-                }
             }
+//            else {
+//                if (!pass.equals(pass2)) {
+//                    error += "Your password and confirmation password do not match";
+//                }
+//            }
 
             if (error.length() > 0) {
 
                 request.setAttribute("error", error);
 
-                rd = sc.getRequestDispatcher("/register.jsp");
+                rd = sc.getRequestDispatcher("/profileUser.jsp");
                 rd.forward(request, response);
 
             } else {
+                patient.setID(id);
                 patient.setFname(fname);
                 patient.setLname(lname);
-                patient.setPass(BCrypt.hashpw(pass,BCrypt.gensalt()));
+//                patient.setPass(BCrypt.hashpw(pass,BCrypt.gensalt()));
                 patient.setEmail(email);
                 patient.setAddress(address);
                 patient.setSex(sex);
                 patient.setLang(language);
 
-                PatientDAO.updateUser(patient);
+                PatientDAO.updateinfor(patient);
                 session.setAttribute("user", patient);
-                rd = sc.getRequestDispatcher("/profilePatient.jsp");
+                rd = sc.getRequestDispatcher("/profileUser.jsp");
                 rd.forward(request, response);
             }
         } // remove patient

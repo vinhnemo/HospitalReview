@@ -51,7 +51,7 @@
         <link rel="stylesheet" href="lib/form/form.css">
         <link rel="stylesheet" href="lib/form/sidebar1.css">
         <link rel="stylesheet" href="lib/form/profile.css">
-         <meta charset="utf-8">
+        <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
@@ -130,8 +130,8 @@
                             <li><a href="#"><fmt:message key="appt"/></a></li>
                             <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
                                 <ul>
-                                    <li><a href="home.jsp?language=en_US">English</a></li>
-                                    <li><a href="home.jsp?language=vi_VN">Tiếng Việt</a></li>
+                                    <li><a href="profileUser.jsp?language=en_US">English</a></li>
+                                    <li><a href="profileUser.jsp?language=vi_VN">Tiếng Việt</a></li>
                                 </ul>
                             </li>
                             <li><a href="#contact"><fmt:message key="contact"/></a></li>
@@ -139,7 +139,7 @@
                             <% if (patient != null) {%>
                             <li class="menu-has-children"><a href=""><fmt:message key="greeting"/>, <%out.print(patient.getFname() + " " + patient.getLname());%></a>
                                 <ul>
-                                    
+
                                     <li><a href="logout"><fmt:message key="signout"/></a></li>
                                 </ul>
                             </li>
@@ -255,6 +255,10 @@
                 </div>
             </div>
             <!--end of header -->
+
+            <!--gogo-->
+
+
             <main id="main">
                 <!-- De choi thoi -->
                 <div class="nothing-special-dark"></div>
@@ -283,12 +287,12 @@
                                                                 <div class="user-information">
                                                                     <div class="userhead"><fmt:message key="personalinformation"/></div><br> 
                                                                     <table>
-                                                                        <tr><td><div class="userinfo"><fmt:message key="name"/>: </div></td><td> <div class="userinfo-text">Naruto</div></td></tr>
-                                                                        <tr><td><div class="userinfo"><fmt:message key="email"/>: </div></td><td> <div class="userinfo-text">sucsinhnguyen696969@gmail.com</div></td></tr>
-                                                                        <tr><td><div class="userinfo"><fmt:message key="gender"/>: </div></td><td> <div class="userinfo-text">Other</div></td></tr>
-                                                                        <tr><td><div class="userinfo"><fmt:message key="address"/>: </div></td><td> <div class="userinfo-text">1023 ABC Phuong 3, Quan 7, Ho Chi Minh City</div></div></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="name"/>: </div></td><td> <div class="userinfo-text"><%= patient.getFname() + " " + patient.getLname()%></div></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="email"/>: </div></td><td> <div class="userinfo-text"><%= patient.getEmail() %></div></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="gender"/>: </div></td><td> <div class="userinfo-text"><%= patient.getSex() %></div></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="address"/>: </div></td><td> <div class="userinfo-text"><%= patient.getAddress()%></div></div></td></tr>
                                                                         <tr><td><div class="userinfo"><fmt:message key="insurancenumber"/>: </div></td><td> <div class="userinfo-text">046556065</div></div></td></tr>
-                                                                        <tr><td><div class="userinfo"><fmt:message key="language"/> :</div></td><td> <div class="userinfo-text">English</div></div></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="language"/> :</div></td><td> <div class="userinfo-text"><%= patient.getLang()%></div></div></td></tr>
                                                                     </table>
                                                                 </div>
                                                             </div>
@@ -303,11 +307,11 @@
                                                             <div class="user">
                                                                 <div class="user-information">
                                                                     <div class="userhead"><fmt:message key="edityourprofile"/></div><br>
-                                                                    <form class="change" action="" method="">
+                                                                    <form class="change" action="patient" method="POST">
                                                                         <table>
                                                                             <!--use value=user profile trong db -->
-                                                                            <tr><td><div class="userinfo"><fmt:message key="name"/>: </div></td><td><input class="form-change" type="text" name="address" value="Naruto"></td></tr>
-                                                                            <tr><td><div class="userinfo"><fmt:message key="email"/>: </div></td><td><input class="form-change" type="text" name="address" value="sucsinhnguyen696969@gmail.com"></td></tr>
+                                                                            <tr><td><div class="userinfo"><fmt:message key="name"/>: </div></td><td><input class="form-change" type="text" name="fname" value="<%= patient.getFname() %>"></td><td><input class="form-change" type="text" name="lname" value="<%= patient.getLname()%>"</td></tr>
+                                                                            <tr><td><div class="userinfo"><fmt:message key="email"/>: </div></td><td><input class="form-change" type="email" name="email" value="<%= patient.getEmail() %>"></td></tr>
                                                                             <tr><td><div class="userinfo"><fmt:message key="gender"/>: </div></td>
                                                                                 <td>                        
                                                                                     <select class="form-change" name="gender">
@@ -317,11 +321,13 @@
                                                                                     </select>
                                                                                 </td>
                                                                             </tr>
-                                                                            <tr><td><div class="userinfo"><fmt:message key="address"/>: </div></td><td><input class="form-change" type="text" name="address" value="1023 ABC Phuong 3, Quan 7, Ho Chi Minh City"></td></tr>
-                                                                            <tr><td><div class="userinfo"><fmt:message key="insurancenumber"/>: </div></td><td><input class="form-change" type="text" name="address" value="046556065"></td></tr>
-                                                                            <tr><td><div class="userinfo"><fmt:message key="language"/>: </div></td><td><input class="form-change" type="text" name="address" value="English"></td></tr>
+                                                                            <tr><td><div class="userinfo"><fmt:message key="address"/>: </div></td><td><input class="form-change" type="text" name="address" value="<%= patient.getAddress()%>"></td></tr>
+                                                                            <tr><td><div class="userinfo"><fmt:message key="insurancenumber"/>: </div></td><td><input class="form-change" type="text" name="z" value="046556065"></td></tr>
+                                                                            <tr><td><div class="userinfo"><fmt:message key="language"/>: </div></td><td><input class="form-change" type="text" name="language" value="<%= patient.getLang()%>"></td></tr>
                                                                         </table>
-                                                                        <input class="save" type="submit" value="Save change"> 
+                                                                        <input class="save" type="hidden" value="<%= patient.getID() %>" name="id"> 
+                                                                        <input class="save" type="submit" value="Save change" name="action"> 
+                                                                        
                                                                     </form>
                                                                 </div>
                                                             </div>
@@ -360,7 +366,7 @@
                                                                 <div class="user-information">
                                                                     <div class="userhead"><fmt:message key="yourfavoritedoctor"/></div><br>
                                                                     <% ArrayList<Doctor> listOfDoctor = new DoctorDAO().getAllDoctorBookmark(1);
-                                                                    for (int i = 0; i < listOfDoctor.size(); i++) {%>
+                                                                        for (int i = 0; i < listOfDoctor.size(); i++) {%>
                                                                     <table>
                                                                         <!--use value=user profile trong db -->
                                                                         <tr>
@@ -381,7 +387,7 @@
                                                                 <div class="user-information">
                                                                     <div class="userhead"><fmt:message key="yourfavoritehospital"/></div><br>
                                                                     <% ArrayList<Hospital> listOfHospital = new HospitalDAO().getAllHospitalBookmark(1);
-                                                                    for (int i = 0; i < listOfHospital.size(); i++) {%>
+                                                                        for (int i = 0; i < listOfHospital.size(); i++) {%>
                                                                     <table>
                                                                         <!--use value=user profile trong db -->
                                                                         <td><a target="_blank" href="sdsad"><%=listOfHospital.get(i).getName()%> </td>
@@ -516,11 +522,11 @@
             <script src="js/modal.js"></script>
 
             <script type="text/javascript">
-                                    $(window).load(function (e) {
-                                        document.getElementById("loader").style.display = "none";
-                                        document.getElementById("good").style.display = "block";
+                                $(window).load(function (e) {
+                                    document.getElementById("loader").style.display = "none";
+                                    document.getElementById("good").style.display = "block";
 
-                                    });
+                                });
             </script>
     </body>
 </html>
