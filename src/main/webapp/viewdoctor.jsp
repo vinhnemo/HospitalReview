@@ -185,12 +185,7 @@
                                 <div class="side-text"><fmt:message key="setanappointment"/>:</div>
                                 <input class="side-button" type="submit" value="Make Appointment"><hr>
                                 <div class="side-text"><fmt:message key="addtobookmark"/>:</div>
-                                <form method="POST" action="controlBookmark">
-                                    <input type="hidden" name="pID" value="<%= patient.getID()%>">
-                                    <input type="hidden" name="dID" value="<%= doc.getID()%>">
-                                    <button class="side-button2" value="bookmarkdoctor" name="action">Bookmark </button><hr>
-                                </form>
-                                <hr>
+                                <input class="side-button2" type="submit" value="Bookmark"><hr>
                                 <%
                                     DoctorDAO doctorDAO = new DoctorDAO();
                                     Doctor doctor = doctorDAO.getDoctorReview(doc.getID());
