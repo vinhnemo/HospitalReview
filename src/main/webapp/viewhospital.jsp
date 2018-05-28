@@ -263,7 +263,7 @@
                                                                         <tr><td><div class="info">Speciality: </div></td><td> <div class="info-text">Neurology</div></td></tr>-->
                                     <tr><td><div class="info"><fmt:message key="hospitaladminname"/> :  </div></td><td> <div class="info-text"><%= hos.getAdName()%> </div></td></tr>
                                     <tr><td><div class="info"><fmt:message key="hospitaladminemail"/>: </div></td><td> <div class="info-text"><%= hos.getAdEmail()%></div></div></td></tr>
-                                    <tr><td><div class="info"><fmt:message key="webiste"/> : </div></td><td> <div class="info-text"><%= hos.getWebsite()%></div></div></td></tr>
+                                    <tr><td><div class="info"><fmt:message key="website"/> : </div></td><td> <div class="info-text"><%= hos.getWebsite()%></div></div></td></tr>
                                     <!--                                    <tr><td><div class="info">Language: </div></td><td> <div class="info-text"></div></div></td></tr>
                                                                         <tr><td><div class="info">Work-hour: </div></td><td> <div class="info-text"></div></div></td></tr>-->
                                 </table>
