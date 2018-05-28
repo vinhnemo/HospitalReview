@@ -52,7 +52,7 @@ public class adminController extends HttpServlet {
         String action = request.getParameter("action");
         if (action.equals("doctor")) {
             DoctorDAO dao = new DoctorDAO();
-            
+
             String fname = escapeHtml4(request.getParameter("fname"));
             fname = convertSup(fname);
             String lname = escapeHtml4(request.getParameter("lname"));
@@ -158,7 +158,7 @@ public class adminController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-public static String convertSup(String word) {
+    public static String convertSup(String word) {
         StringBuilder sb = new StringBuilder();
 
         char[] charArray = word.toLowerCase().toCharArray();
@@ -188,4 +188,5 @@ public static String convertSup(String word) {
         }
         return sb.toString();
     }
+
 }

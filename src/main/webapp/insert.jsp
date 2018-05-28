@@ -280,7 +280,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="name">Gender</label>
-                                <input type="name" class="form-control" id="address"  name="sex" value="">
+                                <input type="name" class="form-control" id="address"  name="gender" value="">
                             </div>
                             <div class="form-group">
                                 <label for="name">Degree</label>
@@ -288,19 +288,19 @@
                             </div>
                              <div class="form-group">
                                 <label for="name">Accepted insurance</label>
-                                <input type="name" class="form-control" id="website" name="ai" value="">
+                                <input type="name" class="form-control" id="website" name="insurance" value="">
                             </div>
                             <div class="form-group">
                                 <label for="name">Specific specialty </label>
-                                <input type="name" class="form-control" id="name" name="ss" value="" >
+                                <input type="name" class="form-control" id="name" name="speciality" value="" >
                             </div>
                             <div class="form-group">
                                 <label for="name">Office hours </label>
-                                <input type="name" class="form-control" id="email" name="time" value="">
+                                <input type="name" class="form-control" id="email" name="hour" value="">
                             </div>
                             <div class="form-group">
                                 <label for="name">Languages </label>
-                                <input type="name" class="form-control" id="email" name="lang" value="">
+                                <input type="name" class="form-control" id="email" name="language" value="">
                             </div>
                             <!--<input type="hidden" name="id" value="" >-->
                             <input type="hidden" name="action" value="doctor">
