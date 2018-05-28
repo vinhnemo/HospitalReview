@@ -115,6 +115,17 @@ $(document).ready(function () {
     $('input').keyup(function () {
         $('#user-result').hide();
     });
+    
+    // Name
+    $('#fname').keyup(function (e) {
+        var text = $(this).val().replace(/[^a-zA-Z\n\r]+/g, '');
+        $(this).val(text);
+    });
+
+    $('#lname').keyup(function (e) {
+        var text = $(this).val().replace(/[^a-zA-Z\n\r]+/g, '');
+        $(this).val(text);
+    });
 
     // form switch
     $('a.switch').click(function (e) {
