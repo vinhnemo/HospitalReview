@@ -57,8 +57,8 @@ public class RateController extends HttpServlet {
                 rateDAO.addRate(rate, did);
                 List<Rate> listOfRate = rateDAO.getAllRate(did);
                 session.setAttribute("ratelist", listOfRate);
-                rd = sc.getRequestDispatcher("/viewdoctor.jsp");
-                rd.forward(request, response);
+                response.sendRedirect("http://localhost:8080/doctor?action=viewpro&id_doctor=" + did);
+                //rd.forward(request, response);
             }
         }
     }

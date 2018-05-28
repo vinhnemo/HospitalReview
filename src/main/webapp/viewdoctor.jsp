@@ -85,9 +85,9 @@
             </div>
         </header>
         <!--end of header -->
-        
-        
-        
+
+
+
 
         <%
             Doctor doc;
@@ -120,7 +120,7 @@
                                                 <img src="" alt="">
                                             </div>
                                         </div>
-                                      
+
                                         <div class="col-md-7 col-sm-10">
                                             <h3 class="name"><%= doc.getLname() + " " + doc.getFname()%></h3>
                                             <div class="doctor-text"> DOB: 11-01-1997<br> Gender: <%= doc.getSex()%></div>
@@ -141,9 +141,9 @@
                             </div>
                             </form>
                         </div>
-                            
-                        
-                          <form action="doctor" method="POST">
+
+
+                        <form action="doctor" method="POST">
                             <div class="form-group">
                                 <label for="name">First name </label>
                                 <input type="name" class="form-control" id="name" name="fname" value="<%= doc.getFname()%>">
@@ -160,7 +160,7 @@
                                 <label for="website">Degree</label>
                                 <input type="website" class="form-control" id="website" name="degree" value="<%= doc.getDegree()%>">
                             </div>
-                             <div class="form-group">
+                            <div class="form-group">
                                 <label for="website">Accepted insurance</label>
                                 <input type="website" class="form-control" id="website" name="insurance" value="<%= doc.getInsurance()%>">
                             </div>
@@ -176,7 +176,7 @@
                                 <label for="name">Languages </label>
                                 <input type="name" class="form-control" id="name" name="language" value="<%= doc.getLang()%>">
                             </div>
-                            <input type="hidden" name="id" value="<%= doc.getID() %>" >
+                            <input type="hidden" name="id" value="<%= doc.getID()%>" >
                             <input type="hidden" name="action" value="updateDoctor">
                             <button type="submit" class="btn btn-default">Edit</button>
                         </form>
@@ -185,7 +185,7 @@
                             <input type="hidden" name="action" value="remove">
                             <button type="submit" class="btn btn-default">Remove</button>
                         </form>    
-                        
+
                         <div class="col-md-4 col-sm-4" style="background-color: #FFF;">  
                             <div class="side-doctor">
                                 <h4>Options</h4><hr>
@@ -226,8 +226,7 @@
                             </div>
                         </div>
                     </div>
-                    <%
-                        if (doctor.getAllowReview() == 1) {%>  
+
                     <div class="comment">
                         <div class="row">
                             <div class="col-md-10">
@@ -308,7 +307,7 @@
                                 <!--end comment list-->
                             </div>
                         </div>
-                        <% } %>
+
                         <!--comment box-->
 
                         <%
@@ -335,10 +334,10 @@
         <!-- End of Result -->
 
 
- 
 
 
-   
+
+
 
 
 
