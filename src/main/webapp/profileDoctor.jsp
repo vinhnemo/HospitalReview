@@ -3,8 +3,8 @@
     Created on : May 23, 2018, 6:31:10 PM
     Author     : MSI
 --%>
-<%@page import="DAO.DoctorDAO"%>
-<%@page import="DTO.Doctor"%>
+<%@page import="DAO.*"%>
+<%@page import="DTO.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -84,6 +84,22 @@
             </div>
         </header>
         <!--end of header -->
+
+        <%
+            Doctor doc;
+            doc = (Doctor) session.getAttribute("prodoc");
+//            Doctor doc;
+//            int i = 1;
+//            DoctorDAO dao  = new DoctorDAO();
+//            doc = (Doctor) dao.getDoctor(i);
+
+            PatientDAO patientDAO = new PatientDAO();
+            Patient patient = null;
+            if (session.getAttribute("patient") != null) {
+                patient = (Patient) session.getAttribute("patient");
+            }
+        %> 
+
         <main id="main">
             <!-- De choi thoi -->
             <div class="nothing-special-dark"></div>
@@ -100,8 +116,8 @@
                                         </div>
                                     </div>
                                     <div class="col-md-7 col-sm-10">
-                                        <h3 class="name">Nguyen Van Sinh</h3>
-                                        <div class="doctor-text"> DOB: 11-01-1997<br> Gender: GAY </div>
+                                        <h3 class="name"><%= doc.getLname() + " " + doc.getFname()%></h3>
+                                        <div class="doctor-text"> DOB: 11-01-1997<br> Gender: <%= doc.getSex()%></div>
                                     </div>
                                 </div>
                             </div>
@@ -110,11 +126,11 @@
                                 <table>
                                     <tr><td><div class="info">Working Place: </div></td><td> <div class="info-text">Abc hospital</div></td></tr>
                                     <tr><td><div class="info">Speciality: </div></td><td> <div class="info-text">Neurology</div></td></tr>
-                                    <tr><td><div class="info">Specific speciality: </div></td><td> <div class="info-text">Crazy</div></td></tr>
-                                    <tr><td><div class="info">Degree: </div></td><td> <div class="info-text">Kintergarden</div></div></td></tr>
-                                    <tr><td><div class="info">Insurance: </div></td><td> <div class="info-text">Accepted</div></div></td></tr>
-                                    <tr><td><div class="info">Language: </div></td><td> <div class="info-text">English</div></div></td></tr>
-                                    <tr><td><div class="info">Work-hour: </div></td><td> <div class="info-text">10AM-2PM</div></div></td></tr>
+                                    <tr><td><div class="info">Specific speciality:  </div></td><td> <div class="info-text"><%= doc.getSpeciality()%> </div></td></tr>
+                                    <tr><td><div class="info">Degree: </div></td><td> <div class="info-text"><%= doc.getDegree()%></div></div></td></tr>
+                                    <tr><td><div class="info">Insurance:  </div></td><td> <div class="info-text"><%= doc.getInsurance()%></div></div></td></tr>
+                                    <tr><td><div class="info">Language: </div></td><td> <div class="info-text"><%= doc.getLang()%></div></div></td></tr>
+                                    <tr><td><div class="info">Work-hour: </div></td><td> <div class="info-text"><%= doc.getHours()%></div></div></td></tr>
                                 </table>
                             </div>
                         </div>
@@ -125,41 +141,41 @@
                                 <input class="side-button" type="submit" value="Make Appointment"><hr>
                                 <div class="side-text">Add to Bookmark:</div>
                                 <form method="POST" action="controlBookmark">
-                                    <input type="hidden" name="pID" value="1">
-                                    <input type="hidden" name="dID" value="1">
+                                    <input type="hidden" name="pID" value="<%= patient.getID()%>">
+                                    <input type="hidden" name="dID" value="<%= doc.getID()%>">
                                     <button class="side-button2" value="bookmarkdoctor" name="action">Bookmark </button><hr>
                                 </form>
 
                                 <%
                                     DoctorDAO doctorDAO = new DoctorDAO();
-                                    Doctor doctor = doctorDAO.getDoctor(1);
+                                    Doctor doctor = doctorDAO.getDoctorReview(doc.getID());
                                     if (doctor.getAllowReview() == 1) {%>  
 
                                 <div class="side-text">Your Rating:</div>
-                                <form action="" method="">
-                                <section class='rating-widget'>
-                                    <!-- Rating Stars Box -->
-                                    <div class='rating-stars text-center'>
-                                        <ul id='stars'>
-                                            <li class='star' title='Poor' data-value='1' value="1">
-                                                <i class='fa fa-star fa-fw'></i>
-                                            </li>
-                                            <li class='star' title='Fair' data-value='2' value="2">
-                                                <i class='fa fa-star fa-fw'></i>
-                                            </li>
-                                            <li class='star' title='Good' data-value='3' value="3">
-                                                <i class='fa fa-star fa-fw'></i>
-                                            </li>
-                                            <li class='star' title='Excellent' data-value='4' value="4">
-                                                <i class='fa fa-star fa-fw'></i>
-                                            </li>
-                                            <li class='star' title='WOW!!!' data-value='5' value="5">
-                                                <i class='fa fa-star fa-fw'></i>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="text-msg"></div>
-                                </section>
+                                <form action="rate" method="POST">
+                                    <section class='rating-widget'>
+                                        <!-- Rating Stars Box -->
+                                        <div class='rating-stars text-center'>
+                                            <ul id='stars' name="rate"  value="addRate" onclick="submit()">
+                                                <li class='star' title='Poor' data-value='1' value="1" name="rate">
+                                                    <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                                <li class='star' title='Fair' data-value='2' value="2" name="rate">
+                                                    <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                                <li class='star' title='Good' data-value='3' value="3" name="rate">
+                                                    <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                                <li class='star' title='Excellent' data-value='4' value="4" name="rate">
+                                                    <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                                <li class='star' title='WOW!!!' data-value='5' value="5" name="rate">
+                                                    <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="text-msg"></div>
+                                    </section>
                                 </form>
                                 <% } %>
                             </div>
@@ -257,9 +273,9 @@
                                 <div class="col-md-8">
                                     <div class="widget-area no-padding blank">
                                         <div class="status-upload">
-                                            <form action="" method="">
+                                            <form action="comment" method="POST">
                                                 <textarea placeholder="What are your opinion about him/her" ></textarea>
-                                                <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Post</button>
+                                                <button type="submit" class="btn btn-success green" name="addComment"><i class="fa fa-share"></i> Post</button>
                                             </form>
                                         </div><!-- Status Upload  -->
                                     </div><!-- Widget Area -->

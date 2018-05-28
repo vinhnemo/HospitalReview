@@ -360,4 +360,38 @@ public class DoctorDAO {
 
         return list;
     }
+    
+        public Doctor getDoctorReview(int id) {
+
+        String query = "SELECT doctor.d_id,d_fname,d_lname,d_gender,d_degree,d_insurance,d_speciality,d_hour,languages, allowReview FROM doctor,doctorreview WHERE doctor.d_id = ? AND doctor.d_id = doctorreview.d_id;";
+       // String query = "select * from doctor where d_id = ? ;";
+        Doctor doctor = new Doctor();
+
+        // Connect to database
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareCall(query);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                doctor.setID(rs.getInt("d_id"));
+                doctor.setFname(rs.getString("d_fname"));
+                doctor.setLname(rs.getString("d_lname"));
+                doctor.setSex(rs.getString("d_gender"));
+                doctor.setDegree(rs.getString("d_degree"));
+                doctor.setInsurance(rs.getBoolean("d_insurance"));
+                doctor.setSpeciality(rs.getString("d_speciality"));
+                doctor.setHours(rs.getString("d_hour"));
+                doctor.setLang(rs.getString("languages"));
+                doctor.setAllowReview(rs.getInt("allowReview"));
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DoctorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return doctor;
+    }
 }

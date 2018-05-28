@@ -147,7 +147,7 @@
                                     <!-- Login Form -->
                                     <div class="login form-peice switched">
                                         <form class="login-form" action="#" method="post">
-                                            <span id="user-result" style="color: red"></span>
+                                            <span id="user-result"></span>
 
                                             <div class="form-group">
                                                 <label for="email"><fmt:message key="email"/></label>
@@ -159,9 +159,9 @@
                                                 <input type="password" name="password" id="password" required>
                                             </div>
 
-                                            <div class="form-group">
-                                                <label for="remember"><fmt:message key="rememberme"/></label>
-                                                <input type="checkbox" name="remember" id="remember" value="yes">
+                                            <div class="form-check-inline">
+                                                <input type="checkbox" name="remember" id="remember" value="yes" class="form-check-input">
+                                                <label for="remember" class="form-check-label"><fmt:message key="rememberme"/></label>
                                             </div>
 
                                             <div class="CTA">

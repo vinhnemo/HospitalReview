@@ -23,6 +23,10 @@ public class Util {
     public static String toJson(Object obj) {
         return gson.toJson(obj);
     }
+    
+    public static Message fromJson(String json) {
+        return gson.fromJson(json, Message.class);
+    }
 
     public static String encrypt(String msg) {
 

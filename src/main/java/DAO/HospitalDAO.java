@@ -227,5 +227,34 @@ public class HospitalDAO {
         }
         return false;
     }
+    
+        public ArrayList<Hospital> getAllHospitalBookmark(int pID) {
+        ArrayList<Hospital> list = new ArrayList<>();
+        String query = "SELECT hospital.h_id,h_name,h_address,h_website,adname,ademail,p_id FROM hospital,bookmarkhospital WHERE p_id = '" + pID + "' AND hospital.h_id = bookmarkhospital.h_id;";
+
+        // Connect to database
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareCall(query);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Hospital h = new Hospital();
+                h.setID(rs.getInt("h_id"));
+                h.setName(rs.getString("h_name"));
+                h.setAddress(rs.getString("h_address"));
+                h.setWebsite(rs.getString("h_website"));
+                h.setAdName(rs.getString("adname"));
+                h.setAdEmail(rs.getString("ademail"));
+                list.add(h);
+            }
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DoctorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return list;
+    }
 
 }

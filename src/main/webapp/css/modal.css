@@ -7,6 +7,20 @@ and open the template in the editor.
     Created on : May 21, 2018, 10:03:33 AM
     Author     : TGMaster
 */
+.form-check-inline {
+    margin-top: 30px;
+}
+.form-check-inline label {
+    width: 110px;
+    font-size: 12px !important;
+    margin-top: -18px;
+}
+
+.form-check-inline #remember {
+    width: 13px;
+    height: 13px;
+    transform: scale(1.2) !important;
+}
 
 .modal-content
 {
@@ -75,8 +89,8 @@ and open the template in the editor.
     margin: 0 -60px 0 -60px;
 }
 #heading .letter {
-  display: inline-block;
-  line-height: 1em;
+    display: inline-block;
+    line-height: 1em;
 }
 .brand .heading p {
     font-size: 15px;
@@ -215,7 +229,7 @@ and open the template in the editor.
 .form form .CTA input {
     font-size: 12px;
     text-transform: uppercase;
-    padding: 5px 30px;
+    padding: 5px 25px;
     background: #13a456;
     color: #fff;
     border-radius: 30px;
@@ -237,6 +251,10 @@ and open the template in the editor.
 }
 .form form .CTA a.switch:hover {
     color: #f95959;
+}
+
+#user-result i {
+    width: 300px;
 }
 
 
@@ -287,6 +305,25 @@ and open the template in the editor.
         width: 100% !important;
         padding: 60px;
         left: 50%;
+    }
+    .form form .CTA {
+        text-align: center;
+    }
+    
+    .form form .CTA input {
+        margin-right: 0;
+    }
+    
+    .brand {
+        margin-top: -24px;
+    }
+    
+    .CTA #login {
+        margin-right: 20px;
+    }
+    
+    #isExist i {
+        width: 200px;
     }
 }
 @media (max-width: 480px) {
