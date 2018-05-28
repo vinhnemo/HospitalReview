@@ -5,11 +5,15 @@
  */
 package Controller;
 
+import Calculate.LatitudeAndLongitudeWithPincode;
+import Calculate.Location;
 import DAO.HospitalDAO;
 import DTO.Hospital;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -29,7 +33,7 @@ public class HospitalController extends HttpServlet {
     HospitalDAO hospitalDAO = new HospitalDAO();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, Exception {
 
         // Call Servlet Context
         ServletContext sc = getServletContext();
@@ -81,8 +85,7 @@ public class HospitalController extends HttpServlet {
             session.setAttribute("hospitallist", listofHospital);
             rd = sc.getRequestDispatcher("/showhospital.jsp");
             rd.forward(request, response);
-        } 
-        else if (action.equals("add")) {
+        } else if (action.equals("add")) {
 
             // Hospital object
             Hospital hospital = new Hospital();
@@ -111,13 +114,22 @@ public class HospitalController extends HttpServlet {
                 hospital.setAdEmail(email);
 
                 if (hospitalDAO.insertHospital(hospital)) {
+
+                    hospital = hospitalDAO.getHospital(hospitalDAO.getIDhospital());
+                    int id = hospital.getID();
+                    Location loc = new Location();
+                    loc.setAddress(address);
+                    LatitudeAndLongitudeWithPincode la = new LatitudeAndLongitudeWithPincode();
+                    loc = la.getLatLongPositions(loc);
+                    System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                    System.out.println(loc.getLat() + "xxxxxxxxxxx " + loc.getLng());
                     List<Hospital> listofHospital = hospitalDAO.getAllHospital();
                     session.setAttribute("hospitallist", listofHospital);
                     rd = sc.getRequestDispatcher("/showhospital.jsp");
                     rd.forward(request, response);
                 } else {
                     request.setAttribute("error", "There is something wrong when adding to database.");
-                    rd = sc.getRequestDispatcher("/hospitalreg.jsp");
+                    rd = sc.getRequestDispatcher("/showhospital.jsp");
                     rd.forward(request, response);
                 }
             }
@@ -127,13 +139,21 @@ public class HospitalController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(HospitalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(HospitalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

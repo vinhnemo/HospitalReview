@@ -35,11 +35,12 @@ public class LatitudeAndLongitudeWithPincode {
         String postcode = reader.readLine();
         Location lol = new Location();
         lol.setAddress(postcode);
-        lol = getLatLongPositions(lol);
+        LatitudeAndLongitudeWithPincode la = new LatitudeAndLongitudeWithPincode();
+        lol = la.getLatLongPositions(lol);
         System.out.println("Latitude: " + lol.getLat() + " and Longitude: " + lol.getLng());
     }
 
-    public static Location getLatLongPositions(Location loc) throws Exception {
+    public Location getLatLongPositions(Location loc) throws Exception {
         int responseCode = 0;
         String address = loc.getAddress();
         String api = "https://maps.googleapis.com/maps/api/geocode/xml?address=" + URLEncoder.encode(address, "UTF-8") + "&key=AIzaSyBWCH6uWQbLO2KtBLx-_O-S2CYX-YmKApY";
@@ -70,5 +71,7 @@ public class LatitudeAndLongitudeWithPincode {
         }
         return null;
     }
+
+    
 
 }
