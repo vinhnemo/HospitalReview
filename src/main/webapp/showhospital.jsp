@@ -79,7 +79,7 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="http://localhost:8080/doctor"><fmt:message key="finddoc"/></a>
+                        <li class="menu-has-children menu-active"><a href="/doctor"><fmt:message key="finddoc"/></a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
@@ -95,8 +95,8 @@
                         <li><a href="#"><fmt:message key="appt"/></a></li>
                         <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
                             <ul>
-                                <li><a href="home.jsp?language=en_US">English</a></li>
-                                <li><a href="home.jsp?language=vi_VN">Tiếng Việt</a></li>
+                                <li><a href="hospital?language=en_US">English</a></li>
+                                <li><a href="hospital?language=vi_VN">Tiếng Việt</a></li>
                             </ul>
                         </li>
                         <li><a href="#contact"><fmt:message key="contact"/></a></li>
@@ -309,7 +309,7 @@
                                                         <input type="hidden" name="id_doctor" value="" >
                                                         <input class="card-button" type="submit" value="Make Appointment">
                                                     </div>
-                                                    <div class="social-imagia text-center"><a href="http://localhost:8080/hospital?action=viewprohos&id_hospital=<%= h.getID() %>">View Profile</a></div>
+                                                    <div class="social-imagia text-center"><a href="/hospital?action=viewprohos&id_hospital=<%= h.getID() %>">View Profile</a></div>
                                                 </div>
                                             </div>
                                         </div>

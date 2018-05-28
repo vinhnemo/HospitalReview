@@ -72,7 +72,7 @@ public class HospitalController extends HttpServlet {
             HospitalDAO d = new HospitalDAO();
             Hospital hosp = new Hospital(id, name, address, website, admin, email);
             d.updateHospital(hosp);
-            response.sendRedirect("http://localhost:8080/hospital?action=viewprohos&id_hospital=" + id);
+            response.sendRedirect("/hospital?action=viewprohos&id_hospital=" + id);
         } else if (action.equals("remove")) {
             int id = Integer.parseInt(request.getParameter("id"));
             HospitalDAO d = new HospitalDAO();

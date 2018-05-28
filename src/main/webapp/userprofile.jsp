@@ -189,7 +189,6 @@
                                                             <div class="user-information">
                                                                 <div class="userhead"><fmt:message key="yourfavoritedoctor"/></div><br>
                                                                 <% ArrayList<Doctor> listOfDoctor = new DoctorDAO().getAllDoctorBookmark(1);
-
                                                                     for (int i = 0; i < listOfDoctor.size(); i++) {%>
                                                                 <table>
                                                                     <!--use value=user profile trong db -->
@@ -211,7 +210,6 @@
                                                             <div class="user-information">
                                                                 <div class="userhead"><fmt:message key="yourfavoritehospital"/></div><br>
                                                                 <% ArrayList<Hospital> listOfHospital = new HospitalDAO().getAllHospitalBookmark(1);
-
                                                                       for (int i = 0; i < listOfHospital.size(); i++) {%>
                                                                 <table>
                                                                     <!--use value=user profile trong db -->
@@ -329,6 +327,4 @@
 
     </body>
 </html>
-
-
 

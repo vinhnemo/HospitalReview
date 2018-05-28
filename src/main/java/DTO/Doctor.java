@@ -25,6 +25,29 @@ public class Doctor {
     public Doctor() {
     }
 
+    public Doctor(String fname, String lname, String sex, String degree, boolean insurance, String speciality, String hours, String lang) {
+        this.fname = fname;
+        this.lname = lname;
+        this.sex = sex;
+        this.degree = degree;
+        this.insurance = insurance;
+        this.speciality = speciality;
+        this.hours = hours;
+        this.lang = lang;
+    }
+
+    public Doctor(String fname, String lname, String sex, String degree, boolean insurance, String speciality, String hours, String lang, int allowReview) {
+        this.fname = fname;
+        this.lname = lname;
+        this.sex = sex;
+        this.degree = degree;
+        this.insurance = insurance;
+        this.speciality = speciality;
+        this.hours = hours;
+        this.lang = lang;
+        this.allowReview = allowReview;
+    }
+
     public Doctor(int ID, String fname, String lname, String sex, String degree, boolean insurance, String speciality, String hours, String lang) {
         this.ID = ID;
         this.fname = fname;
