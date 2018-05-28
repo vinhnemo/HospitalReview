@@ -149,88 +149,51 @@ public class DoctorDAO {
         return doctor;
     }
 
-    public void addDoctor(int id, String fname, String lname, String sex, String degree, boolean insurance, String speciality, String hours, String lang) {
-
-        ResultSet generatedKeys;
-        int ID = 0;
+    public boolean insertDoctor(Doctor d) {
         String query = "INSERT INTO doctor"
                 + "("
-                + "d_id,"
-                + "d_fname,"
-                + "d_lname,"
-                + "d_gender,"
-                + "d_degree,"
-                + "d_insurance,"
-                + "d_speciality,"
-                + "d_hour,"
-                + "languages)"
+                + " d_fname , "
+                + " d_lname , "
+                + " d_gender , "
+                + " d_degree , "
+                + " d_insurance , "
+                + " d_speciality , "
+                + " d_hour  ,"
+                + " languages) "
                 + " VALUES "
-                + "("
-                + "?,"
-                + "?,"
-                + "?,"
-                + "?,"
-                + "?,"
-                + "?,"
-                + "?,"
-                + "?,"
-                + "?);";
+                + " ( "
+                + " ? ,"
+                + " ? ,"
+                + " ? ,"
+                + " ? ,"
+                + " ? ,"
+                + " ? ,"
+                + " ? ,"
+                + " ? );";
+        System.out.println(query);
+        // Connect to database
+        Connection connection = Database.getConnection();
 
-        String query1 = "INSERT INTO doctorreview(d_id) VALUES (?)";
-
+        // Prepare Statement
         try {
-            // create a mysql database connection
-            String myDriver = "com.mysql.jdbc.Driver";
-            String myUrl = "jdbc:mysql://127.0.0.1:3306/hospital";
-            Class.forName(myDriver);
-            Connection conn = DriverManager.getConnection(myUrl, "root", "");
+            PreparedStatement ps = connection.prepareCall(query);
+            ps.setString(1, d.getFname());
+            ps.setString(2, d.getLname());
+            ps.setString(3, d.getSex());
+            ps.setString(4, d.getDegree());
+            ps.setBoolean(5, d.getInsurance());
+            ps.setString(6, d.getSpeciality());
+            ps.setString(7, d.getHours());
+            ps.setString(8, d.getLang());
+            ps.executeUpdate();
 
-            conn.setAutoCommit(false);
-            // set all the preparedstatement parameters
-            PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            stmt.setInt(1, id);
-            stmt.setString(2, fname);
-            stmt.setString(3, lname);
-            stmt.setString(4, sex);
-            stmt.setString(5, degree);
-            stmt.setBoolean(6, insurance);
-            stmt.setString(7, speciality);
-            stmt.setString(8, hours);
-            stmt.setString(9, lang);
-            stmt.executeUpdate();
-
-            conn.commit();
-            generatedKeys = stmt.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                ID = generatedKeys.getInt(1);
-            } else {
-                throw new SQLException("No generated user ID returned");
-            }
-
-        } catch (ClassNotFoundException | SQLException e) {
-            System.err.println("Got an exception!");
-            System.err.println(e.getMessage());
+            connection.close();
+            return true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
 
-        try {
-            // create a mysql database connection
-            String myDriver = "com.mysql.jdbc.Driver";
-            String myUrl = "jdbc:mysql://127.0.0.1:3306/hospital";
-            Class.forName(myDriver);
-            Connection conn = DriverManager.getConnection(myUrl, "root", "");
-
-            // set all the preparedstatement parameters
-            PreparedStatement stmt = conn.prepareStatement(query1);
-            stmt.setInt(1, ID);
-
-            // execute the preparedstatement insert
-            stmt.executeUpdate();
-            stmt.close();
-        } catch (ClassNotFoundException | SQLException e) {
-            System.err.println("Got an exception!");
-            System.err.println(e.getMessage());
-        }
-
+        return false;
     }
 
     public void remove(int id) {
@@ -286,7 +249,7 @@ public class DoctorDAO {
             ps.setString(7, d.getHours());
             ps.setString(8, d.getLang());
             ps.setLong(9, d.getID());
-           
+
             ps.executeUpdate();
             connection.close();
         } catch (SQLException ex) {
@@ -360,11 +323,11 @@ public class DoctorDAO {
 
         return list;
     }
-    
-        public Doctor getDoctorReview(int id) {
+
+    public Doctor getDoctorReview(int id) {
 
         String query = "SELECT doctor.d_id,d_fname,d_lname,d_gender,d_degree,d_insurance,d_speciality,d_hour,languages, allowReview FROM doctor,doctorreview WHERE doctor.d_id = ? AND doctor.d_id = doctorreview.d_id;";
-       // String query = "select * from doctor where d_id = ? ;";
+        // String query = "select * from doctor where d_id = ? ;";
         Doctor doctor = new Doctor();
 
         // Connect to database

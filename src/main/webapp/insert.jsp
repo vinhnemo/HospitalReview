@@ -241,7 +241,7 @@
 
                         <!--edit-->
 
-                        <form action="hospital" method="POST">
+                        <form action="admin" method="POST">
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control" id="name" name="name" value="">
@@ -263,13 +263,13 @@
                                 <input type="text" class="form-control" id="email" name="email" value="">
                             </div>
                            
-                            <input type="hidden" name="action" value="add">
+                            <input type="hidden" name="action" value="hospital">
                             <button type="submit" class="btn btn-default">add</button>
                         </form>
 
                         <!--______________________--->
 
-                        <form action="doctor" method="POST">
+                        <form action="admin" method="POST">
                             <div class="form-group">
                                 <label for="name">First name </label>
                                 <input type="name" class="form-control" id="name" name="fname" value="">
@@ -279,31 +279,31 @@
                                 <input type="name" class="form-control" id="name" name="lname" value="">
                             </div>
                             <div class="form-group">
-                                <label for="address">Gender</label>
-                                <input type="address" class="form-control" id="address"  name="sex" value="">
+                                <label for="name">Gender</label>
+                                <input type="name" class="form-control" id="address"  name="sex" value="">
                             </div>
                             <div class="form-group">
-                                <label for="website">Degree</label>
-                                <input type="website" class="form-control" id="website" name="degree" value="">
+                                <label for="name">Degree</label>
+                                <input type="name" class="form-control" id="website" name="degree" value="">
                             </div>
                              <div class="form-group">
-                                <label for="website">Accepted insurance</label>
-                                <input type="website" class="form-control" id="website" name="ai" value="">
+                                <label for="name">Accepted insurance</label>
+                                <input type="name" class="form-control" id="website" name="ai" value="">
                             </div>
                             <div class="form-group">
                                 <label for="name">Specific specialty </label>
                                 <input type="name" class="form-control" id="name" name="ss" value="" >
                             </div>
                             <div class="form-group">
-                                <label for="email">Office hours </label>
-                                <input type="email" class="form-control" id="email" name="time" value="">
+                                <label for="name">Office hours </label>
+                                <input type="name" class="form-control" id="email" name="time" value="">
                             </div>
                             <div class="form-group">
-                                <label for="email">Languages </label>
-                                <input type="email" class="form-control" id="email" name="lang" value="">
+                                <label for="name">Languages </label>
+                                <input type="name" class="form-control" id="email" name="lang" value="">
                             </div>
-                            <input type="hidden" name="id" value="" >
-                            <input type="hidden" name="action" value="update">
+                            <!--<input type="hidden" name="id" value="" >-->
+                            <input type="hidden" name="action" value="doctor">
                             <button type="submit" class="btn btn-default">add</button>
                         </form>
 
