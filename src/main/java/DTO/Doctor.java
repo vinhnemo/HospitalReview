@@ -11,7 +11,7 @@ package DTO;
  */
 public class Doctor {
 
-    private Integer ID;
+    private int ID;
     private String fname;
     private String lname;
     private String sex;
@@ -25,6 +25,19 @@ public class Doctor {
     public Doctor() {
     }
 
+    public Doctor(int ID, String fname, String lname, String sex, String degree, boolean insurance, String speciality, String hours, String lang) {
+        this.ID = ID;
+        this.fname = fname;
+        this.lname = lname;
+        this.sex = sex;
+        this.degree = degree;
+        this.insurance = insurance;
+        this.speciality = speciality;
+        this.hours = hours;
+        this.lang = lang;
+    }
+
+    
     public Doctor(int ID, String fname, String lname, String sex, String degree, boolean insurance, String speciality, String hours, String lang,int allowReview) {
         this.ID = ID;
         this.fname = fname;

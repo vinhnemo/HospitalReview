@@ -3,6 +3,8 @@
     Created on : May 24, 2018, 1:43:34 AM
     Author     : MSI
 --%>
+<%@page import="DAO.HospitalDAO"%>
+<%@page import="DTO.Hospital"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="DTO.Doctor"%>
 <%@page import="DAO.DoctorDAO"%>
@@ -208,11 +210,22 @@
                                                             </div>
                                                             <div class="user-information">
                                                                 <div class="userhead"><fmt:message key="yourfavoritehospital"/></div><br>
+                                                                <% ArrayList<Hospital> listOfHospital = new HospitalDAO().getAllHospitalBookmark(1);
+
+                                                                      for (int i = 0; i < listOfHospital.size(); i++) {%>
                                                                 <table>
                                                                     <!--use value=user profile trong db -->
-                                                                    <tr><td><a target="_blank" href="" >.Crazy Hospital   </td><td><input class="remove" type="submit" value="Remove"> </td></tr>
-                                                                    <tr><td><a target="_blank" href="" >.Bien Hoa Hospital </td><td><input class="remove" type="submit" value="Remove"></td></tr>             
-                                                                </table>                                                     
+                                                                    <td><a target="_blank" href="sdsad"><%=listOfHospital.get(i).getName()%> </td>
+                                                                    <td>
+                                                                        <form method="POST" action="controlBookmark">
+                                                                            <input type="hidden" name="pID" value="1">
+                                                                            <input type="hidden" name="hID" value="<%=listOfHospital.get(i).getID()%>">
+                                                                            <button class="remove" value="removebookmarkhospital" name="action">Remove </button><hr>
+                                                                        </form>
+
+                                                                    </td>
+                                                                </table> 
+                                                                              <%}%>
                                                             </div>
                                                         </div>
                                                     </div>

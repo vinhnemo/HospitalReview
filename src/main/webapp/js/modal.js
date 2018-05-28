@@ -180,6 +180,10 @@ $(document).ready(function () {
         location.reload(true);
     });
 
+    $('#myLogin').on('hide.bs.modal', function () {
+        location.reload(true);
+    });
+
 });
 
 function loadEffect() {

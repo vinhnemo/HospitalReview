@@ -21,7 +21,7 @@ public class PatientDAO {
     // Check existing email
     public static boolean isExistUser(String email) {
         boolean checked = false;
-        
+
         String query = "SELECT * FROM patient WHERE email = ?;";
 
         // Connect to database
@@ -32,10 +32,11 @@ public class PatientDAO {
             ps.setString(1, email);
             ResultSet rs = ps.executeQuery();
 
-            if (rs != null)
+            if (rs != null) {
                 while (rs.next()) {
                     checked = true;
                 }
+            }
             connection.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -293,10 +294,10 @@ public class PatientDAO {
     *
     * VERIFY EMAIL
     *
-    */
+     */
     public static boolean verifyEmail(int id, String hash) {
         String date = "";
-        
+
         // Connect to database
         Connection connection = Database.getConnection();
 
@@ -320,21 +321,18 @@ public class PatientDAO {
         }
         return false;
     }
-    
-    public static Date getDatefromToken(int id, String hash) {
+
+    public static Date getDatefromToken(int id) {
         Date date = null;
-        
+
         // Connect to database
         Connection connection = Database.getConnection();
 
         try {
             PreparedStatement ps = connection.prepareStatement("SELECT date "
-                    + "FROM patient p,token t "
-                    + "WHERE p.p_id = ? "
-                    + "AND p.p_id = t.p_id "
-                    + "AND t.key = ?;");
+                    + "FROM token "
+                    + "WHERE p_id = ? ");
             ps.setInt(1, id);
-            ps.setString(2, hash);
             ResultSet rs = ps.executeQuery();
             if (rs != null) {
                 while (rs.next()) {
@@ -414,7 +412,7 @@ public class PatientDAO {
         }
     }
 
-    public static int increaseAttempt(Integer id) {
+    public static int increaseAttempt(int id) {
         int attempts = 0;
 
         // Connect to database
@@ -458,4 +456,26 @@ public class PatientDAO {
         }
     }
 
+    public static String getTokenfromId(int id) {
+        String hash = "";
+        // Connect to database
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareStatement("SELECT `key` FROM token WHERE p_id = ?");
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs!=null)
+                while (rs.next()) {
+                    hash = rs.getString("key");
+                }
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return hash;
+    }
 }

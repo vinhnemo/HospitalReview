@@ -73,57 +73,55 @@ public class HospitalController extends HttpServlet {
             Hospital hosp = new Hospital(id, name, address, website, admin, email);
             d.updateHospital(hosp);
             response.sendRedirect("http://localhost:8080/hospital?action=viewprohos&id_hospital=" + id);
-        }
-        else if(action.equals("remove"))
-        {
-              int id = Integer.parseInt(request.getParameter("id"));
-              
-                  HospitalDAO d = new HospitalDAO();
-                  d.removeHospital(id);
-                 List<Hospital> listofHospital = hospitalDAO.getAllHospital();
+        } else if (action.equals("remove")) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            HospitalDAO d = new HospitalDAO();
+            d.removeHospital(id);
+            List<Hospital> listofHospital = hospitalDAO.getAllHospital();
             session.setAttribute("hospitallist", listofHospital);
             rd = sc.getRequestDispatcher("/showhospital.jsp");
             rd.forward(request, response);
+        } 
+        else if (action.equals("add")) {
+
+            // Hospital object
+            Hospital hospital = new Hospital();
+
+            String name = request.getParameter("name");
+            String address = request.getParameter("address");
+            String website = request.getParameter("website");
+            String admin = request.getParameter("admin");
+            String email = request.getParameter("email");
+
+            String error = "";
+            if (name.equals("") || address.equals("") || website.equals("")) {
+                error += "Please fill out all required fields.";
+            }
+
+            if (error.length() > 0) {
+                request.setAttribute("error", error);
+                rd = sc.getRequestDispatcher("/hospitalreg.jsp");
+                rd.forward(request, response);
+            } else {
+
+                hospital.setName(name);
+                hospital.setAddress(address);
+                hospital.setWebsite(website);
+                hospital.setAdName(admin);
+                hospital.setAdEmail(email);
+
+                if (hospitalDAO.insertHospital(hospital)) {
+                    List<Hospital> listofHospital = hospitalDAO.getAllHospital();
+                    session.setAttribute("hospitallist", listofHospital);
+                    rd = sc.getRequestDispatcher("/showhospital.jsp");
+                    rd.forward(request, response);
+                } else {
+                    request.setAttribute("error", "There is something wrong when adding to database.");
+                    rd = sc.getRequestDispatcher("/hospitalreg.jsp");
+                    rd.forward(request, response);
+                }
+            }
         }
-//else {
-//
-//            // Hospital object
-//            Hospital hospital = new Hospital();
-//
-//            String name = request.getParameter("name");
-//            String address = request.getParameter("address");
-//            String website = request.getParameter("website");
-//            String admin = request.getParameter("admin");
-//            String email = request.getParameter("email");
-//
-//            String error = "";
-//            if (name.equals("") || address.equals("") || website.equals("")) {
-//                error += "Please fill out all required fields.";
-//            }
-//
-//            if (error.length() > 0) {
-//                request.setAttribute("error", error);
-//                rd = sc.getRequestDispatcher("/hospitalreg.jsp");
-//                rd.forward(request, response);
-//            } else {
-//
-//                hospital.setName(name);
-//                hospital.setAddress(address);
-//                hospital.setWebsite(website);
-//                hospital.setAdName(admin);
-//                hospital.setAdEmail(email);
-//
-//                if (hospitalDAO.insertHospital(hospital)) {
-//                    request.setAttribute("hospital", hospital);
-//                    rd = sc.getRequestDispatcher("/hospitalprofile.jsp");
-//                    rd.forward(request, response);
-//                } else {
-//                    request.setAttribute("error", "There is something wrong when adding to database.");
-//                    rd = sc.getRequestDispatcher("/hospitalreg.jsp");
-//                    rd.forward(request, response);
-//                }
-//            }
-//        }
     }
 
     @Override

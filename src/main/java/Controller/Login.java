@@ -13,6 +13,7 @@ import Database.BCrypt;
 import Util.*;
 
 import java.io.IOException;
+import java.util.Date;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
@@ -21,10 +22,6 @@ import javax.servlet.http.*;
  * @author TGMaster
  */
 public class Login extends HttpServlet {
-
-    // Connect Database
-    private final PatientDAO patientDAO = new PatientDAO();
-    private final AdminDAO adminDAO = new AdminDAO();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -40,9 +37,8 @@ public class Login extends HttpServlet {
 
         String action = request.getParameter("action");
 
-        boolean adminLogin;
         Admin admin = new Admin();
-        Patient patient = new Patient();
+        boolean adminLogin;
 
         if (action == null) {
             rd = sc.getRequestDispatcher("/login.jsp");
@@ -59,12 +55,12 @@ public class Login extends HttpServlet {
                 msg.setCode(0);
                 msg.setText("Please type your email and password");
             } else {
-                patient = patientDAO.getUserbyEmail(email);
-                
+                Patient patient = PatientDAO.getUserbyEmail(email);
+
                 String error = "";
                 if (patient.getPass() == null) {
 
-                    admin = adminDAO.getUserbyEmail(email);
+                    admin = AdminDAO.getUserbyEmail(email);
 
                     // Check if user does not exist
                     if (admin.getPass() == null) {
@@ -78,9 +74,20 @@ public class Login extends HttpServlet {
                 } else if (!BCrypt.checkpw(pass, patient.getPass())) {
                     error = "Your password is not correct";
 
-                } else if (patient.getStatus().equals("inactive") || patient.getStatus().equals("forgot")) {
+                } else if (patient.getStatus().equals("inactive")) {
                     error = "Your account is pending. Please check your email";
-
+                    Date now = new Date();  // Get time now
+                    Date date = PatientDAO.getDatefromToken(patient.getID()); // Get time store in database
+                    // 30 mins expired
+                    if (now.getTime() - date.getTime() > 30L * 60 * 1000) {
+                        if (patient.getStatus().equals("inactive")) {
+                            String hash = PatientDAO.getTokenfromId(patient.getID());
+                            error = "Your account is pending. Click <a href=\"/verify?action=RenewToken&userId=" + patient.getID() + "&key=" + hash + "\"> here </a> to request a new link";
+                        }
+                    }
+                } else if (patient.getStatus().equals("forgot")) {
+                    PatientDAO.updateStatus(patient.getID(), "active");
+                    PatientDAO.updateToken(patient.getID(), null);
                 }
 
                 if (error.length() == 0) {

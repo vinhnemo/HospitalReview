@@ -4,7 +4,7 @@
     Author     : MSI
 --%>
 
-<%@page import="Util.Message"%>
+<%@page import="Util.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -44,7 +44,8 @@
 
     <body>
         <%
-            Message msg = (Message) request.getAttribute("message");
+            String mess = (String)request.getAttribute("message");
+            Message msg = Util.fromJson(mess);
             if (msg == null) {
                 response.sendRedirect("/home.jsp");
             }
@@ -91,7 +92,7 @@
                         <%if (msg.getCode() == 0) { %>
                             <div class="auto-redirect"><a href="/login.jsp">Please log in with your account to continue</a></div>
                         <% } else {%>
-                            <div class="auto-redirect"><a href="/home.jsp">Click here to go back to homepage.</a></div>
+                            <div class="auto-redirect"><a href="/home.jsp">Click here to go back to homepage if your browser does not automatically re-direct you.</a></div>
                         <% }%>
                     </div>
                     <div class="col-md-2"></div>

@@ -8,7 +8,7 @@ $(document).ready(function () {
     var x_timer;
 
     // Validate Email
-    $("#email").focusout(function (e) {
+    $("#email").blur(function (e) {
         if (emailError === false) {
             isExist();
         }
@@ -78,7 +78,7 @@ $(document).ready(function () {
         $(this).val(text);
     });
 
-    $('#lname').focusout(function (e) {
+    $('#lname').blur(function (e) {
         if ($(this).val().length === 0 || $('#fname').val().length === 0) {
             $('#name-status').show();
             $('#name-status').html("<i class=\"fa fa-close\" style=\"color: #ff6666\"> Please enter your name</i>");
@@ -92,7 +92,7 @@ $(document).ready(function () {
     });
 
     // Address
-    $('#address').focusout(function (e) {
+    $('#address').blur(function (e) {
         if ($(this).val().length === 0) {
             $('#statusAdd').show();
             $('#statusAdd').html("<i class=\"fa fa-close\" style=\"color: #ff6666\"> Please enter your address</i>");
@@ -104,7 +104,7 @@ $(document).ready(function () {
     });
 
     // Password
-    $('#pass1').focusout(function (e) {
+    $('#pass1').blur(function (e) {
         if ($(this).val().length < 6) {
             $('#pass-status').show();
             $('#pass-status').html("<i class=\"fa fa-close\" style=\"color: #ff6666\"> Please enter your password at least 6 characters</i>");
@@ -118,7 +118,7 @@ $(document).ready(function () {
         }
     });
 
-    $('#pass2').blur(checkPassword());
+    $('#pass2').keyup(checkPassword());
 
     function checkPassword() {
         if ($('#pass1').val().length === 0) {
@@ -133,13 +133,6 @@ $(document).ready(function () {
             passwordConfirm = false;
         }
     }
-
-    // Submit
-    $('#submit-btn').hover(function (e) {
-        checkEmail();
-        if (emailError === false)
-            isExist();
-    });
 
     $('.register').submit(function (e) {
         e.preventDefault();
@@ -171,7 +164,6 @@ $(document).ready(function () {
                     'action': "Register"
                 }, function (data) {
                     var msg = JSON.parse(data);
-                    //alert(msg.text);
                     if (msg.code == -1) {
                         $('#form-result').show();
                         $('#form-result').html("<i class=\"fa fa-close\" style=\"color: #ff6666\">" + msg.text + "</i>");

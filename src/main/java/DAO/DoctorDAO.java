@@ -85,7 +85,7 @@ public class DoctorDAO {
     // Get All doctors
     public List<Doctor> getAllDoctor() {
         List<Doctor> list = new ArrayList<>();
-        String query = "SELECT * FROM doctor ";
+        String query = "SELECT * FROM doctor";
 
         // Connect to database
         Connection connection = Database.getConnection();
@@ -259,42 +259,77 @@ public class DoctorDAO {
         }
     }
 
-    public void updateDoctor(int id, String fname, String lname, String sex, String degree, boolean insurance, String speciality, String hours, String lang) {
-        String query = "UPDATE doctor SET"
-                + "d_fname = ?,"
-                + "d_lname = ?,"
-                + "d_gender = ?,"
-                + "d_degree = ?,"
-                + "d_insurance = ?,"
-                + "d_speciality = ?,"
-                + "d_hour = ?,"
-                + "languages = ?"
+    public void updateDoctor(Doctor d) {
+        String query = "UPDATE doctor SET "
+                + " d_fname = ?, "
+                + " d_lname = ?, "
+                + " d_gender = ?, "
+                + " d_degree = ?, "
+                + " d_insurance = ?, "
+                + " d_speciality = ?, "
+                + " d_hour = ?, "
+                + " languages = ? "
                 + " WHERE "
-                + "d_id = ?";
+                + " d_id = ? ";
+
         // Connect to database
         Connection connection = Database.getConnection();
-
+        System.out.println(query);
         try {
             PreparedStatement ps = connection.prepareCall(query);
-            ps.setString(1, fname);
-            ps.setString(2, lname);
-            ps.setString(3, sex);
-            ps.setString(4, degree);
-            ps.setBoolean(5, insurance);
-            ps.setString(6, speciality);
-            ps.setString(7, hours);
-            ps.setString(8, lang);
-            ps.setInt(9, id);
+            ps.setString(1, d.getFname());
+            ps.setString(2, d.getLname());
+            ps.setString(3, d.getSex());
+            ps.setString(4, d.getDegree());
+            ps.setBoolean(5, d.getInsurance());
+            ps.setString(6, d.getSpeciality());
+            ps.setString(7, d.getHours());
+            ps.setString(8, d.getLang());
+            ps.setLong(9, d.getID());
+           
             ps.executeUpdate();
-
             connection.close();
         } catch (SQLException ex) {
-            Logger.getLogger(DoctorDAO.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
 
     }
-    
-        public ArrayList<Doctor> getAllDoctorBookmark(int pID) {
+
+//    public void updateDoctor(int id, String fname, String lname, String sex, String degree, boolean insurance, String speciality, String hours, String lang) {
+//        String query = "UPDATE doctor SET"
+//                + "d_fname = ?,"
+//                + "d_lname = ?,"
+//                + "d_gender = ?,"
+//                + "d_degree = ?,"
+//                + "d_insurance = ?,"
+//                + "d_speciality = ?,"
+//                + "d_hour = ?,"
+//                + "languages = ?"
+//                + " WHERE "
+//                + "d_id = ?";
+//        // Connect to database
+//        Connection connection = Database.getConnection();
+//
+//        try {
+//            PreparedStatement ps = connection.prepareCall(query);
+//            ps.setString(1, fname);
+//            ps.setString(2, lname);
+//            ps.setString(3, sex);
+//            ps.setString(4, degree);
+//            ps.setBoolean(5, insurance);
+//            ps.setString(6, speciality);
+//            ps.setString(7, hours);
+//            ps.setString(8, lang);
+//            ps.setInt(9, id);
+//            ps.executeUpdate();
+//
+//            connection.close();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(DoctorDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//    }
+    public ArrayList<Doctor> getAllDoctorBookmark(int pID) {
         ArrayList<Doctor> list = new ArrayList<>();
         String query = "SELECT doctor.d_id,d_fname,d_lname,d_gender,d_degree,d_insurance,d_speciality,d_hour,languages,p_id FROM doctor,bookmarkdoctor WHERE p_id = '" + pID + "' AND doctor.d_id = bookmarkdoctor.d_id;";
 
@@ -324,5 +359,39 @@ public class DoctorDAO {
         }
 
         return list;
+    }
+    
+        public Doctor getDoctorReview(int id) {
+
+        String query = "SELECT doctor.d_id,d_fname,d_lname,d_gender,d_degree,d_insurance,d_speciality,d_hour,languages, allowReview FROM doctor,doctorreview WHERE doctor.d_id = ? AND doctor.d_id = doctorreview.d_id;";
+       // String query = "select * from doctor where d_id = ? ;";
+        Doctor doctor = new Doctor();
+
+        // Connect to database
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareCall(query);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                doctor.setID(rs.getInt("d_id"));
+                doctor.setFname(rs.getString("d_fname"));
+                doctor.setLname(rs.getString("d_lname"));
+                doctor.setSex(rs.getString("d_gender"));
+                doctor.setDegree(rs.getString("d_degree"));
+                doctor.setInsurance(rs.getBoolean("d_insurance"));
+                doctor.setSpeciality(rs.getString("d_speciality"));
+                doctor.setHours(rs.getString("d_hour"));
+                doctor.setLang(rs.getString("languages"));
+                doctor.setAllowReview(rs.getInt("allowReview"));
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DoctorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return doctor;
     }
 }
