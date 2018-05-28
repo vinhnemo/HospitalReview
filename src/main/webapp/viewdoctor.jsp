@@ -269,8 +269,8 @@
                         <!--comment box-->
 
                         <%
-                            //if (doctor.getAllowReview() == 1) {
-                            // if (patient != null) {
+                            if (doctor.getAllowReview() == 1) {
+                                if (patient != null) {
 
                         %>  
                         <div class="comment-box">
@@ -289,8 +289,8 @@
                                 </div>
                             </div>
                         </div>
-                        <% //}
-                            // }%>
+                        <% }
+                            }%>
                     </div>
                 </div>
             </section>
