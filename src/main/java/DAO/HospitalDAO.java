@@ -27,7 +27,7 @@ public class HospitalDAO {
                 + " h_address, "
                 + " h_website, "
                 + " adname, "
-                + " ademail, "
+                + " ademail )"
                 + " VALUES "
                 + " ( "
                 + " ? , "
