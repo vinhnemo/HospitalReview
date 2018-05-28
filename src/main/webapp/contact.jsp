@@ -188,7 +188,7 @@
 
                     <div class="col-lg-3 col-md-6 footer-info">
                         <h3>Doctor STRANGE</h3>
-                        <p> Man tao cá mày không được vui nữa kể từ khi cái này tao đến. Nhìn tao đứng trên top cái miệng mày câm như hến .Sẽ có ngày tới mày nhưng việc đầu tiên trước hết. Mày muốn thắng trò chơi này việc đầu tiên phải làm là giết tao chết</p>
+                        <p> <fmt:message key="home.msg21"/></p>
                     </div>
 
                     <div class="col-lg-3 col-md-6 footer-links">
@@ -224,7 +224,7 @@
 
                     <div class="col-lg-3 col-md-6 footer-newsletter">
                         <h4><fmt:message key="other"/></h4>
-                        <p>motherfucker không quen, tao không quen, đừng nói chuyện thân thiện như vậy với tao, tao không quen, cũng đừng nói chuyện đằng sau lưng của tao như vậy. </p>
+                        <p><fmt:message key="home.msg22"/> </p>
                     </div>
 
                 </div>

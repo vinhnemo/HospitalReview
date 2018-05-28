@@ -104,8 +104,8 @@
                         <li><a href="#"><fmt:message key="appt"/></a></li>
                         <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
                             <ul>
-                                <li><a href="viewhospital.jsp?language=en_US">English</a></li>
-                                <li><a href="viewhospital.jsp?language=vi_VN">Tiếng Việt</a></li>
+                                <li><a href="home.jsp?language=en_US">English</a></li>
+                                <li><a href="home.jsp?language=vi_VN">Tiếng Việt</a></li>
                             </ul>
                         </li>
                         <li><a href="#contact"><fmt:message key="contact"/></a></li>
@@ -252,7 +252,7 @@
                                     </div>
                                     <div class="col-md-7 col-sm-10">
                                         <h3 class="name"><%= hos.getName()%></h3>
-                                        <div class="doctor-text"> DOB: 11-01-1997<br> Address <%= hos.getAddress()%></div>
+                                        <div class="doctor-text"> DOB: 11-01-1997<br> <fmt:message key="address"/> <%= hos.getAddress()%></div>
                                     </div>
                                 </div>
                             </div>
@@ -263,7 +263,7 @@
                                                                         <tr><td><div class="info">Speciality: </div></td><td> <div class="info-text">Neurology</div></td></tr>-->
                                     <tr><td><div class="info"><fmt:message key="hospitaladminname"/> :  </div></td><td> <div class="info-text"><%= hos.getAdName()%> </div></td></tr>
                                     <tr><td><div class="info"><fmt:message key="hospitaladminemail"/>: </div></td><td> <div class="info-text"><%= hos.getAdEmail()%></div></div></td></tr>
-                                    <tr><td><div class="info"><fmt:message key="website"/>:  </div></td><td> <div class="info-text"><%= hos.getWebsite()%></div></div></td></tr>
+                                    <tr><td><div class="info"><fmt:message key="website"/> : </div></td><td> <div class="info-text"><%= hos.getWebsite()%></div></div></td></tr>
                                     <!--                                    <tr><td><div class="info">Language: </div></td><td> <div class="info-text"></div></div></td></tr>
                                                                         <tr><td><div class="info">Work-hour: </div></td><td> <div class="info-text"></div></div></td></tr>-->
                                 </table>
@@ -307,12 +307,6 @@
                             <input type="hidden" name="action" value="remove">
                             <button type="submit" class="btn btn-default"><fmt:message key="remove"/></button>
                         </form>        
-  
-                        <form method="POST" action="controlBookmark">
-                            <input type="hidden" name="pID" value="<%= patient.getID()%>">
-                            <input type="hidden" name="hID" value="<%= hos.getID()%>">
-                            <button class="side-button2" value="bookmarkhospital" name="action"><fmt:message key="bookmark"/> </button><hr>
-                        </form> 
                         <!--end of edit-->
 
 
@@ -325,7 +319,7 @@
 
                                         <div class="col-lg-3 col-md-6 footer-info">
                                             <h3>Doctor STRANGE</h3>
-                                            <p> Man tao cá mày không được vui nữa kể từ khi cái này tao đến. Nhìn tao đứng trên top cái miệng mày câm như hến .Sẽ có ngày tới mày nhưng việc đầu tiên trước hết. Mày muốn thắng trò chơi này việc đầu tiên phải làm là giết tao chết</p>
+                                            <p> <fmt:message key="home.msg21"/></p>
                                         </div>
 
                                         <div class="col-lg-3 col-md-6 footer-links">
@@ -345,7 +339,7 @@
                                                 69 IU Street <br>
                                                 Ho Chi Minh City, <br>
                                                 Viet Nam<br>
-                                                <strong>Phone:</strong> 911 <br>
+                                                <strong><fmt:message key="phonenumber"/>:</strong> 911 <br>
                                                 <strong>Email:</strong> abc@gmail.com<br>
                                             </p>
 
@@ -361,9 +355,8 @@
 
                                         <div class="col-lg-3 col-md-6 footer-newsletter">
                                             <h4><fmt:message key="other"/></h4>
-                                            <p>motherfucker không quen, tao không quen, đừng nói chuyện thân thiện như vậy với tao, tao không quen, cũng đừng nói chuyện đằng sau lưng của tao như vậy. </p>
+                                            <p><fmt:message key="home.msg22"/> </p>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>

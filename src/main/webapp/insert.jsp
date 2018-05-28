@@ -275,55 +275,32 @@
                                 <input type="name" class="form-control" id="name" name="fname" value="">
                             </div>
                             <div class="form-group">
-                                <label for="name"><fmt:message key="lastname"/> </label>
+                                <label for="name"><fmt:message key="lastname"/></label>
                                 <input type="name" class="form-control" id="name" name="lname" value="">
                             </div>
                             <div class="form-group">
-<<<<<<< HEAD
                                 <label for="name"><fmt:message key="gender"/></label>
-                                <input type="name" class="form-control" id="address"  name="sex" value="">
-=======
-                                <label for="name">Gender</label>
                                 <input type="name" class="form-control" id="address"  name="gender" value="">
->>>>>>> 17ee487a5e3edb50f795d30d470c96565d74fc38
                             </div>
                             <div class="form-group">
                                 <label for="name"><fmt:message key="degree"/></label>
                                 <input type="name" class="form-control" id="website" name="degree" value="">
                             </div>
-<<<<<<< HEAD
                             <div class="form-group">
                                 <label for="name"><fmt:message key="acceptinsurance"/></label>
-                                <input type="name" class="form-control" id="website" name="ai" value="">
-                            </div>
-                            <div class="form-group">
-                                <label for="name"><fmt:message key="specificspeciality"/> </label>
-                                <input type="name" class="form-control" id="name" name="ss" value="" >
-                            </div>
-                            <div class="form-group">
-                                <label for="name"><fmt:message key="workhour"/> </label>
-                                <input type="name" class="form-control" id="email" name="time" value="">
-                            </div>
-                            <div class="form-group">
-                                <label for="name"><fmt:message key="language"/> </label>
-                                <input type="name" class="form-control" id="email" name="lang" value="">
-=======
-                             <div class="form-group">
-                                <label for="name">Accepted insurance</label>
                                 <input type="name" class="form-control" id="website" name="insurance" value="">
                             </div>
                             <div class="form-group">
-                                <label for="name">Specific specialty </label>
+                                <label for="name"><fmt:message key="specificspeciality"/> </label>
                                 <input type="name" class="form-control" id="name" name="speciality" value="" >
                             </div>
                             <div class="form-group">
-                                <label for="name">Office hours </label>
+                                <label for="name"><fmt:message key="workhour"/> </label>
                                 <input type="name" class="form-control" id="email" name="hour" value="">
                             </div>
                             <div class="form-group">
-                                <label for="name">Languages </label>
+                                <label for="name"><fmt:message key="language"/> </label>
                                 <input type="name" class="form-control" id="email" name="language" value="">
->>>>>>> 17ee487a5e3edb50f795d30d470c96565d74fc38
                             </div>
                             <!--<input type="hidden" name="id" value="" >-->
                             <input type="hidden" name="action" value="doctor">
@@ -342,7 +319,7 @@
 
                                         <div class="col-lg-3 col-md-6 footer-info">
                                             <h3>Doctor STRANGE</h3>
-                                            <p> Man tao cá mày không được vui nữa kể từ khi cái này tao đến. Nhìn tao đứng trên top cái miệng mày câm như hến .Sẽ có ngày tới mày nhưng việc đầu tiên trước hết. Mày muốn thắng trò chơi này việc đầu tiên phải làm là giết tao chết</p>
+                                            <p> <fmt:message key="home.msg21"/></p>
                                         </div>
 
                                         <div class="col-lg-3 col-md-6 footer-links">
@@ -362,7 +339,7 @@
                                                 69 IU Street <br>
                                                 Ho Chi Minh City, <br>
                                                 Viet Nam<br>
-                                                <strong><fmt:message key="phone"/>:</strong> 911 <br>
+                                                <strong><fmt:message key="phonenumber"/>:</strong> 911 <br>
                                                 <strong>Email:</strong> abc@gmail.com<br>
                                             </p>
 
@@ -378,7 +355,7 @@
 
                                         <div class="col-lg-3 col-md-6 footer-newsletter">
                                             <h4><fmt:message key="other"/></h4>
-                                            <p>motherfucker không quen, tao không quen, đừng nói chuyện thân thiện như vậy với tao, tao không quen, cũng đừng nói chuyện đằng sau lưng của tao như vậy. </p>
+                                            <p><fmt:message key="home.msg22"/> </p>
                                         </div>
 
                                     </div>

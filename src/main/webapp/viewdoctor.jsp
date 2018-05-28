@@ -67,7 +67,8 @@
                                             <input class="dropdown-button" type="submit" name="action" value="Search Doctor">
                                         </form>
                                     </div>
-                                </li>                            </ul> 
+                                </li>                            
+                            </ul> 
                         </li>
                         <li><a href="#"><fmt:message key="appt"/></a></li>
                         <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
@@ -185,43 +186,7 @@
                                 <div class="side-text"><fmt:message key="setanappointment"/>:</div>
                                 <input class="side-button" type="submit" value="Make Appointment"><hr>
                                 <div class="side-text"><fmt:message key="addtobookmark"/>:</div>
-                                <form method="POST" action="controlBookmark">
-                                    <input type="hidden" name="pID" value="<%= patient.getID()%>">
-                                    <input type="hidden" name="dID" value="<%= doc.getID()%>">
-                                    <button class="side-button2" value="bookmarkdoctor" name="action">Bookmark </button><hr>
-                                </form>
-                                
-                                <form method="post" action="activeReview" style="margin-top: -10%;margin-left: 0.5%;"> 
-                                    <div class="row" >  
-                                        <div class="col-md-5" >
-                                            <div class="container" >
-                                                <input type="hidden" name="activateDoctorID" value="<%= doc.getID()%>">
-                                                <button type="submit" name="action" value="ActivateReview" style=" background-color: #4CAF50; 
-                                                        border: none;
-                                                        color: white; 
-                                                        padding: 
-                                                        1px 28px; 
-                                                        text-align: center; 
-                                                        font-size: 10px; 
-                                                        cursor: pointer;" >Enable Review</button>
-                                            </div> 
-                                        </div>     
-                                        <div class="col-md-5" >
-                                            <div class="container" style="margin-left: -15%;">
-                                                <input type="hidden" name="deActivateDoctorID" value="<%= doc.getID()%>">
-                                                <button type="submit" name="action" value="DeactivateReview" style=" background-color: #4CAF50; 
-                                                        border: none; 
-                                                        color: white; 
-                                                        padding: 1px 28px; 
-                                                        text-align: center; 
-                                                        font-size: 10px;  
-                                                        cursor: pointer;">Disable Review</button>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </form> 
-                                
+                                <input class="side-button2" type="submit" value="Bookmark"><hr>
                                 <%
                                     DoctorDAO doctorDAO = new DoctorDAO();
                                     Doctor doctor = doctorDAO.getDoctorReview(doc.getID());
@@ -318,7 +283,7 @@
                                                 <textarea placeholder="What are your opinion about him/her" name="comment" ></textarea>
                                                 <input type="hidden" name="did" value="<%= doc.getID()%>" >
                                                 <input type="hidden" name="pid" value="<%= patient.getID()%>" >
-                                                <button type="submit" class="btn btn-success green" name="action" value="addComment"><i class="fa fa-share"></i><fmt:message key="post"/></button>
+                                                <button type="submit" class="btn btn-success green" name="action" value="addComment"><i class="fa fa-share"></i>Post</button>
                                             </form>
                                         </div><!-- Status Upload  -->
                                     </div><!-- Widget Area -->
@@ -339,7 +304,7 @@
 
                         <div class="col-lg-3 col-md-6 footer-info">
                             <h3>Doctor STRANGE</h3>
-                            <p> Man tao cá mày không được vui nữa kể từ khi cái này tao đến. Nhìn tao đứng trên top cái miệng mày câm như hến .Sẽ có ngày tới mày nhưng việc đầu tiên trước hết. Mày muốn thắng trò chơi này việc đầu tiên phải làm là giết tao chết</p>
+                            <p> <fmt:message key="home.msg21"/></p>
                         </div>
 
                         <div class="col-lg-3 col-md-6 footer-links">
@@ -359,7 +324,7 @@
                                 69 IU Street <br>
                                 Ho Chi Minh City, <br>
                                 Viet Nam<br>
-                                <strong>Phone:</strong> 911 <br>
+                                <strong><fmt:message key="phonenumber"/>:</strong> 911 <br>
                                 <strong>Email:</strong> abc@gmail.com<br>
                             </p>
 
@@ -375,7 +340,7 @@
 
                         <div class="col-lg-3 col-md-6 footer-newsletter">
                             <h4><fmt:message key="other"/></h4>
-                            <p>motherfucker không quen, tao không quen, đừng nói chuyện thân thiện như vậy với tao, tao không quen, cũng đừng nói chuyện đằng sau lưng của tao như vậy. </p>
+                            <p><fmt:message key="home.msg22"/> </p>
                         </div>
 
                     </div>
