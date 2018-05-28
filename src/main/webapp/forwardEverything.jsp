@@ -124,9 +124,9 @@
         <script type="text/javascript">
             $(document).ready(function (event){
                 <%if (msg.getCode() == 0) { %>
-                    setTimeout(function(){location.href='login.jsp'}, 3000);
+                    setTimeout(function(){location.href='login.jsp'}, 5000);
                 <% } else {%>
-                    setTimeout(function(){location.href='home.jsp'}, 3000);
+                    setTimeout(function(){location.href='home.jsp'}, 5000);
                 <% }%>
             });
         </script>
