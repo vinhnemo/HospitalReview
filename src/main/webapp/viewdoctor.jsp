@@ -185,7 +185,43 @@
                                 <div class="side-text"><fmt:message key="setanappointment"/>:</div>
                                 <input class="side-button" type="submit" value="Make Appointment"><hr>
                                 <div class="side-text"><fmt:message key="addtobookmark"/>:</div>
-                                <input class="side-button2" type="submit" value="Bookmark"><hr>
+                                <form method="POST" action="controlBookmark">
+                                    <input type="hidden" name="pID" value="<%= patient.getID()%>">
+                                    <input type="hidden" name="dID" value="<%= doc.getID()%>">
+                                    <button class="side-button2" value="bookmarkdoctor" name="action">Bookmark </button><hr>
+                                </form>
+                                
+                                <form method="post" action="activeReview" style="margin-top: -10%;margin-left: 0.5%;"> 
+                                    <div class="row" >  
+                                        <div class="col-md-5" >
+                                            <div class="container" >
+                                                <input type="hidden" name="activateDoctorID" value="<%= doc.getID()%>">
+                                                <button type="submit" name="action" value="ActivateReview" style=" background-color: #4CAF50; 
+                                                        border: none;
+                                                        color: white; 
+                                                        padding: 
+                                                        1px 28px; 
+                                                        text-align: center; 
+                                                        font-size: 10px; 
+                                                        cursor: pointer;" >Enable Review</button>
+                                            </div> 
+                                        </div>     
+                                        <div class="col-md-5" >
+                                            <div class="container" style="margin-left: -15%;">
+                                                <input type="hidden" name="deActivateDoctorID" value="<%= doc.getID()%>">
+                                                <button type="submit" name="action" value="DeactivateReview" style=" background-color: #4CAF50; 
+                                                        border: none; 
+                                                        color: white; 
+                                                        padding: 1px 28px; 
+                                                        text-align: center; 
+                                                        font-size: 10px;  
+                                                        cursor: pointer;">Disable Review</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </form> 
+                                
                                 <%
                                     DoctorDAO doctorDAO = new DoctorDAO();
                                     Doctor doctor = doctorDAO.getDoctorReview(doc.getID());

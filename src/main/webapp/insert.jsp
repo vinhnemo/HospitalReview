@@ -279,13 +279,19 @@
                                 <input type="name" class="form-control" id="name" name="lname" value="">
                             </div>
                             <div class="form-group">
+<<<<<<< HEAD
                                 <label for="name"><fmt:message key="gender"/></label>
                                 <input type="name" class="form-control" id="address"  name="sex" value="">
+=======
+                                <label for="name">Gender</label>
+                                <input type="name" class="form-control" id="address"  name="gender" value="">
+>>>>>>> 17ee487a5e3edb50f795d30d470c96565d74fc38
                             </div>
                             <div class="form-group">
                                 <label for="name"><fmt:message key="degree"/></label>
                                 <input type="name" class="form-control" id="website" name="degree" value="">
                             </div>
+<<<<<<< HEAD
                             <div class="form-group">
                                 <label for="name"><fmt:message key="acceptinsurance"/></label>
                                 <input type="name" class="form-control" id="website" name="ai" value="">
@@ -301,6 +307,23 @@
                             <div class="form-group">
                                 <label for="name"><fmt:message key="language"/> </label>
                                 <input type="name" class="form-control" id="email" name="lang" value="">
+=======
+                             <div class="form-group">
+                                <label for="name">Accepted insurance</label>
+                                <input type="name" class="form-control" id="website" name="insurance" value="">
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Specific specialty </label>
+                                <input type="name" class="form-control" id="name" name="speciality" value="" >
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Office hours </label>
+                                <input type="name" class="form-control" id="email" name="hour" value="">
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Languages </label>
+                                <input type="name" class="form-control" id="email" name="language" value="">
+>>>>>>> 17ee487a5e3edb50f795d30d470c96565d74fc38
                             </div>
                             <!--<input type="hidden" name="id" value="" >-->
                             <input type="hidden" name="action" value="doctor">
