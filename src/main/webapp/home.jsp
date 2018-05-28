@@ -85,7 +85,7 @@
             </div>
         </div>
 
-        <div id="good" style="display: none" class="animated">
+        <div id="good" style="display: none">
             <header id="header">
                 <div class="container-fluid">
                     <div id="logo" class="pull-left">
@@ -717,12 +717,9 @@
         <script src="js/modal.js"></script>
 
         <script type="text/javascript">
-                                var myVar;
                                 $(window).load(function (e) {
-                                    myVar = setTimeout(function (e) {
-                                        document.getElementById("loader").style.display = "none";
-                                        document.getElementById("good").style.display = "block";
-                                    }, 1000);
+                                    document.getElementById("loader").style.display = "none";
+                                    document.getElementById("good").style.display = "block";
 
                                 });
         </script>

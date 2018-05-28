@@ -75,7 +75,7 @@ $(document).ready(function () {
 
         function isExistEmail(email) {
             clearTimeout(timer);
-            $('#isExist').html('<img src="img/loading.gif" />');
+            $('#isExist').html('<img src="img/loading2.gif" />');
             timer = setTimeout(function () {
                 $.post('register', {'email': email, 'action': "Validate"}, function (data) {
                     var msg = JSON.parse(data);
@@ -172,7 +172,7 @@ $(document).ready(function () {
             remember = "no";
 
         clearTimeout(timer);
-        $('#user-result').html('<img src="img/loading.gif" />');
+        $('#user-result').html('<img src="img/loading2.gif" />');
         timer = setTimeout(function () {
             $.post('login', {'email': email, 'password': pass, 'remember': remember, 'action': "Ajax Login"}, function (data) {
                 var msg = JSON.parse(data);
@@ -188,11 +188,13 @@ $(document).ready(function () {
 
     // Reload page
     $('a.btn-dark').on('click', function () {
-        location.reload(true);
+        $("#myLogin .close").click();
+        setTimeout(function() {$('#header').load(location.href + " #header");},1000);
     });
 
     $('#myLogin').on('hide.bs.modal', function () {
-        location.reload(true);
+        $("#myLogin .close").click();
+        setTimeout(function() {$('#header').load(location.href + " #header");},1000);
     });
 
 });
