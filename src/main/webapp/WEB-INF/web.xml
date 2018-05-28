@@ -44,6 +44,10 @@
         <servlet-name>hospital</servlet-name>
         <servlet-class>Controller.HospitalController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>adminController</servlet-name>
+        <servlet-class>Controller.adminController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registration</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -88,6 +92,10 @@
     <servlet-mapping>
         <servlet-name>hospital</servlet-name>
         <url-pattern>/hospital</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminController</servlet-name>
+        <url-pattern>/adminController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
