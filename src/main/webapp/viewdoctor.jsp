@@ -172,7 +172,7 @@
                             </div>
                             <input type="hidden" name="id" value="<%= doc.getID()%>" >
                             <input type="hidden" name="action" value="updateDoctor">
-                            <button type="submit" class="btn btn-default"><fmt:message key="edi"/></button>
+                            <button type="submit" class="btn btn-default"><fmt:message key="edit"/></button>
                         </form>
                         <form action="doctor" method="POST">
                             <input type="hidden" name="id" value="<%= doc.getID()%>" >
