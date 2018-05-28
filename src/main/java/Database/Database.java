@@ -1,5 +1,6 @@
 package Database;
 
+import DAO.PatientDAO;
 import Util.*;
 
 import java.sql.Connection;
@@ -25,6 +26,8 @@ public class Database {
     }
 
     public static void main(String[] args) {
-        System.out.println(BCrypt.hashpw("QHt2cAIW", Info.HASH_SALT));
+        //String hash = Util.generateRandomStr(8);
+        //PatientDAO.updateToken(1, BCrypt.hashpw(hash, Info.HASH_SALT));
+        //System.out.println(PatientDAO.getTokenfromId(1));
     }
 }

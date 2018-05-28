@@ -95,13 +95,12 @@
         <main id="main">
             <div class="login-dark">
                 <form class="register" action="#" method="post" style="width:600px;">
-                    <h1>Register Account</h1>
-                    <br>
-                    <div class="form-group"><span id="form-result"></span></div>
+                    <h1 id="title">Register Account</h1>
+
                         <% if (filled) {%>
                     <div class="form-group">
-                        <span id="name-status"></span><br>
-                        <input class="form-control d-inline" type="text" name="fname" id="fname" value="<%=patient.getFname()%>" style="width:200px;margin:0px 0px;" required><input class="form-control d-inline" type="text" name="lname" id="lname" value="<%=patient.getLname()%>" style="width:200px;margin:0px 10px;" required>
+                        <span id="name-status"></span>
+                        <input class="form-control d-inline" type="text" name="fname" id="fname" value="<%=patient.getFname()%>" required><input class="form-control d-inline" type="text" name="lname" id="lname" value="<%=patient.getLname()%>" required>
                     </div>
                     <div class="form-group">
                         <span id="status"></span>
@@ -110,8 +109,8 @@
                     </div>
                     <% } else {%>
                     <div class="form-group">
-                        <span id="name-status"></span><br>
-                        <input class="form-control d-inline" type="text" name="fname" id="fname" placeholder="First Name" style="width:200px;margin:0px 0px;" required><input class="form-control d-inline" type="text" name="lname" id="lname" placeholder="Last Name" style="width:200px;margin:0px 10px;" required>
+                        <span id="name-status"></span>
+                        <input class="form-control d-inline" type="text" name="fname" id="fname" placeholder="First Name" required><input class="form-control d-inline" type="text" name="lname" id="lname" placeholder="Last Name" required>
                     </div>
                     <div class="form-group">
                         <span id="status"></span>
@@ -148,13 +147,14 @@
                     </div>
                     <% }%>
                     <input type="hidden" name="language" id="language" value="<%=language%>">
-                    <div class="form-group">
-                        <hr>
-                        <input type="checkbox" required name="terms" onchange="this.setCustomValidity(validity.valueMissing ? 'Please indicate that you accept the Terms and Conditions' : '');" id="field_terms">   <label for="terms">I agree with the <a href="terms.php" title="You may read our terms and conditions by clicking on this link">terms and conditions</a> for Registration.</label>
+                    <div class="form-group" style="padding-top: 20px;">
+                        <input type="checkbox" required name="terms" onchange="this.setCustomValidity(validity.valueMissing ? 'Please indicate that you accept the Terms and Conditions' : '');" id="field_terms">
+                        <label for="terms">I agree with the <a href="terms.php" title="You may read our terms and conditions by clicking on this link">terms and conditions</a> for Registration.</label>
                     </div>
 
                     <small>You will receive an email to complete the registration and validation process.</small>
                     <small>Be sure to check your spam folders. </small>
+                    <div class="form-group"><span id="form-result"></span></div>
                     <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action" value="Signup" id="submit-btn">Sign Up</button></div>
                     <a href="login" class="forgot">Already have account? Sign in.</a>
                 </form>

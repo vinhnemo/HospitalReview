@@ -55,6 +55,7 @@
         <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
         <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
         <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+        <link href="css/checkbox.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
 
         <link rel="stylesheet" href="lib/form/form.css">
@@ -105,8 +106,11 @@
                     <div class="form-group"><span id="user-result"></span></div>
                     <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email" id="email"></div>
                     <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password" id="password"></div>
-                    <div class="form-group">Remember me? <input class="form-control" type="checkbox" name="remember" id="remember"></div>
-
+                    <div class="el-checkbox el-checkbox-green">
+                        <span class="margin-r">Remember me?</span>
+                        <input type="checkbox" name="remember" id="remember" value="yes">
+                        <label class="el-checkbox-style" for="remember"></label>
+                    </div>
                     <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Log In</button></div>
                     <div class="form-group">
                         <input class="btn btn-primary2 btn-block" type="submit" value="Register New Account" onclick="window.location.href = 'register'" />                        
