@@ -66,7 +66,7 @@ public class PatientController extends HttpServlet {
         if (action == null) {
 //            rd = sc.getRequestDispatcher(url);
 //            rd.forward(request, response);
-        } else if (action.equals("Save Change")) {
+        } else if (action.equals("Save change")) {
             //get input
             int id = Integer.parseInt(request.getParameter("id"));
             String fname = request.getParameter("fname");
