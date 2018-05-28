@@ -149,7 +149,7 @@ $(document).ready(function () {
             var language = $('#language').val();
 
             clearTimeout(x_timer);
-            $('#form-result').html('<img src="img/loading.gif" />');
+            $('#form-result').html('<img src="img/loading2.gif" />');
             x_timer = setTimeout(function () {
                 $.post('register', {'fname': fname,
                     'lname': lname,
