@@ -53,17 +53,17 @@ public class activeReview extends HttpServlet {
 
         switch (action) {
             case "ActivateReview": {
-                //String idd = request.getParameter("activateUserID");
-                // int id = Integer.parseInt(idd);
-                admin.activateReview(1);
-                response.sendRedirect("admin.jsp");
+                String idd = request.getParameter("activateDoctorID");
+                int id = Integer.parseInt(idd);
+                admin.activateReview(id);
+                response.sendRedirect("viewdoctor.jsp");
                 break;
             }
             case "DeactivateReview": {
-                //   String idd = request.getParameter("deActivateUserID");
-                //  int id = Integer.parseInt(idd);
-                admin.deactivateReview(1);
-                response.sendRedirect("admin.jsp");
+                String idd = request.getParameter("deActivateDoctorID");
+                int id = Integer.parseInt(idd);
+                admin.deactivateReview(id);
+                response.sendRedirect("viewdoctor.jsp");
                 break;
             }
             case "removeDoctor": {
