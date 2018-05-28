@@ -114,7 +114,7 @@ $(document).ready(function () {
         }
     });
 
-    $('#pass2').blur(function(e) {checkPassword()});
+    $('#pass2').blur(function(e) {checkPassword();});
 
     function checkPassword() {
         if (passwordError) {
@@ -134,6 +134,7 @@ $(document).ready(function () {
 
     $('.register').submit(function (e) {
         e.preventDefault();
+        checkEmail();
 
         if (fnameError === true || lnameError === true || emailError === true || addressError === true || passwordError === true || passwordConfirm === true) {
             $('#fname, #lname, #email, #address, #pass1, #pass2').blur();
