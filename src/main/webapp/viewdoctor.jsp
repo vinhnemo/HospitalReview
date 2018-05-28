@@ -67,7 +67,8 @@
                                             <input class="dropdown-button" type="submit" name="action" value="Search Doctor">
                                         </form>
                                     </div>
-                                </li>                            </ul> 
+                                </li>                            
+                            </ul> 
                         </li>
                         <li><a href="#"><fmt:message key="appt"/></a></li>
                         <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
@@ -138,45 +139,45 @@
 
                         <form action="doctor" method="POST">
                             <div class="form-group">
-                                <label for="name">First name </label>
+                                <label for="name"><fmt:message key="firstname"/> </label>
                                 <input type="name" class="form-control" id="name" name="fname" value="<%= doc.getFname()%>">
                             </div>
                             <div class="form-group">
-                                <label for="name">Last name </label>
+                                <label for="name"><fmt:message key="lastname"/> </label>
                                 <input type="name" class="form-control" id="name" name="lname" value="<%= doc.getLname()%>">
                             </div>
                             <div class="form-group">
-                                <label for="address">Gender</label>
+                                <label for="address"><fmt:message key="gender"/></label>
                                 <input type="address" class="form-control" id="address"  name="gender" value="<%= doc.getSex()%>">
                             </div>
                             <div class="form-group">
-                                <label for="website">Degree</label>
+                                <label for="website"><fmt:message key="degree"/></label>
                                 <input type="website" class="form-control" id="website" name="degree" value="<%= doc.getDegree()%>">
                             </div>
                             <div class="form-group">
-                                <label for="website">Accepted insurance</label>
+                                <label for="website"><fmt:message key="acceptinsurance"/></label>
                                 <input type="website" class="form-control" id="website" name="insurance" value="<%= doc.getInsurance()%>">
                             </div>
                             <div class="form-group">
-                                <label for="name">Specific specialty </label>
+                                <label for="name"><fmt:message key="specificspeciality"/> </label>
                                 <input type="name" class="form-control" id="name" name="speciality" value="<%= doc.getSpeciality()%>" >
                             </div>
                             <div class="form-group">
-                                <label for="name">Office hours </label>
+                                <label for="name"><fmt:message key="workhour"/> </label>
                                 <input type="name" class="form-control" id="name" name="hour" value="<%= doc.getHours()%>">
                             </div>
                             <div class="form-group">
-                                <label for="name">Languages </label>
+                                <label for="name"><fmt:message key="language"/> </label>
                                 <input type="name" class="form-control" id="name" name="language" value="<%= doc.getLang()%>">
                             </div>
                             <input type="hidden" name="id" value="<%= doc.getID()%>" >
                             <input type="hidden" name="action" value="updateDoctor">
-                            <button type="submit" class="btn btn-default">Edit</button>
+                            <button type="submit" class="btn btn-default"><fmt:message key="edi"/></button>
                         </form>
                         <form action="doctor" method="POST">
                             <input type="hidden" name="id" value="<%= doc.getID()%>" >
                             <input type="hidden" name="action" value="remove">
-                            <button type="submit" class="btn btn-default">Remove</button>
+                            <button type="submit" class="btn btn-default"><fmt:message key="remove"/></button>
                         </form>    
 
                         <div class="col-md-4 col-sm-4" style="background-color: #FFF;">  
