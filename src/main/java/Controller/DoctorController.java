@@ -46,32 +46,7 @@ public class DoctorController extends HttpServlet {
             session.setAttribute("doctorlist", listOfDoctor);
             rd = sc.getRequestDispatcher("/showdoctor.jsp");
             rd.forward(request, response);
-        } else {
-            // add Doctor
-            if (action.equals("addDoctor")) {
-
-                int id = Integer.parseInt(request.getParameter("id"));
-                String fname = escapeHtml4(request.getParameter("fname"));
-                fname = convertSup(fname);
-                String lname = escapeHtml4(request.getParameter("lname"));
-                lname = convertSup(lname);
-                String gender = escapeHtml4(request.getParameter("gender"));
-                gender = convertSup(gender);
-                String degree = escapeHtml4(request.getParameter("degree"));
-                degree = convertSup(degree);
-                boolean insurance = Boolean.parseBoolean(request.getParameter("insurance"));
-                String speciality = escapeHtml4(request.getParameter("speciality"));
-                speciality = convertSup(speciality);
-                String hour = escapeHtml4(request.getParameter("hour"));
-                hour = convertSup(hour);
-                String language = escapeHtml4(request.getParameter("language"));
-                language = convertSup(language);
-                doctorDAO.addDoctor(id, fname, lname, gender, degree, insurance, speciality, hour, language);
-                List<Doctor> listOfDoctor = doctorDAO.getAllDoctor();
-                session.setAttribute("doctorlist", listOfDoctor);
-                response.sendRedirect("");
-
-            } // search Doctor UC1
+        }  // search Doctor UC1
             else if (action.equals("Doctor") || action.equals("Search Doctor")) {
                 String search = escapeHtml4(request.getParameter("search"));
                 List<Doctor> listOfDoctor = doctorDAO.searchDoctor(search);
@@ -125,7 +100,7 @@ public class DoctorController extends HttpServlet {
                 rd.forward(request, response);
             }
 
-        }
+        
 
     }
 

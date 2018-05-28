@@ -45,7 +45,7 @@
         <servlet-class>Controller.HospitalController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>adminController</servlet-name>
+        <servlet-name>admin</servlet-name>
         <servlet-class>Controller.adminController</servlet-class>
     </servlet>
     <servlet-mapping>
@@ -94,8 +94,8 @@
         <url-pattern>/hospital</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>adminController</servlet-name>
-        <url-pattern>/adminController</url-pattern>
+        <servlet-name>admin</servlet-name>
+        <url-pattern>/admin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
