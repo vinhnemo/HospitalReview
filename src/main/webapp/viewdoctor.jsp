@@ -1,9 +1,8 @@
 <%-- 
-    Document   : viewdoctor
-    Created on : May 25, 2018, 1:17:59 AM
-    Author     : NemoVinh
+    Document   : profileDoctor
+    Created on : May 23, 2018, 6:31:10 PM
+    Author     : MSI
 --%>
-
 <%@page import="DAO.DoctorDAO"%>
 <%@page import="DTO.Doctor"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -58,7 +57,7 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="http://localhost:8080/doctor"><fmt:message key="finddoc"/></a>
+                        <li class="menu-has-children menu-active"><a href="/search.jsp"><fmt:message key="finddoc"/></a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
@@ -74,8 +73,8 @@
                         <li><a href="#"><fmt:message key="appt"/></a></li>
                         <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
                             <ul>
-                                <li><a href="viewdoctor.jsp?language=en_US">English</a></li>
-                                <li><a href="viewdoctor.jsp?language=vi_VN">Tiếng Việt</a></li>
+                                <li><a href="profileDoctor.jsp?language=en_US">English</a></li>
+                                <li><a href="profileDoctor.jsp?language=vi_VN">Tiếng Việt</a></li>
                             </ul>
                         </li>
                         <li><a href="#contact"><fmt:message key="contact"/></a></li>
@@ -85,26 +84,8 @@
             </div>
         </header>
         <!--end of header -->
-
-
-
-
-        <%
-            Doctor doc;
-            doc = (Doctor) session.getAttribute("prodoc");
-//            Doctor doc;
-//            int i = 1;
-//            DoctorDAO dao  = new DoctorDAO();
-//            doc = (Doctor) dao.getDoctor(i);
-
-        %> 
-
         <main id="main">
             <!-- De choi thoi -->
-
-            <!--but-->
-
-            <!--end-->
             <div class="nothing-special-dark"></div>
             <div class="nothing-special-light"></div>
             <section class="card-section-imagia">
@@ -112,121 +93,80 @@
                     <div class="row">
                         <div class="col-md-7 col-sm-7" style="background-color: #eee; margin-right: 10px;">
                             <div class="doctor-name">
-                                <form>
-
-                                    <div class="row" style="margin-top: 40px;">             
-                                        <div class="col-md-4 col-sm-10">
-                                            <div class="doctor-pic">
-                                                <img src="" alt="">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-7 col-sm-10">
-                                            <h3 class="name"><%= doc.getLname() + " " + doc.getFname()%></h3>
-                                            <div class="doctor-text"> DOB: 11-01-1997<br> Gender: <%= doc.getSex()%></div>
+                                <div class="row" style="margin-top: 40px;">             
+                                    <div class="col-md-4 col-sm-10">
+                                        <div class="doctor-pic">
+                                            <img src="" alt="">
                                         </div>
                                     </div>
+                                    <div class="col-md-7 col-sm-10">
+                                        <h3 class="name">Nguyen Van Sinh</h3>
+                                        <div class="doctor-text"> DOB: 11-01-1997<br> Gender: GAY </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="doctor-information">
                                 <div class="head">Personal Information</div><br> 
                                 <table>
                                     <tr><td><div class="info">Working Place: </div></td><td> <div class="info-text">Abc hospital</div></td></tr>
                                     <tr><td><div class="info">Speciality: </div></td><td> <div class="info-text">Neurology</div></td></tr>
-                                    <tr><td><div class="info">Specific speciality:  </div></td><td> <div class="info-text"><%= doc.getSpeciality()%> </div></td></tr>
-                                    <tr><td><div class="info">Degree: </div></td><td> <div class="info-text"><%= doc.getDegree()%></div></div></td></tr>
-                                    <tr><td><div class="info">Insurance:  </div></td><td> <div class="info-text"><%= doc.getInsurance()%></div></div></td></tr>
-                                    <tr><td><div class="info">Language: </div></td><td> <div class="info-text"><%= doc.getLang()%></div></div></td></tr>
-                                    <tr><td><div class="info">Work-hour: </div></td><td> <div class="info-text"><%= doc.getHours()%></div></div></td></tr>
+                                    <tr><td><div class="info">Specific speciality: </div></td><td> <div class="info-text">Crazy</div></td></tr>
+                                    <tr><td><div class="info">Degree: </div></td><td> <div class="info-text">Kintergarden</div></div></td></tr>
+                                    <tr><td><div class="info">Insurance: </div></td><td> <div class="info-text">Accepted</div></div></td></tr>
+                                    <tr><td><div class="info">Language: </div></td><td> <div class="info-text">English</div></div></td></tr>
+                                    <tr><td><div class="info">Work-hour: </div></td><td> <div class="info-text">10AM-2PM</div></div></td></tr>
                                 </table>
                             </div>
-                            </form>
                         </div>
-
-
-                        <form action="doctor" method="POST">
-                            <div class="form-group">
-                                <label for="name">First name </label>
-                                <input type="name" class="form-control" id="name" name="fname" value="<%= doc.getFname()%>">
-                            </div>
-                            <div class="form-group">
-                                <label for="name">Last name </label>
-                                <input type="name" class="form-control" id="name" name="lname" value="<%= doc.getLname()%>">
-                            </div>
-                            <div class="form-group">
-                                <label for="address">Gender</label>
-                                <input type="address" class="form-control" id="address"  name="gender" value="<%= doc.getSex()%>">
-                            </div>
-                            <div class="form-group">
-                                <label for="website">Degree</label>
-                                <input type="website" class="form-control" id="website" name="degree" value="<%= doc.getDegree()%>">
-                            </div>
-                            <div class="form-group">
-                                <label for="website">Accepted insurance</label>
-                                <input type="website" class="form-control" id="website" name="insurance" value="<%= doc.getInsurance()%>">
-                            </div>
-                            <div class="form-group">
-                                <label for="name">Specific specialty </label>
-                                <input type="name" class="form-control" id="name" name="speciality" value="<%= doc.getSpeciality()%>" >
-                            </div>
-                            <div class="form-group">
-                                <label for="name">Office hours </label>
-                                <input type="name" class="form-control" id="name" name="hour" value="<%= doc.getHours()%>">
-                            </div>
-                            <div class="form-group">
-                                <label for="name">Languages </label>
-                                <input type="name" class="form-control" id="name" name="language" value="<%= doc.getLang()%>">
-                            </div>
-                            <input type="hidden" name="id" value="<%= doc.getID()%>" >
-                            <input type="hidden" name="action" value="updateDoctor">
-                            <button type="submit" class="btn btn-default">Edit</button>
-                        </form>
-                        <form action="doctor" method="POST">
-                            <input type="hidden" name="id" value="<%= doc.getID()%>" >
-                            <input type="hidden" name="action" value="remove">
-                            <button type="submit" class="btn btn-default">Remove</button>
-                        </form>    
-
                         <div class="col-md-4 col-sm-4" style="background-color: #FFF;">  
                             <div class="side-doctor">
                                 <h4>Options</h4><hr>
                                 <div class="side-text">Make an Appointment:</div>
                                 <input class="side-button" type="submit" value="Make Appointment"><hr>
                                 <div class="side-text">Add to Bookmark:</div>
-                                <input class="side-button2" type="submit" value="Bookmark"><hr>
+                                <form method="POST" action="controlBookmark">
+                                    <input type="hidden" name="pID" value="1">
+                                    <input type="hidden" name="dID" value="1">
+                                    <button class="side-button2" value="bookmarkdoctor" name="action">Bookmark </button><hr>
+                                </form>
+
                                 <%
                                     DoctorDAO doctorDAO = new DoctorDAO();
-                                    Doctor doctor = doctorDAO.getDoctor(1);
+                                    Doctor doctor = doctorDAO.getDoctorReview(1);
                                     if (doctor.getAllowReview() == 1) {%>  
 
                                 <div class="side-text">Your Rating:</div>
+                                <form action="" method="">
                                 <section class='rating-widget'>
                                     <!-- Rating Stars Box -->
                                     <div class='rating-stars text-center'>
                                         <ul id='stars'>
-                                            <li class='star' title='Poor' data-value='1'>
+                                            <li class='star' title='Poor' data-value='1' value="1">
                                                 <i class='fa fa-star fa-fw'></i>
                                             </li>
-                                            <li class='star' title='Fair' data-value='2'>
+                                            <li class='star' title='Fair' data-value='2' value="2">
                                                 <i class='fa fa-star fa-fw'></i>
                                             </li>
-                                            <li class='star' title='Good' data-value='3'>
+                                            <li class='star' title='Good' data-value='3' value="3">
                                                 <i class='fa fa-star fa-fw'></i>
                                             </li>
-                                            <li class='star' title='Excellent' data-value='4'>
+                                            <li class='star' title='Excellent' data-value='4' value="4">
                                                 <i class='fa fa-star fa-fw'></i>
                                             </li>
-                                            <li class='star' title='WOW!!!' data-value='5'>
+                                            <li class='star' title='WOW!!!' data-value='5' value="5">
                                                 <i class='fa fa-star fa-fw'></i>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="text-msg"></div>
                                 </section>
+                                </form>
                                 <% } %>
                             </div>
                         </div>
                     </div>
-
+                    <%
+                        if (doctor.getAllowReview() == 1) {%>  
                     <div class="comment">
                         <div class="row">
                             <div class="col-md-10">
@@ -307,7 +247,7 @@
                                 <!--end comment list-->
                             </div>
                         </div>
-
+                        <% } %>
                         <!--comment box-->
 
                         <%
@@ -317,9 +257,9 @@
                                 <div class="col-md-8">
                                     <div class="widget-area no-padding blank">
                                         <div class="status-upload">
-                                            <form action="comment" method="POST">
+                                            <form action="" method="">
                                                 <textarea placeholder="What are your opinion about him/her" ></textarea>
-                                                <button type="submit" class="btn btn-success green" name="action" value="addComment"><i class="fa fa-share"></i>Post</button>
+                                                <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Post</button>
                                             </form>
                                         </div><!-- Status Upload  -->
                                     </div><!-- Widget Area -->
@@ -332,17 +272,6 @@
             </section>
         </main>
         <!-- End of Result -->
-
-
-
-
-
-
-
-
-
-
-
         <footer id="footer">
             <div class="footer-top">
                 <div class="container">
@@ -413,7 +342,8 @@
         <script src="lib/form/rating.js"></script>
         <script src="lib/form/side.js"></script>
         <script src="js/main.js"></script>
-        <script src="js/editform.js"></script>
+
     </body>
 </html>
+
 
