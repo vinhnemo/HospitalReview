@@ -67,6 +67,24 @@ public class controlBookmark extends HttpServlet {
                 response.sendRedirect("profileUser.jsp");
                 break;
             }
+            case "bookmarkhospital": {
+                String paID = request.getParameter("pID");
+                String hoID = request.getParameter("hID");
+                int p_id = Integer.parseInt(paID);
+                int h_id = Integer.parseInt(hoID);
+                bookmark.bookmarkHospital(p_id,h_id);
+                response.sendRedirect("profileHospital.jsp");
+                break;
+            }
+            case "removebookmarkhospital": {
+                String paID = request.getParameter("pID");
+                String hoID = request.getParameter("hID");
+                int p_id = Integer.parseInt(paID);
+                int h_id = Integer.parseInt(hoID);
+                bookmark.removeBookmarkHospital(p_id,h_id);
+                response.sendRedirect("profileUser.jsp");
+                break;
+            }
             default:
                 break;
         }

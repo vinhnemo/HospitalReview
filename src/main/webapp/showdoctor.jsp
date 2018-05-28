@@ -9,13 +9,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="language" value="${param.language}" scope="session" />
-<%String language = request.getParameter("language"), english = "", vietnamese = "";
+<%String language = request.getParameter("language"), english = "", french = "", vietnamese = "";
     if (language == null) {
         language = "en_US";
     }
     if (language.equals("en_US")) {
         language = "English";
         english = "active";
+    } else if (language.equals("fr_FR")) {
+        language = "Français";
+        french = "active";
     } else if (language.equals("vi_VN")) {
         language = "Tiếng Việt";
         vietnamese = "active";
@@ -45,26 +48,7 @@
     </head>
 
     <body>
-        <%
-            Patient patient = null;
-            Admin admin = null;
 
-            Cookie[] cookies = request.getCookies();
-            if (cookies != null) {
-                for (Cookie cookie : cookies) {
-                    if (cookie.getName().equals("u_email")) {
-                        patient = PatientDAO.getUserbyEmail(cookie.getValue());
-                    } else if (cookie.getName().equals("a_email")) {
-                        admin = AdminDAO.getUserbyEmail(cookie.getValue());
-                    }
-                }
-            }
-            if (session.getAttribute("patient") != null) {
-                patient = (Patient) session.getAttribute("patient");
-            } else if (session.getAttribute("admin") != null) {
-                admin = (Admin) session.getAttribute("admin");
-            }
-        %>
         <header id="header">
             <div class="container-fluid">
                 <div id="logo" class="pull-left">
@@ -72,14 +56,14 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="/doctor"><fmt:message key="finddoc"/></a>
+                        <li class="menu-has-children menu-active"><a href="http://localhost:8080/doctor"><fmt:message key="finddoc"/></a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
                                         <form action="doctor" method="POST">
                                             <h3><fmt:message key="finddoc"/></h3>
                                             <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
-                                            <input class="dropdown-button" type="submit" name="action" value="Search Doctor">
+                                            <input class="dropdown-button" type="submit" value="Search Doctor">
                                         </form>
                                     </div>
                                 </li>
@@ -93,16 +77,7 @@
                             </ul>
                         </li>
                         <li><a href="#contact"><fmt:message key="contact"/></a></li>
-                            <% if (patient != null) {%>
-                        <li class="menu-has-children"><a href=""><fmt:message key="greeting"/>, <%out.print(patient.getFname() + " " + patient.getLname());%></a>
-                            <ul>
-                                <li><a href="profileUser.jsp"><fmt:message key="yourprofile"/></a></li>
-                                <li><a href="logout"><fmt:message key="signout"/></a></li>
-                            </ul>
-                        </li>
-                        <% } else {%>
-                        <li class="menu"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true" onclick="animeEffectIn()"><fmt:message key="signinup"/></a></li>
-                            <% }%>                     
+                        <li class="menu-active"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true"><fmt:message key="signinup"/></a></li>                     
                     </ul>
                 </nav>
             </div>
@@ -118,7 +93,7 @@
             <!-- De choi thoi -->
             <div class="nothing-special-dark"></div>
             <div class="search-field">
-                <h4> <%= listOfDoctor.size()%> <fmt:message key="doctorfound"/> </h4>
+                <h4> <%= listOfDoctor.size()%> doctors found by keyword (Keyword) </h4>
             </div>
             <!-- !! -->
             <section class="card-section-imagia">
@@ -128,7 +103,7 @@
                             <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
                             <aside id="fh5co-aside" role="complementary" class="border js-fullheight">
                                 <div class="side-content">
-                                    <h4><fmt:message key="filter"/></h4><hr>
+                                    <h4>Filter Your Result</h4><hr>
                                     <div class="side-text">Your Search</div>
                                     <div class="search-container">
                                         <form method="POST" action="doctor">
@@ -139,22 +114,22 @@
                                             </button>
                                         </form>
                                     </div><hr>
-                                    <div class="side-text"><fmt:message key="gender"/></div>
+                                    <div class="side-text">Gender</div>
                                     <select class="side-select"> <!-- apply from db -->
                                         <option value="1">Male</option>
                                         <option value="2">Female</option>
                                     </select><hr>
-                                    <div class="side-text"><fmt:message key="lastname"/></div>
+                                    <div class="side-text">Last Name</div>
                                     <select class="side-select"> <!-- apply from db -->
                                         <option value="1">A -> Z</option>
                                         <option value="2">Z -> A</option>
                                     </select><hr>
-                                    <div class="side-text"><fmt:message key="speciality"/></div>
+                                    <div class="side-text">Speciality</div>
                                     <select class="side-select"> <!-- apply from db -->
                                         <option value="Crazy">Crazy</option>
                                         <option value="Mad">Mad</option>
                                     </select><hr>
-                                    <div class="side-text"><fmt:message key="rate"/></div>
+                                    <div class="side-text">Sorting</div>
                                     <select class="side-select"> <!-- apply from db -->
                                         <option value="location">Location</option>
                                         <option value="popular">Popular</option>
@@ -182,20 +157,20 @@
                                                     <h3 class="name-imagia"><%= d.getLname() + " " + d.getFname()%> </h3>
                                                     <p class="subtitle-imagia"><%= d.getSpeciality()%></p> <hr>
                                                     <div id="location"><i class="fa fa-map-marker"></i> 1822km </div>
-                                                    <div id="gender"> <fmt:message key="gender"/> : <%= d.getSex()%></div>
-                                                    <div id="workplace"> <fmt:message key="workingplace"/> : HCMIU </div>
-                                                    <div id="degree"> <fmt:message key="degree"/> : <%= d.getDegree()%></div>
+                                                    <div id="gender"> Gender : <%= d.getSex()%></div>
+                                                    <div id="workplace"> Working at : HCMIU </div>
+                                                    <div id="degree"> Degree : <%= d.getDegree()%></div>
                                                 </div>
-                                                <div class="footer-imagia"><span><i class="fa fa-plus"></i><fmt:message key="moreinfo"/></span></div>
+                                                <div class="footer-imagia"><span><i class="fa fa-plus"></i> More info</span></div>
                                             </div>
                                             <div class="back-imagia">
                                                 <div class="content-imagia content-back-imagia">
                                                     <div>
                                                         <h4><%= d.getLname() + d.getFname()%> </h4>
-                                                        <div id="specific-speciality"><fmt:message key="specificspeciality"/>: <%= d.getSpeciality()%>  </div>
-                                                        <div id="timework"><fmt:message key="time"/> : <%= d.getHours()%> </div>
+                                                        <div id="specific-speciality">Specific-speciality: <%= d.getSpeciality()%>  </div>
+                                                        <div id="timework">Time : <%= d.getHours()%> </div>
                                                         <!--<div id="">Abc : xyz </div>-->
-                                                        <div id="insurance"><fmt:message key="insurance"/>: <%= d.getInsurance()%> </div>
+                                                        <div id="insurance">Insurance: <%= d.getInsurance()%> </div>
                                                         <!--<div id="">DOB : 6-9-1939</div>-->
                                                         <!--<div id="">Address : Tiệm Đồ Gỗ </div>-->
                                                         <!--<div id="">Insurance: < %= d.getInsurance()%>  </div>-->
@@ -206,7 +181,7 @@
                                                         <input type="hidden" name="id_doctor" value="<%= d.getID()%>" >
                                                         <input class="card-button" type="submit" value="Make Appointment">
                                                     </div>
-                                                    <div class="social-imagia text-center"><a href="/doctor?action=viewpro&id_doctor=<%= d.getID()%>"><fmt:message key="viewprofile"/></a></div>
+                                                    <div class="social-imagia text-center"><a href="http://localhost:8080/doctor?action=viewpro&id_doctor=<%= d.getID()%>">View Profile</a></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -252,7 +227,7 @@
                                 69 IU Street <br>
                                 Ho Chi Minh City, <br>
                                 Viet Nam<br>
-                                <strong><fmt:message key="phonenumber"/>:</strong> 911 <br>
+                                <strong>Phone:</strong> 911 <br>
                                 <strong>Email:</strong> abc@gmail.com<br>
                             </p>
 

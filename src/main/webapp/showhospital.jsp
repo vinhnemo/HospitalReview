@@ -1,7 +1,7 @@
 <%-- 
-    Document   : home
-    Created on : May 16, 2018, 4:41:41 PM
-    Author     : MSI
+    Document   : showhospital
+    Created on : May 26, 2018, 11:25:22 PM
+    Author     : NemoVinh
 --%>
 <%@page import="java.util.*, DTO.*, DAO.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
@@ -9,13 +9,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="language" value="${param.language}" scope="session" />
-<%String language = request.getParameter("language"), english = "", vietnamese = "";
+<%String language = request.getParameter("language"), english = "", french = "", vietnamese = "";
     if (language == null) {
         language = "en_US";
     }
     if (language.equals("en_US")) {
         language = "English";
         english = "active";
+    } else if (language.equals("fr_FR")) {
+        language = "Français";
+        french = "active";
     } else if (language.equals("vi_VN")) {
         language = "Tiếng Việt";
         vietnamese = "active";
@@ -45,7 +48,9 @@
     </head>
 
     <body>
-        <%
+
+        <!--cookie-->
+         <%
             Patient patient = null;
             Admin admin = null;
 
@@ -65,21 +70,23 @@
                 admin = (Admin) session.getAttribute("admin");
             }
         %>
-        <header id="header">
+        <!--endcookie-->
+        
+       <header id="header">
             <div class="container-fluid">
                 <div id="logo" class="pull-left">
                     <h1><a href="home.jsp" class="scrollto">Doctor STRANGE</a></h1>
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="/doctor"><fmt:message key="finddoc"/></a>
+                        <li class="menu-has-children menu-active"><a href="http://localhost:8080/doctor"><fmt:message key="finddoc"/></a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
                                         <form action="doctor" method="POST">
                                             <h3><fmt:message key="finddoc"/></h3>
                                             <input type="text" name="search" class="form-control form-search" id="name" placeholder="Search doctors by name, speciality"/>                               
-                                            <input class="dropdown-button" type="submit" name="action" value="Search Doctor">
+                                            <input class="dropdown-button" type="submit" value="Search Doctor">
                                         </form>
                                     </div>
                                 </li>
@@ -88,29 +95,130 @@
                         <li><a href="#"><fmt:message key="appt"/></a></li>
                         <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
                             <ul>
-                                <li><a href="search.jsp?language=en_US">English</a></li>
-                                <li><a href="search.jsp?language=vi_VN">Tiếng Việt</a></li>
+                                <li><a href="home.jsp?language=en_US">English</a></li>
+                                <li><a href="home.jsp?language=vi_VN">Tiếng Việt</a></li>
                             </ul>
                         </li>
                         <li><a href="#contact"><fmt:message key="contact"/></a></li>
-                            <% if (patient != null) {%>
-                        <li class="menu-has-children"><a href=""><fmt:message key="greeting"/>, <%out.print(patient.getFname() + " " + patient.getLname());%></a>
-                            <ul>
-                                <li><a href="profileUser.jsp"><fmt:message key="yourprofile"/></a></li>
-                                <li><a href="logout"><fmt:message key="signout"/></a></li>
-                            </ul>
-                        </li>
-                        <% } else {%>
+
+                        <% if (patient != null) {%>
+                        <li class="menu"><a href="logout"><fmt:message key="signout"/></a></li>
+                            <% } else {%>
                         <li class="menu"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true" onclick="animeEffectIn()"><fmt:message key="signinup"/></a></li>
-                            <% }%>                     
+                            <% }%>
+
                     </ul>
                 </nav>
             </div>
-        </header> 
+        </header>
+
+        <!-- Login Popup -->
+        <!-- Modal -->
+        <div id="myLogin" class="modal fade" role="dialog" tabindex='-1'>
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <section id="formHolder">
+
+                            <div class="row">
+
+                                <!-- Brand Box -->
+                                <div class="col-sm-6 brand">
+                                    <a href="home.jsp" class="logo">Doctor <span>STRANGE</span></a>
+
+                                    <div class="heading">
+                                        <h2 class="effectAnime"><span id="heading"><fmt:message key="signup"/></span></h2>
+                                    </div>
+
+                                    <div class="success-msg">
+                                        <p>Great! You have logged in successfully.</p>
+                                        <div class="success-btn"><a href="patient" class="profile"><fmt:message key="yourprofile"/></a></div>
+                                        <div class="success-btn"><a href="home.jsp" class="btn-info"><fmt:message key="backtohomepage"/></a></div>
+                                    </div>
+                                </div>
+
+
+                                <!-- Form Box -->
+                                <div class="col-sm-6 form">
+
+                                    <!-- Login Form -->
+                                    <div class="login form-peice switched">
+                                        <form class="login-form" action="#" method="post">
+                                            <span id="user-result" style="color: red"></span>
+
+                                            <div class="form-group">
+                                                <label for="email"><fmt:message key="email"/></label>
+                                                <input type="email" name="email" id="email" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="password"><fmt:message key="password"/></label>
+                                                <input type="password" name="password" id="password" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="remember"><fmt:message key="rememberme"/></label>
+                                                <input type="checkbox" name="remember" id="remember" value="yes">
+                                            </div>
+
+                                            <div class="CTA">
+                                                <input type="submit" value="Login" name="action" id="login">
+                                                <a href="#" class="switch" id="registersw"><fmt:message key="imnew"/></a>
+                                            </div>
+                                        </form>
+                                    </div><!-- End Login Form -->
+
+
+                                    <!-- Signup Form -->
+                                    <div class="signup form-peice">
+                                        <form class="signup-form" action="register" method="post">
+
+                                            <div class="form-group">
+                                                <label for="fname"><fmt:message key="firstname"/></label>
+                                                <input type="text" name="fname" id="fname" class="fname" required>
+                                                <span class="error"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="lname"><fmt:message key="lastname"/></label>
+                                                <input type="text" name="lname" id="lname" class="lname" required>
+                                                <span class="error"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="email"><fmt:message key="email"/></label>
+                                                <input type="email" name="email" id="email" class="email" required>
+                                                <span class="error"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="address"><fmt:message key="address"/></label>
+                                                <input type="text" name="address" id="address" class="address" required>
+                                                <span class="error"></span>
+                                            </div>
+
+                                            <div class="CTA">
+                                                <input type="submit" value="Signup Now" id="submit" name="action">
+                                                <a href="#" class="switch" id="loginsw"><fmt:message key="ihaveanaccount"/></a>
+                                            </div>
+                                        </form>
+                                    </div><!-- End Signup Form -->
+                                </div>
+                            </div>
+                        </section>
+                    </div> <!-- body -->
+                </div>
+
+            </div>
+        </div>
+
+        <!--=------------------------------------------------->
         <%
-            DoctorDAO doctorDAO = new DoctorDAO();
-            //List<Doctor> listOfDoctor = doctorDAO.getAllDoctor();
-            List<Doctor> listOfDoctor = (ArrayList<Doctor>) session.getAttribute("doctorlist");
+         
+            HospitalDAO hosDAO = new HospitalDAO();
+            List<Hospital> listhospital = (ArrayList<Hospital>) session.getAttribute("hospitallist");
 
         %>
         <!--end of header -->
@@ -118,7 +226,7 @@
             <!-- De choi thoi -->
             <div class="nothing-special-dark"></div>
             <div class="search-field">
-                <h4> <%= listOfDoctor.size()%> <fmt:message key="doctorfound"/> </h4>
+                <h4> <%= listhospital.size()%> hospitals found by keyword (Keyword) </h4>
             </div>
             <!-- !! -->
             <section class="card-section-imagia">
@@ -128,33 +236,33 @@
                             <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
                             <aside id="fh5co-aside" role="complementary" class="border js-fullheight">
                                 <div class="side-content">
-                                    <h4><fmt:message key="filter"/></h4><hr>
+                                    <h4>Filter Your Result</h4><hr>
                                     <div class="side-text">Your Search</div>
                                     <div class="search-container">
-                                        <form method="POST" action="doctor">
-                                            <input type="hidden" name="action" value="Doctor">
+                                        <form method="POST" action="hospital">
+                                            <input type="hidden" name="action" value="find">
                                             <input type="text" name="search" placeholder="Search..." class="search-input" value="">
                                             <button class="btn btn-light search-btn" type="submit"> 
                                                 <i class="fa fa-search"></i>
                                             </button>
                                         </form>
                                     </div><hr>
-                                    <div class="side-text"><fmt:message key="gender"/></div>
+                                    <div class="side-text">Gender</div>
                                     <select class="side-select"> <!-- apply from db -->
                                         <option value="1">Male</option>
                                         <option value="2">Female</option>
                                     </select><hr>
-                                    <div class="side-text"><fmt:message key="lastname"/></div>
+                                    <div class="side-text">Last Name</div>
                                     <select class="side-select"> <!-- apply from db -->
                                         <option value="1">A -> Z</option>
                                         <option value="2">Z -> A</option>
                                     </select><hr>
-                                    <div class="side-text"><fmt:message key="speciality"/></div>
+                                    <div class="side-text">Speciality</div>
                                     <select class="side-select"> <!-- apply from db -->
                                         <option value="Crazy">Crazy</option>
                                         <option value="Mad">Mad</option>
                                     </select><hr>
-                                    <div class="side-text"><fmt:message key="rate"/></div>
+                                    <div class="side-text">Sorting</div>
                                     <select class="side-select"> <!-- apply from db -->
                                         <option value="location">Location</option>
                                         <option value="popular">Popular</option>
@@ -168,8 +276,8 @@
                         <div class="col-md-9">
                             <div class="row">                        
                                 <%
-                                    if (listOfDoctor.size() > 0) {
-                                        for (Doctor d : listOfDoctor) {
+                                    if (listhospital.size() > 0) {
+                                        for (Hospital h : listhospital) {
                                 %> 
                                 <div class="col-md-3">
 
@@ -179,34 +287,29 @@
                                                 <div class="cover-imagia"><!--<img src="https://unsplash.it/720/500?image=1067" alt="">--></div>
                                                 <div class="user-imagia"><img src="https://unsplash.it/120/120?image=64" class="img-circle" alt=""></div>
                                                 <div class="content-imagia">
-                                                    <h3 class="name-imagia"><%= d.getLname() + " " + d.getFname()%> </h3>
-                                                    <p class="subtitle-imagia"><%= d.getSpeciality()%></p> <hr>
+                                                    <h3 class="name-imagia"><%= h.getName() %> </h3>
+                                                    <p class="subtitle-imagia"><%= h.getAddress() %></p> <hr>
                                                     <div id="location"><i class="fa fa-map-marker"></i> 1822km </div>
-                                                    <div id="gender"> <fmt:message key="gender"/> : <%= d.getSex()%></div>
-                                                    <div id="workplace"> <fmt:message key="workingplace"/> : HCMIU </div>
-                                                    <div id="degree"> <fmt:message key="degree"/> : <%= d.getDegree()%></div>
+                                                    
+                                               <div id="degree"> Website : <%= h.getWebsite()%></div>
                                                 </div>
-                                                <div class="footer-imagia"><span><i class="fa fa-plus"></i><fmt:message key="moreinfo"/></span></div>
+                                                <div class="footer-imagia"><span><i class="fa fa-plus"></i> More info</span></div>
                                             </div>
                                             <div class="back-imagia">
                                                 <div class="content-imagia content-back-imagia">
                                                     <div>
-                                                        <h4><%= d.getLname() + d.getFname()%> </h4>
-                                                        <div id="specific-speciality"><fmt:message key="specificspeciality"/>: <%= d.getSpeciality()%>  </div>
-                                                        <div id="timework"><fmt:message key="time"/> : <%= d.getHours()%> </div>
-                                                        <!--<div id="">Abc : xyz </div>-->
-                                                        <div id="insurance"><fmt:message key="insurance"/>: <%= d.getInsurance()%> </div>
-                                                        <!--<div id="">DOB : 6-9-1939</div>-->
-                                                        <!--<div id="">Address : Tiệm Đồ Gỗ </div>-->
-                                                        <!--<div id="">Insurance: < %= d.getInsurance()%>  </div>-->
+                                                        <h4></h4>
+                                                        <div id="gender">Hospital Admin Name   : <%= h.getAdName() %></div>
+                                                    <div id="degree">Hospital Admin Email Address  : <%= h.getAdEmail() %></div>
+                                                        
                                                     </div>
                                                 </div>
                                                 <div class="footer-imagia">
                                                     <div class="text-center">
-                                                        <input type="hidden" name="id_doctor" value="<%= d.getID()%>" >
+                                                        <input type="hidden" name="id_doctor" value="" >
                                                         <input class="card-button" type="submit" value="Make Appointment">
                                                     </div>
-                                                    <div class="social-imagia text-center"><a href="/doctor?action=viewpro&id_doctor=<%= d.getID()%>"><fmt:message key="viewprofile"/></a></div>
+                                                    <div class="social-imagia text-center"><a href="http://localhost:8080/hospital?action=viewprohos&id_hospital=<%= h.getID() %>">View Profile</a></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -252,7 +355,7 @@
                                 69 IU Street <br>
                                 Ho Chi Minh City, <br>
                                 Viet Nam<br>
-                                <strong><fmt:message key="phonenumber"/>:</strong> 911 <br>
+                                <strong>Phone:</strong> 911 <br>
                                 <strong>Email:</strong> abc@gmail.com<br>
                             </p>
 
@@ -298,4 +401,5 @@
 
     </body>
 </html>
+
 

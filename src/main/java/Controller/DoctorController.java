@@ -44,7 +44,7 @@ public class DoctorController extends HttpServlet {
         if (action == null) {
             List<Doctor> listOfDoctor = doctorDAO.getAllDoctor();
             session.setAttribute("doctorlist", listOfDoctor);
-            rd = sc.getRequestDispatcher("/search.jsp");
+            rd = sc.getRequestDispatcher("/showdoctor.jsp");
             rd.forward(request, response);
         } else {
             // add Doctor
@@ -76,16 +76,25 @@ public class DoctorController extends HttpServlet {
                 String search = escapeHtml4(request.getParameter("search"));
                 List<Doctor> listOfDoctor = doctorDAO.searchDoctor(search);
                 session.setAttribute("doctorlist", listOfDoctor);
-                rd = sc.getRequestDispatcher("/search.jsp");
+                rd = sc.getRequestDispatcher("/showdoctor.jsp");
                 rd.forward(request, response);
             } // remove Doctor
-            else if (action.equals("removeDoctor")) {
-                int id = (Integer) Integer.parseInt(request.getParameter("remove"));
-                doctorDAO.remove(id);
+            else if (action.equals("remove")) {
+                int id = Integer.parseInt(request.getParameter("id"));
+                DoctorDAO d = new DoctorDAO();
+                d.remove(id);
                 List<Doctor> listOfDoctor = doctorDAO.getAllDoctor();
                 session.setAttribute("doctorlist", listOfDoctor);
-                response.sendRedirect("");
-            } //update Doctor
+                rd = sc.getRequestDispatcher("/showdoctor.jsp");
+                rd.forward(request, response);
+            } //            else if (action.equals("remove")) {
+            //                int id = (Integer) Integer.parseInt(request.getParameter("remove"));
+            //                doctorDAO.remove(id);
+            //                List<Doctor> listOfDoctor = doctorDAO.getAllDoctor();
+            //                session.setAttribute("doctorlist", listOfDoctor);
+            //                response.sendRedirect("");
+            //            }
+            //update Doctor
             else if (action.equals("updateDoctor")) {
                 int id = Integer.parseInt(request.getParameter("id"));
                 String fname = escapeHtml4(request.getParameter("fname"));
@@ -103,10 +112,10 @@ public class DoctorController extends HttpServlet {
                 hour = convertSup(hour);
                 String language = escapeHtml4(request.getParameter("language"));
                 language = convertSup(language);
-                doctorDAO.updateDoctor(id, fname, lname, gender, degree, insurance, speciality, hour, language);
-                List<Doctor> listOfDoctor = doctorDAO.getAllDoctor();
-                session.setAttribute("doctorlist", listOfDoctor);
-                response.sendRedirect("");
+                DoctorDAO dao = new DoctorDAO();
+                Doctor doc = new Doctor(id, fname, lname, hour, degree, insurance, speciality, hour, language);
+                dao.updateDoctor(doc);
+                response.sendRedirect("http://localhost:8080/doctor?action=viewpro&id_doctor=" + id);
             } else if (action.equals("viewpro")) {
                 int id = Integer.parseInt(request.getParameter("id_doctor"));
                 DoctorDAO dao = new DoctorDAO();
