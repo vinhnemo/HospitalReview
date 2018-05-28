@@ -187,7 +187,7 @@
                                                         <input type="hidden" name="id_doctor" value="<%= d.getID()%>" >
                                                         <input class="card-button" type="submit" value="Make Appointment">
                                                     </div>
-                                                    <div class="social-imagia text-center"><a href="http://localhost:8080/doctor?action=viewpro&id_doctor=<%= d.getID()%>">View Profile</a></div>
+                                                    <div class="social-imagia text-center"><a href="/doctor?action=viewpro&id_doctor=<%= d.getID()%>">View Profile</a></div>
                                                 </div>
                                             </div>
                                         </div>

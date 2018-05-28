@@ -58,7 +58,7 @@ public class CommentController extends HttpServlet {
                 cDAO.addComment(comment, did, pid);
                 List<Comment> listOfComment = cDAO.getAllComment(did);
                 session.setAttribute("commnetlist", listOfComment);
-                response.sendRedirect("http://localhost:8080/doctor?action=viewpro&id_doctor=" + did);
+                response.sendRedirect("/doctor?action=viewpro&id_doctor=" + did);
                 //rd.forward(request, response);
             }
         }
