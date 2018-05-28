@@ -138,45 +138,45 @@
 
                         <form action="doctor" method="POST">
                             <div class="form-group">
-                                <label for="name">First name </label>
+                                <label for="name"><fmt:message key="firstname"/> </label>
                                 <input type="name" class="form-control" id="name" name="fname" value="<%= doc.getFname()%>">
                             </div>
                             <div class="form-group">
-                                <label for="name">Last name </label>
+                                <label for="name"><fmt:message key="lastname"/> </label>
                                 <input type="name" class="form-control" id="name" name="lname" value="<%= doc.getLname()%>">
                             </div>
                             <div class="form-group">
-                                <label for="address">Gender</label>
+                                <label for="address"><fmt:message key="gender"/></label>
                                 <input type="address" class="form-control" id="address"  name="gender" value="<%= doc.getSex()%>">
                             </div>
                             <div class="form-group">
-                                <label for="website">Degree</label>
+                                <label for="website"><fmt:message key="degree"/></label>
                                 <input type="website" class="form-control" id="website" name="degree" value="<%= doc.getDegree()%>">
                             </div>
                             <div class="form-group">
-                                <label for="website">Accepted insurance</label>
+                                <label for="website"><fmt:message key="acceptinsurance"/></label>
                                 <input type="website" class="form-control" id="website" name="insurance" value="<%= doc.getInsurance()%>">
                             </div>
                             <div class="form-group">
-                                <label for="name">Specific specialty </label>
+                                <label for="name"><fmt:message key="specificspeciality"/> </label>
                                 <input type="name" class="form-control" id="name" name="speciality" value="<%= doc.getSpeciality()%>" >
                             </div>
                             <div class="form-group">
-                                <label for="name">Office hours </label>
+                                <label for="name"><fmt:message key="workhour"/> </label>
                                 <input type="name" class="form-control" id="name" name="hour" value="<%= doc.getHours()%>">
                             </div>
                             <div class="form-group">
-                                <label for="name">Languages </label>
+                                <label for="name"><fmt:message key="language"/> </label>
                                 <input type="name" class="form-control" id="name" name="language" value="<%= doc.getLang()%>">
                             </div>
                             <input type="hidden" name="id" value="<%= doc.getID()%>" >
                             <input type="hidden" name="action" value="updateDoctor">
-                            <button type="submit" class="btn btn-default">Edit</button>
+                            <button type="submit" class="btn btn-default"><fmt:message key="edit"/></button>
                         </form>
                         <form action="doctor" method="POST">
                             <input type="hidden" name="id" value="<%= doc.getID()%>" >
                             <input type="hidden" name="action" value="remove">
-                            <button type="submit" class="btn btn-default">Remove</button>
+                            <button type="submit" class="btn btn-default"><fmt:message key="remove"/></button>
                         </form>    
 
                         <div class="col-md-4 col-sm-4" style="background-color: #FFF;">  
@@ -190,6 +190,38 @@
                                     <input type="hidden" name="dID" value="<%= doc.getID()%>">
                                     <button class="side-button2" value="bookmarkdoctor" name="action">Bookmark </button><hr>
                                 </form>
+                                
+                                <form method="post" action="activeReview" style="margin-top: -10%;margin-left: 0.5%;"> 
+                                    <div class="row" >  
+                                        <div class="col-md-5" >
+                                            <div class="container" >
+                                                <input type="hidden" name="activateDoctorID" value="<%= doc.getID()%>">
+                                                <button type="submit" name="action" value="ActivateReview" style=" background-color: #4CAF50; 
+                                                        border: none;
+                                                        color: white; 
+                                                        padding: 
+                                                        1px 28px; 
+                                                        text-align: center; 
+                                                        font-size: 10px; 
+                                                        cursor: pointer;" >Enable Review</button>
+                                            </div> 
+                                        </div>     
+                                        <div class="col-md-5" >
+                                            <div class="container" style="margin-left: -15%;">
+                                                <input type="hidden" name="deActivateDoctorID" value="<%= doc.getID()%>">
+                                                <button type="submit" name="action" value="DeactivateReview" style=" background-color: #4CAF50; 
+                                                        border: none; 
+                                                        color: white; 
+                                                        padding: 1px 28px; 
+                                                        text-align: center; 
+                                                        font-size: 10px;  
+                                                        cursor: pointer;">Disable Review</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </form> 
+                                
                                 <%
                                     DoctorDAO doctorDAO = new DoctorDAO();
                                     Doctor doctor = doctorDAO.getDoctorReview(doc.getID());
@@ -286,7 +318,7 @@
                                                 <textarea placeholder="What are your opinion about him/her" name="comment" ></textarea>
                                                 <input type="hidden" name="did" value="<%= doc.getID()%>" >
                                                 <input type="hidden" name="pid" value="<%= patient.getID()%>" >
-                                                <button type="submit" class="btn btn-success green" name="action" value="addComment"><i class="fa fa-share"></i>Post</button>
+                                                <button type="submit" class="btn btn-success green" name="action" value="addComment"><i class="fa fa-share"></i><fmt:message key="post"/></button>
                                             </form>
                                         </div><!-- Status Upload  -->
                                     </div><!-- Widget Area -->

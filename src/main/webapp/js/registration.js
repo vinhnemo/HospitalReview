@@ -5,14 +5,8 @@
  */
 
 $(document).ready(function () {
+    $('#statusAdd, #name-status, #status, #pass-status, #confirmMessage').hide();
     var x_timer;
-
-    // Validate Email
-    $("#email").blur(function (e) {
-        if (emailError === false) {
-            isExist();
-        }
-    });
 
     // Form validation
     var lnameError = true,
@@ -21,6 +15,13 @@ $(document).ready(function () {
             addressError = true,
             passwordError = true,
             passwordConfirm = true;
+
+    // Validate Email
+    $("#email").blur(function (e) {
+        if (emailError === false) {
+            isExist();
+        }
+    });
 
     // Email
     $('#email').focus(function (e) {
@@ -68,17 +69,12 @@ $(document).ready(function () {
     }
 
     // Name
-    $('#fname').keyup(function (e) {
+    $('#fname, #lname').keyup(function (e) {
         var text = $(this).val().replace(/[^a-zA-Z\n\r]+/g, '');
         $(this).val(text);
     });
 
-    $('#lname').keyup(function (e) {
-        var text = $(this).val().replace(/[^a-zA-Z\n\r]+/g, '');
-        $(this).val(text);
-    });
-
-    $('#lname').blur(function (e) {
+    $('#lname, #fname').blur(function (e) {
         if ($(this).val().length === 0 || $('#fname').val().length === 0) {
             $('#name-status').show();
             $('#name-status').html("<i class=\"fa fa-close\" style=\"color: #ff6666\"> Please enter your name</i>");
@@ -118,16 +114,18 @@ $(document).ready(function () {
         }
     });
 
-    $('#pass2').keyup(checkPassword());
+    $('#pass2').blur(function(e) {checkPassword();});
 
     function checkPassword() {
-        if ($('#pass1').val().length === 0) {
+        if (passwordError) {
             passwordConfirm = true;
         } else if ($('#pass1').val() !== $('#pass2').val()) {
+            $('#confirmMessage').show();
             $('#pass2').css({'background': '#ff6666'});
             $('#confirmMessage').html("<i class=\"fa fa-close\" style=\"color: #ff6666\"> Passwords do not match</i>");
             passwordConfirm = true;
         } else {
+            $('#confirmMessage').show();
             $('#pass2').css({'background': '#66cc66'});
             $('#confirmMessage').html("<i class=\"fa fa-check\" style=\"color: #66cc66\"> Passwords match!</i>");
             passwordConfirm = false;
@@ -136,6 +134,7 @@ $(document).ready(function () {
 
     $('.register').submit(function (e) {
         e.preventDefault();
+        checkEmail();
 
         if (fnameError === true || lnameError === true || emailError === true || addressError === true || passwordError === true || passwordConfirm === true) {
             $('#fname, #lname, #email, #address, #pass1, #pass2').blur();
@@ -172,7 +171,7 @@ $(document).ready(function () {
                         alert(msg.text);
                         setTimeout(function () {
                             location.href = 'home.jsp';
-                        }, 2000);
+                        }, 5000);
                     }
                 });
             }, 1000);

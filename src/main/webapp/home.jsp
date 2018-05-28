@@ -98,13 +98,13 @@
                         <li><a href="#contact"><fmt:message key="contact"/></a></li>
 
                         <% if (patient != null) {%>
-                        <li class="menu-has-children"><a href=""><fmt:message key="greeting"/>, <%out.print(patient.getFname()+" "+patient.getLname());%></a>
+                        <li class="menu-has-children"><a href=""><fmt:message key="greeting"/>, <%out.print(patient.getFname() + " " + patient.getLname());%></a>
                             <ul>
                                 <li><a href="profileUser.jsp"><fmt:message key="yourprofile"/></a></li>
                                 <li><a href="logout"><fmt:message key="signout"/></a></li>
                             </ul>
                         </li>
-                            <% } else {%>
+                        <% } else {%>
                         <li class="menu"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true" onclick="animeEffectIn()"><fmt:message key="signinup"/></a></li>
                             <% }%>
 
@@ -134,7 +134,7 @@
                                     </div>
 
                                     <div class="success-msg">
-                                        <p>Great! You have logged in successfully.</p>
+                                        <p><fmt:message key="loginsuccess"/></p>
                                         <div class="success-btn"><a href="profileUser.jsp" class="profile"><fmt:message key="yourprofile"/></a></div>
                                         <div class="success-btn"><a href="home.jsp" class="btn-info"><fmt:message key="backtohomepage"/></a></div>
                                     </div>
@@ -229,8 +229,8 @@
                             <div class="carousel-background"><img src="img/intro/1.jpg" alt=""></div>
                             <div class="carousel-container">
                                 <div class="carousel-content">
-                                    <h2>All doctors you need are here</h2>
-                                    <p>Doctor Strange provide a new solution to connect to all hospitals and doctors you need. What makes us better, makes you better.</p>
+                                    <h2><fmt:message key="home.msg1"/></h2>
+                                    <p><fmt:message key="home.msg2"/></p>
                                     <a href="#featured-services" class="btn-get-started scrollto"><fmt:message key="getstarted"/></a>
                                 </div>
                             </div>
@@ -240,9 +240,9 @@
                             <div class="carousel-background"><img src="img/intro/2.jpg" alt=""></div>
                             <div class="carousel-container">
                                 <div class="carousel-content">
-                                    <h2>Anything Else</h2>
-                                    <p>Blah blah blah blah blah.</p>
-                                    <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
+                                    <h2><fmt:message key="home.msg3"/></h2>
+                                    <p><fmt:message key="home.msg4"/></p>
+                                    <a href="#featured-services" class="btn-get-started scrollto"><fmt:message key="getstarted"/></a>
                                 </div>
                             </div>
                         </div>
@@ -250,12 +250,12 @@
 
                     <a class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon ion-chevron-left" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
+                        <span class="sr-only"><fmt:message key="previous"/></span>
                     </a>
 
                     <a class="carousel-control-next" href="#introCarousel" role="button" data-slide="next">
                         <span class="carousel-control-next-icon ion-chevron-right" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
+                        <span class="sr-only"><fmt:message key="next"/></span>
                     </a>
 
                 </div>
@@ -270,19 +270,19 @@
                         <div class="col-lg-4 box">
                             <i class="ion-ios-bookmarks-outline"></i>
                             <h4 class="title"><a href=""><fmt:message key="findalldoctor"/></a></h4>
-                            <p class="description">List of all doctor with full information</p>
+                            <p class="description"><fmt:message key="home.msg5"/></p>
                         </div>
 
                         <div class="col-lg-4 box box-bg">
                             <i class="ion-ios-stopwatch-outline"></i>
                             <h4 class="title"><a href=""><fmt:message key="setanappointment"/></a></h4>
-                            <p class="description">Fill a simple form and make an appointment with the doctor you want</p>
+                            <p class="description"><fmt:message key="home.msg6"/></p>
                         </div>
 
                         <div class="col-lg-4 box">
                             <i class="ion-ios-heart-outline"></i>
                             <h4 class="title"><a href=""><fmt:message key="health"/></a></h4>
-                            <p class="description">Blah blah blah Blah blah blah Blah blah blah Blah blah blah Blah blah blah</p>
+                            <p class="description"><fmt:message key="home.msg7"/></p>
                         </div>
 
                     </div>
@@ -293,7 +293,7 @@
 
                     <header class="section-header">
                         <h3><fmt:message key="aboutus"/></h3>
-                        <p>More than 500 doctors come from 8 biggest hospitals in Viet Nam with many kinds of speciality.</p>
+                        <p><fmt:message key="home.msg8"/></p>
                     </header>
 
                     <div class="row about-cols">
@@ -306,7 +306,7 @@
                                 </div>
                                 <h2 class="title"><a href="#"><fmt:message key="mission"/></a></h2>
                                 <p>
-                                    Provide the fastest way to connect patient to doctor
+                                    <fmt:message key="home.msg9"/>
                                 </p>
                             </div>
                         </div>
@@ -319,7 +319,7 @@
                                 </div>
                                 <h2 class="title"><a href="#"><fmt:message key="plan"/></a></h2>
                                 <p>
-                                    Cooperate with 20 hospitals 1000 doctors in 2020
+                                    <fmt:message key="home.msg10"/>
                                 </p>
                             </div>
                         </div>
@@ -332,7 +332,7 @@
                                 </div>
                                 <h2 class="title"><a href="#"><fmt:message key="vision"/></a></h2>
                                 <p>
-                                    Beoome the biggest healthcare ecosystem in Southeast Asia in 2020
+                                    <fmt:message key="home.msg11"/>
                                 </p>
                             </div>
                         </div>
@@ -350,7 +350,7 @@
 
                     <header class="section-header wow fadeInUp">
                         <h3><fmt:message key="services"/></h3>
-                        <p>We provide many services for patient and hospital can connect each other easily</p>
+                        <p><fmt:message key="home.msg12"/></p>
                     </header>
 
                     <div class="row">
@@ -358,32 +358,32 @@
                         <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
                             <div class="icon"><i class="ion-ios-analytics-outline"></i></div>
                             <h4 class="title"><a href=""><fmt:message key="finddoc"/></a></h4>
-                            <p class="description">Rap tao giết mày k cần dao</p>
+                            <p class="description"><fmt:message key="home.msg13"/></p>
                         </div>
                         <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
                             <div class="icon"><i class="ion-ios-bookmarks-outline"></i></div>
                             <h4 class="title"><a href=""><fmt:message key="becomeamember"/></a></h4>
-                            <p class="description">Trong bài Real rap 2x2=4 thêm 3+3=6 ngày hôm nay</p>
+                            <p class="description"><fmt:message key="home.msg14"/></p>
                         </div>
                         <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
                             <div class="icon"><i class="ion-ios-paper-outline"></i></div>
                             <h4 class="title"><a href=""><fmt:message key="bookmarkyourdoctor"/></a></h4>
-                            <p class="description">Mở miệng là phản động, 3 sọc</p>
+                            <p class="description"><fmt:message key="home.msg15"/></p>
                         </div>
                         <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
                             <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
                             <h4 class="title"><a href=""><fmt:message key="setanappointment"/></a></h4>
-                            <p class="description">Mày coi lại mày đi thằng con bà Ngọc</p>
+                            <p class="description"><fmt:message key="home.msg16"/></p>
                         </div>
                         <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
                             <div class="icon"><i class="ion-ios-barcode-outline"></i></div>
                             <h4 class="title"><a href=""><fmt:message key="gethealthinformation"/></a></h4>
-                            <p class="description">Trời trên đầu mày không phải Việt Bắc, trời trên đầu mày là Việt Nam</p>
+                            <p class="description"><fmt:message key="home.msg17"/></p>
                         </div>
                         <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
                             <div class="icon"><i class="ion-ios-people-outline"></i></div>
                             <h4 class="title"><a href=""><fmt:message key="community"/></a></h4>
-                            <p class="description">Chạy ngay đi trước khi mọi chuyện dần tồi tệ hơn</p>
+                            <p class="description"><fmt:message key="home.msg18"/></p>
                         </div>
 
                     </div>
@@ -398,7 +398,7 @@
 
                     <header class="section-header">
                         <h3><fmt:message key="facts"/></h3>
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
+                        <p><fmt:message key="home.msg19"/></p>
                     </header>
 
                     <div class="row counters">
@@ -461,7 +461,7 @@
                 <div class="container">
                     <div class="section-header wow fadeInUp">
                         <h3>Team</h3>
-                        <p>Team make that fucking website!</p>
+                        <p><fmt:message key="home.msg20"/></p>
                     </div>
 
                     <div class="row">
@@ -558,7 +558,7 @@
 
                     <div class="section-header">
                         <h3><fmt:message key="contact"/></h3>
-                        <p>Call us when you need</p>
+                        <p><fmt:message key="home.msg23"/></p>
                     </div>
 
                     <div class="row contact-info">
@@ -624,7 +624,7 @@
 
                         <div class="col-lg-3 col-md-6 footer-info">
                             <h3>Doctor STRANGE</h3>
-                            <p> Man tao cá mày không được vui nữa kể từ khi cái này tao đến. Nhìn tao đứng trên top cái miệng mày câm như hến .Sẽ có ngày tới mày nhưng việc đầu tiên trước hết. Mày muốn thắng trò chơi này việc đầu tiên phải làm là giết tao chết</p>
+                            <p> <fmt:message key="home.msg21"/></p>
                         </div>
 
                         <div class="col-lg-3 col-md-6 footer-links">
@@ -660,7 +660,7 @@
 
                         <div class="col-lg-3 col-md-6 footer-newsletter">
                             <h4><fmt:message key="other"/></h4>
-                            <p>motherfucker không quen, tao không quen, đừng nói chuyện thân thiện như vậy với tao, tao không quen, cũng đừng nói chuyện đằng sau lưng của tao như vậy. </p>
+                            <p><fmt:message key="home.msg22"/> </p>
                         </div>
 
                     </div>

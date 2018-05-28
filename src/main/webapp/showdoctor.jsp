@@ -93,7 +93,7 @@
             <!-- De choi thoi -->
             <div class="nothing-special-dark"></div>
             <div class="search-field">
-                <h4> <%= listOfDoctor.size()%> doctors found by keyword (Keyword) </h4>
+                <h4> <%= listOfDoctor.size()%> <fmt:message key="doctorfound"/> </h4>
             </div>
             <!-- !! -->
             <section class="card-section-imagia">
@@ -103,7 +103,7 @@
                             <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
                             <aside id="fh5co-aside" role="complementary" class="border js-fullheight">
                                 <div class="side-content">
-                                    <h4>Filter Your Result</h4><hr>
+                                    <h4><fmt:message key="filter"/></h4><hr>
                                     <div class="side-text">Your Search</div>
                                     <div class="search-container">
                                         <form method="POST" action="doctor">
@@ -114,17 +114,17 @@
                                             </button>
                                         </form>
                                     </div><hr>
-                                    <div class="side-text">Gender</div>
+                                    <div class="side-text"><fmt:message key="gender"/></div>
                                     <select class="side-select"> <!-- apply from db -->
-                                        <option value="1">Male</option>
-                                        <option value="2">Female</option>
+                                        <option value="1"><fmt:message key="male"/></option>
+                                        <option value="2"><fmt:message key="female"/></option>
                                     </select><hr>
-                                    <div class="side-text">Last Name</div>
+                                    <div class="side-text"><fmt:message key="lastname"/></div>
                                     <select class="side-select"> <!-- apply from db -->
                                         <option value="1">A -> Z</option>
                                         <option value="2">Z -> A</option>
                                     </select><hr>
-                                    <div class="side-text">Speciality</div>
+                                    <div class="side-text"><fmt:message key="speciality"/></div>
                                     <select class="side-select"> <!-- apply from db -->
                                         <option value="Crazy">Crazy</option>
                                         <option value="Mad">Mad</option>
@@ -157,20 +157,20 @@
                                                     <h3 class="name-imagia"><%= d.getLname() + " " + d.getFname()%> </h3>
                                                     <p class="subtitle-imagia"><%= d.getSpeciality()%></p> <hr>
                                                     <div id="location"><i class="fa fa-map-marker"></i> 1822km </div>
-                                                    <div id="gender"> Gender : <%= d.getSex()%></div>
-                                                    <div id="workplace"> Working at : HCMIU </div>
-                                                    <div id="degree"> Degree : <%= d.getDegree()%></div>
+                                                    <div id="gender"> <fmt:message key="gender"/> : <%= d.getSex()%></div>
+                                                    <div id="workplace"> <fmt:message key="workingplace"/> : HCMIU </div>
+                                                    <div id="degree"> <fmt:message key="degree"/> : <%= d.getDegree()%></div>
                                                 </div>
-                                                <div class="footer-imagia"><span><i class="fa fa-plus"></i> More info</span></div>
+                                                <div class="footer-imagia"><span><i class="fa fa-plus"></i> <fmt:message key="moreinfor"/></span></div>
                                             </div>
                                             <div class="back-imagia">
                                                 <div class="content-imagia content-back-imagia">
                                                     <div>
                                                         <h4><%= d.getLname() + d.getFname()%> </h4>
-                                                        <div id="specific-speciality">Specific-speciality: <%= d.getSpeciality()%>  </div>
-                                                        <div id="timework">Time : <%= d.getHours()%> </div>
+                                                        <div id="specific-speciality"><fmt:message key="specificspeciality"/>: <%= d.getSpeciality()%>  </div>
+                                                        <div id="timework"><fmt:message key="time"/> : <%= d.getHours()%> </div>
                                                         <!--<div id="">Abc : xyz </div>-->
-                                                        <div id="insurance">Insurance: <%= d.getInsurance()%> </div>
+                                                        <div id="insurance"><fmt:message key="insurance"/>: <%= d.getInsurance()%> </div>
                                                         <!--<div id="">DOB : 6-9-1939</div>-->
                                                         <!--<div id="">Address : Tiệm Đồ Gỗ </div>-->
                                                         <!--<div id="">Insurance: < %= d.getInsurance()%>  </div>-->
@@ -181,7 +181,7 @@
                                                         <input type="hidden" name="id_doctor" value="<%= d.getID()%>" >
                                                         <input class="card-button" type="submit" value="Make Appointment">
                                                     </div>
-                                                    <div class="social-imagia text-center"><a href="/doctor?action=viewpro&id_doctor=<%= d.getID()%>">View Profile</a></div>
+                                                    <div class="social-imagia text-center"><a href="/doctor?action=viewpro&id_doctor=<%= d.getID()%>"><fmt:message key="viewprofile"/></a></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -227,7 +227,7 @@
                                 69 IU Street <br>
                                 Ho Chi Minh City, <br>
                                 Viet Nam<br>
-                                <strong>Phone:</strong> 911 <br>
+                                <strong><fmt:message key="phonenumber"/>:</strong> 911 <br>
                                 <strong>Email:</strong> abc@gmail.com<br>
                             </p>
 
