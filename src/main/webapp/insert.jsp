@@ -88,7 +88,7 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="http://localhost:8080/doctor"><fmt:message key="finddoc"/></a>
+                        <li class="menu-has-children menu-active"><a href="/doctor"><fmt:message key="finddoc"/></a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
@@ -104,8 +104,8 @@
                         <li><a href="#"><fmt:message key="appt"/></a></li>
                         <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
                             <ul>
-                                <li><a href="home.jsp?language=en_US">English</a></li>
-                                <li><a href="home.jsp?language=vi_VN">Tiếng Việt</a></li>
+                                <li><a href="insert.jsp?language=en_US">English</a></li>
+                                <li><a href="insert.jsp?language=vi_VN">Tiếng Việt</a></li>
                             </ul>
                         </li>
                         <li><a href="#contact"><fmt:message key="contact"/></a></li>
@@ -142,7 +142,7 @@
                                     </div>
 
                                     <div class="success-msg">
-                                        <p>Great! You have logged in successfully.</p>
+                                        <p><fmt:message key="loginsuccess"/></p>
                                         <div class="success-btn"><a href="patient" class="profile"><fmt:message key="yourprofile"/></a></div>
                                         <div class="success-btn"><a href="home.jsp" class="btn-info"><fmt:message key="backtohomepage"/></a></div>
                                     </div>
@@ -243,68 +243,68 @@
 
                         <form action="admin" method="POST">
                             <div class="form-group">
-                                <label for="name">Name</label>
+                                <label for="name"><fmt:message key="name"/></label>
                                 <input type="text" class="form-control" id="name" name="name" value="">
                             </div>
                             <div class="form-group">
-                                <label for="address">Addres</label>
+                                <label for="address"><fmt:message key="address"/></label>
                                 <input type="text" class="form-control" id="address"  name="address" value="">
                             </div>
                             <div class="form-group">
-                                <label for="website">Website</label>
+                                <label for="website"><fmt:message key="website"/></label>
                                 <input type="text" class="form-control" id="website" name="website" value="">
                             </div>
                             <div class="form-group">
-                                <label for="name">Hospital Admin Name</label>
+                                <label for="name"><fmt:message key="hospitaladminname"/></label>
                                 <input type="text" class="form-control" id="name" name="admin" value="" >
                             </div>
                             <div class="form-group">
-                                <label for="email">Hospital Admin Email Address </label>
+                                <label for="email"><fmt:message key="hospitaladminemail"/> </label>
                                 <input type="text" class="form-control" id="email" name="email" value="">
                             </div>
-                           
+
                             <input type="hidden" name="action" value="hospital">
-                            <button type="submit" class="btn btn-default">add</button>
+                            <button type="submit" class="btn btn-default"><fmt:message key="add"/></button>
                         </form>
 
                         <!--______________________--->
 
                         <form action="admin" method="POST">
                             <div class="form-group">
-                                <label for="name">First name </label>
+                                <label for="name"><fmt:message key="firstname"/> </label>
                                 <input type="name" class="form-control" id="name" name="fname" value="">
                             </div>
                             <div class="form-group">
-                                <label for="name">Last name </label>
+                                <label for="name"><fmt:message key="lastname"/></label>
                                 <input type="name" class="form-control" id="name" name="lname" value="">
                             </div>
                             <div class="form-group">
-                                <label for="name">Gender</label>
+                                <label for="name"><fmt:message key="gender"/></label>
                                 <input type="name" class="form-control" id="address"  name="gender" value="">
                             </div>
                             <div class="form-group">
-                                <label for="name">Degree</label>
+                                <label for="name"><fmt:message key="degree"/></label>
                                 <input type="name" class="form-control" id="website" name="degree" value="">
                             </div>
-                             <div class="form-group">
-                                <label for="name">Accepted insurance</label>
+                            <div class="form-group">
+                                <label for="name"><fmt:message key="acceptinsurance"/></label>
                                 <input type="name" class="form-control" id="website" name="insurance" value="">
                             </div>
                             <div class="form-group">
-                                <label for="name">Specific specialty </label>
+                                <label for="name"><fmt:message key="specificspeciality"/> </label>
                                 <input type="name" class="form-control" id="name" name="speciality" value="" >
                             </div>
                             <div class="form-group">
-                                <label for="name">Office hours </label>
+                                <label for="name"><fmt:message key="workhour"/> </label>
                                 <input type="name" class="form-control" id="email" name="hour" value="">
                             </div>
                             <div class="form-group">
-                                <label for="name">Languages </label>
+                                <label for="name"><fmt:message key="language"/> </label>
                                 <input type="name" class="form-control" id="email" name="language" value="">
                             </div>
                             <!--<input type="hidden" name="id" value="" >-->
                             <input type="hidden" name="action" value="doctor">
-                            <button type="submit" class="btn btn-default">add</button>
+                            <button type="submit" class="btn btn-default"><fmt:message key="add"/></button>
                         </form>
 
                         <!--end of edit-->
@@ -319,7 +319,7 @@
 
                                         <div class="col-lg-3 col-md-6 footer-info">
                                             <h3>Doctor STRANGE</h3>
-                                            <p> Man tao cá mày không được vui nữa kể từ khi cái này tao đến. Nhìn tao đứng trên top cái miệng mày câm như hến .Sẽ có ngày tới mày nhưng việc đầu tiên trước hết. Mày muốn thắng trò chơi này việc đầu tiên phải làm là giết tao chết</p>
+                                            <p> <fmt:message key="home.msg21"/></p>
                                         </div>
 
                                         <div class="col-lg-3 col-md-6 footer-links">
@@ -339,7 +339,7 @@
                                                 69 IU Street <br>
                                                 Ho Chi Minh City, <br>
                                                 Viet Nam<br>
-                                                <strong>Phone:</strong> 911 <br>
+                                                <strong><fmt:message key="phonenumber"/>:</strong> 911 <br>
                                                 <strong>Email:</strong> abc@gmail.com<br>
                                             </p>
 
@@ -355,7 +355,7 @@
 
                                         <div class="col-lg-3 col-md-6 footer-newsletter">
                                             <h4><fmt:message key="other"/></h4>
-                                            <p>motherfucker không quen, tao không quen, đừng nói chuyện thân thiện như vậy với tao, tao không quen, cũng đừng nói chuyện đằng sau lưng của tao như vậy. </p>
+                                            <p><fmt:message key="home.msg22"/> </p>
                                         </div>
 
                                     </div>
