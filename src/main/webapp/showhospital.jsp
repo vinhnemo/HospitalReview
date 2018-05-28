@@ -50,7 +50,7 @@
     <body>
 
         <!--cookie-->
-         <%
+        <%
             Patient patient = null;
             Admin admin = null;
 
@@ -71,8 +71,8 @@
             }
         %>
         <!--endcookie-->
-        
-       <header id="header">
+
+        <header id="header">
             <div class="container-fluid">
                 <div id="logo" class="pull-left">
                     <h1><a href="home.jsp" class="scrollto">Doctor STRANGE</a></h1>
@@ -133,7 +133,7 @@
                                     </div>
 
                                     <div class="success-msg">
-                                        <p>Great! You have logged in successfully.</p>
+                                        <p><fmt:message key="loginsuccess"/></p>
                                         <div class="success-btn"><a href="patient" class="profile"><fmt:message key="yourprofile"/></a></div>
                                         <div class="success-btn"><a href="home.jsp" class="btn-info"><fmt:message key="backtohomepage"/></a></div>
                                     </div>
@@ -216,7 +216,7 @@
 
         <!--=------------------------------------------------->
         <%
-         
+
             HospitalDAO hosDAO = new HospitalDAO();
             List<Hospital> listhospital = (ArrayList<Hospital>) session.getAttribute("hospitallist");
 
@@ -226,7 +226,7 @@
             <!-- De choi thoi -->
             <div class="nothing-special-dark"></div>
             <div class="search-field">
-                <h4> <%= listhospital.size()%> hospitals found by keyword (Keyword) </h4>
+                <h4> <%= listhospital.size()%> <fmt:message key="hospitalfound"/> </h4>
             </div>
             <!-- !! -->
             <section class="card-section-imagia">
@@ -236,7 +236,7 @@
                             <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
                             <aside id="fh5co-aside" role="complementary" class="border js-fullheight">
                                 <div class="side-content">
-                                    <h4>Filter Your Result</h4><hr>
+                                    <h4><fmt:message key="filter"/></h4><hr>
                                     <div class="side-text">Your Search</div>
                                     <div class="search-container">
                                         <form method="POST" action="hospital">
@@ -247,17 +247,17 @@
                                             </button>
                                         </form>
                                     </div><hr>
-                                    <div class="side-text">Gender</div>
+                                    <div class="side-text"><fmt:message key="gender"/></div>
                                     <select class="side-select"> <!-- apply from db -->
-                                        <option value="1">Male</option>
-                                        <option value="2">Female</option>
+                                        <option value="1"><fmt:message key="male"/></option>
+                                        <option value="2"><fmt:message key="female"/></option>
                                     </select><hr>
-                                    <div class="side-text">Last Name</div>
+                                    <div class="side-text"><fmt:message key="lastname"/></div>
                                     <select class="side-select"> <!-- apply from db -->
                                         <option value="1">A -> Z</option>
                                         <option value="2">Z -> A</option>
                                     </select><hr>
-                                    <div class="side-text">Speciality</div>
+                                    <div class="side-text"><fmt:message key="speciality"/></div>
                                     <select class="side-select"> <!-- apply from db -->
                                         <option value="Crazy">Crazy</option>
                                         <option value="Mad">Mad</option>
@@ -287,21 +287,21 @@
                                                 <div class="cover-imagia"><!--<img src="https://unsplash.it/720/500?image=1067" alt="">--></div>
                                                 <div class="user-imagia"><img src="https://unsplash.it/120/120?image=64" class="img-circle" alt=""></div>
                                                 <div class="content-imagia">
-                                                    <h3 class="name-imagia"><%= h.getName() %> </h3>
-                                                    <p class="subtitle-imagia"><%= h.getAddress() %></p> <hr>
+                                                    <h3 class="name-imagia"><%= h.getName()%> </h3>
+                                                    <p class="subtitle-imagia"><%= h.getAddress()%></p> <hr>
                                                     <div id="location"><i class="fa fa-map-marker"></i> 1822km </div>
-                                                    
-                                               <div id="degree"> Website : <%= h.getWebsite()%></div>
+
+                                                    <div id="degree"> <fmt:message key="website"/> : <%= h.getWebsite()%></div>
                                                 </div>
-                                                <div class="footer-imagia"><span><i class="fa fa-plus"></i> More info</span></div>
+                                                <div class="footer-imagia"><span><i class="fa fa-plus"></i> <fmt:message key="moreinfor"/></span></div>
                                             </div>
                                             <div class="back-imagia">
                                                 <div class="content-imagia content-back-imagia">
                                                     <div>
                                                         <h4></h4>
-                                                        <div id="gender">Hospital Admin Name   : <%= h.getAdName() %></div>
-                                                    <div id="degree">Hospital Admin Email Address  : <%= h.getAdEmail() %></div>
-                                                        
+                                                        <div id="gender"><fmt:message key="hospitaladminname"/>   : <%= h.getAdName()%></div>
+                                                        <div id="degree"><fmt:message key="hospitaladminemail"/>  : <%= h.getAdEmail()%></div>
+
                                                     </div>
                                                 </div>
                                                 <div class="footer-imagia">
@@ -309,7 +309,7 @@
                                                         <input type="hidden" name="id_doctor" value="" >
                                                         <input class="card-button" type="submit" value="Make Appointment">
                                                     </div>
-                                                    <div class="social-imagia text-center"><a href="/hospital?action=viewprohos&id_hospital=<%= h.getID() %>">View Profile</a></div>
+                                                    <div class="social-imagia text-center"><a href="/hospital?action=viewprohos&id_hospital=<%= h.getID()%>">View Profile</a></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -355,7 +355,7 @@
                                 69 IU Street <br>
                                 Ho Chi Minh City, <br>
                                 Viet Nam<br>
-                                <strong>Phone:</strong> 911 <br>
+                                <strong><fmt:message key="phonenumber"/>:</strong> 911 <br>
                                 <strong>Email:</strong> abc@gmail.com<br>
                             </p>
 
