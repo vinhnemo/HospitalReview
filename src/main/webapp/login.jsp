@@ -86,8 +86,8 @@
                         <li><a href="#"><fmt:message key="appt"/></a></li>
                         <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
                             <ul>
-                                <li><a href="appointmentRequest.jsp?language=en_US">English</a></li>
-                                <li><a href="appointmentRequest.jsp?language=vi_VN">Tiếng Việt</a></li>
+                                <li><a href="login.jsp?language=en_US">English</a></li>
+                                <li><a href="login.jsp?language=vi_VN">Tiếng Việt</a></li>
                             </ul>
                         </li>
                         <li><a href="#contact"><fmt:message key="contact"/></a></li>
@@ -100,22 +100,22 @@
         <main id="main">
             <div class="login-dark">
                 <form class="login" action="#" id="login-form" method="POST">
-                    <h1>Login</h1>
+                    <h1><fmt:message key="login"/></h1>
                     <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
 
                     <div class="form-group"><span id="user-result"></span></div>
-                    <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email" id="email"></div>
-                    <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password" id="password"></div>
+                    <div class="form-group"><input class="form-control" type="email" name="email" placeholder="<fmt:message key="email"/>" id="email"></div>
+                    <div class="form-group"><input class="form-control" type="password" name="password" placeholder="<fmt:message key="password"/>" id="password"></div>
                     <div class="el-checkbox el-checkbox-green">
-                        <span class="margin-r">Remember me?</span>
+                        <span class="margin-r"><fmt:message key="rememberme"/></span>
                         <input type="checkbox" name="remember" id="remember" value="yes">
                         <label class="el-checkbox-style" for="remember"></label>
                     </div>
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Log In</button></div>
+                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit"><fmt:message key="login"/></button></div>
                     <div class="form-group">
                         <input class="btn btn-primary2 btn-block" type="submit" value="Register New Account" onclick="window.location.href = 'register'" />                        
                     </div>
-                    <a href="forgotPassword" class="forgot">Forgot your email or password?</a>
+                    <a href="forgotPassword" class="forgot"><fmt:message key="forgotemailorpassword"/></a>
                 </form>
             </div>
         </main>

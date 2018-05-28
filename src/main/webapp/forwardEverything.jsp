@@ -90,9 +90,9 @@
                         <div class="redirect"> Redirecting...</div>
                         <div class="thank"><%=msg.getText()%> </div>
                         <%if (msg.getCode() == 0) { %>
-                            <div class="auto-redirect"><a href="/login.jsp">Please log in with your account to continue</a></div>
+                            <div class="auto-redirect"><a href="/login.jsp"><fmt:message key="forwardEverything.msg1"/></a></div>
                         <% } else {%>
-                            <div class="auto-redirect"><a href="/home.jsp">Click here to go back to homepage if your browser does not automatically re-direct you.</a></div>
+                            <div class="auto-redirect"><a href="/home.jsp"><fmt:message key="forwardEverything.msg2"/></a></div>
                         <% }%>
                     </div>
                     <div class="col-md-2"></div>
