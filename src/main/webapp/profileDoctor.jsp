@@ -93,7 +93,6 @@
 //            DoctorDAO dao  = new DoctorDAO();
 //            doc = (Doctor) dao.getDoctor(i);
 
-   
             PatientDAO patientDAO = new PatientDAO();
             Patient patient = null;
             if (session.getAttribute("patient") != null) {
@@ -157,20 +156,20 @@
                                     <section class='rating-widget'>
                                         <!-- Rating Stars Box -->
                                         <div class='rating-stars text-center'>
-                                            <ul id='stars' name="rate" onclick="submit()">
-                                                <li class='star' title='Poor' data-value='1' value="1">
+                                            <ul id='stars' name="rate"  value="addRate" onclick="submit()">
+                                                <li class='star' title='Poor' data-value='1' value="1" name="rate">
                                                     <i class='fa fa-star fa-fw'></i>
                                                 </li>
-                                                <li class='star' title='Fair' data-value='2' value="2">
+                                                <li class='star' title='Fair' data-value='2' value="2" name="rate">
                                                     <i class='fa fa-star fa-fw'></i>
                                                 </li>
-                                                <li class='star' title='Good' data-value='3' value="3">
+                                                <li class='star' title='Good' data-value='3' value="3" name="rate">
                                                     <i class='fa fa-star fa-fw'></i>
                                                 </li>
-                                                <li class='star' title='Excellent' data-value='4' value="4">
+                                                <li class='star' title='Excellent' data-value='4' value="4" name="rate">
                                                     <i class='fa fa-star fa-fw'></i>
                                                 </li>
-                                                <li class='star' title='WOW!!!' data-value='5' value="5">
+                                                <li class='star' title='WOW!!!' data-value='5' value="5" name="rate">
                                                     <i class='fa fa-star fa-fw'></i>
                                                 </li>
                                             </ul>

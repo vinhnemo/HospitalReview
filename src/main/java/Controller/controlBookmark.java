@@ -1,4 +1,3 @@
-
 package Controller;
 
 import DAO.bookmarkDAO;
@@ -53,8 +52,8 @@ public class controlBookmark extends HttpServlet {
                 String doID = request.getParameter("dID");
                 int p_id = Integer.parseInt(paID);
                 int d_id = Integer.parseInt(doID);
-                bookmark.bookmarkDoctor(p_id,d_id);
-               
+                bookmark.bookmarkDoctor(p_id, d_id);
+
                 response.sendRedirect("profileDoctor.jsp");
                 break;
             }
@@ -63,7 +62,7 @@ public class controlBookmark extends HttpServlet {
                 String doID = request.getParameter("dID");
                 int p_id = Integer.parseInt(paID);
                 int d_id = Integer.parseInt(doID);
-                bookmark.removeBookmarkDoctor(p_id,d_id);
+                bookmark.removeBookmarkDoctor(p_id, d_id);
                 response.sendRedirect("profileUser.jsp");
                 break;
             }
@@ -72,7 +71,7 @@ public class controlBookmark extends HttpServlet {
                 String hoID = request.getParameter("hID");
                 int p_id = Integer.parseInt(paID);
                 int h_id = Integer.parseInt(hoID);
-                bookmark.bookmarkHospital(p_id,h_id);
+                bookmark.bookmarkHospital(p_id, h_id);
                 response.sendRedirect("profileHospital.jsp");
                 break;
             }
@@ -81,7 +80,7 @@ public class controlBookmark extends HttpServlet {
                 String hoID = request.getParameter("hID");
                 int p_id = Integer.parseInt(paID);
                 int h_id = Integer.parseInt(hoID);
-                bookmark.removeBookmarkHospital(p_id,h_id);
+                bookmark.removeBookmarkHospital(p_id, h_id);
                 response.sendRedirect("profileUser.jsp");
                 break;
             }
