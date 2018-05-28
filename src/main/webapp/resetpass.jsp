@@ -55,19 +55,19 @@
         <main id="main">
             <div class="login-dark">
                 <form class="reset" action="#" method="post" id="reset-form">
-                    <h3> New Password </h3>
+                    <h3> <fmt:message key="newpassword"/> </h3>
                     <div class="i3"><i class="icon ion-ios-unlocked-outline"></i></div>
-                    <div class="text">Enter your new password :</div>
+                    <div class="text"><fmt:message key="enterpassword"/> :</div>
                     <div class="form-group">
-                        <input class="form-control" type="password" name="password" id="pass1" minlength="6" maxlength="16" placeholder="Your password" required>
+                        <input class="form-control" type="password" name="password" id="pass1" minlength="6" maxlength="16" placeholder="<fmt:message key="yourpassword"/>" required>
                         <span id="pass-status"></span>
                     </div>
-                    <div class="text"> Re-enter your password :</div>
+                    <div class="text"> <fmt:message key="reenterpassword"/> :</div>
                     <div class="form-group">
-                        <input class="form-control" type="password" name="repassword" id="pass2" minlength="6" maxlength="16" placeholder="Re-enter password" required>
+                        <input class="form-control" type="password" name="repassword" id="pass2" minlength="6" maxlength="16" placeholder="<fmt:message key="enterpassword"/>" required>
                         <span id="confirmMessage"></span>
                     </div>
-                    <div class="form-group"><button class="btn btn-primary2 btn-block" type="submit" name="action">Reset your password</button></div>
+                    <div class="form-group"><button class="btn btn-primary2 btn-block" type="submit" name="action"><fmt:message key="resetyourpassword"/></button></div>
                 </form>
             </div>
         </main>
@@ -100,7 +100,7 @@
                             } else {
                                 $('#user-result').hide();
                                 alert(msg.text);
-                                setTimeout(function(){location.href="home.jsp";} , 2000); 
+                                setTimeout(function(){location.href="home.jsp";} , 5000); 
                             }
                         });
                     }, 1000);

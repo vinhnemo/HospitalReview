@@ -95,9 +95,9 @@
         <main id="main">
             <div class="login-dark">
                 <form class="register" action="#" method="post" style="width:600px;">
-                    <h1 id="title">Register Account</h1>
+                    <h1 id="title"><fmt:message key="registeraccount"/></h1>
 
-                        <% if (filled) {%>
+                    <% if (filled) {%>
                     <div class="form-group">
                         <span id="name-status"></span>
                         <input class="form-control d-inline" type="text" name="fname" id="fname" value="<%=patient.getFname()%>" required><input class="form-control d-inline" type="text" name="lname" id="lname" value="<%=patient.getLname()%>" required>
@@ -110,7 +110,7 @@
                     <% } else {%>
                     <div class="form-group">
                         <span id="name-status"></span>
-                        <input class="form-control d-inline" type="text" name="fname" id="fname" placeholder="First Name" required><input class="form-control d-inline" type="text" name="lname" id="lname" placeholder="Last Name" required>
+                        <input class="form-control d-inline" type="text" name="fname" id="fname" placeholder="<fmt:message key="firstname"/>" required><input class="form-control d-inline" type="text" name="lname" id="lname" placeholder="Last Name" required>
                     </div>
                     <div class="form-group">
                         <span id="status"></span>
@@ -119,19 +119,19 @@
                     </div>
                     <% }%>
                     <div class="form-group">
-                        <input class="form-control d-inline-flex" type="password" name="password" placeholder="Password" style="width:200px;" minlength="6" maxlength="16" id="pass1" required>
+                        <input class="form-control d-inline-flex" type="password" name="password" placeholder="<fmt:message key="password"/>" style="width:200px;" minlength="6" maxlength="16" id="pass1" required>
                         <span id="pass-status"></span>
                     </div>
                     <div class="form-group">
-                        <input class="form-control d-inline-flex" type="password" name="password2" placeholder="Confirm Password" style="width:200px;" minlength="6" maxlength="16" id="pass2" required>
+                        <input class="form-control d-inline-flex" type="password" name="password2" placeholder="<fmt:message key="passwordconfirm"/>" style="width:200px;" minlength="6" maxlength="16" id="pass2" required>
                         <span id="confirmMessage"></span>
                     </div>
                     <div class="form-group">
-                        <label style="color:#65757d; margin:0px 10px;">Gender:&nbsp;</label>
+                        <label style="color:#65757d; margin:0px 10px;"><fmt:message key="gender"/>:&nbsp;</label>
                         <select class="form-control d-inline" name="gender" id="gender" style="width:120px;color:#65757d;">
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="other">Other</option>
+                            <option value="male"><fmt:message key="male"/></option>
+                            <option value="female"><fmt:message key="female"/></option>
+                            <option value="other"><fmt:message key="other"/></option>
                         </select>
                     </div>
                     <!-- <div class="form-group"><input class="form-control" type="date" style="color:#65757d;"></div> -->
@@ -142,21 +142,21 @@
                     </div>
                     <% } else {%>
                     <div class="form-group">
-                        <input class="form-control" type="text" name="address" id="address" placeholder="Address" style="width:420px;margin:0px 0px;" required>
+                        <input class="form-control" type="text" name="address" id="address" placeholder="<fmt:message key="address"/>" style="width:420px;margin:0px 0px;" required>
                         <span id="statusAdd"></span>
                     </div>
                     <% }%>
                     <input type="hidden" name="language" id="language" value="<%=language%>">
                     <div class="form-group" style="padding-top: 20px;">
-                        <input type="checkbox" required name="terms" onchange="this.setCustomValidity(validity.valueMissing ? 'Please indicate that you accept the Terms and Conditions' : '');" id="field_terms">
-                        <label for="terms">I agree with the <a href="terms.php" title="You may read our terms and conditions by clicking on this link">terms and conditions</a> for Registration.</label>
+                        <input type="checkbox" required name="terms" onchange="this.setCustomValidity(validity.valueMissing ? '<fmt:message key="register.msg1"/>' : '');" id="field_terms">
+                        <label for="terms"><fmt:message key="register.msg2"/> <a href="terms.php" title="<fmt:message key="register.msg3"/>"><fmt:message key="register.msg4"/></a> <fmt:message key="register.msg5"/></label>
                     </div>
 
-                    <small>You will receive an email to complete the registration and validation process.</small>
-                    <small>Be sure to check your spam folders. </small>
+                    <small><fmt:message key="register.msg6"/></small>
+                    <small><fmt:message key="register.msg7"/></small>
                     <div class="form-group"><span id="form-result"></span></div>
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action" value="Signup" id="submit-btn">Sign Up</button></div>
-                    <a href="login" class="forgot">Already have account? Sign in.</a>
+                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action" value="Signup" id="submit-btn"><fmt:message key="signup"/></button></div>
+                    <a href="login" class="forgot"><fmt:message key="alreadyhaveaccount"/></a>
                 </form>
             </div>
         </main>
@@ -188,7 +188,7 @@
                                 69 IU Street <br>
                                 Ho Chi Minh City, <br>
                                 Viet Nam<br>
-                                <strong>Phone:</strong> 911 <br>
+                                <strong><fmt:message key="phonenumber"/>:</strong> 911 <br>
                                 <strong>Email:</strong> abc@gmail.com<br>
                             </p>
 
