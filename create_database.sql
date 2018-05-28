@@ -67,10 +67,8 @@ CREATE TABLE `token` (
   `r_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `r_rate` float(10) unsigned NOT NULL,
   `d_id` bigint(20) unsigned NOT NULL,
-	`p_id` bigint(20) unsigned NOT NULL,
   PRIMARY KEY (`r_id`),
-  FOREIGN KEY (`d_id`) REFERENCES `doctor` (`d_id`),
-  FOREIGN KEY (`p_id`) REFERENCES `patient` (`p_id`)
+  FOREIGN KEY (`d_id`) REFERENCES `doctor` (`d_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- ------------------------------------------------------
    -- Table Comment

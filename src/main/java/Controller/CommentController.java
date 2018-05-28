@@ -51,10 +51,10 @@ public class CommentController extends HttpServlet {
         } else {
             if (action.equals("addComment")) {
                 String comment = request.getParameter("comment");
-                doc = (Doctor) session.getAttribute("prodoc");
-                p = (Patient) session.getAttribute("patient");
-                int did = doc.getID();
-                int pid = p.getID();
+                int did = Integer.parseInt(request.getParameter("did"));
+                int pid = Integer.parseInt(request.getParameter("pid"));
+                //int did = doc.getID();
+                //int pid = p.getID();
                 cDAO.addComment(comment, did, pid);
                 List<Comment> listOfComment = cDAO.getAllComment(did);
                 session.setAttribute("commnetlist", listOfComment);

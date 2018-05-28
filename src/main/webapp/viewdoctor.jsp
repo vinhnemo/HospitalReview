@@ -56,8 +56,8 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                       <li class="menu-has-children menu-active"><a href="http://localhost:8080/doctor"><fmt:message key="finddoc"/></a>
-+                        
+                        <li class="menu-has-children menu-active"><a href="http://localhost:8080/doctor"><fmt:message key="finddoc"/></a>
+                            +                        
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
@@ -135,50 +135,50 @@
                                 </table>
                             </div>
                         </div>
-                        
+
                         <form action="doctor" method="POST">
--                            <div class="form-group">
--                                <label for="name">First name </label>
--                                <input type="name" class="form-control" id="name" name="fname" value="<%= doc.getFname()%>">
--                            </div>
--                            <div class="form-group">
--                                <label for="name">Last name </label>
--                                <input type="name" class="form-control" id="name" name="lname" value="<%= doc.getLname()%>">
--                            </div>
--                            <div class="form-group">
--                                <label for="address">Gender</label>
--                                <input type="address" class="form-control" id="address"  name="gender" value="<%= doc.getSex()%>">
--                            </div>
--                            <div class="form-group">
--                                <label for="website">Degree</label>
--                                <input type="website" class="form-control" id="website" name="degree" value="<%= doc.getDegree()%>">
--                            </div>
--                            <div class="form-group">
--                                <label for="website">Accepted insurance</label>
--                                <input type="website" class="form-control" id="website" name="insurance" value="<%= doc.getInsurance()%>">
--                            </div>
--                            <div class="form-group">
--                                <label for="name">Specific specialty </label>
--                                <input type="name" class="form-control" id="name" name="speciality" value="<%= doc.getSpeciality()%>" >
--                            </div>
--                            <div class="form-group">
--                                <label for="name">Office hours </label>
--                                <input type="name" class="form-control" id="name" name="hour" value="<%= doc.getHours()%>">
--                            </div>
--                            <div class="form-group">
--                                <label for="name">Languages </label>
--                                <input type="name" class="form-control" id="name" name="language" value="<%= doc.getLang()%>">
--                            </div>
--                            <input type="hidden" name="id" value="<%= doc.getID()%>" >
--                            <input type="hidden" name="action" value="updateDoctor">
--                            <button type="submit" class="btn btn-default">Edit</button>
--                        </form>
--                        <form action="doctor" method="POST">
--                            <input type="hidden" name="id" value="<%= doc.getID()%>" >
--                            <input type="hidden" name="action" value="remove">
--                            <button type="submit" class="btn btn-default">Remove</button>
--                        </form>    
-                        
+                            -                            <div class="form-group">
+                                -                                <label for="name">First name </label>
+                                -                                <input type="name" class="form-control" id="name" name="fname" value="<%= doc.getFname()%>">
+                                -                            </div>
+                            -                            <div class="form-group">
+                                -                                <label for="name">Last name </label>
+                                -                                <input type="name" class="form-control" id="name" name="lname" value="<%= doc.getLname()%>">
+                                -                            </div>
+                            -                            <div class="form-group">
+                                -                                <label for="address">Gender</label>
+                                -                                <input type="address" class="form-control" id="address"  name="gender" value="<%= doc.getSex()%>">
+                                -                            </div>
+                            -                            <div class="form-group">
+                                -                                <label for="website">Degree</label>
+                                -                                <input type="website" class="form-control" id="website" name="degree" value="<%= doc.getDegree()%>">
+                                -                            </div>
+                            -                            <div class="form-group">
+                                -                                <label for="website">Accepted insurance</label>
+                                -                                <input type="website" class="form-control" id="website" name="insurance" value="<%= doc.getInsurance()%>">
+                                -                            </div>
+                            -                            <div class="form-group">
+                                -                                <label for="name">Specific specialty </label>
+                                -                                <input type="name" class="form-control" id="name" name="speciality" value="<%= doc.getSpeciality()%>" >
+                                -                            </div>
+                            -                            <div class="form-group">
+                                -                                <label for="name">Office hours </label>
+                                -                                <input type="name" class="form-control" id="name" name="hour" value="<%= doc.getHours()%>">
+                                -                            </div>
+                            -                            <div class="form-group">
+                                -                                <label for="name">Languages </label>
+                                -                                <input type="name" class="form-control" id="name" name="language" value="<%= doc.getLang()%>">
+                                -                            </div>
+                            -                            <input type="hidden" name="id" value="<%= doc.getID()%>" >
+                            -                            <input type="hidden" name="action" value="updateDoctor">
+                            -                            <button type="submit" class="btn btn-default">Edit</button>
+                            -                        </form>
+                        -                        <form action="doctor" method="POST">
+                            -                            <input type="hidden" name="id" value="<%= doc.getID()%>" >
+                            -                            <input type="hidden" name="action" value="remove">
+                            -                            <button type="submit" class="btn btn-default">Remove</button>
+                            -                        </form>    
+
                         <div class="col-md-4 col-sm-4" style="background-color: #FFF;">  
                             <div class="side-doctor">
                                 <h4><fmt:message key="option"/></h4><hr>
@@ -269,9 +269,8 @@
                         <!--comment box-->
 
                         <%
-                            if (doctor.getAllowReview() == 1) {
-                                if (patient != null) {
-
+                            //if (doctor.getAllowReview() == 1) {
+                            // if (patient != null) {
 
                         %>  
                         <div class="comment-box">
@@ -281,6 +280,8 @@
                                         <div class="status-upload">
                                             <form action="comment" method="POST">
                                                 <textarea placeholder="What are your opinion about him/her" name="comment" ></textarea>
+                                                <input type="hidden" name="did" value="<%= doc.getID()%>" >
+                                                <input type="hidden" name="pid" value="<%= patient.getID()%>" >
                                                 <button type="submit" class="btn btn-success green" name="action" value="addComment"><i class="fa fa-share"></i>Post</button>
                                             </form>
                                         </div><!-- Status Upload  -->
@@ -288,8 +289,8 @@
                                 </div>
                             </div>
                         </div>
-                        <% }
-                            }%>
+                        <% //}
+                            // }%>
                     </div>
                 </div>
             </section>
