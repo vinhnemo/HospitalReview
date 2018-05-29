@@ -7,6 +7,7 @@ package DAO;
 
 import Database.*;
 import DTO.Hospital;
+import Util.Info;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -57,7 +58,30 @@ public class HospitalDAO {
 
         return false;
     }
+ public int getIDhospital() {
+     
+        
+        String query = "SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = ? AND TABLE_NAME = hospital";
+        int i = -1 ;
 
+        // Connect to database
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareCall(query);
+            ps.setString(1, Info.schemaname);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                i += rs.getInt("AUTO_INCREMENT");
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Hospital.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return i;
+    }
     public void updateHospital(Hospital h) {
         String query = "UPDATE hospital"
                 + " SET "
@@ -99,10 +123,9 @@ public class HospitalDAO {
             PreparedStatement ps;
 
             query = "SELECT * FROM hospital WHERE h_name LIKE ?";
-           
+
             ps = connection.prepareCall(query);
             ps.setString(1, "%" + name + "%");
-           
 
             ResultSet rs = ps.executeQuery();
 
@@ -181,34 +204,35 @@ public class HospitalDAO {
         }
         return h;
     }
-    
-//    public Hospital getHospitalfromname(String name ) {
-//        String query = "SELECT * FROM hospital WHERE h_name = ?";
-//        Hospital h = new Hospital();
-//
-//        // Connect to database
-//        Connection connection = Database.getConnection();
-//
-//        try {
-//            PreparedStatement ps = connection.prepareCall(query);
-//            ps.setString(1, name);
-//            ResultSet rs = ps.executeQuery();
-//
-//            while (rs.next()) {
-//                h.setID(rs.getInt("h_id"));
-//                h.setName(rs.getString("h_name"));
-//                h.setAddress(rs.getString("h_address"));
-//                h.setWebsite(rs.getString("h_website"));
-//                h.setAdName(rs.getString("adname"));
-//                h.setAdEmail(rs.getString("ademail"));
-//            }
-//
-//            connection.close();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Hospital.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return h;
-//    }
+
+    public Hospital getHospitalfromname(String name, String email) {
+        String query = "SELECT * FROM hospital WHERE h_name = ? and ademail = ?  ";
+        Hospital h = new Hospital();
+
+        // Connect to database
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareCall(query);
+            ps.setString(1, name);
+            ps.setString(2, email);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                h.setID(rs.getInt("h_id"));
+                h.setName(rs.getString("h_name"));
+                h.setAddress(rs.getString("h_address"));
+                h.setWebsite(rs.getString("h_website"));
+                h.setAdName(rs.getString("adname"));
+                h.setAdEmail(rs.getString("ademail"));
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Hospital.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return h;
+    }
 
     public boolean removeHospital(int id) {
         // Connect to database
@@ -227,8 +251,8 @@ public class HospitalDAO {
         }
         return false;
     }
-    
-        public ArrayList<Hospital> getAllHospitalBookmark(int pID) {
+
+    public ArrayList<Hospital> getAllHospitalBookmark(int pID) {
         ArrayList<Hospital> list = new ArrayList<>();
         String query = "SELECT hospital.h_id,h_name,h_address,h_website,adname,ademail,p_id FROM hospital,bookmarkhospital WHERE p_id = '" + pID + "' AND hospital.h_id = bookmarkhospital.h_id;";
 

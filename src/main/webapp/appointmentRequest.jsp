@@ -8,18 +8,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="language" value="${param.language}" scope="session" />
-<%String language = request.getParameter("language"), english = "", vietnamese = "";
-    if (language == null) {
-        language = "en_US";
-    }
-    if (language.equals("en_US")) {
-        language = "English";
-        english = "active";
-    } else if (language.equals("vi_VN")) {
-        language = "Tiếng Việt";
-        vietnamese = "active";
-    }
-%>
 <c:if test="${not empty language}">
     <fmt:setLocale value="${language}" scope="session"/>
 </c:if>
@@ -31,6 +19,7 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
+        <title>Doctor Strange | Hospital Review Website</title>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -45,39 +34,7 @@
 
     <body>
 
-        <header id="header">
-            <div class="container-fluid">
-                <div id="logo" class="pull-left">
-                    <h1><a href="home.jsp" class="scrollto">Doctor STRANGE</a></h1>
-                </div>
-                <nav id="nav-menu-container">
-                    <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="/doctor"><fmt:message key="finddoc"/></a>
-                            <ul>
-                                <li>
-                                    <div class="dropdown-form">
-                                        <form action="doctor" method="POST">
-                                            <h3><fmt:message key="finddoc"/></h3>
-                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="<fmt:message key="searchdotorbyname"/>"/>                                 
-                                            <input class="dropdown-button" type="submit" name="action" value="Search Doctor">
-                                        </form>
-                                    </div>
-                                </li>
-                            </ul> 
-                        </li>
-                        <li><a href="#"><fmt:message key="appt"/></a></li>
-                        <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
-                            <ul>
-                                <li><a href="appointmentRequest.jsp?language=en_US">English</a></li>
-                                <li><a href="appointmentRequest.jsp?language=vi_VN">Tiếng Việt</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#contact"><fmt:message key="contact"/></a></li>
-                        <li class="menu-active"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true"><fmt:message key="signinup"/></a></li>                     
-                    </ul>
-                </nav>
-            </div>
-        </header>
+        <jsp:include page="header.jsp"></jsp:include>
         <!--end of header -->
         <main id="main">
             <!-- De choi thoi -->
@@ -216,6 +173,7 @@
         <script src="lib/form/rating.js"></script>
         <script src="lib/form/side.js"></script>
         <script src="js/main.js"></script>
+        <script src="js/modal.js"></script>
 
     </body>
 </html>
