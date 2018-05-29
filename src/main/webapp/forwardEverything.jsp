@@ -10,18 +10,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="language" value="${param.language}"  />
-<%String language = request.getParameter("language"), english = "", vietnamese = "";
-    if (language == null) {
-        language = "en_US";
-    }
-    if (language.equals("en_US")) {
-        language = "English";
-        english = "active";
-    } else if (language.equals("vi_VN")) {
-        language = "Tiếng Việt";
-        vietnamese = "active";
-    }
-%>
 <c:if test="${not empty language}">
     <fmt:setLocale value="${language}" scope="session"/>
 </c:if>
@@ -33,6 +21,7 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
+        <title>Doctor Strange | Hospital Review Website</title>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -124,7 +113,7 @@
         <script type="text/javascript">
             $(document).ready(function (event){
                 <%if (msg.getCode() == 0) { %>
-                    setTimeout(function(){location.href='login.jsp'}, 5000);
+                    setTimeout(function(){location.href='login'}, 5000);
                 <% } else {%>
                     setTimeout(function(){location.href='home.jsp'}, 5000);
                 <% }%>

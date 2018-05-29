@@ -11,19 +11,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<c:set var="language" value="${param.language}"  />
-<%String language = request.getParameter("language"), english = "", vietnamese = "", lang = "";
-    if (language == null) {
-        language = "en_US";
-    }
-    if (language.equals("en_US")) {
-        lang = "English";
-        english = "active";
-    } else if (language.equals("vi_VN")) {
-        lang = "Tiếng Việt";
-        vietnamese = "active";
-    }
-%>
+<c:set var="language" value="${param.language}"/>
 <c:if test="${not empty language}">
     <fmt:setLocale value="${language}" />
 </c:if>
@@ -36,6 +24,7 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
+        <title>Doctor Strange | Hospital Review Website</title>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -48,7 +37,7 @@
     </head> 
 
     <body>
-        <%
+        <%            
             Patient patient = new Patient();
             boolean filled = false;
             if (request.getAttribute("patient") != null) {
@@ -80,8 +69,8 @@
                         <li><a href="#"><fmt:message key="appt"/></a></li>
                         <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
                             <ul>
-                                <li><a href="register.jsp?language=en_US">English</a></li>
-                                <li><a href="register.jsp?language=vi_VN">Tiếng Việt</a></li>
+                                <li><a href="register?language=en_US">English</a></li>
+                                <li><a href="register?language=vi_VN">Tiếng Việt</a></li>
                             </ul>
                         </li>
                         <li><a href="#footer"><fmt:message key="contact"/></a></li>
@@ -146,7 +135,7 @@
                         <span id="statusAdd"></span>
                     </div>
                     <% }%>
-                    <input type="hidden" name="language" id="language" value="<%=language%>">
+                    <input type="hidden" name="language" id="language" value="${pageContext.response.locale}">
                     <div class="form-group" style="padding-top: 20px;">
                         <input type="checkbox" required name="terms" onchange="this.setCustomValidity(validity.valueMissing ? '<fmt:message key="register.msg1"/>' : '');" id="field_terms">
                         <label for="terms"><fmt:message key="register.msg2"/> <a href="terms.php" title="<fmt:message key="register.msg3"/>"><fmt:message key="register.msg4"/></a> <fmt:message key="register.msg5"/></label>
