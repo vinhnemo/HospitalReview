@@ -99,6 +99,19 @@
                                     </li>
                                 </ul> 
                             </li>
+                            <li class="menu-has-children menu-active"><a href="/hospital"><fmt:message key="findhospital"/></a>
+                                <ul>
+                                    <li>
+                                        <div class="dropdown-form">
+                                            <form action="hospital" method="POST">
+                                                <h3><fmt:message key="finddoc"/></h3>
+                                                <input type="text" name="search" class="form-control form-search" id="name" placeholder="<fmt:message key="searchhospitalbyname"/>"/>                               
+                                                <input class="dropdown-button" type="submit" name="action" value="Search Hospital">
+                                            </form>
+                                        </div>
+                                    </li>
+                                </ul> 
+                            </li>
                             <li><a href="#"><fmt:message key="appt"/></a></li>
                             <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
                                 <ul>
