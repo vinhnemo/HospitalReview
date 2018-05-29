@@ -5,15 +5,24 @@
  */
 package Controller;
 
+import Calculate.LatitudeAndLongitudeWithPincode;
+import Calculate.Location;
+import Calculate.connectpython;
 import DTO.Admin;
 import DTO.Patient;
 import DAO.AdminDAO;
+import DAO.HospitalDAO;
 import DAO.PatientDAO;
+import DTO.Hospital;
 import Database.BCrypt;
 import Util.*;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
@@ -95,6 +104,40 @@ public class Login extends HttpServlet {
                     if (adminLogin) {
                         session.setAttribute("admin", admin);
                     } else {
+//                        ************************load location************************ xin 1 it speed
+                        HospitalDAO hospitalDAO = new HospitalDAO();
+                        List<Hospital> listofHospital = hospitalDAO.getAllHospital();
+                        if (patient != null) {
+                            connectpython con = new connectpython();
+                            LatitudeAndLongitudeWithPincode la = new LatitudeAndLongitudeWithPincode();
+                            Location lol_patient = new Location();
+                            lol_patient.setAddress(patient.getAddress());
+                            try {
+                                lol_patient = la.getLatLongPositions(lol_patient);
+                            } catch (Exception ex) {
+                                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            HashMap<Integer, Double> map = new HashMap<Integer, Double>();
+                            if (listofHospital.size() > 0) {
+                                for (Hospital h : listofHospital) {
+                                    Location lol_hospital = new Location();
+                                    lol_hospital.setAddress(h.getAddress());
+                                    try {
+                                        lol_hospital = la.getLatLongPositions(lol_hospital);
+                                    } catch (Exception ex) {
+                                        Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                    double dis = con.calculatdistance(lol_patient.getLat(), lol_patient.getLng(), lol_hospital.getLat(), lol_hospital.getLng());
+                                    dis = Math.round(100.0 * dis) / 100.0;
+                                    map.put(h.getID(), dis);
+                                }
+
+                            }
+
+                            //sort
+                            session.setAttribute("distance", map);
+                        }
+//************************end load***********************
                         session.setAttribute("patient", patient);
                     }
 

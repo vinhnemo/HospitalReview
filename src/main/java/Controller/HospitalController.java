@@ -67,33 +67,33 @@ public class HospitalController extends HttpServlet {
 
         if (action == null) {
             List<Hospital> listofHospital = hospitalDAO.getAllHospital();
-            if (patient != null) {
-                connectpython con = new connectpython();
-                LatitudeAndLongitudeWithPincode la = new LatitudeAndLongitudeWithPincode();
-                Location lol_patient = new Location();
-                lol_patient.setAddress(patient.getAddress());
-                lol_patient = la.getLatLongPositions(lol_patient);
-                HashMap<Integer, Double> map = new HashMap<Integer, Double>();
-                if (listofHospital.size() > 0) {
-                    for (Hospital h : listofHospital) {
-                        Location lol_hospital = new Location();
-                        lol_hospital.setAddress(h.getAddress());
-                        lol_hospital = la.getLatLongPositions(lol_hospital);
-                        double dis =    con.calculatdistance(lol_patient.getLat(), lol_patient.getLng(), lol_hospital.getLat(), lol_hospital.getLng());
-                        dis = Math.round(100.0*dis)/100.0;
-                         map.put(h.getID(), dis);
-                    }
-
-                   
-                }
-                
-                
-                //sort
-                
-                
-            
-            session.setAttribute("distance", map);
-        }
+//            if (patient != null) {
+//                connectpython con = new connectpython();
+//                LatitudeAndLongitudeWithPincode la = new LatitudeAndLongitudeWithPincode();
+//                Location lol_patient = new Location();
+//                lol_patient.setAddress(patient.getAddress());
+//                lol_patient = la.getLatLongPositions(lol_patient);
+//                HashMap<Integer, Double> map = new HashMap<Integer, Double>();
+//                if (listofHospital.size() > 0) {
+//                    for (Hospital h : listofHospital) {
+//                        Location lol_hospital = new Location();
+//                        lol_hospital.setAddress(h.getAddress());
+//                        lol_hospital = la.getLatLongPositions(lol_hospital);
+//                        double dis =    con.calculatdistance(lol_patient.getLat(), lol_patient.getLng(), lol_hospital.getLat(), lol_hospital.getLng());
+//                        dis = Math.round(100.0*dis)/100.0;
+//                         map.put(h.getID(), dis);
+//                    }
+//
+//                   
+//                }
+//                
+//                
+//                //sort
+//                
+//                
+//            
+//            session.setAttribute("distance", map);
+//        }
         session.setAttribute("hospitallist", listofHospital);
 
         rd = sc.getRequestDispatcher("/showhospital.jsp");
