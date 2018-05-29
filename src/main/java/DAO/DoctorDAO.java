@@ -296,7 +296,7 @@ public class DoctorDAO {
 //        }
 //
 //    }
-    public ArrayList<Doctor> getAllDoctorBookmark(int pID) {
+    public static ArrayList<Doctor> getAllDoctorBookmark(int pID) {
         ArrayList<Doctor> list = new ArrayList<>();
         String query = "SELECT doctor.d_id,d_fname,d_lname,d_gender,d_degree,d_insurance,d_speciality,d_hour,languages,p_id FROM doctor,bookmarkdoctor WHERE p_id = '" + pID + "' AND doctor.d_id = bookmarkdoctor.d_id;";
 

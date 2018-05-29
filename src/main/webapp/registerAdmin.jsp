@@ -59,7 +59,7 @@
                     </div>
                     <input type="hidden" name="type" id="language" value="admin">
 
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action" value="Register" id="submit-btn"><fmt:message key="signup"/></button></div>
+                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action" value="Register"><fmt:message key="signup"/></button></div>
                     <a href="login" class="forgot"><fmt:message key="alreadyhaveaccount"/></a>
                 </form>
             </div>

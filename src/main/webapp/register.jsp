@@ -110,7 +110,7 @@
                     <small><fmt:message key="register.msg6"/></small>
                     <small><fmt:message key="register.msg7"/></small>
                     <div class="form-group"><span id="form-result"></span></div>
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action" value="Signup" id="submit-btn"><fmt:message key="signup"/></button></div>
+                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action" value="Signup"><fmt:message key="signup"/></button></div>
                     <a href="login" class="forgot"><fmt:message key="alreadyhaveaccount"/></a>
                 </form>
             </div>

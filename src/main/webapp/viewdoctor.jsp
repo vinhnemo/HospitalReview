@@ -123,7 +123,7 @@
                                 </table>
                             </div>
                         </div>
-
+                        <% if (admin != null) {%>
                         <form action="doctor" method="POST">
                             <div class="form-group">
                                 <label for="name"><fmt:message key="firstname"/> </label>
@@ -161,15 +161,50 @@
                             <input type="hidden" name="action" value="updateDoctor">
                             <button type="submit" class="btn btn-default"><fmt:message key="edit"/></button>
                         </form>
-                        <% if (admin != null) {%>
                         <form action="doctor" method="POST">
                             <input type="hidden" name="id" value="<%= doc.getID()%>" >
                             <input type="hidden" name="action" value="remove">
                             <button type="submit" class="btn btn-default"><fmt:message key="remove"/></button>
                         </form>    
+                        <% } else {%>
+                        <form>
+                            <div class="form-group">
+                                <label for="name"><fmt:message key="firstname"/> </label>
+                                <input type="name" class="form-control" id="name" name="fname" value="<%= doc.getFname()%>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="name"><fmt:message key="lastname"/> </label>
+                                <input type="name" class="form-control" id="name" name="lname" value="<%= doc.getLname()%>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="address"><fmt:message key="gender"/></label>
+                                <input type="address" class="form-control" id="address"  name="gender" value="<%= doc.getSex()%>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="website"><fmt:message key="degree"/></label>
+                                <input type="website" class="form-control" id="website" name="degree" value="<%= doc.getDegree()%>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="website"><fmt:message key="acceptinsurance"/></label>
+                                <input type="website" class="form-control" id="website" name="insurance" value="<%= doc.getInsurance()%>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="name"><fmt:message key="specificspeciality"/> </label>
+                                <input type="name" class="form-control" id="name" name="speciality" value="<%= doc.getSpeciality()%>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="name"><fmt:message key="workhour"/> </label>
+                                <input type="name" class="form-control" id="name" name="hour" value="<%= doc.getHours()%>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="name"><fmt:message key="language"/> </label>
+                                <input type="name" class="form-control" id="name" name="language" value="<%= doc.getLang()%>" disabled>
+                            </div>
+                        </form>
                         <% }%>
                         <div class="col-md-4 col-sm-4" style="background-color: #FFF;">  
                             <div class="side-doctor">
+                                <% if (patient != null) {%>
                                 <h4><fmt:message key="option"/></h4><hr>
                                 <div class="side-text"><fmt:message key="setanappointment"/>:</div>
                                 <input class="side-button" type="submit" value="Make Appointment"><hr>
@@ -179,6 +214,7 @@
                                     <input type="hidden" name="dID" value="<%= doc.getID()%>">
                                     <button class="side-button2" value="bookmarkdoctor" name="action">Bookmark </button><hr>
                                 </form>
+                                <% }%>
 
                                 <form method="post" action="activeReview" > 
                                     <div class="row" >  

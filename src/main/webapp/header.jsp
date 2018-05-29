@@ -93,13 +93,20 @@
                         <li><a href="contact.jsp"><fmt:message key="contact"/></a></li>
 
                         <% if (patient != null) {%>
-                        <li class="menu-has-children menu-active"><a href=""><fmt:message key="greeting"/>, <%out.print(patient.getFname() + " " + patient.getLname());%></a>
+                        <li class="menu-has-children menu-active"><a href=""><fmt:message key="greeting"/>, <%=patient.getFname()%> <%=patient.getLname()%></a>
                             <ul>
-                                <li><a href="profileUser.jsp"><fmt:message key="yourprofile"/></a></li>
+                                <li><a href="patient"><fmt:message key="yourprofile"/></a></li>
                                 <li><a href="logout"><fmt:message key="signout"/></a></li>
                             </ul>
                         </li>
-                        <% } else {%>
+                        <% } else if (admin != null) {%>
+                        <li class="menu-has-children menu-active"><a href=""><fmt:message key="greeting"/>, <%=admin.getEmail()%></a>
+                            <ul>
+                                <li><a href="patient"><fmt:message key="yourprofile"/></a></li>
+                                <li><a href="logout"><fmt:message key="signout"/></a></li>
+                            </ul>
+                        </li>
+                        <% } else { %>
                         <li class="menu menu-active"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true" onclick="animeEffectIn()"><fmt:message key="signinup"/></a></li>
                             <% }%>
 

@@ -88,7 +88,7 @@ public class Registration extends HttpServlet {
                 String sex = request.getParameter("gender");
                 String language = request.getParameter("language");
 
-                if (fname == null || lname == null || email == null || pass == null || address == null || sex == null) {
+                if (fname == null || lname == null || email == null || address == null || pass == null || sex == null || fname.equals("") || lname.equals("") || pass.equals("") || email.equals("") || address.equals("") || sex.equals("")) {
                     msg.setCode(-1);
                     msg.setText("Please input all required fields");
                 } else if (!pass.equals(pass2)) {
@@ -135,12 +135,11 @@ public class Registration extends HttpServlet {
                 // Admin object
                 Admin admin = new Admin();
 
-                String username = request.getParameter("username");
                 String email = request.getParameter("email");
                 String pass = request.getParameter("password");
                 String pass2 = request.getParameter("password2");
 
-                if (username.equals("") || email.equals("") || pass.equals("")) {
+                if (email == null || pass == null || pass2 == null || email.equals("") || pass.equals("") || pass2.equals("")) {
                     response.sendRedirect("registerAdmin.jsp");
                 } else if (!pass.equals(pass2)) {
                     response.sendRedirect("registerAdmin.jsp");

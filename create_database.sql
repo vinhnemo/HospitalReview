@@ -37,11 +37,10 @@ CREATE TABLE `token` (
     DROP TABLE IF EXISTS `admin`;
     CREATE TABLE `admin` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(45) NOT NULL,
   `email` varchar(150) NOT NULL,
   `password` varchar(150) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `admin_uindex` (`username`, `email`)
+  UNIQUE KEY `admin_uindex` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- --------------------------------------------------------
     -- Table Doctor
