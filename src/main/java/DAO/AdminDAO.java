@@ -189,4 +189,47 @@ public class AdminDAO {
         }
 
     }
+    
+    public static Admin getAdmin(int id) {
+        String query = "SELECT * FROM admin WHERE id = ?;";
+        Admin a = new Admin();
+
+        // Connect to database
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareCall(query);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                a.setID(rs.getInt("id"));
+                a.setEmail(rs.getString("email"));
+                a.setPass(rs.getString("password"));
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return a;
+    }
+    
+    public static void updatePassword(int id, String pass) {
+
+        // Connect to database
+        Connection connection = Database.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareStatement("UPDATE admin SET password = ? WHERE id = ?");
+            ps.setString(1, pass);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
+

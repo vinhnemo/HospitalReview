@@ -102,7 +102,7 @@ public class PatientDAO {
         return id;
     }
 
-     public static void updateUser(Patient p) {
+    public static void updateUser(Patient p) {
         String query = "UPDATE patient"
                 + " SET "
                 + "p_fname = ?,"
@@ -137,7 +137,7 @@ public class PatientDAO {
         }
 
     }
-    
+
     public static void updateinfor(Patient p) {
         String query = "UPDATE patient"
                 + " SET "
@@ -145,13 +145,10 @@ public class PatientDAO {
                 + "p_lname = ? , "
                 + "p_gender = ?, "
                 + "email = ? , "
-               
                 + "p_address = ? , "
                 + "languages = ? "
-              
                 + " WHERE p_id = ? ;";
 
-        System.out.println(query + ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         // Connect to database
         Connection connection = Database.getConnection();
 
@@ -161,10 +158,10 @@ public class PatientDAO {
             ps.setString(2, p.getLname());
             ps.setString(3, p.getSex());
             ps.setString(4, p.getEmail());
-          
+
             ps.setString(5, p.getAddress());
             ps.setString(6, p.getLang());
-          
+
             ps.setLong(7, p.getID());
             ps.executeUpdate();
 
@@ -502,17 +499,18 @@ public class PatientDAO {
             PreparedStatement ps = connection.prepareStatement("SELECT `key` FROM token WHERE p_id = ?");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            
-            if (rs!=null)
+
+            if (rs != null) {
                 while (rs.next()) {
                     hash = rs.getString("key");
                 }
+            }
 
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return hash;
     }
 }

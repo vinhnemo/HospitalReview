@@ -132,7 +132,7 @@ $(document).ready(function () {
         }
     }
 
-    $('.register').submit(function (e) {
+    $('#register').submit(function (e) {
         e.preventDefault();
         checkEmail();
 

@@ -3,6 +3,7 @@
     Created on : May 16, 2018, 4:41:41 PM
     Author     : MSI
 --%>
+
 <%@page import="java.util.*, DTO.*, DAO.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -29,20 +30,6 @@
         <link href="css/style.css" rel="stylesheet">
         <link rel="stylesheet" href="lib/form/search.css">
         <link rel="stylesheet" href="lib/form/sidebar.css">
-        <link rel="stylesheet" href="lib/form/form.css">
-        <script src="lib/modernizer/modernizr-2.6.2.min.js"></script>
-        <meta charset="utf-8">
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <meta content="" name="keywords">
-        <meta content="" name="description">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
-        <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-        <link href="lib/animate/animate.min.css" rel="stylesheet">
-        <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-        <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
         <link rel="stylesheet" href="lib/form/form.css">
     </head>
 
@@ -75,13 +62,13 @@
 
         %>
         <jsp:include page="header.jsp"></jsp:include>
-        
-        <!--end of header -->
-        <main id="main">
-            <!-- De choi thoi -->
-            <div class="nothing-special-dark"></div>
-            <div class="search-field">
-                <h4> <%= listOfDoctor.size()%> <fmt:message key="doctorfound"/> </h4>
+
+            <!--end of header -->
+            <main id="main">
+                <!-- De choi thoi -->
+                <div class="nothing-special-dark"></div>
+                <div class="search-field">
+                    <h4> <%= listOfDoctor.size()%> <fmt:message key="doctorfound"/> </h4>
             </div>
             <!-- !! -->
             <section class="card-section-imagia">
@@ -176,7 +163,7 @@
                                     </div>
                                 </div> 
                                 <% }
-                                        }%>
+                                    }%>
                             </div>
 
                         </div>
@@ -187,6 +174,7 @@
                 </div>
             </section>
         </main>
+                            
         <!-- End of Result -->
         <footer id="footer">
             <div class="footer-top">
@@ -220,11 +208,11 @@
                             </p>
 
                             <div class="social-links">
-                                <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-                                <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-                                <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-                                <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-                                <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                                <a href="twitter.com" class="twitter"><i class="fa fa-twitter"></i></a>
+                                <a href="facebook.com" class="facebook"><i class="fa fa-facebook"></i></a>
+                                <a href="instagram.com" class="instagram"><i class="fa fa-instagram"></i></a>
+                                <a href="plus.google.com" class="google-plus"><i class="fa fa-google-plus"></i></a>
+                                <a href="linkedin.com" class="linkedin"><i class="fa fa-linkedin"></i></a>
                             </div>
 
                         </div>
@@ -245,7 +233,6 @@
             </div>
         </footer>
 
-        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
         <script src="lib/jquery/jquery.min.js"></script>
         <script src="lib/jquery/jquery-migrate.min.js"></script>
         <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -257,24 +244,15 @@
         <script src="lib/superfish/superfish.min.js"></script>
         <script src="lib/wow/wow.min.js"></script>
         <script src="lib/form/side.js"></script>
-        <script src="js/main.js"></script>
-        <script src="lib/jquery/jquery.min.js"></script>
-        <script src="lib/jquery/jquery-migrate.min.js"></script>
-        <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/superfish/hoverIntent.js"></script>
-        <script src="lib/superfish/superfish.min.js"></script>
-        <script src="lib/wow/wow.min.js"></script>
         <script src="lib/waypoints/waypoints.min.js"></script>
         <script src="lib/counterup/counterup.min.js"></script>
-        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
         <script src="lib/isotope/isotope.pkgd.min.js"></script>
         <script src="lib/lightbox/js/lightbox.min.js"></script>
         <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
         <script src="lib/anime/anime.min.js"></script>
 
-        <script src="contactform/contactform.js"></script>
-
+        <script src="lib/modernizer/modernizr-2.6.2.min.js"></script>
         <script src="js/main.js"></script>
         <script src="js/modal.js"></script>
     </body>
