@@ -115,14 +115,14 @@ public class HospitalController extends HttpServlet {
 
                 if (hospitalDAO.insertHospital(hospital)) {
 
-                    hospital = hospitalDAO.getHospital(hospitalDAO.getIDhospital());
-                    int id = hospital.getID();
-                    Location loc = new Location();
-                    loc.setAddress(address);
-                    LatitudeAndLongitudeWithPincode la = new LatitudeAndLongitudeWithPincode();
-                    loc = la.getLatLongPositions(loc);
-                    System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                    System.out.println(loc.getLat() + "xxxxxxxxxxx " + loc.getLng());
+//                    hospital = hospitalDAO.getHospital(hospitalDAO.getIDhospital());
+//                    int id = hospital.getID();
+//                    Location loc = new Location();
+//                    loc.setAddress(address);
+//                    LatitudeAndLongitudeWithPincode la = new LatitudeAndLongitudeWithPincode();
+//                    loc = la.getLatLongPositions(loc);
+//                    System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+//                    System.out.println(loc.getLat() + "xxxxxxxxxxx " + loc.getLng());
                     List<Hospital> listofHospital = hospitalDAO.getAllHospital();
                     session.setAttribute("hospitallist", listofHospital);
                     rd = sc.getRequestDispatcher("/showhospital.jsp");

@@ -106,6 +106,7 @@ public class PatientController extends HttpServlet {
                 patient.setLang(language);
 
                 PatientDAO.updateinfor(patient);
+                patient = PatientDAO.getPatient(id);
                 session.setAttribute("user", patient);
                 rd = sc.getRequestDispatcher("/profileUser.jsp");
                 rd.forward(request, response);
