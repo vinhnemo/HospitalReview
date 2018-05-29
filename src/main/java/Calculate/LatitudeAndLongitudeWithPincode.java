@@ -28,20 +28,20 @@ import org.w3c.dom.Document;
  */
 public class LatitudeAndLongitudeWithPincode {
 
-    public static void main(String[] args) throws Exception {
-        System.setProperty("java.net.useSystemProxies", "true");
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Please enter a location:");
-        String postcode = reader.readLine();
-        Location lol = new Location();
-        lol.setAddress(postcode);
-        LatitudeAndLongitudeWithPincode la = new LatitudeAndLongitudeWithPincode();
-        lol = la.getLatLongPositions(lol);
-        System.out.println("Latitude: " + lol.getLat() + " and Longitude: " + lol.getLng());
-    }
-
+//    public static void main(String[] args) throws Exception {
+//        System.setProperty("java.net.useSystemProxies", "true");
+//        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//        System.out.println("Please enter a location:");
+//        String postcode = reader.readLine();
+//        Location lol = new Location();
+//        lol.setAddress(postcode);
+//        LatitudeAndLongitudeWithPincode la = new LatitudeAndLongitudeWithPincode();
+//        lol = la.getLatLongPositions(lol);
+//        System.out.println("Latitude: " + lol.getLat() + " and Longitude: " + lol.getLng());
+//    }
     public Location getLatLongPositions(Location loc) throws Exception {
         int responseCode = 0;
+//       String address= "78 Giai Phong, Phuong Mai Ward, Dong Da District, Ha Noi";
         String address = loc.getAddress();
         String api = "https://maps.googleapis.com/maps/api/geocode/xml?address=" + URLEncoder.encode(address, "UTF-8") + "&key=AIzaSyBWCH6uWQbLO2KtBLx-_O-S2CYX-YmKApY";
         System.out.println("URL : " + api);
@@ -58,9 +58,9 @@ public class LatitudeAndLongitudeWithPincode {
             String status = (String) expr.evaluate(document, XPathConstants.STRING);
             if (status.equals("OK")) {
                 expr = xpath.compile("//geometry/location/lat");
-                float latitude = Float.parseFloat((String) expr.evaluate(document, XPathConstants.STRING));
+                String latitude = (String) expr.evaluate(document, XPathConstants.STRING);
                 expr = xpath.compile("//geometry/location/lng");
-                float longitude = Float.parseFloat((String) expr.evaluate(document, XPathConstants.STRING));
+                String longitude = (String) expr.evaluate(document, XPathConstants.STRING);
                 loc.setLat(latitude);
                 loc.setLng(longitude);
 
@@ -71,7 +71,5 @@ public class LatitudeAndLongitudeWithPincode {
         }
         return null;
     }
-
-    
 
 }

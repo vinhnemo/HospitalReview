@@ -64,23 +64,27 @@ public class HospitalController extends HttpServlet {
         }
 
         if (action == null) {
-            LatitudeAndLongitudeWithPincode la  = new LatitudeAndLongitudeWithPincode();
-            Location lol_patient = new Location();
-            lol_patient.setAddress(patient.getAddress());
-            la.getLatLongPositions(lol_patient);
-            HashMap<Integer, Double> map = new HashMap<Integer, Double>();
             List<Hospital> listofHospital = hospitalDAO.getAllHospital();
-            if (listofHospital.size() > 0) {
-                for (Hospital h : listofHospital) {
-                      Location lol_hospital = new Location();
-                      lol_hospital.setAddress(h.getAddress());
-                      connectpython con = new connectpython();
-                      double distance = con.calculatdistance(String.valueOf(lol_patient.getLat()), String.valueOf(lol_patient.getLng()), String.valueOf(lol_hospital.getLat()), String.valueOf(lol_hospital.getLng()));
-                      map.put(h.getID(), distance);
+            if (patient != null) {
+                connectpython con = new connectpython();
+                LatitudeAndLongitudeWithPincode la = new LatitudeAndLongitudeWithPincode();
+                Location lol_patient = new Location();
+                lol_patient.setAddress(patient.getAddress());
+                la.getLatLongPositions(lol_patient);
+                HashMap<Integer, Double> map = new HashMap<Integer, Double>();
+                if (listofHospital.size() > 0) {
+                    for (Hospital h : listofHospital) {
+                        Location lol_hospital = new Location();
+                        lol_hospital.setAddress(h.getAddress());
+
+                        double distance = con.calculatdistance(lol_patient.getLat(), lol_patient.getLng(), lol_hospital.getLat(), lol_hospital.getLng());
+                        map.put(h.getID(), distance);
+                    }
                 }
+                session.setAttribute("distancec", map);
             }
             session.setAttribute("hospitallist", listofHospital);
-            session.setAttribute("distancec", map);
+
             rd = sc.getRequestDispatcher("/showhospital.jsp");
             rd.forward(request, response);
         } else if (action.equals("find")) {

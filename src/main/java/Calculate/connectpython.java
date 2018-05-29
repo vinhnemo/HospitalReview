@@ -28,7 +28,7 @@ public class connectpython {
              // create runtime to execute external command
             Runtime rt = Runtime.getRuntime();
             Process pr = rt.exec(cmd);
-
+            System.out.println(num1 + num2 + num3 + num4);
             // retrieve output from python script
             BufferedReader bfr = new BufferedReader(new InputStreamReader(pr.getInputStream()));
             String line;
