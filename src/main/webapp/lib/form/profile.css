@@ -85,7 +85,7 @@ and open the template in the editor.
 .side-doctor input.side-button:hover {
     background: #13a456;
 }
-.side-doctor input.side-button2 {
+.side-doctor button.side-button2 {
     text-align: center;
     background: #351b60;
     border: 0;
@@ -98,7 +98,7 @@ and open the template in the editor.
     border-radius: 10px;
     width: 60%;
 }
-.side-doctor input.side-button2:hover {
+.side-doctor button.side-button2:hover {
     background: #5e27b8;
 }
 .comment{

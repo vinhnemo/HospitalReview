@@ -310,7 +310,7 @@
                                                                     <form class="change" action="patient" method="POST">
                                                                         <table>
                                                                             <!--use value=user profile trong db -->
-                                                                            <tr><td><div class="userinfo"><fmt:message key="name"/>: </div></td><td><input class="form-change" type="text" name="fname" value="<%= patient.getFname() %>"></td><td><input class="form-change" type="text" name="lname" value="<%= patient.getLname()%>"</td></tr>
+                                                                            <tr><td><div class="userinfo"><fmt:message key="name"/>: </div></td><td><input class="form-change" type="text" name="fname" value="<%= patient.getFname()+" "+patient.getLname() %>"></td></tr>
                                                                             <tr><td><div class="userinfo"><fmt:message key="email"/>: </div></td><td><input class="form-change" type="email" name="email" value="<%= patient.getEmail() %>"></td></tr>
                                                                             <tr><td><div class="userinfo"><fmt:message key="gender"/>: </div></td>
                                                                                 <td>                        

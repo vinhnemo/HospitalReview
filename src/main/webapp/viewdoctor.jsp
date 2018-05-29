@@ -353,7 +353,7 @@
                                     <div class="side-text"><fmt:message key="setanappointment"/>:</div>
                                     <input class="side-button" type="submit" value="Make Appointment"><hr>
                                     <div class="side-text"><fmt:message key="addtobookmark"/>:</div>
-                                    <input class="side-button2" type="submit" value="Bookmark"><hr>
+                                    <button class="side-button2" type="submit" >Bookmark</button><hr>
                                     <%
                                         DoctorDAO doctorDAO = new DoctorDAO();
                                         Doctor doctor = doctorDAO.getDoctorReview(doc.getID());
@@ -406,14 +406,14 @@
                                         <article class="row">
                                             <div class="col-md-2 col-sm-2">
                                                 <figure class="thumbnail">
-                                                    <figcaption class="text-center"><%= p.getFname() + " " + p.getFname()%></figcaption>
+                                                    <figcaption class="text-center"><%= p.getFname() + " " + p.getLname()%></figcaption>
                                                 </figure>
                                             </div>
                                             <div class="col-md-8 col-sm-9" style="margin-left:20px; ">
                                                 <div class="panel panel-default arrow left">
                                                     <div class="panel-body">
                                                         <header class="text-left">
-                                                            <div class="comment-user"><i class="fa fa-user"></i> <%= p.getFname() + " " + p.getFname()%> </div> 
+                                                            <div class="comment-user"><i class="fa fa-user"></i> <%= p.getFname() + " " + p.getLname()%> </div> 
                                                             <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
                                                         </header> 
                                                         <div class="comment-post">
