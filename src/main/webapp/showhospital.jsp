@@ -67,21 +67,22 @@
             }
             if (session.getAttribute("patient") != null) {
                 patient = (Patient) session.getAttribute("patient");
+                 
             } else if (session.getAttribute("admin") != null) {
                 admin = (Admin) session.getAttribute("admin");
             }
 
             HospitalDAO hosDAO = new HospitalDAO();
             List<Hospital> listhospital = (ArrayList<Hospital>) session.getAttribute("hospitallist");
-
+           HashMap<Integer, Double> map = (HashMap<Integer, Double>) session.getAttribute("distance");
         %>
         <jsp:include page="header.jsp"></jsp:include>
-        <!--end of header -->
-        <main id="main">
-            <!-- De choi thoi -->
-            <div class="nothing-special-dark"></div>
-            <div class="search-field">
-                <h4> <%= listhospital.size()%> <fmt:message key="hospitalfound"/> </h4>
+            <!--end of header -->
+            <main id="main">
+                <!-- De choi thoi -->
+                <div class="nothing-special-dark"></div>
+                <div class="search-field">
+                    <h4> <%= listhospital.size()%> <fmt:message key="hospitalfound"/> </h4>
             </div>
             <!-- !! -->
             <section class="card-section-imagia">
@@ -144,8 +145,9 @@
                                                 <div class="content-imagia">
                                                     <h3 class="name-imagia"><%= h.getName()%> </h3>
                                                     <p class="subtitle-imagia"><%= h.getAddress()%></p> <hr>
-                                                    <div id="location"><i class="fa fa-map-marker"></i> 1822km </div>
-
+                                                    <% if(session.getAttribute("patient") != null) { %>
+                                                    <div id="location"><i class="fa fa-map-marker"></i> <%= map.get(h.getID()) %> </div>
+                                                        <% } %>
                                                     <div id="degree"> <fmt:message key="website"/> : <%= h.getWebsite()%></div>
                                                 </div>
                                                 <div class="footer-imagia"><span><i class="fa fa-plus"></i> <fmt:message key="moreinfor"/></span></div>
