@@ -1,36 +1,24 @@
+     
 <%-- 
-    Document   : login
-    Created on : May 17, 2018, 7:14:46 PM
+    Document   : register
+    Created on : May 16, 2018, 5:46:22 PM
     Author     : MSI
 --%>
 
+<%@page import="DTO.Patient"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<c:set var="language" value="${param.language}" />
+<c:set var="language" value="${param.language}"/>
 <c:if test="${not empty language}">
-    <fmt:setLocale value="${language}" scope="session"/>
+    <fmt:setLocale value="${language}" />
 </c:if>
 <fmt:setBundle basename="text" />
+
 <!DOCTYPE html>
 <html lang="${language}">
-    <%
-        // Call cookie
-        Cookie isLogin[] = request.getCookies();
-
-        if (isLogin != null) {
-            for (Cookie ck : isLogin) {
-                if (ck.getName().equals("u_email") || ck.getName().equals("a_email")) {
-                    response.sendRedirect("home.jsp");
-                }
-            }
-        }
-
-        if (session.getAttribute("patient") != null || session.getAttribute("admin") != null) {
-            response.sendRedirect("home.jsp");
-        }
-    %>
     <head>
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -44,37 +32,39 @@
         <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
         <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
         <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-        <link href="css/checkbox.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
-
         <link rel="stylesheet" href="lib/form/form.css">
     </head> 
 
     <body>
 
+        <!-- MAIN : form -->
         <main id="main">
             <div class="login-dark">
-                <form class="login" action="#" id="login-form" method="POST">
-                    <h1><fmt:message key="login"/></h1>
-                    <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
+                <form class="register" action="register" method="post" style="width:600px;">
+                    <h1 id="title"><fmt:message key="registeraccount"/></h1>
 
-                    <div class="form-group"><span id="user-result"></span></div>
-                    <div class="form-group"><input class="form-control" type="email" name="email" placeholder="<fmt:message key="email"/>" id="email"></div>
-                    <div class="form-group"><input class="form-control" type="password" name="password" placeholder="<fmt:message key="password"/>" id="password"></div>
-                    <div class="el-checkbox el-checkbox-green">
-                        <span class="margin-r"><fmt:message key="rememberme"/></span>
-                        <input type="checkbox" name="remember" id="remember" value="yes">
-                        <label class="el-checkbox-style" for="remember"></label>
-                    </div>
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit"><fmt:message key="login"/></button></div>
                     <div class="form-group">
-                        <input class="btn btn-primary2 btn-block" type="submit" value="Register New Account" onclick="window.location.href = 'register'" />                        
+                        <span id="status"></span>
+                        <input class="form-control" type="email" id="email" name="email" placeholder="Email" required>
+                        <span id="isExist"></span>
                     </div>
-                    <a href="forgotPassword" class="forgot"><fmt:message key="forgotemailorpassword"/></a>
+                    <div class="form-group">
+                        <input class="form-control d-inline-flex" type="password" name="password" placeholder="<fmt:message key="password"/>" style="width:200px;" minlength="6" maxlength="16" id="pass1" required>
+                        <span id="pass-status"></span>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control d-inline-flex" type="password" name="password2" placeholder="<fmt:message key="passwordconfirm"/>" style="width:200px;" minlength="6" maxlength="16" id="pass2" required>
+                        <span id="confirmMessage"></span>
+                    </div>
+                    <input type="hidden" name="type" id="language" value="admin">
+
+                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action" value="Register"><fmt:message key="signup"/></button></div>
+                    <a href="login" class="forgot"><fmt:message key="alreadyhaveaccount"/></a>
                 </form>
             </div>
         </main>
-
+        <!-- Footer -->
         <footer id="footer">
             <div class="footer-top">
                 <div class="container">
@@ -133,6 +123,7 @@
 
 
 
+
             <script src="lib/bootstrap/js/bootstrap.min.js"></script>
             <script src="lib/jquery/jquery.min.js"></script>
             <script src="lib/jquery/jquery-migrate.min.js"></script>
@@ -147,11 +138,8 @@
             <script src="lib/isotope/isotope.pkgd.min.js"></script>
             <script src="lib/lightbox/js/lightbox.min.js"></script>
             <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
-
-            <script src="contactform/contactform.js"></script>
-
+            <script src="js/registration.js"></script>
             <script src="js/main.js"></script>
-            <script src="js/login.js"></script>
     </body>
 </html>
 

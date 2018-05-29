@@ -45,13 +45,11 @@
                 filled = true;
             }
         %>
-        <!-- Header -->
-        <jsp:include page="header.jsp"></jsp:include>
 
         <!-- MAIN : form -->
         <main id="main">
             <div class="login-dark">
-                <form class="register" action="#" method="post" style="width:600px;">
+                <form class="register" id="register" action="#" method="post" style="width:600px;">
                     <h1 id="title"><fmt:message key="registeraccount"/></h1>
 
                     <% if (filled) {%>
@@ -67,7 +65,7 @@
                     <% } else {%>
                     <div class="form-group">
                         <span id="name-status"></span>
-                        <input class="form-control d-inline" type="text" name="fname" id="fname" placeholder="<fmt:message key="firstname"/>" required><input class="form-control d-inline" type="text" name="lname" id="lname" placeholder="Last Name" required>
+                        <input class="form-control d-inline" type="text" name="fname" id="fname" placeholder="<fmt:message key="firstname"/>" required><input class="form-control d-inline" type="text" name="lname" id="lname" placeholder="<fmt:message key="lastname"/>" required>
                     </div>
                     <div class="form-group">
                         <span id="status"></span>
@@ -112,7 +110,7 @@
                     <small><fmt:message key="register.msg6"/></small>
                     <small><fmt:message key="register.msg7"/></small>
                     <div class="form-group"><span id="form-result"></span></div>
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action" value="Signup" id="submit-btn"><fmt:message key="signup"/></button></div>
+                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action" value="Signup"><fmt:message key="signup"/></button></div>
                     <a href="login" class="forgot"><fmt:message key="alreadyhaveaccount"/></a>
                 </form>
             </div>
@@ -193,7 +191,6 @@
             <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
             <script src="js/registration.js"></script>
             <script src="js/main.js"></script>
-            <script src="js/modal.js"></script>
     </body>
 </html>
 

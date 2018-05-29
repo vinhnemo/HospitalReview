@@ -4,7 +4,7 @@
     Author     : TGMaster
 --%>
 
-<%@page import="DTO.*, DAO.*"%>
+<%@page import="DTO.*, DAO.*, javax.servlet.http.HttpUtils.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -62,7 +62,7 @@
                                 <li>
                                     <div class="dropdown-form">
                                         <form action="hospital" method="POST">
-                                            <h3><fmt:message key="findhospital"/></h3>
+                                            <h4><fmt:message key="findhospital"/></h4>
                                             <input type="text" name="search" class="form-control form-search" id="name" placeholder="<fmt:message key="searchhospitalbyname"/>"/>                               
                                             <button class="btn btn-outline-success btn-lg btn-find mr-md-4 mr-sm-0 px-5 mb-3 text-uppercase" type="submit" name="action" value="Search Hospital"><i class="fa fa-search"></i> <fmt:message key="searchbtn"/></button>
                                         </form>
@@ -75,7 +75,7 @@
                                 <li>
                                     <div class="dropdown-form">
                                         <form action="doctor" method="POST">
-                                            <h3><fmt:message key="finddoc"/></h3>
+                                            <h4><fmt:message key="finddoc"/></h4>
                                             <input type="text" name="search" class="form-control form-search" id="name" placeholder="<fmt:message key="searchdotorbyname"/>"/>                               
                                             <button class="btn btn-outline-success btn-lg btn-find mr-md-4 mr-sm-0 px-5 mb-3 text-uppercase" type="submit" name="action" value="Search Doctor"><i class="fa fa-search"></i> <fmt:message key="searchbtn"/></button>
                                         </form>
@@ -84,22 +84,29 @@
                             </ul> 
                         </li>
                         <li><a href="#"><fmt:message key="appt"/></a></li>
-                        <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
+                        <li class="menu-has-children"><a href="#"><fmt:message key="language"/></a>
                             <ul>
-                                <li><a href="${requestScope['javax.servlet.forward.request_uri']}?language=en_US">English</a></li>
-                                <li><a href="${requestScope['javax.servlet.forward.request_uri']}?language=vi_VN">Tiếng Việt</a></li>
+                                <li><a href="<%= javax.servlet.http.HttpUtils.getRequestURL(request)%>?language=en_US">English</a></li>
+                                <li><a href="<%= javax.servlet.http.HttpUtils.getRequestURL(request)%>?language=vi_VN">Tiếng Việt</a></li>
                             </ul>
                         </li>
                         <li><a href="contact.jsp"><fmt:message key="contact"/></a></li>
 
                         <% if (patient != null) {%>
-                        <li class="menu-has-children menu-active"><a href=""><fmt:message key="greeting"/>, <%out.print(patient.getFname() + " " + patient.getLname());%></a>
+                        <li class="menu-has-children menu-active"><a href=""><fmt:message key="greeting"/>, <%=patient.getFname()%> <%=patient.getLname()%></a>
                             <ul>
-                                <li><a href="profileUser.jsp"><fmt:message key="yourprofile"/></a></li>
+                                <li><a href="patient"><fmt:message key="yourprofile"/></a></li>
                                 <li><a href="logout"><fmt:message key="signout"/></a></li>
                             </ul>
                         </li>
-                        <% } else {%>
+                        <% } else if (admin != null) {%>
+                        <li class="menu-has-children menu-active"><a href=""><fmt:message key="greeting"/>, <%=admin.getEmail()%></a>
+                            <ul>
+                                <li><a href="patient"><fmt:message key="yourprofile"/></a></li>
+                                <li><a href="logout"><fmt:message key="signout"/></a></li>
+                            </ul>
+                        </li>
+                        <% } else { %>
                         <li class="menu menu-active"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true" onclick="animeEffectIn()"><fmt:message key="signinup"/></a></li>
                             <% }%>
 
@@ -125,7 +132,7 @@
                                     <a href="home.jsp" class="logo">Doctor <span>STRANGE</span></a>
 
                                     <div class="heading">
-                                        <h2 class="effectAnime"><span id="heading"><fmt:message key="signup"/></span></h2>
+                                        <h2 class="effectAnime"><span id="heading">Sign Up</span></h2>
                                     </div>
 
                                     <div class="success-msg">
@@ -211,6 +218,5 @@
             </div>
         </div>
 
-        <script src="js/modal.js"></script>
     </body>
 </html>
