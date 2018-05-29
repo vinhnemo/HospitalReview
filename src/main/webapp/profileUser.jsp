@@ -86,7 +86,7 @@
                     <div id="wrapper">
                         <div id="sidebar-wrapper">
                             <ul class="sidebar-nav nav">
-                                <li><h3>Options:</h3></li>
+                                <li><h3><fmt:message key="options"/></h3></li>
                                 <li class="active"><a class="general" href="#general" data-toggle="tab"><i class="fa fa-gears"></i><fmt:message key="general"/></a></li>
                             <li><a class="edit" href="#edit" data-toggle="tab"><i class="fa fa-pencil"></i><fmt:message key="edityourprofile"/></a></li>
                             <li><a class="change" href="#change" data-toggle="tab"><i class="fa fa-key"></i><fmt:message key="changepassword"/></a></li>
@@ -140,7 +140,8 @@
                                                                 <form class="change" action="patient" method="POST">
                                                                     <table>
                                                                         <!--use value=user profile trong db -->
-                                                                        <tr><td><div class="userinfo"><fmt:message key="name"/>: </div></td><td><input class="form-change" type="text" name="fname" value="<%= patient.getFname() + " " + patient.getLname()%>"></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="firstname"/>: </div></td><td><input class="form-change" type="text" name="fname" value="<%= patient.getFname()%>"></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="lastname"/>: </div></td><td><input class="form-change" type="text" name="lname" value="<%= patient.getLname()%>"></td></tr>
                                                                         <tr><td><div class="userinfo"><fmt:message key="email"/>: </div></td><td><input class="form-change" type="email" name="email" value="<%= patient.getEmail()%>"></td></tr>
                                                                         <tr><td><div class="userinfo"><fmt:message key="gender"/>: </div></td>
                                                                             <td>                        

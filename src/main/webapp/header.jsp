@@ -169,6 +169,7 @@
                                             <div class="CTA">
                                                 <input type="submit" value="Login" name="action" id="login">
                                                 <a href="#" class="switch" id="registersw"><fmt:message key="imnew"/></a>
+                                                <a href="forgotPassword" class="link"><fmt:message key="forgotemailorpassword"/></a>
                                             </div>
                                         </form>
                                     </div><!-- End Login Form -->

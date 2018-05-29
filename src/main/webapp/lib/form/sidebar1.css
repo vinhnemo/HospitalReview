@@ -30,7 +30,7 @@
 }
 #wrapper.toggled #sidebar-wrapper{
     width:250px
-       
+
 }
 #page-content-wrapper{
     width:100%;
@@ -103,7 +103,9 @@
     color: #fff
 }
 #sidebar-wrapper a {
-    font-size: 16px
+    font-size: 16px;
+    width: 250px;
+    padding: 0;
 }
 #sidebar-wrapper i{
     font-size : 20px;
