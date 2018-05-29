@@ -37,42 +37,18 @@
     </head> 
 
     <body>
-        <%            
-            Patient patient = new Patient();
-            boolean filled = false;
-            if (request.getAttribute("patient") != null) {
-                patient = (Patient) request.getAttribute("patient");
-                filled = true;
-            }
-        %>
 
         <!-- MAIN : form -->
         <main id="main">
             <div class="login-dark">
-                <form class="register" id="register" action="#" method="post" style="width:600px;">
+                <form class="register" action="register" method="post" style="width:600px;">
                     <h1 id="title"><fmt:message key="registeraccount"/></h1>
 
-                    <% if (filled) {%>
-                    <div class="form-group">
-                        <span id="name-status"></span>
-                        <input class="form-control d-inline" type="text" name="fname" id="fname" value="<%=patient.getFname()%>" required><input class="form-control d-inline" type="text" name="lname" id="lname" value="<%=patient.getLname()%>" required>
-                    </div>
-                    <div class="form-group">
-                        <span id="status"></span>
-                        <input class="form-control" type="email" id="email" name="email" value="<%=patient.getEmail()%>" required>
-                        <span id="isExist"></span>
-                    </div>
-                    <% } else {%>
-                    <div class="form-group">
-                        <span id="name-status"></span>
-                        <input class="form-control d-inline" type="text" name="fname" id="fname" placeholder="<fmt:message key="firstname"/>" required><input class="form-control d-inline" type="text" name="lname" id="lname" placeholder="<fmt:message key="lastname"/>" required>
-                    </div>
                     <div class="form-group">
                         <span id="status"></span>
                         <input class="form-control" type="email" id="email" name="email" placeholder="Email" required>
                         <span id="isExist"></span>
                     </div>
-                    <% }%>
                     <div class="form-group">
                         <input class="form-control d-inline-flex" type="password" name="password" placeholder="<fmt:message key="password"/>" style="width:200px;" minlength="6" maxlength="16" id="pass1" required>
                         <span id="pass-status"></span>
@@ -81,36 +57,9 @@
                         <input class="form-control d-inline-flex" type="password" name="password2" placeholder="<fmt:message key="passwordconfirm"/>" style="width:200px;" minlength="6" maxlength="16" id="pass2" required>
                         <span id="confirmMessage"></span>
                     </div>
-                    <div class="form-group">
-                        <label style="color:#65757d; margin:0px 10px;"><fmt:message key="gender"/>:&nbsp;</label>
-                        <select class="form-control d-inline" name="gender" id="gender" style="width:120px;color:#65757d;">
-                            <option value="male"><fmt:message key="male"/></option>
-                            <option value="female"><fmt:message key="female"/></option>
-                            <option value="other"><fmt:message key="other"/></option>
-                        </select>
-                    </div>
-                    <!-- <div class="form-group"><input class="form-control" type="date" style="color:#65757d;"></div> -->
-                    <% if (filled) {%>
-                    <div class="form-group">
-                        <input class="form-control" type="text" name="address" id="address" value="<%=patient.getAddress()%>" style="width:420px;margin:0px 0px;" required>
-                        <span id="statusAdd"></span>
-                    </div>
-                    <% } else {%>
-                    <div class="form-group">
-                        <input class="form-control" type="text" name="address" id="address" placeholder="<fmt:message key="address"/>" style="width:420px;margin:0px 0px;" required>
-                        <span id="statusAdd"></span>
-                    </div>
-                    <% }%>
-                    <input type="hidden" name="language" id="language" value="${pageContext.response.locale}">
-                    <div class="form-group" style="padding-top: 20px;">
-                        <input type="checkbox" required name="terms" onchange="this.setCustomValidity(validity.valueMissing ? '<fmt:message key="register.msg1"/>' : '');" id="field_terms">
-                        <label for="terms"><fmt:message key="register.msg2"/> <a href="terms.php" title="<fmt:message key="register.msg3"/>"><fmt:message key="register.msg4"/></a> <fmt:message key="register.msg5"/></label>
-                    </div>
+                    <input type="hidden" name="type" id="language" value="admin">
 
-                    <small><fmt:message key="register.msg6"/></small>
-                    <small><fmt:message key="register.msg7"/></small>
-                    <div class="form-group"><span id="form-result"></span></div>
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action" value="Signup" id="submit-btn"><fmt:message key="signup"/></button></div>
+                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="action" value="Register" id="submit-btn"><fmt:message key="signup"/></button></div>
                     <a href="login" class="forgot"><fmt:message key="alreadyhaveaccount"/></a>
                 </form>
             </div>

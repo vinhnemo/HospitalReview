@@ -141,11 +141,9 @@ public class Registration extends HttpServlet {
                 String pass2 = request.getParameter("password2");
 
                 if (username.equals("") || email.equals("") || pass.equals("")) {
-                    msg.setCode(-1);
-                    msg.setText("Please input all required fields");
+                    response.sendRedirect("registerAdmin.jsp");
                 } else if (!pass.equals(pass2)) {
-                    msg.setCode(-1);
-                    msg.setText("Your password and confirmation password do not match");
+                    response.sendRedirect("registerAdmin.jsp");
                 } else {
 
                     admin.setEmail(email);
@@ -154,12 +152,10 @@ public class Registration extends HttpServlet {
                     // Check if adding is successful
                     if (!AdminDAO.isExistUser(email)) {
                         if (AdminDAO.insertUser(admin)) {
-                            msg.setCode(0);
-                            msg.setText("Register admin successfully!");
+                            response.sendRedirect("home.jsp");
                         }
                     } else {
-                        msg.setCode(-1);
-                        msg.setText("This email has already registered.");
+                        response.sendRedirect("registerAdmin.jsp");
                     }
                 }
             }

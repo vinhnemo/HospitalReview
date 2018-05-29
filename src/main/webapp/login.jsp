@@ -52,8 +52,6 @@
 
     <body>
 
-        <jsp:include page="header.jsp"></jsp:include>
-
         <main id="main">
             <div class="login-dark">
                 <form class="login" action="#" id="login-form" method="POST">
@@ -154,7 +152,6 @@
 
             <script src="js/main.js"></script>
             <script src="js/login.js"></script>
-            <script src="js/modal.js"></script>
     </body>
 </html>
 
