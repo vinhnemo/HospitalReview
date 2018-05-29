@@ -353,7 +353,29 @@
                                     <div class="side-text"><fmt:message key="setanappointment"/>:</div>
                                     <input class="side-button" type="submit" value="Make Appointment"><hr>
                                     <div class="side-text"><fmt:message key="addtobookmark"/>:</div>
-                                    <input class="side-button2" type="submit" value="Bookmark"><hr>
+                                <form method="POST" action="controlBookmark">
+                                    <input type="hidden" name="pID" value="<%= patient.getID()%>">
+                                    <input type="hidden" name="dID" value="<%= doc.getID()%>">
+                                    <button class="side-button2" value="bookmarkdoctor" name="action">Bookmark </button><hr>
+                                </form>
+
+                                <form method="post" action="activeReview" > 
+                                    <div class="row" >  
+                                        <div class="col-md-6" style="margin-left: -5%;">
+                                            <div class="container-fluid" >
+                                                <input type="hidden" name="activateDoctorID" value="<%= doc.getID()%>">
+                                                <button type="submit" class="side-button2" name="action" value="ActivateReview" style="padding: 5px 10px;">Enable Review</button>
+                                            </div> 
+                                        </div>     
+                                        <div class="col-md-6" style="margin-left: -15%;" >
+                                            <div class="container-fluid" >
+                                                <input type="hidden" name="deActivateDoctorID" value="<%= doc.getID()%>">
+                                                <button type="submit" class="side-button2" name="action" value="DeactivateReview" style="padding: 5px 10px;" >Disable Review</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </form> 
                                     <%
                                         DoctorDAO doctorDAO = new DoctorDAO();
                                         Doctor doctor = doctorDAO.getDoctorReview(doc.getID());
