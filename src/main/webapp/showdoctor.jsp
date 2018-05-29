@@ -43,8 +43,6 @@
         <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
         <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
-        <link href="css/modal.css" rel="stylesheet">
-        <link href="css/loader.css" rel="stylesheet">
         <link rel="stylesheet" href="lib/form/form.css">
     </head>
 
@@ -70,58 +68,14 @@
             } else if (session.getAttribute("admin") != null) {
                 admin = (Admin) session.getAttribute("admin");
             }
-        %>
 
-        <header id="header">
-            <div class="container-fluid">
-                <div id="logo" class="pull-left">
-                    <h1><a href="home.jsp" class="scrollto">Doctor STRANGE</a></h1>
-                </div>
-                <nav id="nav-menu-container">
-                    <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="/doctor"><fmt:message key="finddoc"/></a>
-                            <ul>
-                                <li>
-                                    <div class="dropdown-form">
-                                        <form action="doctor" method="POST">
-                                            <h3><fmt:message key="finddoc"/></h3>
-                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="<fmt:message key="searchdotorbyname"/>"/>                               
-                                            <input class="dropdown-button" type="submit" name="action" value="Search Doctor">
-                                        </form>
-                                    </div>
-                                </li>
-                            </ul> 
-                        </li>
-                        <li><a href="#"><fmt:message key="appt"/></a></li>
-                        <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
-                            <ul>
-                                <li><a href="home.jsp?language=en_US">English</a></li>
-                                <li><a href="home.jsp?language=vi_VN">Tiếng Việt</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#contact"><fmt:message key="contact"/></a></li>
-
-                        <% if (patient != null) {%>
-                        <li class="menu-has-children"><a href=""><fmt:message key="greeting"/>, <%out.print(patient.getFname() + " " + patient.getLname());%></a>
-                            <ul>
-                                <li><a href="profileUser.jsp"><fmt:message key="yourprofile"/></a></li>
-                                <li><a href="logout"><fmt:message key="signout"/></a></li>
-                            </ul>
-                        </li>
-                        <% } else {%>
-                        <li class="menu"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true" onclick="animeEffectIn()"><fmt:message key="signinup"/></a></li>
-                            <% }%>
-
-                    </ul>
-                </nav>
-            </div>
-        </header>
-        <%
             DoctorDAO doctorDAO = new DoctorDAO();
             //List<Doctor> listOfDoctor = doctorDAO.getAllDoctor();
             List<Doctor> listOfDoctor = (ArrayList<Doctor>) session.getAttribute("doctorlist");
 
         %>
+        <jsp:include page="header.jsp"></jsp:include>
+        
         <!--end of header -->
         <main id="main">
             <!-- De choi thoi -->

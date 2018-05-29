@@ -39,7 +39,7 @@
                 response.sendRedirect("forgotPassword");
             }
         %>
-
+        <jsp:include page="header.jsp"></jsp:include>
 
         <main id="main">
             <div class="login-dark">
@@ -66,7 +66,7 @@
         <script src="lib/jquery/jquery-migrate.min.js"></script>
         <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="js/main.js"></script>
-
+        <script src="js/modal.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
                 var timer;

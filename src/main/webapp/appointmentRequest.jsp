@@ -34,39 +34,7 @@
 
     <body>
 
-        <header id="header">
-            <div class="container-fluid">
-                <div id="logo" class="pull-left">
-                    <h1><a href="home.jsp" class="scrollto">Doctor STRANGE</a></h1>
-                </div>
-                <nav id="nav-menu-container">
-                    <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="/doctor"><fmt:message key="finddoc"/></a>
-                            <ul>
-                                <li>
-                                    <div class="dropdown-form">
-                                        <form action="doctor" method="POST">
-                                            <h3><fmt:message key="finddoc"/></h3>
-                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="<fmt:message key="searchdotorbyname"/>"/>                                 
-                                            <input class="dropdown-button" type="submit" name="action" value="Search Doctor">
-                                        </form>
-                                    </div>
-                                </li>
-                            </ul> 
-                        </li>
-                        <li><a href="#"><fmt:message key="appt"/></a></li>
-                        <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
-                            <ul>
-                                <li><a href="appointmentRequest.jsp?language=en_US">English</a></li>
-                                <li><a href="appointmentRequest.jsp?language=vi_VN">Tiếng Việt</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#contact"><fmt:message key="contact"/></a></li>
-                        <li class="menu-active"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true"><fmt:message key="signinup"/></a></li>                     
-                    </ul>
-                </nav>
-            </div>
-        </header>
+        <jsp:include page="header.jsp"></jsp:include>
         <!--end of header -->
         <main id="main">
             <!-- De choi thoi -->
@@ -205,6 +173,7 @@
         <script src="lib/form/rating.js"></script>
         <script src="lib/form/side.js"></script>
         <script src="js/main.js"></script>
+        <script src="js/modal.js"></script>
 
     </body>
 </html>

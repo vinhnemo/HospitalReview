@@ -3,15 +3,8 @@
     Created on : May 24, 2018, 1:43:34 AM
     Author     : MSI
 --%>
-<%@page import="DAO.AdminDAO"%>
-<%@page import="DAO.PatientDAO"%>
-<%@page import="DTO.Admin"%>
-<%@page import="DTO.Patient"%>
-<%@page import="DAO.HospitalDAO"%>
-<%@page import="DTO.Hospital"%>
+<%@page import="DAO.*, DTO.*"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="DTO.Doctor"%>
-<%@page import="DAO.DoctorDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -52,8 +45,6 @@
         <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
         <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
-        <link href="css/modal.css" rel="stylesheet">
-        <link href="css/loader.css" rel="stylesheet">
         <link rel="stylesheet" href="lib/form/form.css">
     </head>
     <body>
@@ -78,154 +69,9 @@
                 admin = (Admin) session.getAttribute("admin");
             }
         %>
-
-        <header id="header">
-            <div class="container-fluid">
-                <div id="logo" class="pull-left">
-                    <h1><a href="home.jsp" class="scrollto">Doctor STRANGE</a></h1>
-                </div>
-                <nav id="nav-menu-container">
-                    <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="/doctor"><fmt:message key="finddoc"/></a>
-                            <ul>
-                                <li>
-                                    <div class="dropdown-form">
-                                        <form action="doctor" method="POST">
-                                            <h3><fmt:message key="finddoc"/></h3>
-                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="<fmt:message key="searchdotorbyname"/>"/>                               
-                                            <input class="dropdown-button" type="submit" name="action" value="Search Doctor">
-                                        </form>
-                                    </div>
-                                </li>
-                            </ul> 
-                        </li>
-                        <li><a href="#"><fmt:message key="appt"/></a></li>
-                        <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
-                            <ul>
-                                <li><a href="profileUser.jsp?language=en_US">English</a></li>
-                                <li><a href="profileUser.jsp?language=vi_VN">Tiếng Việt</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#contact"><fmt:message key="contact"/></a></li>
-
-                        <% if (patient != null) {%>
-                        <li class="menu-has-children"><a href=""><fmt:message key="greeting"/>, <%out.print(patient.getFname() + " " + patient.getLname());%></a>
-                            <ul>
-
-                                <li><a href="logout"><fmt:message key="signout"/></a></li>
-                            </ul>
-                        </li>
-                        <% } else {%>
-                        <li class="menu"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true" onclick="animeEffectIn()"><fmt:message key="signinup"/></a></li>
-                            <% }%>
-
-                    </ul>
-                </nav>
-            </div>
-        </header>
-
-        <!-- Login Popup -->
-        <!-- Modal -->
-        <div id="myLogin" class="modal fade" role="dialog" tabindex='-1'>
-            <div class="modal-dialog modal-dialog-centered modal-lg">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <section id="formHolder">
-
-                            <div class="row">
-
-                                <!-- Brand Box -->
-                                <div class="col-sm-6 brand">
-                                    <a href="home.jsp" class="logo">Doctor <span>STRANGE</span></a>
-
-                                    <div class="heading">
-                                        <h2 class="effectAnime"><span id="heading"><fmt:message key="signup"/></span></h2>
-                                    </div>
-
-                                    <div class="success-msg">
-                                        <p><fmt:message key="loginsuccess"/></p>
-                                        <div class="success-btn"><a href="profileUser.jsp" class="profile"><fmt:message key="yourprofile"/></a></div>
-                                        <div class="success-btn"><a href="home.jsp" class="btn-info"><fmt:message key="backtohomepage"/></a></div>
-                                    </div>
-                                </div>
-
-
-                                <!-- Form Box -->
-                                <div class="col-sm-6 form">
-
-                                    <!-- Login Form -->
-                                    <div class="login form-peice switched">
-                                        <form class="login-form" action="#" method="post">
-                                            <span id="user-result"></span>
-
-                                            <div class="form-group">
-                                                <label for="email"><fmt:message key="email"/></label>
-                                                <input type="email" name="email" id="email" required>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="password"><fmt:message key="password"/></label>
-                                                <input type="password" name="password" id="password" required>
-                                            </div>
-
-                                            <div class="form-check-inline">
-                                                <input type="checkbox" name="remember" id="remember" value="yes" class="form-check-input">
-                                                <label for="remember" class="form-check-label"><fmt:message key="rememberme"/></label>
-                                            </div>
-
-                                            <div class="CTA">
-                                                <input type="submit" value="Login" name="action" id="login">
-                                                <a href="#" class="switch" id="registersw"><fmt:message key="imnew"/></a>
-                                            </div>
-                                        </form>
-                                    </div><!-- End Login Form -->
-
-
-                                    <!-- Signup Form -->
-                                    <div class="signup form-peice">
-                                        <form class="signup-form" action="register" method="post">
-
-                                            <div class="form-group">
-                                                <label for="fname"><fmt:message key="firstname"/></label>
-                                                <input type="text" name="fname" id="fname" class="fname" required>
-                                                <span class="error"></span>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="lname"><fmt:message key="lastname"/></label>
-                                                <input type="text" name="lname" id="lname" class="lname" required>
-                                                <span class="error"></span>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="email"><fmt:message key="email"/></label>
-                                                <input type="email" name="email" id="email" class="email" required>
-                                                <span class="error"></span>
-                                                <span id="isExist"></span>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="address"><fmt:message key="address"/></label>
-                                                <input type="text" name="address" id="address" class="address" required>
-                                                <span class="error"></span>
-                                            </div>
-
-                                            <div class="CTA">
-                                                <input type="submit" value="Signup Now" id="submit" name="action">
-                                                <a href="#" class="switch" id="loginsw"><fmt:message key="ihaveanaccount"/></a>
-                                            </div>
-                                        </form>
-                                    </div><!-- End Signup Form -->
-                                </div>
-                            </div>
-                        </section>
-                    </div> <!-- body -->
-                </div>
-
-            </div>
-        </div>
+        
+        <jsp:include page="header.jsp"></jsp:include>
+        
         <!--end of header -->
 
         <!--gogo-->

@@ -40,13 +40,7 @@
             }
         %>
         
-        <header id="header">
-            <div class="container-fluid">
-                <div id="logo" class="pull-left">
-                    <h1><a href="home.jsp" class="scrollto">Doctor STRANGE</a></h1>
-                </div>
-            </div>
-        </header>
+        <jsp:include page="header.jsp"></jsp:include>
 
         <!-- Login Popup -->
         <!-- Modal -->
