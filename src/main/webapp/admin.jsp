@@ -4,30 +4,12 @@
     Author     : Duyet Pham
 --%>
 
-<%@page import="DTO.Doctor"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
-<%@page import="DAO.DoctorDAO"%>
+<%@page import="DTO.Doctor, DAO.DoctorDAO, java.util.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="language" value="${param.language}" scope="session" />
-<%String language = request.getParameter("language"), english = "", french = "", vietnamese = "";
-    if (language == null) {
-        language = "en_US";
-    }
-    if (language.equals("en_US")) {
-        language = "English";
-        english = "active";
-    } else if (language.equals("fr_FR")) {
-        language = "Français";
-        french = "active";
-    } else if (language.equals("vi_VN")) {
-        language = "Tiếng Việt";
-        vietnamese = "active";
-    }
-%>
 <c:if test="${not empty language}">
     <fmt:setLocale value="${language}" scope="session"/>
 </c:if>
@@ -39,6 +21,7 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
+        <title>Doctor Strange | Hospital Review Website</title>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -95,512 +78,511 @@
             <section class="card-section-imagia">
 
                 <div class="container" id="doctor">
-                    
-                     <%
-            DoctorDAO doctorDAO = new DoctorDAO();
-            //List<Doctor> listOfDoctor = doctorDAO.getAllDoctor();
-            List<Doctor> listOfDoctor = (ArrayList<Doctor>) session.getAttribute("doctorlist");
 
-        %>
-                     <section class="card-section-imagia">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-                            <aside id="fh5co-aside" role="complementary" class="border js-fullheight">
-                                <div class="side-content">
-                                    <h4>Filter Your Result</h4><hr>
-                                    <div class="side-text">Your Search</div>
-                                    <div class="search-container">
-                                        <form method="POST" action="doctor">
-                                            <input type="hidden" name="action" value="Doctor">
-                                            <input type="text" name="search" placeholder="Search..." class="search-input" value="">
-                                            <button class="btn btn-light search-btn" type="submit"> 
-                                                <i class="fa fa-search"></i>
-                                            </button>
-                                        </form>
-                                    </div><hr>
-                                    <div class="side-text">Gender</div>
-                                    <select class="side-select"> <!-- apply from db -->
-                                        <option value="1">Male</option>
-                                        <option value="2">Female</option>
-                                    </select><hr>
-                                    <div class="side-text">Last Name</div>
-                                    <select class="side-select"> <!-- apply from db -->
-                                        <option value="1">A -> Z</option>
-                                        <option value="2">Z -> A</option>
-                                    </select><hr>
-                                    <div class="side-text">Speciality</div>
-                                    <select class="side-select"> <!-- apply from db -->
-                                        <option value="Crazy">Crazy</option>
-                                        <option value="Mad">Mad</option>
-                                    </select><hr>
-                                    <div class="side-text">Sorting</div>
-                                    <select class="side-select"> <!-- apply from db -->
-                                        <option value="location">Location</option>
-                                        <option value="popular">Popular</option>
-                                        <option value="highlow">High -> Low</option>
-                                        <option value="lowhigh">Low -> High</option>
-                                    </select>
-                                </div>                            
-                            </aside>
-                        </div>
+                    <%
+                        DoctorDAO doctorDAO = new DoctorDAO();
+                        //List<Doctor> listOfDoctor = doctorDAO.getAllDoctor();
+                        List<Doctor> listOfDoctor = (ArrayList<Doctor>) session.getAttribute("doctorlist");
 
-                        <div class="col-md-9">
-                            <div class="row">                        
-                                <%
-                                    if (listOfDoctor.size() > 0) {
-                                        for (Doctor d : listOfDoctor) {
-                                %> 
+                    %>
+                    <section class="card-section-imagia">
+                        <div class="container-fluid">
+                            <div class="row">
                                 <div class="col-md-3">
+                                    <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+                                    <aside id="fh5co-aside" role="complementary" class="border js-fullheight">
+                                        <div class="side-content">
+                                            <h4>Filter Your Result</h4><hr>
+                                            <div class="side-text">Your Search</div>
+                                            <div class="search-container">
+                                                <form method="POST" action="doctor">
+                                                    <input type="hidden" name="action" value="Doctor">
+                                                    <input type="text" name="search" placeholder="Search..." class="search-input" value="">
+                                                    <button class="btn btn-light search-btn" type="submit"> 
+                                                        <i class="fa fa-search"></i>
+                                                    </button>
+                                                </form>
+                                            </div><hr>
+                                            <div class="side-text">Gender</div>
+                                            <select class="side-select"> <!-- apply from db -->
+                                                <option value="1">Male</option>
+                                                <option value="2">Female</option>
+                                            </select><hr>
+                                            <div class="side-text">Last Name</div>
+                                            <select class="side-select"> <!-- apply from db -->
+                                                <option value="1">A -> Z</option>
+                                                <option value="2">Z -> A</option>
+                                            </select><hr>
+                                            <div class="side-text">Speciality</div>
+                                            <select class="side-select"> <!-- apply from db -->
+                                                <option value="Crazy">Crazy</option>
+                                                <option value="Mad">Mad</option>
+                                            </select><hr>
+                                            <div class="side-text">Sorting</div>
+                                            <select class="side-select"> <!-- apply from db -->
+                                                <option value="location">Location</option>
+                                                <option value="popular">Popular</option>
+                                                <option value="highlow">High -> Low</option>
+                                                <option value="lowhigh">Low -> High</option>
+                                            </select>
+                                        </div>                            
+                                    </aside>
+                                </div>
 
-                                    <div class="card-container-imagia">
-                                        <div class="card-imagia">
-                                            <div class="front-imagia">
-                                                <div class="cover-imagia"><!--<img src="https://unsplash.it/720/500?image=1067" alt="">--></div>
-                                                <div class="user-imagia"><img src="https://unsplash.it/120/120?image=64" class="img-circle" alt=""></div>
-                                                <div class="content-imagia">
-                                                    <h3 class="name-imagia"><%= d.getLname() + " " + d.getFname()%> </h3>
-                                                    <p class="subtitle-imagia"><%= d.getSpeciality()%></p> <hr>
-                                                    <div id="location"><i class="fa fa-map-marker"></i> 1822km </div>
-                                                    <div id="gender"> Gender : <%= d.getSex()%></div>
-                                                    <div id="workplace"> Working at : HCMIU </div>
-                                                    <div id="degree"> Degree : <%= d.getDegree()%></div>
-                                                </div>
-                                                <div class="footer-imagia"><span><i class="fa fa-plus"></i> More info</span></div>
-                                            </div>
-                                            <div class="back-imagia">
-                                                <div class="content-imagia content-back-imagia">
-                                                    <div>
-                                                        <h4><%= d.getLname() + d.getFname()%> </h4>
-                                                        <div id="specific-speciality">Specific-speciality: <%= d.getSpeciality()%>  </div>
-                                                        <div id="timework">Time : <%= d.getHours()%> </div>
-                                                        <!--<div id="">Abc : xyz </div>-->
-                                                        <div id="insurance">Insurance: <%= d.getInsurance()%> </div>
-                                                        <!--<div id="">DOB : 6-9-1939</div>-->
-                                                        <!--<div id="">Address : Tiệm Đồ Gỗ </div>-->
-                                                        <!--<div id="">Insurance: < %= d.getInsurance()%>  </div>-->
+                                <div class="col-md-9">
+                                    <div class="row">                        
+                                        <%                                    if (listOfDoctor.size() > 0) {
+                                                for (Doctor d : listOfDoctor) {
+                                        %> 
+                                        <div class="col-md-3">
+
+                                            <div class="card-container-imagia">
+                                                <div class="card-imagia">
+                                                    <div class="front-imagia">
+                                                        <div class="cover-imagia"><!--<img src="https://unsplash.it/720/500?image=1067" alt="">--></div>
+                                                        <div class="user-imagia"><img src="https://unsplash.it/120/120?image=64" class="img-circle" alt=""></div>
+                                                        <div class="content-imagia">
+                                                            <h3 class="name-imagia"><%= d.getLname() + " " + d.getFname()%> </h3>
+                                                            <p class="subtitle-imagia"><%= d.getSpeciality()%></p> <hr>
+                                                            <div id="location"><i class="fa fa-map-marker"></i> 1822km </div>
+                                                            <div id="gender"> Gender : <%= d.getSex()%></div>
+                                                            <div id="workplace"> Working at : HCMIU </div>
+                                                            <div id="degree"> Degree : <%= d.getDegree()%></div>
+                                                        </div>
+                                                        <div class="footer-imagia"><span><i class="fa fa-plus"></i> More info</span></div>
+                                                    </div>
+                                                    <div class="back-imagia">
+                                                        <div class="content-imagia content-back-imagia">
+                                                            <div>
+                                                                <h4><%= d.getLname() + d.getFname()%> </h4>
+                                                                <div id="specific-speciality">Specific-speciality: <%= d.getSpeciality()%>  </div>
+                                                                <div id="timework">Time : <%= d.getHours()%> </div>
+                                                                <!--<div id="">Abc : xyz </div>-->
+                                                                <div id="insurance">Insurance: <%= d.getInsurance()%> </div>
+                                                                <!--<div id="">DOB : 6-9-1939</div>-->
+                                                                <!--<div id="">Address : Tiệm Đồ Gỗ </div>-->
+                                                                <!--<div id="">Insurance: < %= d.getInsurance()%>  </div>-->
+                                                            </div>
+                                                        </div>
+                                                        <div class="footer-imagia">
+                                                            <div class="text-center">
+                                                                <input type="hidden" name="id_doctor" value="<%= d.getID()%>" >
+                                                                <input class="card-button" type="submit" value="Make Appointment">
+                                                            </div>
+                                                            <div class="social-imagia text-center"><a href="/doctor?action=viewpro&id_doctor=<%= d.getID()%>">View Profile</a></div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="footer-imagia">
-                                                    <div class="text-center">
-                                                        <input type="hidden" name="id_doctor" value="<%= d.getID()%>" >
-                                                        <input class="card-button" type="submit" value="Make Appointment">
-                                                    </div>
-                                                    <div class="social-imagia text-center"><a href="/doctor?action=viewpro&id_doctor=<%= d.getID()%>">View Profile</a></div>
-                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div> 
-                                <% }
+                                        </div> 
+                                        <% }
                                     }%>
-                            </div>
+                                    </div>
 
+                                </div>
+                            </div> 
                         </div>
-                    </div> 
-                </div>
                 </div> 
                 </div>
                 </div>
             </section>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <h3 class="page-header">List of Doctors</h3>
-                    <div class="row">
 
-                        <div class="col-md-4" >
-                            <div class="doctor-name" style="background-color: white;  margin-right: 1%; margin-bottom: 1%;">
-                                <div class="row" >             
-                                    <div class="col-md-4" >
-                                        <div class="container" style="margin-top: 15%; ">
-                                            <img src="" alt="" style="background-color: #17a2b8; border: 1px solid #000; border-radius:50%;
-                                                 display:block;
-                                                 height:90px;
-                                                 width:90px; ">
-                                            <button type="submit" onclick="document.getElementById('detaildoctor').style.display = 'block'"  style=" background-color: #4CAF50; border: none; color: white; padding: 2px 30px; text-align: center; font-size: 16px; margin: 4px 2px; cursor: pointer;"> Edit</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="container" style="margin-top: 7%; ">
-                                            <h4><strong> Nguyen Van Sinh </strong></h4>
-                                            <p>DOB: 11-01-1997<br> Gender: GAY</p> 
-                                        </div>
-                                    </div>
+
+
+
+
+
+
+            <h3 class="page-header">List of Doctors</h3>
+            <div class="row">
+
+                <div class="col-md-4" >
+                    <div class="doctor-name" style="background-color: white;  margin-right: 1%; margin-bottom: 1%;">
+                        <div class="row" >             
+                            <div class="col-md-4" >
+                                <div class="container" style="margin-top: 15%; ">
+                                    <img src="" alt="" style="background-color: #17a2b8; border: 1px solid #000; border-radius:50%;
+                                         display:block;
+                                         height:90px;
+                                         width:90px; ">
+                                    <button type="submit" onclick="document.getElementById('detaildoctor').style.display = 'block'"  style=" background-color: #4CAF50; border: none; color: white; padding: 2px 30px; text-align: center; font-size: 16px; margin: 4px 2px; cursor: pointer;"> Edit</button>
                                 </div>
-                                <form method="post" action="activeReview" style="margin-top: -10%;margin-left: 0.5%;"> 
-                                    <div class="row" >  
-                                        <div class="col-md-4" >
-                                            <div class="container" >
-                                                <button type="submit" name="action" value="ActivateReview" style=" background-color: #4CAF50; 
-                                                        border: none;
-                                                        color: white; 
-                                                        padding: 
-                                                        1px 28px; 
-                                                        text-align: center; 
-                                                        font-size: 10px; 
-                                                        cursor: pointer;" >Enable Review</button>
-                                            </div> 
-                                        </div>     
-                                        <div class="col-md-4" >
-                                            <div class="container" style="margin-left: -15%;">
-                                                <button type="submit" name="action" value="DeactivateReview" style=" background-color: #4CAF50; 
-                                                        border: none; 
-                                                        color: white; 
-                                                        padding: 1px 28px; 
-                                                        text-align: center; 
-                                                        font-size: 10px;  
-                                                        cursor: pointer;">Disable Review</button>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4" >
-                                            <div class="container" style="margin-left: -30%;" >
-                                                <button type="submit" name="action" value="removeDoctor" style=" background-color: #4CAF50; 
-                                                        border: none; 
-                                                        color: white; 
-                                                        padding: 1px 28px; 
-                                                        text-align: center; 
-                                                        font-size: 10px;  
-                                                        cursor: pointer;">Remove Doctor</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-
+                            </div>
+                            <div class="col-md-8">
+                                <div class="container" style="margin-top: 7%; ">
+                                    <h4><strong> Nguyen Van Sinh </strong></h4>
+                                    <p>DOB: 11-01-1997<br> Gender: GAY</p> 
+                                </div>
                             </div>
                         </div>
-
-
+                        <form method="post" action="activeReview" style="margin-top: -10%;margin-left: 0.5%;"> 
+                            <div class="row" >  
+                                <div class="col-md-4" >
+                                    <div class="container" >
+                                        <button type="submit" name="action" value="ActivateReview" style=" background-color: #4CAF50; 
+                                                border: none;
+                                                color: white; 
+                                                padding: 
+                                                1px 28px; 
+                                                text-align: center; 
+                                                font-size: 10px; 
+                                                cursor: pointer;" >Enable Review</button>
+                                    </div> 
+                                </div>     
+                                <div class="col-md-4" >
+                                    <div class="container" style="margin-left: -15%;">
+                                        <button type="submit" name="action" value="DeactivateReview" style=" background-color: #4CAF50; 
+                                                border: none; 
+                                                color: white; 
+                                                padding: 1px 28px; 
+                                                text-align: center; 
+                                                font-size: 10px;  
+                                                cursor: pointer;">Disable Review</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" >
+                                    <div class="container" style="margin-left: -30%;" >
+                                        <button type="submit" name="action" value="removeDoctor" style=" background-color: #4CAF50; 
+                                                border: none; 
+                                                color: white; 
+                                                padding: 1px 28px; 
+                                                text-align: center; 
+                                                font-size: 10px;  
+                                                cursor: pointer;">Remove Doctor</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
 
                     </div>
                 </div>
 
 
 
+            </div>
+        </div>
 
 
 
-                <div class="container" style="display: none; " id="patient">
-                    <h3 class="page-header">List of Patients</h3>
-                    <div class="row">
 
-                        <div class="col-md-4" >
-                            <div class="doctor-name" style="background-color: white;  margin-right: 1%; margin-bottom: 1%;">
-                                <div class="row" >             
-                                    <div class="col-md-4" >
-                                        <div class="container" style="margin-top: 15%; ">
-                                            <img src="" alt="" style="background-color: #17a2b8; border: 1px solid #000; border-radius:50%;
-                                                 display:block;
-                                                 height:90px;
-                                                 width:90px; ">
-                                            <button type="submit" onclick="document.getElementById('detailpatient').style.display = 'block'"  style=" background-color: #4CAF50; border: none; color: white; padding: 2px 30px; text-align: center; font-size: 16px; margin: 4px 2px; cursor: pointer;"> Edit</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="container" style="margin-top: 7%; ">
-                                            <h4><strong> Nguyen Van Sinh </strong></h4>
-                                            <p>DOB: 11-01-1997<br> Gender: GAY</p> 
-                                        </div>
 
-                                    </div>
+
+        <div class="container" style="display: none; " id="patient">
+            <h3 class="page-header">List of Patients</h3>
+            <div class="row">
+
+                <div class="col-md-4" >
+                    <div class="doctor-name" style="background-color: white;  margin-right: 1%; margin-bottom: 1%;">
+                        <div class="row" >             
+                            <div class="col-md-4" >
+                                <div class="container" style="margin-top: 15%; ">
+                                    <img src="" alt="" style="background-color: #17a2b8; border: 1px solid #000; border-radius:50%;
+                                         display:block;
+                                         height:90px;
+                                         width:90px; ">
+                                    <button type="submit" onclick="document.getElementById('detailpatient').style.display = 'block'"  style=" background-color: #4CAF50; border: none; color: white; padding: 2px 30px; text-align: center; font-size: 16px; margin: 4px 2px; cursor: pointer;"> Edit</button>
                                 </div>
                             </div>
-                        </div>     
+                            <div class="col-md-8">
+                                <div class="container" style="margin-top: 7%; ">
+                                    <h4><strong> Nguyen Van Sinh </strong></h4>
+                                    <p>DOB: 11-01-1997<br> Gender: GAY</p> 
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>     
 
 
+            </div>
+        </div>
+
+
+        <div class="container" style="display: none; " id="hospital">
+            <h3 class="page-header">List of Hospitals</h3>
+            <div class="row">
+
+                <div class="col-md-4" >
+                    <div class="doctor-name" style="background-color: white;  margin-right: 1%; margin-bottom: 1%;">
+                        <div class="row" >             
+                            <div class="col-md-12">
+                                <div class="container" style="margin-top: 7%; ">
+                                    <h4><strong> Tu Vu Hospital </strong></h4>
+                                    <p><strong>Address: </strong>43 abcxy, district 3, HCM city<br> <strong>Phone: </strong>0199999999</p> 
+                                    <button type="submit" onclick="document.getElementById('detailhospital').style.display = 'block'"  style=" background-color: #4CAF50; border: none; color: white; padding: 2px 30px; text-align: center; font-size: 16px; margin-top:0; margin-bottom: 4px; cursor: pointer;"> Edit</button>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
 
 
-                <div class="container" style="display: none; " id="hospital">
-                    <h3 class="page-header">List of Hospitals</h3>
-                    <div class="row">
+            </div>
+        </div>
 
-                        <div class="col-md-4" >
-                            <div class="doctor-name" style="background-color: white;  margin-right: 1%; margin-bottom: 1%;">
-                                <div class="row" >             
-                                    <div class="col-md-12">
-                                        <div class="container" style="margin-top: 7%; ">
-                                            <h4><strong> Tu Vu Hospital </strong></h4>
-                                            <p><strong>Address: </strong>43 abcxy, district 3, HCM city<br> <strong>Phone: </strong>0199999999</p> 
-                                            <button type="submit" onclick="document.getElementById('detailhospital').style.display = 'block'"  style=" background-color: #4CAF50; border: none; color: white; padding: 2px 30px; text-align: center; font-size: 16px; margin-top:0; margin-bottom: 4px; cursor: pointer;"> Edit</button>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
+        <div id ="detailpatient" class="addedform" style="margin-top: 2%; height:800px;display: 'none';">
+            <div id="wrapper">
+                <div id="sidebar-wrapper">
+                    <ul class="sidebar-nav nav">
+                        <li><h3>Options:</h3></li>
+                        <li class="active"><a class="general" href="#general" data-toggle="tab"><i class="fa fa-gears"></i>Profile</a></li>
+                        <li><a class="edit" href="#edit" data-toggle="tab"><i class="fa fa-pencil"></i>Edit </a></li>
+                    </ul>
                 </div>
-
-                <div id ="detailpatient" class="addedform" style="margin-top: 2%; height:800px;display: 'none';">
-                    <div id="wrapper">
-                        <div id="sidebar-wrapper">
-                            <ul class="sidebar-nav nav">
-                                <li><h3>Options:</h3></li>
-                                <li class="active"><a class="general" href="#general" data-toggle="tab"><i class="fa fa-gears"></i>Profile</a></li>
-                                <li><a class="edit" href="#edit" data-toggle="tab"><i class="fa fa-pencil"></i>Edit </a></li>
-                            </ul>
-                        </div>
-                        <div class="page-content-wrapper" style=" background-color: white;">
-                            <div class="container-fluid"><a class="btn btn-link" role="button" href="#menu-toggle" id="menu-toggle"><i class="fa fa-bars"></i></a>
-                                <span onclick="document.getElementById('detailpatient').style.display = 'none'" class="close" title="Close" style="margin-top: 3%;">×</span>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="tab-content">
-                                            <div class="tab-pane active" id="general">
-                                                <div class="user-name">
-                                                    <div class="row" style="">             
-                                                        <div class="col-md-12 col-sm-12">
-                                                            <div class="user">
-                                                                <div class="user-information">
-                                                                    <div class="userhead">Patient Information</div><br> 
-                                                                    <table>
-                                                                        <tr><td><div class="userinfo">Name: </div></td><td> <div class="userinfo-text">Naruto</div></td></tr>
-                                                                        <tr><td><div class="userinfo">Email: </div></td><td> <div class="userinfo-text">sucsinhnguyen696969@gmail.com</div></td></tr>
-                                                                        <tr><td><div class="userinfo">Gender: </div></td><td> <div class="userinfo-text">Other</div></td></tr>
-                                                                        <tr><td><div class="userinfo">Address: </div></td><td> <div class="userinfo-text">1023 ABC Phuong 3, Quan 7, Ho Chi Minh City</div></div></td></tr>
-                                                                        <tr><td><div class="userinfo">Insurance Number: </div></td><td> <div class="userinfo-text">046556065</div></div></td></tr>
-                                                                        <tr><td><div class="userinfo">Language: </div></td><td> <div class="userinfo-text">English</div></div></td></tr>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
+                <div class="page-content-wrapper" style=" background-color: white;">
+                    <div class="container-fluid"><a class="btn btn-link" role="button" href="#menu-toggle" id="menu-toggle"><i class="fa fa-bars"></i></a>
+                        <span onclick="document.getElementById('detailpatient').style.display = 'none'" class="close" title="Close" style="margin-top: 3%;">×</span>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="general">
+                                        <div class="user-name">
+                                            <div class="row" style="">             
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="user">
+                                                        <div class="user-information">
+                                                            <div class="userhead">Patient Information</div><br> 
+                                                            <table>
+                                                                <tr><td><div class="userinfo">Name: </div></td><td> <div class="userinfo-text">Naruto</div></td></tr>
+                                                                <tr><td><div class="userinfo">Email: </div></td><td> <div class="userinfo-text">sucsinhnguyen696969@gmail.com</div></td></tr>
+                                                                <tr><td><div class="userinfo">Gender: </div></td><td> <div class="userinfo-text">Other</div></td></tr>
+                                                                <tr><td><div class="userinfo">Address: </div></td><td> <div class="userinfo-text">1023 ABC Phuong 3, Quan 7, Ho Chi Minh City</div></div></td></tr>
+                                                                <tr><td><div class="userinfo">Insurance Number: </div></td><td> <div class="userinfo-text">046556065</div></div></td></tr>
+                                                                <tr><td><div class="userinfo">Language: </div></td><td> <div class="userinfo-text">English</div></div></td></tr>
+                                                            </table>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane" id="edit">
-                                                <div class="user-name">
-                                                    <div class="row" style="">             
-                                                        <div class="col-md-12 col-sm-12">
-                                                            <div class="user">
-                                                                <div class="user-information">
-                                                                    <div class="userhead">Edit Profile</div><br>
-                                                                    <form class="change" action="" method="">
-                                                                        <table>
-                                                                            <!--use value=user profile trong db -->
-                                                                            <tr><td><div class="userinfo">Name: </div></td><td><input class="form-change" type="text" name="address" value="Naruto"></td></tr>
-                                                                            <tr><td><div class="userinfo">Email: </div></td><td><input class="form-change" type="text" name="address" value="sucsinhnguyen696969@gmail.com"></td></tr>
-                                                                            <tr><td><div class="userinfo">Gender: </div></td>
-                                                                                <td>                        
-                                                                                    <select class="form-change" name="gender">
-                                                                                        <option value="male">Male</option>
-                                                                                        <option value="female">Female</option>
-                                                                                        <option value="other">Other</option>
-                                                                                    </select>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr><td><div class="userinfo">Address: </div></td><td><input class="form-change" type="text" name="address" value="1023 ABC Phuong 3, Quan 7, Ho Chi Minh City"></td></tr>
-                                                                            <tr><td><div class="userinfo">Insurance Number: </div></td><td><input class="form-change" type="text" name="address" value="046556065"></td></tr>
-                                                                            <tr><td><div class="userinfo">Language: </div></td><td><input class="form-change" type="text" name="address" value="English"></td></tr>
-                                                                        </table>
-                                                                        <input class="save" type="submit" value="Save change"> 
-                                                                    </form>
-                                                                </div>
-                                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="edit">
+                                        <div class="user-name">
+                                            <div class="row" style="">             
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="user">
+                                                        <div class="user-information">
+                                                            <div class="userhead">Edit Profile</div><br>
+                                                            <form class="change" action="" method="">
+                                                                <table>
+                                                                    <!--use value=user profile trong db -->
+                                                                    <tr><td><div class="userinfo">Name: </div></td><td><input class="form-change" type="text" name="address" value="Naruto"></td></tr>
+                                                                    <tr><td><div class="userinfo">Email: </div></td><td><input class="form-change" type="text" name="address" value="sucsinhnguyen696969@gmail.com"></td></tr>
+                                                                    <tr><td><div class="userinfo">Gender: </div></td>
+                                                                        <td>                        
+                                                                            <select class="form-change" name="gender">
+                                                                                <option value="male">Male</option>
+                                                                                <option value="female">Female</option>
+                                                                                <option value="other">Other</option>
+                                                                            </select>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr><td><div class="userinfo">Address: </div></td><td><input class="form-change" type="text" name="address" value="1023 ABC Phuong 3, Quan 7, Ho Chi Minh City"></td></tr>
+                                                                    <tr><td><div class="userinfo">Insurance Number: </div></td><td><input class="form-change" type="text" name="address" value="046556065"></td></tr>
+                                                                    <tr><td><div class="userinfo">Language: </div></td><td><input class="form-change" type="text" name="address" value="English"></td></tr>
+                                                                </table>
+                                                                <input class="save" type="submit" value="Save change"> 
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-
-
                                         </div>
                                     </div>
+
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
 
-            </section>
-        </main>
-        <!-- End of Result -->
-        <footer id="footer">
-            <div class="footer-top">
-                <div class="container">
-                    <div class="row">
+    </section>
+</main>
+<!-- End of Result -->
+<footer id="footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
 
-                        <div class="col-lg-3 col-md-6 footer-info">
-                            <h3>Doctor STRANGE</h3>
-                            <p> Man tao cá mày không được vui nữa kể từ khi cái này tao đến. Nhìn tao đứng trên top cái miệng mày câm như hến .Sẽ có ngày tới mày nhưng việc đầu tiên trước hết. Mày muốn thắng trò chơi này việc đầu tiên phải làm là giết tao chết</p>
-                        </div>
+                <div class="col-lg-3 col-md-6 footer-info">
+                    <h3>Doctor STRANGE</h3>
+                    <p> Man tao cá mày không được vui nữa kể từ khi cái này tao đến. Nhìn tao đứng trên top cái miệng mày câm như hến .Sẽ có ngày tới mày nhưng việc đầu tiên trước hết. Mày muốn thắng trò chơi này việc đầu tiên phải làm là giết tao chết</p>
+                </div>
 
-                        <div class="col-lg-3 col-md-6 footer-links">
-                            <h4>Useful Links</h4>
-                            <ul>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Home</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">About us</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Services</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Terms of service</a></li>
-                                <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
-                            </ul>
-                        </div>
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Useful Links</h4>
+                    <ul>
+                        <li><i class="ion-ios-arrow-right"></i> <a href="#">Home</a></li>
+                        <li><i class="ion-ios-arrow-right"></i> <a href="#">About us</a></li>
+                        <li><i class="ion-ios-arrow-right"></i> <a href="#">Services</a></li>
+                        <li><i class="ion-ios-arrow-right"></i> <a href="#">Terms of service</a></li>
+                        <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
+                    </ul>
+                </div>
 
-                        <div class="col-lg-3 col-md-6 footer-contact">
-                            <h4>Contact Us</h4>
-                            <p>
-                                69 IU Street <br>
-                                Ho Chi Minh City, <br>
-                                Viet Nam<br>
-                                <strong>Phone:</strong> 911 <br>
-                                <strong>Email:</strong> abc@gmail.com<br>
-                            </p>
+                <div class="col-lg-3 col-md-6 footer-contact">
+                    <h4>Contact Us</h4>
+                    <p>
+                        69 IU Street <br>
+                        Ho Chi Minh City, <br>
+                        Viet Nam<br>
+                        <strong>Phone:</strong> 911 <br>
+                        <strong>Email:</strong> abc@gmail.com<br>
+                    </p>
 
-                            <div class="social-links">
-                                <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-                                <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-                                <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-                                <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-                                <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-3 col-md-6 footer-newsletter">
-                            <h4>Other</h4>
-                            <p>motherfucker không quen, tao không quen, đừng nói chuyện thân thiện như vậy với tao, tao không quen, cũng đừng nói chuyện đằng sau lưng của tao như vậy. </p>
-                        </div>
-
+                    <div class="social-links">
+                        <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                        <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                        <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+                        <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
                     </div>
-                </div>
-            </div>
 
-            <div class="container">
-                <div class="copyright">
-                    &copy; Copyright <strong>Doctor Strange</strong>. All Rights Reserved
                 </div>
-            </div>
 
-            <%-- pop up --%>
-            <div id="detaildoctor" class="addedform">
-                <form class="form-content" method="post" action="">
-                    <div class="formContainer">
-                        <h1>Doctor Information</h1>
-                        <hr>
+                <div class="col-lg-3 col-md-6 footer-newsletter">
+                    <h4>Other</h4>
+                    <p>motherfucker không quen, tao không quen, đừng nói chuyện thân thiện như vậy với tao, tao không quen, cũng đừng nói chuyện đằng sau lưng của tao như vậy. </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong>Doctor Strange</strong>. All Rights Reserved
+        </div>
+    </div>
+
+    <%-- pop up --%>
+    <div id="detaildoctor" class="addedform">
+        <form class="form-content" method="post" action="">
+            <div class="formContainer">
+                <h1>Doctor Information</h1>
+                <hr>
+                <div class="container" >
+                    <label><b>ID: 15071</b></label>
+                </div>
+                <div class="row" >  
+                    <div class="col-md-6" >
                         <div class="container" >
-                            <label><b>ID: 15071</b></label>
+                            <label><b>First Name: Sinh </b></label>
+                            <input type="text" placeholder="Enter Your New First Name" name="dfname" required>
                         </div>
-                        <div class="row" >  
-                            <div class="col-md-6" >
-                                <div class="container" >
-                                    <label><b>First Name: Sinh </b></label>
-                                    <input type="text" placeholder="Enter Your New First Name" name="dfname" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="container" >
-                                    <label><b>Last Name: Nguyen Van </b></label>
-                                    <input type="text" placeholder="Enter Your New Last Name" name="dlname" required>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="container" >
+                            <label><b>Last Name: Nguyen Van </b></label>
+                            <input type="text" placeholder="Enter Your New Last Name" name="dlname" required>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="row" >  
-                            <div class="col-md-6" >
-                                <div class="container" >
-                                    <label><b>Gender: Female </b></label>
-                                    <select>
-                                        <option value="Famale">Female</option>
-                                        <option value="Male">Male</option>
-                                    </select>
+                <div class="row" >  
+                    <div class="col-md-6" >
+                        <div class="container" >
+                            <label><b>Gender: Female </b></label>
+                            <select>
+                                <option value="Famale">Female</option>
+                                <option value="Male">Male</option>
+                            </select>
 
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="container" >
-                                    <label><b>Degree: Tao có bằng thạc sĩ </b></label>
-                                    <input type="text" placeholder="Enter Your New Degree" name="ddegree" required>
-                                </div>
-                            </div>
                         </div>
-
-                        <div class="row" >  
-                            <div class="col-md-6" >
-                                <div class="container" >
-                                    <label><b>Accepted insurance: </b></label>
-                                    <input type="checkbox" value="dinsure">
-
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="container" >
-                                    <label><b>Specific specialty: Metal </b></label>
-                                    <select> <%-- dòng for lấy từ list ra --%>
-                                        <option value="">Bệnh gì</option>
-                                        <option value="">Bệnh gì</option>
-                                    </select>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="container" >
+                            <label><b>Degree: Tao có bằng thạc sĩ </b></label>
+                            <input type="text" placeholder="Enter Your New Degree" name="ddegree" required>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="row" >  
-                            <div class="col-md-6" >
-                                <div class="container" >
-                                    <label><b>Office Hours: 10am-24pm </b></label>
-                                    <input type="text" placeholder="Enter Your New office hours" name="dhour" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="container" >
-                                    <label><b>Language: English </b></label>
-                                    <input type="text" placeholder="Enter Your New Language" name="dlang" required>
-                                </div>
-                            </div>
+                <div class="row" >  
+                    <div class="col-md-6" >
+                        <div class="container" >
+                            <label><b>Accepted insurance: </b></label>
+                            <input type="checkbox" value="dinsure">
+
                         </div>
-
-                        <div class="row" >  
-                            <div class="col-md-6" >
-                                <div class="container" >
-                                    <label><b>Office Hours: 10am-24pm </b></label>
-                                    <input type="text" placeholder="Enter Your New office hours" name="dhour" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="container" >
-                                    <label><b>Language: English </b></label>
-                                    <input type="text" placeholder="Enter Your New Language" name="dlang" required>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="container" >
+                            <label><b>Specific specialty: Metal </b></label>
+                            <select> <%-- dòng for lấy từ list ra --%>
+                                <option value="">Bệnh gì</option>
+                                <option value="">Bệnh gì</option>
+                            </select>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="clear">
-                            <button type="submit" class="loginbtn">Update</button>
-                            <button type="button" onclick="document.getElementById('detaildoctor').style.display = 'none'" class="cancelbtn">Cancel</button>
+                <div class="row" >  
+                    <div class="col-md-6" >
+                        <div class="container" >
+                            <label><b>Office Hours: 10am-24pm </b></label>
+                            <input type="text" placeholder="Enter Your New office hours" name="dhour" required>
                         </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="container" >
+                            <label><b>Language: English </b></label>
+                            <input type="text" placeholder="Enter Your New Language" name="dlang" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" >  
+                    <div class="col-md-6" >
+                        <div class="container" >
+                            <label><b>Office Hours: 10am-24pm </b></label>
+                            <input type="text" placeholder="Enter Your New office hours" name="dhour" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="container" >
+                            <label><b>Language: English </b></label>
+                            <input type="text" placeholder="Enter Your New Language" name="dlang" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clear">
+                    <button type="submit" class="loginbtn">Update</button>
+                    <button type="button" onclick="document.getElementById('detaildoctor').style.display = 'none'" class="cancelbtn">Cancel</button>
+                </div>
 
 
-               
+
             </div>
- </form>
+        </form>
 
 
-        </footer>
+</footer>
 
 
-        <script src="lib/jquery/jquery.min.js"></script>
-        <script src="lib/jquery/jquery-migrate.min.js"></script>
-        <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/flexslider/jquery.flexslider-min.js"></script>
-        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-        <script src="lib/superfish/hoverIntent.js"></script>
-        <script src="lib/superfish/superfish.min.js"></script>
-        <script src="lib/wow/wow.min.js"></script>
-        <script src="lib/form/rating.js"></script>
-        <script src="lib/form/side.js"></script>
-        <script src="js/main.js"></script>
-        <script src="lib/form/sidebar1.js"></script>
+<script src="lib/jquery/jquery.min.js"></script>
+<script src="lib/jquery/jquery-migrate.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/flexslider/jquery.flexslider-min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="lib/superfish/hoverIntent.js"></script>
+<script src="lib/superfish/superfish.min.js"></script>
+<script src="lib/wow/wow.min.js"></script>
+<script src="lib/form/rating.js"></script>
+<script src="lib/form/side.js"></script>
+<script src="js/main.js"></script>
+<script src="lib/form/sidebar1.js"></script>
 
 
 
 
-    </body>
+</body>
 </html>

@@ -11,19 +11,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<c:set var="language" value="${param.language}"  />
-<%String language = request.getParameter("language"), english = "", vietnamese = "", lang = "";
-    if (language == null) {
-        language = "en_US";
-    }
-    if (language.equals("en_US")) {
-        lang = "English";
-        english = "active";
-    } else if (language.equals("vi_VN")) {
-        lang = "Tiếng Việt";
-        vietnamese = "active";
-    }
-%>
+<c:set var="language" value="${param.language}"/>
 <c:if test="${not empty language}">
     <fmt:setLocale value="${language}" />
 </c:if>
@@ -36,6 +24,7 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
+        <title>Doctor Strange | Hospital Review Website</title>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -48,7 +37,7 @@
     </head> 
 
     <body>
-        <%
+        <%            
             Patient patient = new Patient();
             boolean filled = false;
             if (request.getAttribute("patient") != null) {
@@ -57,39 +46,7 @@
             }
         %>
         <!-- Header -->
-        <header id="header">
-            <div class="container-fluid">
-                <div id="logo" class="pull-left">
-                    <h1><a href="home.jsp" class="scrollto">Doctor STRANGE</a></h1>
-                </div>
-                <nav id="nav-menu-container">
-                    <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="/doctor"><fmt:message key="finddoc"/></a>
-                            <ul>
-                                <li>
-                                    <div class="dropdown-form">
-                                        <form action="doctor" method="POST">
-                                            <h3><fmt:message key="finddoc"/></h3>
-                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="<fmt:message key="searchdotorbyname"/>"/>                                 
-                                            <input class="dropdown-button" type="submit" name="action" value="Search Doctor">
-                                        </form>
-                                    </div>
-                                </li>
-                            </ul> 
-                        </li>
-                        <li><a href="#"><fmt:message key="appt"/></a></li>
-                        <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
-                            <ul>
-                                <li><a href="register.jsp?language=en_US">English</a></li>
-                                <li><a href="register.jsp?language=vi_VN">Tiếng Việt</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#footer"><fmt:message key="contact"/></a></li>
-                        <li class="menu-active"><a href="login.jsp"><fmt:message key="signinup"/></a></li>                     
-                    </ul>
-                </nav>
-            </div>
-        </header>
+        <jsp:include page="header.jsp"></jsp:include>
 
         <!-- MAIN : form -->
         <main id="main">
@@ -146,7 +103,7 @@
                         <span id="statusAdd"></span>
                     </div>
                     <% }%>
-                    <input type="hidden" name="language" id="language" value="<%=language%>">
+                    <input type="hidden" name="language" id="language" value="${pageContext.response.locale}">
                     <div class="form-group" style="padding-top: 20px;">
                         <input type="checkbox" required name="terms" onchange="this.setCustomValidity(validity.valueMissing ? '<fmt:message key="register.msg1"/>' : '');" id="field_terms">
                         <label for="terms"><fmt:message key="register.msg2"/> <a href="terms.php" title="<fmt:message key="register.msg3"/>"><fmt:message key="register.msg4"/></a> <fmt:message key="register.msg5"/></label>
@@ -236,6 +193,7 @@
             <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
             <script src="js/registration.js"></script>
             <script src="js/main.js"></script>
+            <script src="js/modal.js"></script>
     </body>
 </html>
 

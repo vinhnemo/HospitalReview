@@ -115,7 +115,7 @@ $(document).ready(function () {
     $('input').keyup(function () {
         $('#user-result').hide();
     });
-    
+
     // Name
     $('#fname').keyup(function (e) {
         var text = $(this).val().replace(/[^a-zA-Z\n\r]+/g, '');
@@ -189,19 +189,21 @@ $(document).ready(function () {
     // Reload page
     $('a.btn-dark').on('click', function () {
         $("#myLogin .close").click();
-        setTimeout(function() {$('#header').load(location.href + " #header");},1000);
+        $('#header').load(document.URL + " #header");
     });
+
 
     $('#myLogin').on('hide.bs.modal', function () {
         $("#myLogin .close").click();
-        setTimeout(function() {$('#header').load(location.href + " #header");},1000);
+        $('#header').load(document.URL + " #header");
     });
-
 });
 
 function loadEffect() {
     $('.signup, .login').addClass('switched');
-    $('#heading').fadeOut().delay(1000).hide();
+    setTimeout(function(){
+        $('#heading').fadeOut();
+    },500);
     setTimeout(function () {
         $('.signup, .login').hide();
     }, 700);
