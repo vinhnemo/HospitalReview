@@ -4,9 +4,7 @@
     Author     : NemoVinh
 --%>
 
-<%@page import="java.util.*"%>
-<%@page import="DAO.*"%>
-<%@page import="DTO.*"%>
+<%@page import="java.util.*, DAO.*, DTO.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -23,29 +21,39 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
+        <title>Doctor Strange | Hospital Review Website</title>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
         <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <link rel="stylesheet" href="lib/form/search.css">
         <link rel="stylesheet" href="lib/form/sidebar.css">
         <link rel="stylesheet" href="lib/form/form.css">
         <link rel="stylesheet" href="lib/form/profile.css">
-        <meta charset="utf-8">
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <meta content="" name="keywords">
-        <meta content="" name="description">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
-        <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-        <link href="lib/animate/animate.min.css" rel="stylesheet">
-        <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-        <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
-        <link rel="stylesheet" href="lib/form/form.css">
+        <script src="lib/jquery/jquery.min.js"></script>
+        <script src="lib/jquery/jquery-migrate.min.js"></script>
+        <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/easing/jquery.easing.1.3.js"></script>
+        <script src="lib/flexslider/jquery.flexslider-min.js"></script>
+        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+        <script src="lib/superfish/hoverIntent.js"></script>
+        <script src="lib/superfish/superfish.min.js"></script>
+        <script src="lib/wow/wow.min.js"></script>
+        <script src="lib/form/side.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/counterup/counterup.min.js"></script>
+        <script src="lib/isotope/isotope.pkgd.min.js"></script>
+        <script src="lib/lightbox/js/lightbox.min.js"></script>
+        <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
+        <script src="lib/anime/anime.min.js"></script>
+
+        <script src="lib/modernizer/modernizr-2.6.2.min.js"></script>
+
+        <script src="js/main.js"></script>
+        <script src="js/modal.js"></script>
     </head>
 
     <body>
@@ -70,45 +78,34 @@
             } else if (session.getAttribute("admin") != null) {
                 admin = (Admin) session.getAttribute("admin");
             }
-        %>
-        
-        <jsp:include page="header.jsp"></jsp:include>
-        <!--end of header -->
 
-        <%
             Doctor doc;
             doc = (Doctor) session.getAttribute("prodoc");
-            //            Doctor doc;
-            //            int i = 1;
-            //            DoctorDAO dao  = new DoctorDAO();
-            //            doc = (Doctor) dao.getDoctor(i);
 
             CommentDAO commentDAO = new CommentDAO();
             List<Comment> listOfComment = commentDAO.getAllComment(doc.getID());
-            PatientDAO patientDAO = new PatientDAO();
-//                Patient patient = null;
-            if (session.getAttribute("patient") != null) {
-                patient = (Patient) session.getAttribute("patient");
-            }
         %> 
 
-        <main id="main">
-            <!-- De choi thoi -->
-            <div class="nothing-special-dark"></div>
-            <div class="nothing-special-light"></div>
-            <section class="card-section-imagia">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-7 col-sm-7" style="background-color: #eee; margin-right: 10px;">
-                            <div class="doctor-name">
-                                <div class="row" style="margin-top: 40px;">             
-                                    <div class="col-md-4 col-sm-10">
-                                        <div class="doctor-pic">
-                                            <img src="" alt="">
+        <jsp:include page="header.jsp"></jsp:include>
+            <!--end of header -->
+
+            <main id="main">
+                <!-- De choi thoi -->
+                <div class="nothing-special-dark"></div>
+                <div class="nothing-special-light"></div>
+                <section class="card-section-imagia">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-7 col-sm-7" style="background-color: #eee; margin-right: 10px;">
+                                <div class="doctor-name">
+                                    <div class="row" style="margin-top: 40px;">             
+                                        <div class="col-md-4 col-sm-10">
+                                            <div class="doctor-pic">
+                                                <img src="" alt="">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-7 col-sm-10">
-                                        <h3 class="name"><%= doc.getLname() + " " + doc.getFname()%></h3>
+                                        <div class="col-md-7 col-sm-10">
+                                            <h3 class="name"><%= doc.getLname() + " " + doc.getFname()%></h3>
                                         <div class="doctor-text"> <fmt:message key="dob"/>: 11-01-1997<br> <fmt:message key="gender"/>: <%= doc.getSex()%></div>
                                     </div>
                                 </div>
@@ -164,12 +161,13 @@
                             <input type="hidden" name="action" value="updateDoctor">
                             <button type="submit" class="btn btn-default"><fmt:message key="edit"/></button>
                         </form>
+                        <% if (admin != null) {%>
                         <form action="doctor" method="POST">
                             <input type="hidden" name="id" value="<%= doc.getID()%>" >
                             <input type="hidden" name="action" value="remove">
                             <button type="submit" class="btn btn-default"><fmt:message key="remove"/></button>
                         </form>    
-
+                        <% }%>
                         <div class="col-md-4 col-sm-4" style="background-color: #FFF;">  
                             <div class="side-doctor">
                                 <h4><fmt:message key="option"/></h4><hr>
@@ -185,14 +183,14 @@
                                 <form method="post" action="activeReview" > 
                                     <div class="row" >  
                                         <div class="col-md-6" style="margin-left: -5%;">
-                                            <div class="container-fluid" >
-                                                <input type="hidden" name="activateDoctorID" value="<%= doc.getID()%>">
+                                            <div class="container-fluid form-group" >
+                                                <input type="hidden" name="activateDoctorID" value="<%= doc.getID()%>" class="form-control">
                                                 <button type="submit" class="side-button2" name="action" value="ActivateReview" style="padding: 5px 10px;">Enable Review</button>
                                             </div> 
                                         </div>     
                                         <div class="col-md-6" style="margin-left: -15%;" >
-                                            <div class="container-fluid" >
-                                                <input type="hidden" name="deActivateDoctorID" value="<%= doc.getID()%>">
+                                            <div class="container-fluid form-group" >
+                                                <input type="hidden" name="deActivateDoctorID" value="<%= doc.getID()%>" class="form-control">
                                                 <button type="submit" class="side-button2" name="action" value="DeactivateReview" style="padding: 5px 10px;" >Disable Review</button>
                                             </div>
                                         </div>
@@ -245,7 +243,7 @@
                                     <%
                                         if (listOfComment.size() > 0) {
                                             for (Comment comment : listOfComment) {
-                                                Patient p = patientDAO.getPatient(comment.getpID());
+                                                Patient p = PatientDAO.getPatient(comment.getpID());
 
                                     %>
                                     <article class="row">
@@ -283,7 +281,7 @@
 
                         <%
                             if (doctor.getAllowReview() == 1) {
-                                if (session.getAttribute("patient") != null) {
+                                if (patient != null) {
 
                         %>  
                         <div class="comment-box">
@@ -303,11 +301,12 @@
                             </div>
                         </div>
                         <% }
-                                }%>
+                            }%>
                     </div>
                 </div>
             </section>
         </main>
+
         <!-- End of Result -->
         <footer id="footer">
             <div class="footer-top">
@@ -367,38 +366,6 @@
         </footer>
 
 
-        <script src="lib/jquery/jquery.min.js"></script>
-        <script src="lib/jquery/jquery-migrate.min.js"></script>
-        <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/flexslider/jquery.flexslider-min.js"></script>
-        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-        <script src="lib/superfish/hoverIntent.js"></script>
-        <script src="lib/superfish/superfish.min.js"></script>
-        <script src="lib/wow/wow.min.js"></script>
-        <script src="lib/form/rating.js"></script>
-        <script src="lib/form/side.js"></script>
-        <script src="js/main.js"></script>
-        <script src="js/editform.js"></script>
-        <script src="lib/jquery/jquery.min.js"></script>
-        <script src="lib/jquery/jquery-migrate.min.js"></script>
-        <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/superfish/hoverIntent.js"></script>
-        <script src="lib/superfish/superfish.min.js"></script>
-        <script src="lib/wow/wow.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/counterup/counterup.min.js"></script>
-        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="lib/isotope/isotope.pkgd.min.js"></script>
-        <script src="lib/lightbox/js/lightbox.min.js"></script>
-        <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
-        <script src="lib/anime/anime.min.js"></script>
-
-        <script src="contactform/contactform.js"></script>
-
-        <script src="js/main.js"></script>
-        <script src="js/modal.js"></script>
     </body>
 </html>
 

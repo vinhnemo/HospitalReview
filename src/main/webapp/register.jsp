@@ -67,7 +67,7 @@
                     <% } else {%>
                     <div class="form-group">
                         <span id="name-status"></span>
-                        <input class="form-control d-inline" type="text" name="fname" id="fname" placeholder="<fmt:message key="firstname"/>" required><input class="form-control d-inline" type="text" name="lname" id="lname" placeholder="Last Name" required>
+                        <input class="form-control d-inline" type="text" name="fname" id="fname" placeholder="<fmt:message key="firstname"/>" required><input class="form-control d-inline" type="text" name="lname" id="lname" placeholder="<fmt:message key="lastname"/>" required>
                     </div>
                     <div class="form-group">
                         <span id="status"></span>
