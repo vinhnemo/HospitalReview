@@ -252,6 +252,19 @@ and open the template in the editor.
 .form form .CTA a.switch:hover {
     color: #f95959;
 }
+.form form .CTA a.link {
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: 400;
+    font-family: "Montserrat", sans-serif;
+    color: #bbbbbb;
+    text-decoration: underline;
+    transition: all 0.3s;
+    display: inline-block;
+}
+.form form .CTA a.link:hover {
+    color: #f95959;
+}
 
 #user-result i {
     width: 300px;
@@ -309,19 +322,24 @@ and open the template in the editor.
     .form form .CTA {
         text-align: center;
     }
-    
+
     .form form .CTA input {
-        margin-right: 0;
+        margin: 0 auto;
     }
-    
+
     .brand {
         margin-top: -24px;
     }
     
-    .CTA #login {
-        margin-right: 20px;
+    .form form .CTA a.switch {
+        margin-top: 10px;
     }
-    
+
+    .CTA #login {
+        width: 91px;
+        text-align: center;
+    }
+
     #isExist i {
         width: 200px;
     }
@@ -334,5 +352,9 @@ and open the template in the editor.
 
     h2 {
         font-size: 50px !important;
+    }
+
+    .form form .CTA {
+        text-align: center;
     }
 }
