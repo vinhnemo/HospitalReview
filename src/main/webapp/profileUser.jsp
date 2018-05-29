@@ -22,6 +22,7 @@
         <meta content="" name="keywords">
         <meta content="" name="description">
         <title>Doctor Strange | Hospital Review Website</title>
+        <link rel="icon" type="image/png" href="img/Add.png">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -87,7 +88,7 @@
                         <div id="sidebar-wrapper">
                             <ul class="sidebar-nav nav">
                                 <li><h3><fmt:message key="options"/></h3></li>
-                                <li class="active"><a class="general" href="#general" data-toggle="tab"><i class="fa fa-gears"></i><fmt:message key="general"/></a></li>
+                            <li class="active"><a class="general" href="#general" data-toggle="tab"><i class="fa fa-gears"></i><fmt:message key="general"/></a></li>
                             <li><a class="edit" href="#edit" data-toggle="tab"><i class="fa fa-pencil"></i><fmt:message key="edityourprofile"/></a></li>
                             <li><a class="change" href="#change" data-toggle="tab"><i class="fa fa-key"></i><fmt:message key="changepassword"/></a></li>
                                     <%if (admin == null) {%>

@@ -20,6 +20,7 @@
         <meta content="" name="keywords">
         <meta content="" name="description">
         <title>Doctor Strange | Hospital Review Website</title>
+        <link rel="icon" type="image/png" href="img/Add.png">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -35,16 +36,16 @@
     <body>
 
         <jsp:include page="header.jsp"></jsp:include>
-        <!--end of header -->
-        <main id="main">
-            <!-- De choi thoi -->
-            <div class="nothing-special-dark"></div>
-            <div class="container-fluid" style="background-color: #eee">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12" style="background-color: #eee">
-                            <div class="appointment">
-                                <h3> <fmt:message key="setanappointment"/> </h3>
+            <!--end of header -->
+            <main id="main">
+                <!-- De choi thoi -->
+                <div class="nothing-special-dark"></div>
+                <div class="container-fluid" style="background-color: #eee">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12" style="background-color: #eee">
+                                <div class="appointment">
+                                    <h3> <fmt:message key="setanappointment"/> </h3>
                                 <form action="" method="">
                                     <div class="head"><fmt:message key="patientinformation"/></div>
                                     <div class="text"><fmt:message key="fullname"/>: </div>

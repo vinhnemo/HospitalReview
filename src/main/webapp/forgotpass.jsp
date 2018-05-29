@@ -21,6 +21,7 @@
         <meta content="" name="keywords">
         <meta content="" name="description">
         <title>Doctor Strange | Hospital Review Website</title>
+        <link rel="icon" type="image/png" href="img/Add.png">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -34,10 +35,10 @@
 
     <body>
         <jsp:include page="header.jsp"></jsp:include>
-        <main id="main">
-            <div class="login-dark">
-                <form class="reset" action="#" method="post" id="forgot-form">
-                    <h3> <fmt:message key="resetyourpassword"/></h3>
+            <main id="main">
+                <div class="login-dark">
+                    <form class="reset" action="#" method="post" id="forgot-form">
+                        <h3> <fmt:message key="resetyourpassword"/></h3>
                     <div class="i2"><i class="icon ion-key"></i></div>
                     <p><fmt:message key="resetyourpassword.msg1"/><p>
                     <div class="form-group"><span id="user-result" style="color: red"></span></div>
