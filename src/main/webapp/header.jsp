@@ -17,6 +17,16 @@
 <!DOCTYPE html>
 <html lang="${language}">
     <head>
+        <style>
+            .btn-find {
+                border-bottom-left-radius: 25px !important;
+                border-bottom-right-radius: 25px !important;
+                border-top-left-radius: 25px !important;
+                border-top-right-radius: 25px !important;
+                border-width:2px;
+                font-weight: bold !important;
+            }
+        </style>
         <link href="css/modal.css" rel="stylesheet">
     </head>
     <%
@@ -47,14 +57,27 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="/doctor"><fmt:message key="finddoc"/></a>
+                        <li class="menu-has-children"><a href="/hospital"><fmt:message key="findhospital"/></a>
+                            <ul>
+                                <li>
+                                    <div class="dropdown-form">
+                                        <form action="hospital" method="POST">
+                                            <h3><fmt:message key="findhospital"/></h3>
+                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="<fmt:message key="searchhospitalbyname"/>"/>                               
+                                            <button class="btn btn-outline-success btn-lg btn-find mr-md-4 mr-sm-0 px-5 mb-3 text-uppercase" type="submit" name="action" value="Search Hospital"><i class="fa fa-search"></i> <fmt:message key="searchbtn"/></button>
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul> 
+                        </li>
+                        <li class="menu-has-children"><a href="/doctor"><fmt:message key="finddoc"/></a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
                                         <form action="doctor" method="POST">
                                             <h3><fmt:message key="finddoc"/></h3>
                                             <input type="text" name="search" class="form-control form-search" id="name" placeholder="<fmt:message key="searchdotorbyname"/>"/>                               
-                                            <input class="dropdown-button" type="submit" name="action" value="Search Doctor">
+                                            <button class="btn btn-outline-success btn-lg btn-find mr-md-4 mr-sm-0 px-5 mb-3 text-uppercase" type="submit" name="action" value="Search Doctor"><i class="fa fa-search"></i> <fmt:message key="searchbtn"/></button>
                                         </form>
                                     </div>
                                 </li>
@@ -63,21 +86,21 @@
                         <li><a href="#"><fmt:message key="appt"/></a></li>
                         <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
                             <ul>
-                                <li><a href="home.jsp?language=en_US">English</a></li>
-                                <li><a href="home.jsp?language=vi_VN">Tiếng Việt</a></li>
+                                <li><a href="${requestScope['javax.servlet.forward.request_uri']}?language=en_US">English</a></li>
+                                <li><a href="${requestScope['javax.servlet.forward.request_uri']}?language=vi_VN">Tiếng Việt</a></li>
                             </ul>
                         </li>
                         <li><a href="contact.jsp"><fmt:message key="contact"/></a></li>
 
                         <% if (patient != null) {%>
-                        <li class="menu-has-children"><a href=""><fmt:message key="greeting"/>, <%out.print(patient.getFname() + " " + patient.getLname());%></a>
+                        <li class="menu-has-children menu-active"><a href=""><fmt:message key="greeting"/>, <%out.print(patient.getFname() + " " + patient.getLname());%></a>
                             <ul>
                                 <li><a href="profileUser.jsp"><fmt:message key="yourprofile"/></a></li>
                                 <li><a href="logout"><fmt:message key="signout"/></a></li>
                             </ul>
                         </li>
                         <% } else {%>
-                        <li class="menu"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true" onclick="animeEffectIn()"><fmt:message key="signinup"/></a></li>
+                        <li class="menu menu-active"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true" onclick="animeEffectIn()"><fmt:message key="signinup"/></a></li>
                             <% }%>
 
                     </ul>
