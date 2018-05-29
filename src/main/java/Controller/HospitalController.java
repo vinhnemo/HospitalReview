@@ -7,16 +7,21 @@ package Controller;
 
 import Calculate.LatitudeAndLongitudeWithPincode;
 import Calculate.Location;
+import Calculate.connectpython;
 import DAO.HospitalDAO;
+import DAO.PatientDAO;
 import DTO.Hospital;
+import DTO.Patient;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -44,9 +49,38 @@ public class HospitalController extends HttpServlet {
 
         String action = request.getParameter("action");
 
+        Patient patient = null;
+
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("u_email")) {
+                    patient = PatientDAO.getUserbyEmail(cookie.getValue());
+                }
+            }
+        }
+        if (session.getAttribute("patient") != null) {
+            patient = (Patient) session.getAttribute("patient");
+        }
+
         if (action == null) {
+            LatitudeAndLongitudeWithPincode la  = new LatitudeAndLongitudeWithPincode();
+            Location lol_patient = new Location();
+            lol_patient.setAddress(patient.getAddress());
+            la.getLatLongPositions(lol_patient);
+            HashMap<Integer, Double> map = new HashMap<Integer, Double>();
             List<Hospital> listofHospital = hospitalDAO.getAllHospital();
+            if (listofHospital.size() > 0) {
+                for (Hospital h : listofHospital) {
+                      Location lol_hospital = new Location();
+                      lol_hospital.setAddress(h.getAddress());
+                      connectpython con = new connectpython();
+                      double distance = con.calculatdistance(String.valueOf(lol_patient.getLat()), String.valueOf(lol_patient.getLng()), String.valueOf(lol_hospital.getLat()), String.valueOf(lol_hospital.getLng()));
+                      map.put(h.getID(), distance);
+                }
+            }
             session.setAttribute("hospitallist", listofHospital);
+            session.setAttribute("distancec", map);
             rd = sc.getRequestDispatcher("/showhospital.jsp");
             rd.forward(request, response);
         } else if (action.equals("find")) {
