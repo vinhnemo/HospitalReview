@@ -145,7 +145,7 @@
                                                 <div class="content-imagia">
                                                     <h3 class="name-imagia"><%= h.getName()%> </h3>
                                                     <p class="subtitle-imagia"><%= h.getAddress()%></p> <hr>
-                                                    <% if(map.size() != 0) { %>
+                                                    <% if(session.getAttribute("patient") != null) { %>
                                                     <div id="location"><i class="fa fa-map-marker"></i> <%= map.get(h.getID()) %> </div>
                                                         <% } %>
                                                     <div id="degree"> <fmt:message key="website"/> : <%= h.getWebsite()%></div>

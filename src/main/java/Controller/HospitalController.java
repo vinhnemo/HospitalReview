@@ -12,8 +12,10 @@ import DAO.HospitalDAO;
 import DAO.PatientDAO;
 import DTO.Hospital;
 import DTO.Patient;
+import java.io.BufferedReader;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
@@ -70,88 +72,115 @@ public class HospitalController extends HttpServlet {
                 LatitudeAndLongitudeWithPincode la = new LatitudeAndLongitudeWithPincode();
                 Location lol_patient = new Location();
                 lol_patient.setAddress(patient.getAddress());
-                la.getLatLongPositions(lol_patient);
+                lol_patient = la.getLatLongPositions(lol_patient);
                 HashMap<Integer, Double> map = new HashMap<Integer, Double>();
                 if (listofHospital.size() > 0) {
                     for (Hospital h : listofHospital) {
                         Location lol_hospital = new Location();
                         lol_hospital.setAddress(h.getAddress());
-
-                        double distance = con.calculatdistance(lol_patient.getLat(), lol_patient.getLng(), lol_hospital.getLat(), lol_hospital.getLng());
-                        map.put(h.getID(), distance);
+                        lol_hospital = la.getLatLongPositions(lol_hospital);
+                        double dis =    con.calculatdistance(lol_patient.getLat(), lol_patient.getLng(), lol_hospital.getLat(), lol_hospital.getLng());
+                        dis = Math.round(100.0*dis)/100.0;
+                         map.put(h.getID(), dis);
                     }
+
+                   
                 }
-                session.setAttribute("distancec", map);
-            }
-            session.setAttribute("hospitallist", listofHospital);
+                
+                
+                //sort
+                
+                
+            
+            session.setAttribute("distance", map);
+        }
+        session.setAttribute("hospitallist", listofHospital);
 
-            rd = sc.getRequestDispatcher("/showhospital.jsp");
-            rd.forward(request, response);
-        } else if (action.equals("find")) {
+        rd = sc.getRequestDispatcher("/showhospital.jsp");
+        rd.forward(request, response);
+    }
+
+    else if (action.equals ( 
+        "find")) {
             String search = escapeHtml4(request.getParameter("search"));
-            HospitalDAO dao = new HospitalDAO();
-            List<Hospital> listOfHospital = dao.searchHospital(search);
-            session.setAttribute("hospitallist", listOfHospital);
-            rd = sc.getRequestDispatcher("/showhospital.jsp");
-            rd.forward(request, response);
-        } else if (action.equals("viewprohos")) {
-            int id = Integer.parseInt(request.getParameter("id_hospital"));
-            HospitalDAO dao = new HospitalDAO();
-            Hospital hos;
-            hos = (Hospital) dao.getHospital(id);
-            session.setAttribute("prohos", hos);
-            rd = sc.getRequestDispatcher("/viewhospital.jsp");
-            rd.forward(request, response);
-        } else if (action.equals("nearest")) {
+        HospitalDAO dao = new HospitalDAO();
+        List<Hospital> listOfHospital = dao.searchHospital(search);
+        session.setAttribute("hospitallist", listOfHospital);
+        rd = sc.getRequestDispatcher("/showhospital.jsp");
+        rd.forward(request, response);
+    }
 
-        } else if (action.equals("update")) {
+    else if (action.equals ( 
+        "viewprohos")) {
+            int id = Integer.parseInt(request.getParameter("id_hospital"));
+        HospitalDAO dao = new HospitalDAO();
+        Hospital hos;
+        hos = (Hospital) dao.getHospital(id);
+        session.setAttribute("prohos", hos);
+        rd = sc.getRequestDispatcher("/viewhospital.jsp");
+        rd.forward(request, response);
+    }
+
+    else if (action.equals ( 
+    
+
+    "nearest")) {
+
+        } else if (action.equals ( 
+        "update")) {
             String name = request.getParameter("name");
-            String address = request.getParameter("address");
-            String website = request.getParameter("website");
-            String admin = request.getParameter("admin");
-            String email = request.getParameter("email");
+        String address = request.getParameter("address");
+        String website = request.getParameter("website");
+        String admin = request.getParameter("admin");
+        String email = request.getParameter("email");
+        int id = Integer.parseInt(request.getParameter("id"));
+        HospitalDAO d = new HospitalDAO();
+        Hospital hosp = new Hospital(id, name, address, website, admin, email);
+        d.updateHospital(hosp);
+        response.sendRedirect("/hospital?action=viewprohos&id_hospital=" + id);
+    }
+
+    else if (action.equals ( 
+        "remove")) {
             int id = Integer.parseInt(request.getParameter("id"));
-            HospitalDAO d = new HospitalDAO();
-            Hospital hosp = new Hospital(id, name, address, website, admin, email);
-            d.updateHospital(hosp);
-            response.sendRedirect("/hospital?action=viewprohos&id_hospital=" + id);
-        } else if (action.equals("remove")) {
-            int id = Integer.parseInt(request.getParameter("id"));
-            HospitalDAO d = new HospitalDAO();
-            d.removeHospital(id);
-            List<Hospital> listofHospital = hospitalDAO.getAllHospital();
-            session.setAttribute("hospitallist", listofHospital);
-            rd = sc.getRequestDispatcher("/showhospital.jsp");
-            rd.forward(request, response);
-        } else if (action.equals("add")) {
+        HospitalDAO d = new HospitalDAO();
+        d.removeHospital(id);
+        List<Hospital> listofHospital = hospitalDAO.getAllHospital();
+        session.setAttribute("hospitallist", listofHospital);
+        rd = sc.getRequestDispatcher("/showhospital.jsp");
+        rd.forward(request, response);
+    }
+
+    else if (action.equals ( 
+        "add")) {
 
             // Hospital object
             Hospital hospital = new Hospital();
 
-            String name = request.getParameter("name");
-            String address = request.getParameter("address");
-            String website = request.getParameter("website");
-            String admin = request.getParameter("admin");
-            String email = request.getParameter("email");
+        String name = request.getParameter("name");
+        String address = request.getParameter("address");
+        String website = request.getParameter("website");
+        String admin = request.getParameter("admin");
+        String email = request.getParameter("email");
 
-            String error = "";
-            if (name.equals("") || address.equals("") || website.equals("")) {
-                error += "Please fill out all required fields.";
-            }
+        String error = "";
+        if (name.equals("") || address.equals("") || website.equals("")) {
+            error += "Please fill out all required fields.";
+        }
 
-            if (error.length() > 0) {
-                request.setAttribute("error", error);
-                rd = sc.getRequestDispatcher("/hospitalreg.jsp");
-                rd.forward(request, response);
-            } else {
+        if (error.length() > 0) {
+            request.setAttribute("error", error);
+            rd = sc.getRequestDispatcher("/hospitalreg.jsp");
+            rd.forward(request, response);
+        } else {
 
-                hospital.setName(name);
-                hospital.setAddress(address);
-                hospital.setWebsite(website);
-                hospital.setAdName(admin);
-                hospital.setAdEmail(email);
+            hospital.setName(name);
+            hospital.setAddress(address);
+            hospital.setWebsite(website);
+            hospital.setAdName(admin);
+            hospital.setAdEmail(email);
 
-                if (hospitalDAO.insertHospital(hospital)) {
+            if (hospitalDAO.insertHospital(hospital)) {
 
 //                    hospital = hospitalDAO.getHospital(hospitalDAO.getIDhospital());
 //                    int id = hospital.getID();
@@ -161,36 +190,42 @@ public class HospitalController extends HttpServlet {
 //                    loc = la.getLatLongPositions(loc);
 //                    System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 //                    System.out.println(loc.getLat() + "xxxxxxxxxxx " + loc.getLng());
-                    List<Hospital> listofHospital = hospitalDAO.getAllHospital();
-                    session.setAttribute("hospitallist", listofHospital);
-                    rd = sc.getRequestDispatcher("/showhospital.jsp");
-                    rd.forward(request, response);
-                } else {
-                    request.setAttribute("error", "There is something wrong when adding to database.");
-                    rd = sc.getRequestDispatcher("/showhospital.jsp");
-                    rd.forward(request, response);
-                }
+                List<Hospital> listofHospital = hospitalDAO.getAllHospital();
+                session.setAttribute("hospitallist", listofHospital);
+                rd = sc.getRequestDispatcher("/showhospital.jsp");
+                rd.forward(request, response);
+            } else {
+                request.setAttribute("error", "There is something wrong when adding to database.");
+                rd = sc.getRequestDispatcher("/showhospital.jsp");
+                rd.forward(request, response);
             }
         }
     }
+}
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+@Override
+        protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(HospitalController.class.getName()).log(Level.SEVERE, null, ex);
+        
+
+} catch (Exception ex) {
+            Logger.getLogger(HospitalController.class
+.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(HospitalController.class.getName()).log(Level.SEVERE, null, ex);
+        
+
+} catch (Exception ex) {
+            Logger.getLogger(HospitalController.class
+.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

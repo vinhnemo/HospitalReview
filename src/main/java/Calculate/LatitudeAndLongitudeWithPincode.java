@@ -40,6 +40,7 @@ public class LatitudeAndLongitudeWithPincode {
 //        System.out.println("Latitude: " + lol.getLat() + " and Longitude: " + lol.getLng());
 //    }
     public Location getLatLongPositions(Location loc) throws Exception {
+        Location loo = loc ;
         int responseCode = 0;
 //       String address= "78 Giai Phong, Phuong Mai Ward, Dong Da District, Ha Noi";
         String address = loc.getAddress();
@@ -61,10 +62,10 @@ public class LatitudeAndLongitudeWithPincode {
                 String latitude = (String) expr.evaluate(document, XPathConstants.STRING);
                 expr = xpath.compile("//geometry/location/lng");
                 String longitude = (String) expr.evaluate(document, XPathConstants.STRING);
-                loc.setLat(latitude);
-                loc.setLng(longitude);
+                loo.setLat(latitude);
+                loo.setLng(longitude);
 
-                return loc;
+                return loo;
             } else {
                 throw new Exception("Error from the API - response status: " + status);
             }
