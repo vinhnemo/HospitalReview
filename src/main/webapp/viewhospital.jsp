@@ -122,20 +122,22 @@
                         </div>
                         <div class="col-md-2 col-sm-12" style="background-color: #FFF;">  
                             <div class="side-doctor">
-                                <% if (patient != null) {%>
+
                                 <div class="side-text"><fmt:message key="addtobookmark"/>:</div>
+                                <% if (patient != null) {%>
                                 <form method="POST" action="controlBookmark">
                                     <input type="hidden" name="pID" value="<%= patient.getID()%>">                      
                                     <input type="hidden" name="hID" value="<%= hos.getID()%>">
                                     <button class="side-button2" value="bookmarkhospital" name="action"><fmt:message key="bookmark"/> </button><hr>
                                 </form> 
+                                <% }%>
                             </div>
-                            <% }%>
+
                         </div>
                         <div class="col-md-2 col-sm-12">
                             <!--edit-->
                             <%if (admin != null) {%>
-                            <form action="hospital" method="POST">
+                            <form action="hospital" method="POST" style="text-align: center">
                                 <div class="form-group">
                                     <label for="name"><fmt:message key="name"/></label>
                                     <input type="name" class="form-control" id="name" name="name" value="<%= hos.getName()%>">
@@ -158,12 +160,12 @@
                                 </div>
                                 <input type="hidden" name="id" value="<%= hos.getID()%>" >
                                 <input type="hidden" name="action" value="update">
-                                <button type="submit" class="btn btn-default"><fmt:message key="edit"/></button>
+                                <button type="submit" class="btn btn-outline-success"><fmt:message key="edit"/></button>
                             </form>
-                            <form action="hospital" method="POST">
+                            <form action="hospital" method="POST" style="padding-top: 10px; text-align: center">
                                 <input type="hidden" name="id" value="<%= hos.getID()%>" >
                                 <input type="hidden" name="action" value="remove">
-                                <button type="submit" class="btn btn-default"><fmt:message key="remove"/></button>
+                                <button type="submit" class="btn btn-outline-success"><fmt:message key="remove"/></button>
                             </form>
                             <% } else {%>
                             <form>
