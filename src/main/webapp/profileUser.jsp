@@ -22,6 +22,7 @@
         <meta content="" name="keywords">
         <meta content="" name="description">
         <title>Doctor Strange | Hospital Review Website</title>
+        <link rel="icon" type="image/png" href="img/Add.png">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -87,7 +88,7 @@
                         <div id="sidebar-wrapper">
                             <ul class="sidebar-nav nav">
                                 <li><h3><fmt:message key="options"/></h3></li>
-                                <li class="active"><a class="general" href="#general" data-toggle="tab"><i class="fa fa-gears"></i><fmt:message key="general"/></a></li>
+                            <li class="active"><a class="general" href="#general" data-toggle="tab"><i class="fa fa-gears"></i><fmt:message key="general"/></a></li>
                             <li><a class="edit" href="#edit" data-toggle="tab"><i class="fa fa-pencil"></i><fmt:message key="edityourprofile"/></a></li>
                             <li><a class="change" href="#change" data-toggle="tab"><i class="fa fa-key"></i><fmt:message key="changepassword"/></a></li>
                                     <%if (admin == null) {%>
@@ -142,7 +143,7 @@
                                                                         <!--use value=user profile trong db -->
                                                                         <tr><td><div class="userinfo"><fmt:message key="firstname"/>: </div></td><td><input class="form-change" type="text" name="fname" value="<%= patient.getFname()%>"></td></tr>
                                                                         <tr><td><div class="userinfo"><fmt:message key="lastname"/>: </div></td><td><input class="form-change" type="text" name="lname" value="<%= patient.getLname()%>"></td></tr>
-                                                                        <tr><td><div class="userinfo"><fmt:message key="email"/>: </div></td><td><input class="form-change" type="email" name="email" value="<%= patient.getEmail()%>"></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="email"/>: </div></td><td><input class="form-change" value="<%= patient.getEmail()%>" disabled></td></tr>
                                                                         <tr><td><div class="userinfo"><fmt:message key="gender"/>: </div></td>
                                                                             <td>                        
                                                                                 <select class="form-change" name="gender">
@@ -266,8 +267,8 @@
                                                             <div class="user-information">
                                                                 <% if (patient != null) {%>
                                                                 <div class="userhead"><fmt:message key="deactivethisaccount"/></div>
-                                                                <form class="change" action="" method="">
-                                                                    <input class="save" type="submit" value="Deactive">
+                                                                <form class="change" action="patient" method="POST">
+                                                                    <input class="save" type="submit" value="Deactive" name="action">
                                                                 </form>
                                                                 <% }%>
                                                             </div>

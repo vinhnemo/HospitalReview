@@ -22,6 +22,7 @@
         <meta content="" name="keywords">
         <meta content="" name="description">
         <title>Doctor Strange | Hospital Review Website</title>
+        <link rel="icon" type="image/png" href="img/Add.png">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -33,57 +34,57 @@
 
     <body>
         <%
-            String mess = (String)request.getAttribute("message");
+            String mess = (String) request.getAttribute("message");
             Message msg = Util.fromJson(mess);
             if (msg == null) {
                 response.sendRedirect("/home.jsp");
             }
         %>
-        
+
         <jsp:include page="header.jsp"></jsp:include>
 
-        <!-- Login Popup -->
-        <!-- Modal -->
-        <div id="myLogin" class="modal fade" role="dialog" tabindex='-1'>
-            <div class="modal-dialog modal-dialog-centered modal-lg">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <section id="formHolder">
-                            <div class="row">
-                                <!-- Brand Box -->
-                                <div class="col-sm-6 brand">
-                                    <a href="home.jsp" class="logo">Doctor <span>STRANGE</span></a>                              
+            <!-- Login Popup -->
+            <!-- Modal -->
+            <div id="myLogin" class="modal fade" role="dialog" tabindex='-1'>
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <section id="formHolder">
+                                <div class="row">
+                                    <!-- Brand Box -->
+                                    <div class="col-sm-6 brand">
+                                        <a href="home.jsp" class="logo">Doctor <span>STRANGE</span></a>                              
+                                    </div>
+                                    <div class="col-sm-6 form">
+                                    </div>
                                 </div>
-                                <div class="col-sm-6 form">
-                                </div>
-                            </div>
-                        </section>
-                    </div> <!-- body -->
+                            </section>
+                        </div> <!-- body -->
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <main id="main">
-            <section id="featured-services">
-                <div class="container" style="background-color: #000;height: 900px;;">
-                   <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-8" style="background-color: #fff; width: 100%; height: 250px; margin-top: 20%;border: 2px solid #18d36e;border-radius: 5px;">
-                        <div class="redirect"> Redirecting...</div>
-                        <div class="thank"><%=msg.getText()%> </div>
-                        <%if (msg.getCode() == 0) { %>
+
+            <main id="main">
+                <section id="featured-services">
+                    <div class="container" style="background-color: #000;height: 900px;;">
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8" style="background-color: #fff; width: 100%; height: 250px; margin-top: 20%;border: 2px solid #18d36e;border-radius: 5px;">
+                                <div class="redirect"> Redirecting...</div>
+                                <div class="thank"><%=msg.getText()%> </div>
+                            <%if (msg.getCode() == 0) { %>
                             <div class="auto-redirect"><a href="/login.jsp"><fmt:message key="forwardEverything.msg1"/></a></div>
-                        <% } else {%>
+                                <% } else {%>
                             <div class="auto-redirect"><a href="/home.jsp"><fmt:message key="forwardEverything.msg2"/></a></div>
-                        <% }%>
+                                <% }%>
+                        </div>
+                        <div class="col-md-2"></div>
                     </div>
-                    <div class="col-md-2"></div>
-                   </div>
                 </div>   
             </section>
         </main>
-       
+
 
         <script src="lib/jquery/jquery.min.js"></script>
         <script src="lib/jquery/jquery-migrate.min.js"></script>
@@ -105,12 +106,16 @@
         <script src="js/main.js"></script>
         <script src="js/modal.js"></script>
         <script type="text/javascript">
-            $(document).ready(function (event){
-                <%if (msg.getCode() == 0) { %>
-                    setTimeout(function(){location.href='login'}, 5000);
-                <% } else {%>
-                    setTimeout(function(){location.href='home.jsp'}, 5000);
-                <% }%>
+            $(document).ready(function (event) {
+            <%if (msg.getCode() == 0) { %>
+                setTimeout(function () {
+                    location.href = 'login'
+                }, 5000);
+            <% } else {%>
+                setTimeout(function () {
+                    location.href = 'home.jsp'
+                }, 5000);
+            <% }%>
             });
         </script>
 

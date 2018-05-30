@@ -15,6 +15,7 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +26,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author NemoVinh
  */
-public class PatientController extends HttpServlet {
+@WebServlet("/profile")
+public class ProfileController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -52,7 +54,7 @@ public class PatientController extends HttpServlet {
         String action = request.getParameter("action");
 
         Cookie cookies[] = request.getCookies();
-        
+
         Patient patient = null;
         Admin admin = null;
 
@@ -70,7 +72,7 @@ public class PatientController extends HttpServlet {
         } else if (session.getAttribute("admin") != null) {
             admin = (Admin) session.getAttribute("admin");
         }
-        
+
         if (patient == null && admin == null) {
             response.sendError(404);
         } else if (patient != null) {
@@ -80,16 +82,15 @@ public class PatientController extends HttpServlet {
                 rd.forward(request, response);
             } else if (action.equals("Save change")) {
                 //get input
-                int id = Integer.parseInt(request.getParameter("id"));
+                int id = patient.getID();
                 String fname = request.getParameter("fname");
                 String lname = request.getParameter("lname");
-                String email = request.getParameter("email");
                 String address = request.getParameter("address");
                 String sex = request.getParameter("gender");
                 String language = request.getParameter("language");
 
                 String error = "";
-                if (fname == null || lname == null || email == null || address == null || sex == null || fname.equals("") || lname.equals("") || email.equals("") || address.equals("") || sex.equals("")) {
+                if (fname == null || lname == null || address == null || sex == null || fname.equals("") || lname.equals("") || address.equals("") || sex.equals("")) {
                     error = "Please fill out all required fields.";
                 }
 
@@ -104,7 +105,7 @@ public class PatientController extends HttpServlet {
                     patient.setID(id);
                     patient.setFname(fname);
                     patient.setLname(lname);
-                    patient.setEmail(email);
+                    patient.setEmail(patient.getEmail());
                     patient.setAddress(address);
                     patient.setSex(sex);
                     patient.setLang(language);
@@ -115,10 +116,26 @@ public class PatientController extends HttpServlet {
                     rd = sc.getRequestDispatcher("/profileUser.jsp");
                     rd.forward(request, response);
                 }
-            } // remove patient
+            } else if (action.equals("Deactive")) {
+
+                PatientDAO.updateStatus(patient.getID(), "deactive");
+                // remove session
+                if (session.getAttribute("patient") != null) {
+                    session.removeAttribute("patient");
+                }
+                //remove cokie
+                if (cookies != null) {
+                    for (int i = 0; i < cookies.length; i++) {
+                        cookies[i].setMaxAge(0);
+                        response.addCookie(cookies[i]);
+                    }
+                }
+                response.sendRedirect("/home.jsp");
+
+            }// remove patient
             else if (action.equals("deletePatient")) {
 
-                if (PatientDAO.removePatient((int) patient.getID())) {
+                if (PatientDAO.removePatient(patient.getID())) {
                     // remove session
                     if (session.getAttribute("patient") != null) {
                         session.removeAttribute("patient");
@@ -155,7 +172,7 @@ public class PatientController extends HttpServlet {
                     PatientDAO.updatePassword(patient.getID(), BCrypt.hashpw(pass, BCrypt.gensalt()));
                     patient = PatientDAO.getPatient(patient.getID());
                     session.setAttribute("patient", patient);
-                    
+
                     rd = sc.getRequestDispatcher("/profileUser.jsp");
                     rd.forward(request, response);
                 }
@@ -184,7 +201,7 @@ public class PatientController extends HttpServlet {
                     AdminDAO.updatePassword(admin.getID(), BCrypt.hashpw(pass, BCrypt.gensalt()));
                     admin = AdminDAO.getAdmin(admin.getID());
                     session.setAttribute("admin", admin);
-                    
+
                     rd = sc.getRequestDispatcher("/profileUser.jsp");
                     rd.forward(request, response);
                 }

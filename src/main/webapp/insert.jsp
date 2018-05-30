@@ -22,6 +22,7 @@
         <meta content="" name="keywords">
         <meta content="" name="description">
         <title>Doctor Strange | Hospital Review Website</title>
+        <link rel="icon" type="image/png" href="img/Add.png">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -72,19 +73,19 @@
             }
         %>
         <jsp:include page="header.jsp"></jsp:include>
-        
-        <main id="main">
-            <!-- De choi thoi -->
-            <div class="nothing-special-dark"></div>
-            <div class="nothing-special-light"></div>
-            <section class="card-section-imagia">
-                <div class="container">
-                    <div class="row">
 
-                        <!--edit-->
-                        <form action="admin" method="POST">
-                            <div class="form-group">
-                                <label for="name"><fmt:message key="name"/></label>
+            <main id="main">
+                <!-- De choi thoi -->
+                <div class="nothing-special-dark"></div>
+                <div class="nothing-special-light"></div>
+                <section class="card-section-imagia">
+                    <div class="container">
+                        <div class="row">
+
+                            <!--edit-->
+                            <form action="admin" method="POST">
+                                <div class="form-group">
+                                    <label for="name"><fmt:message key="name"/></label>
                                 <input type="text" class="form-control" id="name" name="name" value="">
                             </div>
                             <div class="form-group">

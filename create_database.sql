@@ -162,7 +162,28 @@ CREATE TABLE `coordinate` (
   PRIMARY KEY (`c_id`),
   KEY `h_id` (`h_id`),
   CONSTRAINT `coordinate_ibfk_1` FOREIGN KEY (`h_id`) REFERENCES `hospital` (`h_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+
+CREATE TABLE `speciality` (
+  `s_id` int(11) NOT NULL AUTO_INCREMENT,
+  `specialty` varchar(50) NOT NULL,
+  `specific_specialty` varchar(50) NOT NULL,
+  PRIMARY KEY (`s_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+-- ------------------------------------------------------
+-- ----------------------------------
+-- ------------------------------------------------------
+-- -----------------------------------------------
+-- ----------Database Patient---------------------
+INSERT INTO `patient` (`p_id`, `p_fname`, `p_lname`, `p_gender`, `email`, `password`, `p_address`, `languages`, `status`) VALUES ('1', 'Pham', 'Duyet', 'male', 'duyetphamm@gmail.com', '$2a$10$fDFeaiMySVovHyCxOdty9OsHey93mfDjZBngIByCE1S0oUM3prS5y', 'Tran Cao Van', 'en_US', 'active');
+INSERT INTO `patient` (`p_id`, `p_fname`, `p_lname`, `p_gender`, `email`, `password`, `p_address`, `languages`, `status`) VALUES ('2', 'Phan', 'Hung', 'male', 'dtpm7777777@gmail.com', '$2a$10$fDFeaiMySVovHyCxOdty9OsHey93mfDjZBngIByCE1S0oUM3prS5y', 'Bui Thi Xuan', 'en_US', 'active');
+
 -- ------------------------------------------------------
 -- ----------------------------------
 -- ------------------------------------------------------
@@ -203,4 +224,106 @@ INSERT INTO `hospital` (`h_name`, `h_address`, `h_website`, `adname`, `ademail`)
 INSERT INTO `hospital` (`h_name`, `h_address`, `h_website`, `adname`, `ademail`) VALUES ('103', '261 Phung Hung.Phuc La Ward,Ha Dong District, Ha Noi', 'http://benhvien103.vn/', 'Son Nguyen', 'bv103@gmail.ocm');
 INSERT INTO `hospital` (`h_name`, `h_address`, `h_website`, `adname`, `ademail`) VALUES ('Tu Du', '284 Cong Quynh, Pham Ngu Lao Ward,Distric 1,Ho Chi Minh City', 'http://tudu.com.vn/', 'Le Duc', 'tudu@tuduhos.com');
 INSERT INTO `hospital` (`h_name`, `h_address`, `h_website`, `adname`, `ademail`) VALUES ('Viet Duc', '40 Trang Thi, Hang Bong Ward,Hoan Kiem District ,Ha Noi', 'http://benhvienvietduc.org/', 'Bao Tran', 'vietduc@vietducvn.com');
+
+---------------Database Specialty
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('1', 'Gastroenterology', 'Gastrointestinal');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('2', 'Gastroenterology', 'Dietician');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('3', 'Gastroenterology', 'Endoscopy');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('4', 'Gastroenterology', 'Digestion');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('5', 'General Surgery', 'Rheumatology');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('6', 'General Surgery', 'Dermatology');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('7', 'General Surgery', 'Physiotherapy');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('8', 'Obstetric', 'Obstetric');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('9', 'Obstetric', 'Fertility specialist');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('10', 'General Internal', 'Cardiology');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('11', 'General Internal', 'Gastrointestinal');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('12', 'General Internal', 'Endoscopy');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('13', 'General Internal', 'Nephrology');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('14', 'General Internal', 'Pulmonology');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('15', 'General Internal', 'Infectious Disease');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('16', 'Neurology', 'Neurosurgery');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('17', 'Neurology', 'Neurological');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('18', 'Psychiatrist', 'Psychiatrist');
+
+-- ------------------------------------------------------
+-- ----------------------------------
+-- ------------------------------------------------------
+-- -----------------------------------------------
+-- ----------Doctor Review---------------------
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('1', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('2', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('3', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('4', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('5', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('6', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('7', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('8', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('9', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('10', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('11', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('12', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('13', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('14', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('15', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('16', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('17', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('18', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('19', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('20', '1');
+
+-- ------------------------------------------------------
+-- ----------------------------------
+-- ------------------------------------------------------
+-- -----------------------------------------------
+-- ----------Comment---------------------
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('1', 'good', '1', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('2', 'bad', '2', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('3', 'good', '3', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('4', 'bad', '4', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('5', 'good', '5', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('6', 'bad', '6', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('7', 'good', '7', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('8', 'bad', '8', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('9', 'good', '9', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('10', 'bad', '10', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('11', 'good', '11', '2');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('12', 'good', '12', '2');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('13', 'bad', '13', '2');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('14', 'good', '14', '2');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('15', 'good', '15', '2');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('16', 'bad', '16', '2');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('17', 'good', '17', '2');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('18', 'good', '18', '2');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('19', 'bad', '19', '2');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('20', 'good', '20', '2');
+
+-- ------------------------------------------------------
+-- ----------------------------------
+-- ------------------------------------------------------
+-- -----------------------------------------------
+-- ----------Rate---------------------
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('1', '1', '1');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('2', '2', '2');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('3', '3', '3');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('4', '4', '4');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('5', '5', '5');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('6', '1', '6');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('7', '2', '7');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('8', '3', '8');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('9', '4', '9');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('10', '5', '10');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('11', '1', '11');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('12', '2', '12');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('13', '3', '13');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('14', '4', '14');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('15', '5', '15');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('16', '1', '16');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('17', '2', '17');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('18', '3', '18');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('19', '4', '19');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('20', '5', '20');
+
+
+
+
 

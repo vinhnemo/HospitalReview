@@ -45,6 +45,10 @@
         }
         if (session.getAttribute("patient") != null) {
             patient = (Patient) session.getAttribute("patient");
+    %>
+    <fmt:setLocale value="<%=patient.getLang()%>" scope="session"/>
+    <fmt:setBundle basename="text" />
+    <%
         } else if (session.getAttribute("admin") != null) {
             admin = (Admin) session.getAttribute("admin");
         }
@@ -83,7 +87,7 @@
                                 </li>
                             </ul> 
                         </li>
-                        <li><a href="#"><fmt:message key="appt"/></a></li>
+                        <li><a href="appointmentRequest.jsp"><fmt:message key="appt"/></a></li>
                         <li class="menu-has-children"><a href="#"><fmt:message key="language"/></a>
                             <ul>
                                 <li><a href="<%= javax.servlet.http.HttpUtils.getRequestURL(request)%>?language=en_US">English</a></li>
@@ -95,14 +99,14 @@
                         <% if (patient != null) {%>
                         <li class="menu-has-children menu-active"><a href=""><fmt:message key="greeting"/>, <%=patient.getFname()%> <%=patient.getLname()%></a>
                             <ul>
-                                <li><a href="patient"><fmt:message key="yourprofile"/></a></li>
+                                <li><a href="profile"><fmt:message key="yourprofile"/></a></li>
                                 <li><a href="logout"><fmt:message key="signout"/></a></li>
                             </ul>
                         </li>
                         <% } else if (admin != null) {%>
                         <li class="menu-has-children menu-active"><a href=""><fmt:message key="greeting"/>, <%=admin.getEmail()%></a>
                             <ul>
-                                <li><a href="patient"><fmt:message key="yourprofile"/></a></li>
+                                <li><a href="profile"><fmt:message key="yourprofile"/></a></li>
                                 <li><a href="logout"><fmt:message key="signout"/></a></li>
                             </ul>
                         </li>
@@ -137,7 +141,7 @@
 
                                     <div class="success-msg">
                                         <p><fmt:message key="loginsuccess"/></p>
-                                        <div class="success-btn"><a href="profileUser.jsp" class="profile"><fmt:message key="yourprofile"/></a></div>
+                                        <div class="success-btn"><a href="profile" class="profile"><fmt:message key="yourprofile"/></a></div>
                                         <div class="success-btn"><a href="home.jsp" class="btn-info"><fmt:message key="backtohomepage"/></a></div>
                                     </div>
                                 </div>

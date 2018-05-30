@@ -28,6 +28,6 @@ public class Database {
     public static void main(String[] args) {
         //String hash = Util.generateRandomStr(8);
         //PatientDAO.updateToken(1, BCrypt.hashpw(hash, Info.HASH_SALT));
-        //System.out.println(PatientDAO.getTokenfromId(1));
+        System.out.println(Database.getConnection());
     }
 }

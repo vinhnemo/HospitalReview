@@ -45,6 +45,9 @@ public class Registration extends HttpServlet {
             if (PatientDAO.isExistUser(email)) {
                 msg.setCode(-1);
                 msg.setText("Email has already registered");
+            } else if (AdminDAO.isExistUser(email)) {
+                msg.setCode(-1);
+                msg.setText("Email has already registered");
             } else {
                 msg.setCode(0);
                 msg.setText("Email is available");

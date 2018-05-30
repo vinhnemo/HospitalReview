@@ -309,7 +309,7 @@ public class PatientDAO {
         // Connect to database
         Connection connection = Database.getConnection();
 
-        String query = "DELETE FROM patient WHERE p_id = ?;";
+        String query = "DELETE FROM token WHERE p_id = ?; DELETE FROM patient WHERE p_id = ?;";
 
         try {
             PreparedStatement ps = connection.prepareCall(query);
