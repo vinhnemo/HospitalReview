@@ -176,7 +176,13 @@ CREATE TABLE `speciality` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-
+-- ------------------------------------------------------
+-- ----------------------------------
+-- ------------------------------------------------------
+-- -----------------------------------------------
+-- ----------Database Patient---------------------
+INSERT INTO `patient` (`p_id`, `p_fname`, `p_lname`, `p_gender`, `email`, `password`, `p_address`, `languages`, `status`) VALUES ('1', 'Pham', 'Duyet', 'male', 'duyetphamm@gmail.com', '$2a$10$fDFeaiMySVovHyCxOdty9OsHey93mfDjZBngIByCE1S0oUM3prS5y', 'Tran Cao Van', 'en_US', 'active');
+INSERT INTO `patient` (`p_id`, `p_fname`, `p_lname`, `p_gender`, `email`, `password`, `p_address`, `languages`, `status`) VALUES ('2', 'Phan', 'Hung', 'male', 'dtpm7777777@gmail.com', '$2a$10$fDFeaiMySVovHyCxOdty9OsHey93mfDjZBngIByCE1S0oUM3prS5y', 'Bui Thi Xuan', 'en_US', 'active');
 
 -- ------------------------------------------------------
 -- ----------------------------------
@@ -265,3 +271,28 @@ INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('18', '1');
 INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('19', '1');
 INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('20', '1');
 
+-- ------------------------------------------------------
+-- ----------------------------------
+-- ------------------------------------------------------
+-- -----------------------------------------------
+-- ----------Comment---------------------
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('1', 'good', '1', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('2', 'bad', '2', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('3', 'good', '3', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('4', 'bad', '4', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('5', 'good', '5', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('6', 'bad', '6', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('7', 'good', '7', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('8', 'bad', '8', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('9', 'good', '9', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('10', 'bad', '10', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('11', 'good', '11', '2');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('12', 'good', '12', '2');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('13', 'bad', '13', '2');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('14', 'good', '14', '2');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('15', 'good', '15', '2');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('16', 'bad', '16', '2');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('17', 'good', '17', '2');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('18', 'good', '18', '2');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('19', 'bad', '19', '2');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('20', 'good', '20', '2');
