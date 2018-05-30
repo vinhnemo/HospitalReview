@@ -162,7 +162,7 @@ CREATE TABLE `coordinate` (
   PRIMARY KEY (`c_id`),
   KEY `h_id` (`h_id`),
   CONSTRAINT `coordinate_ibfk_1` FOREIGN KEY (`h_id`) REFERENCES `hospital` (`h_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- ------------------------------------------------------
 -- ----------------------------------
 -- ------------------------------------------------------
@@ -204,3 +204,28 @@ INSERT INTO `hospital` (`h_name`, `h_address`, `h_website`, `adname`, `ademail`)
 INSERT INTO `hospital` (`h_name`, `h_address`, `h_website`, `adname`, `ademail`) VALUES ('Tu Du', '284 Cong Quynh, Pham Ngu Lao Ward,Distric 1,Ho Chi Minh City', 'http://tudu.com.vn/', 'Le Duc', 'tudu@tuduhos.com');
 INSERT INTO `hospital` (`h_name`, `h_address`, `h_website`, `adname`, `ademail`) VALUES ('Viet Duc', '40 Trang Thi, Hang Bong Ward,Hoan Kiem District ,Ha Noi', 'http://benhvienvietduc.org/', 'Bao Tran', 'vietduc@vietducvn.com');
 
+-- ------------------------------------------------------
+-- ----------------------------------
+-- ------------------------------------------------------
+-- -----------------------------------------------
+-- ----------Doctor Review---------------------
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('1', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('2', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('3', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('4', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('5', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('6', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('7', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('8', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('9', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('10', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('11', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('12', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('13', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('14', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('15', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('16', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('17', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('18', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('19', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('20', '1');
