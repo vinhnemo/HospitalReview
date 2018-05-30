@@ -153,7 +153,6 @@
                                                 <div class="footer-imagia">
                                                     <div class="text-center">
                                                         <input type="hidden" name="id_doctor" value="" >
-                                                        <input class="card-button" type="submit" value="Make Appointment">
                                                     </div>
                                                     <div class="social-imagia text-center"><a href="/hospital?action=viewprohos&id_hospital=<%= h.getID()%>">View Profile</a></div>
                                                 </div>

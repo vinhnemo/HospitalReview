@@ -66,24 +66,25 @@
 
         %> 
         <jsp:include page="header.jsp"></jsp:include>
-        
-        <main id="main">
-            <!-- De choi thoi -->
-            <div class="nothing-special-dark"></div>
-            <div class="nothing-special-light"></div>
-            <section class="card-section-imagia">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-7 col-sm-7" style="background-color: #eee; margin-right: 10px;">
-                            <div class="doctor-name">
-                                <div class="row" style="margin-top: 40px;">             
-                                    <div class="col-md-4 col-sm-10">
-                                        <div class="doctor-pic">
-                                            <img src="" alt="">
+
+            <main id="main">
+                <!-- De choi thoi -->
+                <div class="nothing-special-dark"></div>
+                <div class="nothing-special-light"></div>
+                <section class="card-section-imagia">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4 col-sm-12" style="background-color: #eee; margin-right: 10px;">
+                                <div class="doctor-name">
+                                    <div class="row" style="margin-top: 40px;">             
+                                        <div class="col-md-4 col-sm-10">
+                                            <div class="doctor-pic">
+                                                <img src="" alt="">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-7 col-sm-10">
-                                        <h3 class="name"><%= hos.getName()%></h3>
+                                        <div class="col-md-7 col-sm-10">
+                                            <h3 class="name"><%= hos.getName()%></h3>
                                         <div class="doctor-text"> DOB: 11-01-1997<br> <fmt:message key="address"/> <%= hos.getAddress()%></div>
                                     </div>
                                 </div>
@@ -91,60 +92,58 @@
                             <div class="doctor-information">
                                 <div class="head"><fmt:message key="personalinformation"/></div><br> 
                                 <table>
-                                    <!--                                    <tr><td><div class="info">Working Place: </div></td><td> <div class="info-text">Abc hospital</div></td></tr>
-                                                                        <tr><td><div class="info">Speciality: </div></td><td> <div class="info-text">Neurology</div></td></tr>-->
                                     <tr><td><div class="info"><fmt:message key="hospitaladminname"/> :  </div></td><td> <div class="info-text"><%= hos.getAdName()%> </div></td></tr>
                                     <tr><td><div class="info"><fmt:message key="hospitaladminemail"/>: </div></td><td> <div class="info-text"><%= hos.getAdEmail()%></div></div></td></tr>
-                                    <tr><td><div class="info"><fmt:message key="website"/> : </div></td><td> <div class="info-text"><%= hos.getWebsite()%></div></div></td></tr>
-                                    <!--                                    <tr><td><div class="info">Language: </div></td><td> <div class="info-text"></div></div></td></tr>
-                                                                        <tr><td><div class="info">Work-hour: </div></td><td> <div class="info-text"></div></div></td></tr>-->
+                                    <tr><td><div class="info"><fmt:message key="website"/> : </div></td><td> <div class="info-text"><%= hos.getWebsite()%></div></div></td></tr>               
                                 </table>
                             </div>
                         </div>
+                        <div class="col-md-2 col-sm-12" style="background-color: #FFF;">  
+                            <div class="side-doctor">
+                                <div class="side-text"><fmt:message key="addtobookmark"/>:</div>
+                                <form method="POST" action="controlBookmark">
+                                    <input type="hidden" name="pID" value="<%= patient.getID()%>">                      
+                                    <input type="hidden" name="hID" value="<%= hos.getID()%>">
+                                    <button class="side-button2" value="bookmarkhospital" name="action"><fmt:message key="bookmark"/> </button><hr>
+                                </form> 
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-12">
+                            <!--edit-->
 
+                            <form action="hospital" method="POST">
+                                <div class="form-group">
+                                    <label for="name"><fmt:message key="name"/></label>
+                                    <input type="name" class="form-control" id="name" name="name" value="<%= hos.getName()%>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="address"><fmt:message key="address"/></label>
+                                    <input type="address" class="form-control" id="address"  name="address" value="<%= hos.getAddress()%>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="website"><fmt:message key="website"/></label>
+                                    <input type="website" class="form-control" id="website" name="website" value="<%= hos.getWebsite()%>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="name"><fmt:message key="hospitaladminname"/></label>
+                                    <input type="name" class="form-control" id="name" name="admin" value="<%= hos.getAdName()%>" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="email"><fmt:message key="hospitaladminemail"/> </label>
+                                    <input type="email" class="form-control" id="email" name="email" value="<%= hos.getAdEmail()%>">
+                                </div>
+                                <input type="hidden" name="id" value="<%= hos.getID()%>" >
+                                <input type="hidden" name="action" value="update">
+                                <button type="submit" class="btn btn-default"><fmt:message key="edit"/></button>
+                            </form>
+                            <form action="hospital" method="POST">
+                                <input type="hidden" name="id" value="<%= hos.getID()%>" >
+                                <input type="hidden" name="action" value="remove">
+                                <button type="submit" class="btn btn-default"><fmt:message key="remove"/></button>
+                            </form>       
+                        </div>
                     </div>
                 </div>
-
-
-
-
-                <!--edit-->
-
-                <form action="hospital" method="POST">
-                    <div class="form-group">
-                        <label for="name"><fmt:message key="name"/></label>
-                        <input type="name" class="form-control" id="name" name="name" value="<%= hos.getName()%>">
-                    </div>
-                    <div class="form-group">
-                        <label for="address"><fmt:message key="address"/></label>
-                        <input type="address" class="form-control" id="address"  name="address" value="<%= hos.getAddress()%>">
-                    </div>
-                    <div class="form-group">
-                        <label for="website"><fmt:message key="website"/></label>
-                        <input type="website" class="form-control" id="website" name="website" value="<%= hos.getWebsite()%>">
-                    </div>
-                    <div class="form-group">
-                        <label for="name"><fmt:message key="hospitaladminname"/></label>
-                        <input type="name" class="form-control" id="name" name="admin" value="<%= hos.getAdName()%>" >
-                    </div>
-                    <div class="form-group">
-                        <label for="email"><fmt:message key="hospitaladminemail"/> </label>
-                        <input type="email" class="form-control" id="email" name="email" value="<%= hos.getAdEmail()%>">
-                    </div>
-                    <input type="hidden" name="id" value="<%= hos.getID()%>" >
-                    <input type="hidden" name="action" value="update">
-                    <button type="submit" class="btn btn-default"><fmt:message key="edit"/></button>
-                </form>
-                <form action="hospital" method="POST">
-                    <input type="hidden" name="id" value="<%= hos.getID()%>" >
-                    <input type="hidden" name="action" value="remove">
-                    <button type="submit" class="btn btn-default"><fmt:message key="remove"/></button>
-                </form>       
-                <form method="POST" action="controlBookmark">
-                    <input type="hidden" name="pID" value="<%= patient.getID()%>">                      
-                    <input type="hidden" name="hID" value="<%= hos.getID()%>">
-                    <button class="side-button2" value="bookmarkhospital" name="action"><fmt:message key="bookmark"/> </button><hr>
-                </form> 
                 <!--end of edit-->
             </section>
         </main>
@@ -237,7 +236,7 @@
         <script src="contactform/contactform.js"></script>
 
         <script src="js/main.js"></script>
-        
+
 
 
     </body>
