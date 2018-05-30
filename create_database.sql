@@ -296,3 +296,34 @@ INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('17', 'good'
 INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('18', 'good', '18', '2');
 INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('19', 'bad', '19', '2');
 INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('20', 'good', '20', '2');
+
+-- ------------------------------------------------------
+-- ----------------------------------
+-- ------------------------------------------------------
+-- -----------------------------------------------
+-- ----------Rate---------------------
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('1', '1', '1');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('2', '2', '2');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('3', '3', '3');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('4', '4', '4');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('5', '5', '5');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('6', '1', '6');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('7', '2', '7');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('8', '3', '8');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('9', '4', '9');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('10', '5', '10');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('11', '1', '11');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('12', '2', '12');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('13', '3', '13');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('14', '4', '14');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('15', '5', '15');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('16', '1', '16');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('17', '2', '17');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('18', '3', '18');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('19', '4', '19');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('20', '5', '20');
+
+
+
+
+
