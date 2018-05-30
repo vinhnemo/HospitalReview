@@ -26,6 +26,6 @@ public class Info {
     public static final String RESET_PASSWORD = "resetPassword";
     public static final String ACTIVATION = "activation";
     public static final String HASH_SALT = "$2a$10$UFO9GgNQS7kgpN4v8cY0BO";
-    public static final String VERIFY_SITE = "http://35.198.204.80/verify";
+    public static final String VERIFY_SITE = "http://google.iugt.co/verify";
     public static final String schemaname  = "ppl_hopital_system"; // nho dien vao
 }

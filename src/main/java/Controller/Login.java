@@ -108,7 +108,7 @@ public class Login extends HttpServlet {
                         session.setAttribute("admin", admin);
                     } else {
 
-/*                        ************************load location************************ xin 1 it speed
+//*                     ************************load location************************ xin 1 it speed
                         HospitalDAO hospitalDAO = new HospitalDAO();
                         List<Hospital> listofHospital = hospitalDAO.getAllHospital();
                         connectpython con = new connectpython();
