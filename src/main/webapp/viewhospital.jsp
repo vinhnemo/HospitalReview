@@ -33,6 +33,33 @@
         <link rel="stylesheet" href="lib/form/sidebar.css">
         <link rel="stylesheet" href="lib/form/form.css">
         <link rel="stylesheet" href="lib/form/profile.css">
+
+        <!-- Dung de no o duoi body -->
+        <script src="lib/jquery/jquery.min.js"></script>
+        <script src="lib/jquery/jquery-migrate.min.js"></script>
+        <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/flexslider/jquery.flexslider-min.js"></script>
+        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+        <script src="lib/superfish/hoverIntent.js"></script>
+        <script src="lib/superfish/superfish.min.js"></script>
+        <script src="lib/wow/wow.min.js"></script>
+        <script src="lib/form/rating.js"></script>
+        <script src="lib/form/side.js"></script>
+        <script src="js/main.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/wow/wow.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/counterup/counterup.min.js"></script>
+        <script src="lib/isotope/isotope.pkgd.min.js"></script>
+        <script src="lib/lightbox/js/lightbox.min.js"></script>
+        <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
+        <script src="lib/anime/anime.min.js"></script>
+
+        <script src="contactform/contactform.js"></script>
+
+        <script src="js/main.js"></script>
+        <script src="js/modal.js"></script>
     </head>
 
     <body>
@@ -58,11 +85,6 @@
             }
 
             Hospital hos = (Hospital) session.getAttribute("prohos");
-            ////            Doctor doc;
-            //            int i = 1;
-            //            HospitalDAO dao  = new HospitalDAO();
-            //            hos = (Hospital) dao.getHospital(i); 
-
 
         %> 
         <jsp:include page="header.jsp"></jsp:include>
@@ -100,6 +122,7 @@
                         </div>
                         <div class="col-md-2 col-sm-12" style="background-color: #FFF;">  
                             <div class="side-doctor">
+                                <% if (patient != null) {%>
                                 <div class="side-text"><fmt:message key="addtobookmark"/>:</div>
                                 <form method="POST" action="controlBookmark">
                                     <input type="hidden" name="pID" value="<%= patient.getID()%>">                      
@@ -107,10 +130,11 @@
                                     <button class="side-button2" value="bookmarkhospital" name="action"><fmt:message key="bookmark"/> </button><hr>
                                 </form> 
                             </div>
+                            <% }%>
                         </div>
                         <div class="col-md-2 col-sm-12">
                             <!--edit-->
-
+                            <%if (admin != null) {%>
                             <form action="hospital" method="POST">
                                 <div class="form-group">
                                     <label for="name"><fmt:message key="name"/></label>
@@ -140,7 +164,31 @@
                                 <input type="hidden" name="id" value="<%= hos.getID()%>" >
                                 <input type="hidden" name="action" value="remove">
                                 <button type="submit" class="btn btn-default"><fmt:message key="remove"/></button>
-                            </form>       
+                            </form>
+                            <% } else {%>
+                            <form>
+                                <div class="form-group">
+                                    <label for="name"><fmt:message key="name"/></label>
+                                    <input type="name" class="form-control" id="name" name="name" value="<%= hos.getName()%>" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address"><fmt:message key="address"/></label>
+                                    <input type="address" class="form-control" id="address"  name="address" value="<%= hos.getAddress()%>" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="website"><fmt:message key="website"/></label>
+                                    <input type="website" class="form-control" id="website" name="website" value="<%= hos.getWebsite()%>" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name"><fmt:message key="hospitaladminname"/></label>
+                                    <input type="name" class="form-control" id="name" name="admin" value="<%= hos.getAdName()%>" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email"><fmt:message key="hospitaladminemail"/> </label>
+                                    <input type="email" class="form-control" id="email" name="email" value="<%= hos.getAdEmail()%>" disabled>
+                                </div>
+                            </form>
+                            <% }%>
                         </div>
                     </div>
                 </div>
@@ -204,39 +252,6 @@
                 </div>
             </div>
         </footer>
-
-
-        <script src="lib/jquery/jquery.min.js"></script>
-        <script src="lib/jquery/jquery-migrate.min.js"></script>
-        <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/flexslider/jquery.flexslider-min.js"></script>
-        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-        <script src="lib/superfish/hoverIntent.js"></script>
-        <script src="lib/superfish/superfish.min.js"></script>
-        <script src="lib/wow/wow.min.js"></script>
-        <script src="lib/form/rating.js"></script>
-        <script src="lib/form/side.js"></script>
-        <script src="js/main.js"></script>
-        <script src="lib/jquery/jquery.min.js"></script>
-        <script src="lib/jquery/jquery-migrate.min.js"></script>
-        <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/superfish/hoverIntent.js"></script>
-        <script src="lib/superfish/superfish.min.js"></script>
-        <script src="lib/wow/wow.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/counterup/counterup.min.js"></script>
-        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="lib/isotope/isotope.pkgd.min.js"></script>
-        <script src="lib/lightbox/js/lightbox.min.js"></script>
-        <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
-        <script src="lib/anime/anime.min.js"></script>
-
-        <script src="contactform/contactform.js"></script>
-
-        <script src="js/main.js"></script>
-
 
 
     </body>

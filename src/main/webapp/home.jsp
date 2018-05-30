@@ -53,10 +53,6 @@
             }
             if (session.getAttribute("patient") != null) {
                 patient = (Patient) session.getAttribute("patient");
-        %>
-        <fmt:setLocale value="<%=patient.getLang()%>" scope="session"/>
-        <fmt:setBundle basename="text" />
-        <%
             } else if (session.getAttribute("admin") != null) {
                 admin = (Admin) session.getAttribute("admin");
             }

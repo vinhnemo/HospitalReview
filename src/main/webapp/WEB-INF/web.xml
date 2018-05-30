@@ -29,10 +29,6 @@
         <servlet-class>Controller.Login</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PatientController</servlet-name>
-        <servlet-class>Controller.PatientController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>controlBookmark</servlet-name>
         <servlet-class>Controller.controlBookmark</servlet-class>
     </servlet>
@@ -76,10 +72,6 @@
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PatientController</servlet-name>
-        <url-pattern>/patient</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>controlBookmark</servlet-name>

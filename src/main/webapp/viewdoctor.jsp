@@ -140,6 +140,7 @@
                                 </form>
                                 <% }%>
 
+                                <% if (admin != null) {%>
                                 <form method="post" action="activeReview" > 
                                     <div class="row" >  
                                         <div class="col-md-6" style="margin-left: -5%;">
@@ -156,7 +157,8 @@
                                         </div>
 
                                     </div>
-                                </form> 
+                                </form>
+                                <% }%>
                                 <%
                                     DoctorDAO doctorDAO = new DoctorDAO();
                                     Doctor doctor = doctorDAO.getDoctorReview(doc.getID());
@@ -276,76 +278,76 @@
                     </div>
                 </div>
                 <div class="container">
-                <div class="comment">
-                    <div class="row">
-                        <div class="col-md-10 col-sm-12">
-                            <h3 class="page-header"><fmt:message key="comment"/></h3>
-                            <hr>
-                            <section class="comment-list">
-                                <!-- for commentDAO blah blah { -->
-                                <%
-                                    if (listOfComment.size() > 0) {
-                                        for (Comment comment : listOfComment) {
-                                            Patient p = PatientDAO.getPatient(comment.getpID());
+                    <div class="comment">
+                        <div class="row">
+                            <div class="col-md-10 col-sm-12">
+                                <h3 class="page-header"><fmt:message key="comment"/></h3>
+                                <hr>
+                                <section class="comment-list">
+                                    <!-- for commentDAO blah blah { -->
+                                    <%
+                                        if (listOfComment.size() > 0) {
+                                            for (Comment comment : listOfComment) {
+                                                Patient p = PatientDAO.getPatient(comment.getpID());
 
-                                %>
-                                <article class="row">
-                                    <div class="col-md-2 col-sm-2">
-                                        <figure class="thumbnail">
-                                            <figcaption class="text-center"><%= p.getFname() + " " + p.getLname()%></figcaption>
-                                        </figure>
-                                    </div>
-                                    <div class="col-md-8 col-sm-9" style="margin-left:20px; ">
-                                        <div class="panel panel-default arrow left">
-                                            <div class="panel-body">
-                                                <header class="text-left">
-                                                    <div class="comment-user"><i class="fa fa-user"></i> <%= p.getFname() + " " + p.getLname()%> </div> 
-                                                    <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> May 30, 2018</time>
-                                                </header> 
-                                                <div class="comment-post">
-                                                    <p>
-                                                        <%= comment.getComment()%>
-                                                    </p>
+                                    %>
+                                    <article class="row">
+                                        <div class="col-md-2 col-sm-2">
+                                            <figure class="thumbnail">
+                                                <figcaption class="text-center"><%= p.getFname() + " " + p.getLname()%></figcaption>
+                                            </figure>
+                                        </div>
+                                        <div class="col-md-8 col-sm-9" style="margin-left:20px; ">
+                                            <div class="panel panel-default arrow left">
+                                                <div class="panel-body">
+                                                    <header class="text-left">
+                                                        <div class="comment-user"><i class="fa fa-user"></i> <%= p.getFname() + " " + p.getLname()%> </div> 
+                                                        <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> May 30, 2018</time>
+                                                    </header> 
+                                                    <div class="comment-post">
+                                                        <p>
+                                                            <%= comment.getComment()%>
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </article>
-                                <!-- end loop -->
-                                <% }
-                                    }
-                                %>
+                                    </article>
+                                    <!-- end loop -->
+                                    <% }
+                                        }
+                                    %>
 
-                            </section>
-                            <!--end comment list-->
-                        </div>
-                    </div>
-                    <!--comment box-->
-
-                    <%
-                        if (doctor.getAllowReview() == 1) {
-                            if (patient != null) {
-
-                    %>  
-                    <div class="comment-box">
-                        <div class="row" style="margin-top: 30px;">
-                            <div class="col-md-8">
-                                <div class="widget-area no-padding blank">
-                                    <div class="status-upload">
-                                        <form action="comment" method="POST">
-                                            <textarea placeholder="What are your opinion about him/her" name="comment" ></textarea>
-                                            <input type="hidden" name="did" value="<%= doc.getID()%>" >
-                                            <input type="hidden" name="pid" value="<%= patient.getID()%>" >
-                                            <button type="submit" class="btn btn-success green" name="action" value="addComment"><i class="fa fa-share"></i>Post</button>
-                                        </form>
-                                    </div><!-- Status Upload  -->
-                                </div><!-- Widget Area -->
+                                </section>
+                                <!--end comment list-->
                             </div>
                         </div>
+                        <!--comment box-->
+
+                        <%
+                            if (doctor.getAllowReview() == 1) {
+                                if (patient != null) {
+
+                        %>  
+                        <div class="comment-box">
+                            <div class="row" style="margin-top: 30px;">
+                                <div class="col-md-8">
+                                    <div class="widget-area no-padding blank">
+                                        <div class="status-upload">
+                                            <form action="comment" method="POST">
+                                                <textarea placeholder="What are your opinion about him/her" name="comment" ></textarea>
+                                                <input type="hidden" name="did" value="<%= doc.getID()%>" >
+                                                <input type="hidden" name="pid" value="<%= patient.getID()%>" >
+                                                <button type="submit" class="btn btn-success green" name="action" value="addComment"><i class="fa fa-share"></i>Post</button>
+                                            </form>
+                                        </div><!-- Status Upload  -->
+                                    </div><!-- Widget Area -->
+                                </div>
+                            </div>
+                        </div>
+                        <% }
+                        }%>
                     </div>
-                    <% }
-                            }%>
-                </div>
                 </div>
             </section>
         </main>

@@ -143,7 +143,7 @@
                                                                         <!--use value=user profile trong db -->
                                                                         <tr><td><div class="userinfo"><fmt:message key="firstname"/>: </div></td><td><input class="form-change" type="text" name="fname" value="<%= patient.getFname()%>"></td></tr>
                                                                         <tr><td><div class="userinfo"><fmt:message key="lastname"/>: </div></td><td><input class="form-change" type="text" name="lname" value="<%= patient.getLname()%>"></td></tr>
-                                                                        <tr><td><div class="userinfo"><fmt:message key="email"/>: </div></td><td><input class="form-change" type="email" name="email" value="<%= patient.getEmail()%>"></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="email"/>: </div></td><td><input class="form-change" value="<%= patient.getEmail()%>" disabled></td></tr>
                                                                         <tr><td><div class="userinfo"><fmt:message key="gender"/>: </div></td>
                                                                             <td>                        
                                                                                 <select class="form-change" name="gender">
@@ -267,8 +267,8 @@
                                                             <div class="user-information">
                                                                 <% if (patient != null) {%>
                                                                 <div class="userhead"><fmt:message key="deactivethisaccount"/></div>
-                                                                <form class="change" action="" method="">
-                                                                    <input class="save" type="submit" value="Deactive">
+                                                                <form class="change" action="patient" method="POST">
+                                                                    <input class="save" type="submit" value="Deactive" name="action">
                                                                 </form>
                                                                 <% }%>
                                                             </div>
