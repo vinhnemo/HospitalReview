@@ -18,7 +18,7 @@ public class connectpython {
 
     public double calculatdistance(String num1, String num2, String num3, String num4) throws IOException {
 //        10.7851597   106.6911013  10.7745965  106.6679542
-        String scriptPath = "/ubuntu/home/caldistance.py";
+        String scriptPath = "/home/ubuntu/abc.py";
         String[] cmd = new String[6];
         cmd[0] = "python";
         cmd[1] = scriptPath;
