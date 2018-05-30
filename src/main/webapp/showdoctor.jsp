@@ -142,20 +142,16 @@
                                             <div class="back-imagia">
                                                 <div class="content-imagia content-back-imagia">
                                                     <div>
-                                                        <h4><%= d.getLname() + d.getFname()%> </h4>
+                                                        <h4><%= d.getLname() +" "+ d.getFname()%> </h4>
                                                         <div id="specific-speciality"><fmt:message key="specificspeciality"/>: <%= d.getSpeciality()%>  </div>
                                                         <div id="timework"><fmt:message key="time"/> : <%= d.getHours()%> </div>
-                                                        <!--<div id="">Abc : xyz </div>-->
                                                         <div id="insurance"><fmt:message key="insurance"/>: <%= d.getInsurance()%> </div>
-                                                        <!--<div id="">DOB : 6-9-1939</div>-->
-                                                        <!--<div id="">Address : Tiệm Đồ Gỗ </div>-->
-                                                        <!--<div id="">Insurance: < %= d.getInsurance()%>  </div>-->
                                                     </div>
                                                 </div>
                                                 <div class="footer-imagia">
                                                     <div class="text-center">
                                                         <input type="hidden" name="id_doctor" value="<%= d.getID()%>" >
-                                                        <input class="card-button" type="submit" value="Make Appointment">
+                                                        <input class="card-button" type="submit" value="Make Appointment" onclick="window.location.href='/appointmentRequest.jsp'">
                                                     </div>
                                                     <div class="social-imagia text-center"><a href="/doctor?action=viewpro&id_doctor=<%= d.getID()%>"><fmt:message key="viewprofile"/></a></div>
                                                 </div>

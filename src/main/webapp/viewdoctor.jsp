@@ -32,7 +32,7 @@
         <link rel="stylesheet" href="lib/form/sidebar.css">
         <link rel="stylesheet" href="lib/form/form.css">
         <link rel="stylesheet" href="lib/form/profile.css">
-        
+
         <script src="lib/jquery/jquery.min.js"></script>
         <script src="lib/jquery/jquery-migrate.min.js"></script>
         <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -51,7 +51,7 @@
         <script src="lib/lightbox/js/lightbox.min.js"></script>
         <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
         <script src="lib/anime/anime.min.js"></script>
-
+        <script src="lib/form/rating.js"></script>
         <script src="lib/modernizer/modernizr-2.6.2.min.js"></script>
 
         <script src="js/main.js"></script>
@@ -96,9 +96,10 @@
                 <div class="nothing-special-dark"></div>
                 <div class="nothing-special-light"></div>
                 <section class="card-section-imagia">
-                    <div class="container">
+                    <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-7 col-sm-7" style="background-color: #eee; margin-right: 10px;">
+                            <div class="col-md-2 col-sm-2"></div>
+                            <div class="col-md-4 col-sm-4" style="background-color: #eee; margin-right: 10px;">
                                 <div class="doctor-name">
                                     <div class="row" style="margin-top: 40px;">             
                                         <div class="col-md-4 col-sm-10">
@@ -125,91 +126,12 @@
                                 </table>
                             </div>
                         </div>
-                        <% if (admin != null) {%>
-                        <form action="doctor" method="POST">
-                            <div class="form-group">
-                                <label for="name"><fmt:message key="firstname"/> </label>
-                                <input type="name" class="form-control" id="name" name="fname" value="<%= doc.getFname()%>">
-                            </div>
-                            <div class="form-group">
-                                <label for="name"><fmt:message key="lastname"/> </label>
-                                <input type="name" class="form-control" id="name" name="lname" value="<%= doc.getLname()%>">
-                            </div>
-                            <div class="form-group">
-                                <label for="address"><fmt:message key="gender"/></label>
-                                <input type="address" class="form-control" id="address"  name="gender" value="<%= doc.getSex()%>">
-                            </div>
-                            <div class="form-group">
-                                <label for="website"><fmt:message key="degree"/></label>
-                                <input type="website" class="form-control" id="website" name="degree" value="<%= doc.getDegree()%>">
-                            </div>
-                            <div class="form-group">
-                                <label for="website"><fmt:message key="acceptinsurance"/></label>
-                                <input type="website" class="form-control" id="website" name="insurance" value="<%= doc.getInsurance()%>">
-                            </div>
-                            <div class="form-group">
-                                <label for="name"><fmt:message key="specificspeciality"/> </label>
-                                <input type="name" class="form-control" id="name" name="speciality" value="<%= doc.getSpeciality()%>" >
-                            </div>
-                            <div class="form-group">
-                                <label for="name"><fmt:message key="workhour"/> </label>
-                                <input type="name" class="form-control" id="name" name="hour" value="<%= doc.getHours()%>">
-                            </div>
-                            <div class="form-group">
-                                <label for="name"><fmt:message key="language"/> </label>
-                                <input type="name" class="form-control" id="name" name="language" value="<%= doc.getLang()%>">
-                            </div>
-                            <input type="hidden" name="id" value="<%= doc.getID()%>" >
-                            <input type="hidden" name="action" value="updateDoctor">
-                            <button type="submit" class="btn btn-default"><fmt:message key="edit"/></button>
-                        </form>
-                        <form action="doctor" method="POST">
-                            <input type="hidden" name="id" value="<%= doc.getID()%>" >
-                            <input type="hidden" name="action" value="remove">
-                            <button type="submit" class="btn btn-default"><fmt:message key="remove"/></button>
-                        </form>    
-                        <% } else {%>
-                        <form>
-                            <div class="form-group">
-                                <label for="name"><fmt:message key="firstname"/> </label>
-                                <input type="name" class="form-control" id="name" name="fname" value="<%= doc.getFname()%>" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label for="name"><fmt:message key="lastname"/> </label>
-                                <input type="name" class="form-control" id="name" name="lname" value="<%= doc.getLname()%>" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label for="address"><fmt:message key="gender"/></label>
-                                <input type="address" class="form-control" id="address"  name="gender" value="<%= doc.getSex()%>" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label for="website"><fmt:message key="degree"/></label>
-                                <input type="website" class="form-control" id="website" name="degree" value="<%= doc.getDegree()%>" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label for="website"><fmt:message key="acceptinsurance"/></label>
-                                <input type="website" class="form-control" id="website" name="insurance" value="<%= doc.getInsurance()%>" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label for="name"><fmt:message key="specificspeciality"/> </label>
-                                <input type="name" class="form-control" id="name" name="speciality" value="<%= doc.getSpeciality()%>" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label for="name"><fmt:message key="workhour"/> </label>
-                                <input type="name" class="form-control" id="name" name="hour" value="<%= doc.getHours()%>" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label for="name"><fmt:message key="language"/> </label>
-                                <input type="name" class="form-control" id="name" name="language" value="<%= doc.getLang()%>" disabled>
-                            </div>
-                        </form>
-                        <% }%>
-                        <div class="col-md-4 col-sm-4" style="background-color: #FFF;">  
+                        <div class="col-md-3 col-sm-12" style="background-color: #FFF;">  
                             <div class="side-doctor">
                                 <% if (patient != null) {%>
                                 <h4><fmt:message key="option"/></h4><hr>
                                 <div class="side-text"><fmt:message key="setanappointment"/>:</div>
-                                <input class="side-button" type="submit" value="Make Appointment"><hr>
+                                <input class="side-button" type="submit" value="Make Appointment" onclick="window.location.href = '/appointmentRequest.jsp'"><hr>
                                 <div class="side-text"><fmt:message key="addtobookmark"/>:</div>
                                 <form method="POST" action="controlBookmark">
                                     <input type="hidden" name="pID" value="<%= patient.getID()%>">
@@ -269,78 +191,161 @@
                                 <% } %>
                             </div>
                         </div>
+                        <div clsss="col-md-2 col-sm-12" style="margin-left: 30px;">
+                            <% if (admin != null) {%>
+                            <form action="doctor" method="POST">
+                                <div class="form-group">
+                                    <label for="name"><fmt:message key="firstname"/> </label>
+                                    <input type="name" class="form-control" id="name" name="fname" value="<%= doc.getFname()%>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="name"><fmt:message key="lastname"/> </label>
+                                    <input type="name" class="form-control" id="name" name="lname" value="<%= doc.getLname()%>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="address"><fmt:message key="gender"/></label>
+                                    <input type="address" class="form-control" id="address"  name="gender" value="<%= doc.getSex()%>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="website"><fmt:message key="degree"/></label>
+                                    <input type="website" class="form-control" id="website" name="degree" value="<%= doc.getDegree()%>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="website"><fmt:message key="acceptinsurance"/></label>
+                                    <input type="website" class="form-control" id="website" name="insurance" value="<%= doc.getInsurance()%>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="name"><fmt:message key="specificspeciality"/> </label>
+                                    <input type="name" class="form-control" id="name" name="speciality" value="<%= doc.getSpeciality()%>" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="name"><fmt:message key="workhour"/> </label>
+                                    <input type="name" class="form-control" id="name" name="hour" value="<%= doc.getHours()%>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="name"><fmt:message key="language"/> </label>
+                                    <input type="name" class="form-control" id="name" name="language" value="<%= doc.getLang()%>">
+                                </div>
+                                <input type="hidden" name="id" value="<%= doc.getID()%>" >
+                                <input type="hidden" name="action" value="updateDoctor">
+                                <button type="submit" class="btn btn-default"><fmt:message key="edit"/></button>
+                            </form>
+                            <form action="doctor" method="POST">
+                                <input type="hidden" name="id" value="<%= doc.getID()%>" >
+                                <input type="hidden" name="action" value="remove">
+                                <button type="submit" class="btn btn-default"><fmt:message key="remove"/></button>
+                            </form>    
+                            <% } else {%>
+                            <form>
+                                <div class="form-group">
+                                    <label for="name"><fmt:message key="firstname"/> </label>
+                                    <input type="name" class="form-control" id="name" name="fname" value="<%= doc.getFname()%>" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name"><fmt:message key="lastname"/> </label>
+                                    <input type="name" class="form-control" id="name" name="lname" value="<%= doc.getLname()%>" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address"><fmt:message key="gender"/></label>
+                                    <input type="address" class="form-control" id="address"  name="gender" value="<%= doc.getSex()%>" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="website"><fmt:message key="degree"/></label>
+                                    <input type="website" class="form-control" id="website" name="degree" value="<%= doc.getDegree()%>" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="website"><fmt:message key="acceptinsurance"/></label>
+                                    <input type="website" class="form-control" id="website" name="insurance" value="<%= doc.getInsurance()%>" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name"><fmt:message key="specificspeciality"/> </label>
+                                    <input type="name" class="form-control" id="name" name="speciality" value="<%= doc.getSpeciality()%>" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name"><fmt:message key="workhour"/> </label>
+                                    <input type="name" class="form-control" id="name" name="hour" value="<%= doc.getHours()%>" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name"><fmt:message key="language"/> </label>
+                                    <input type="name" class="form-control" id="name" name="language" value="<%= doc.getLang()%>" disabled>
+                                </div>
+                            </form>
+                            <% }%>
+
+                        </div>
                     </div>
+                </div>
+                <div class="container">
+                <div class="comment">
+                    <div class="row">
+                        <div class="col-md-10 col-sm-12">
+                            <h3 class="page-header"><fmt:message key="comment"/></h3>
+                            <hr>
+                            <section class="comment-list">
+                                <!-- for commentDAO blah blah { -->
+                                <%
+                                    if (listOfComment.size() > 0) {
+                                        for (Comment comment : listOfComment) {
+                                            Patient p = PatientDAO.getPatient(comment.getpID());
 
-                    <div class="comment">
-                        <div class="row">
-                            <div class="col-md-10">
-                                <h3 class="page-header"><fmt:message key="comment"/></h3>
-                                <hr>
-                                <section class="comment-list">
-                                    <!-- for commentDAO blah blah { -->
-                                    <%
-                                        if (listOfComment.size() > 0) {
-                                            for (Comment comment : listOfComment) {
-                                                Patient p = PatientDAO.getPatient(comment.getpID());
-
-                                    %>
-                                    <article class="row">
-                                        <div class="col-md-2 col-sm-2">
-                                            <figure class="thumbnail">
-                                                <figcaption class="text-center"><%= p.getFname() + " " + p.getFname()%></figcaption>
-                                            </figure>
-                                        </div>
-                                        <div class="col-md-8 col-sm-9" style="margin-left:20px; ">
-                                            <div class="panel panel-default arrow left">
-                                                <div class="panel-body">
-                                                    <header class="text-left">
-                                                        <div class="comment-user"><i class="fa fa-user"></i> <%= p.getFname() + " " + p.getFname()%> </div> 
-                                                        <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
-                                                    </header> 
-                                                    <div class="comment-post">
-                                                        <p>
-                                                            <%= comment.getComment()%>
-                                                        </p>
-                                                    </div>
+                                %>
+                                <article class="row">
+                                    <div class="col-md-2 col-sm-2">
+                                        <figure class="thumbnail">
+                                            <figcaption class="text-center"><%= p.getFname() + " " + p.getLname()%></figcaption>
+                                        </figure>
+                                    </div>
+                                    <div class="col-md-8 col-sm-9" style="margin-left:20px; ">
+                                        <div class="panel panel-default arrow left">
+                                            <div class="panel-body">
+                                                <header class="text-left">
+                                                    <div class="comment-user"><i class="fa fa-user"></i> <%= p.getFname() + " " + p.getLname()%> </div> 
+                                                    <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> May 30, 2018</time>
+                                                </header> 
+                                                <div class="comment-post">
+                                                    <p>
+                                                        <%= comment.getComment()%>
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
-                                    </article>
-                                    <!-- end loop -->
-                                    <% }
-                                        }
-                                    %>
+                                    </div>
+                                </article>
+                                <!-- end loop -->
+                                <% }
+                                    }
+                                %>
 
-                                </section>
-                                <!--end comment list-->
-                            </div>
+                            </section>
+                            <!--end comment list-->
                         </div>
-                        <!--comment box-->
-
-                        <%
-                            if (doctor.getAllowReview() == 1) {
-                                if (patient != null) {
-
-                        %>  
-                        <div class="comment-box">
-                            <div class="row" style="margin-top: 30px;">
-                                <div class="col-md-8">
-                                    <div class="widget-area no-padding blank">
-                                        <div class="status-upload">
-                                            <form action="comment" method="POST">
-                                                <textarea placeholder="What are your opinion about him/her" name="comment" ></textarea>
-                                                <input type="hidden" name="did" value="<%= doc.getID()%>" >
-                                                <input type="hidden" name="pid" value="<%= patient.getID()%>" >
-                                                <button type="submit" class="btn btn-success green" name="action" value="addComment"><i class="fa fa-share"></i>Post</button>
-                                            </form>
-                                        </div><!-- Status Upload  -->
-                                    </div><!-- Widget Area -->
-                                </div>
-                            </div>
-                        </div>
-                        <% }
-                            }%>
                     </div>
+                    <!--comment box-->
+
+                    <%
+                        if (doctor.getAllowReview() == 1) {
+                            if (patient != null) {
+
+                    %>  
+                    <div class="comment-box">
+                        <div class="row" style="margin-top: 30px;">
+                            <div class="col-md-8">
+                                <div class="widget-area no-padding blank">
+                                    <div class="status-upload">
+                                        <form action="comment" method="POST">
+                                            <textarea placeholder="What are your opinion about him/her" name="comment" ></textarea>
+                                            <input type="hidden" name="did" value="<%= doc.getID()%>" >
+                                            <input type="hidden" name="pid" value="<%= patient.getID()%>" >
+                                            <button type="submit" class="btn btn-success green" name="action" value="addComment"><i class="fa fa-share"></i>Post</button>
+                                        </form>
+                                    </div><!-- Status Upload  -->
+                                </div><!-- Widget Area -->
+                            </div>
+                        </div>
+                    </div>
+                    <% }
+                            }%>
+                </div>
                 </div>
             </section>
         </main>

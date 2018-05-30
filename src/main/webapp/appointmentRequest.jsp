@@ -6,7 +6,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@page import="java.util.*, DTO.*, DAO.*"%>
 <c:set var="language" value="${param.language}" scope="session" />
 <c:if test="${not empty language}">
     <fmt:setLocale value="${language}" scope="session"/>
@@ -65,15 +65,20 @@
                                     <div class="text"><fmt:message key="doctor"/>: </div>
                                     <input class="input" name="" type="text" placeholder="Auto Filled From Session or Ajax">
                                     <div class="text"><fmt:message key="speciality"/>: </div>
-                                    <select class="selectspec"> <!-- get from DAO -->
-                                        <option value="1">Cảm</option>
-                                        <option value="2">Sốt</option>
-                                        <option value="3">Nhức Đầu</option>
+                                    <select class="selectspec" name="specialty"> 
+                                        <% SpecialtyDAO spec = new SpecialtyDAO();
+                                            List<Specialty> s = spec.getSpecialty();
+                                            for (Specialty sp : s) {%>
+                                        <option value="<%=sp.getSpecialty()%>"><%=sp.getSpecialty()%></option>
+                                        <%}%>
                                     </select>
                                     <div class="text"><fmt:message key="specificspeciality"/>: </div>
-                                    <select class="selectspec"> <!-- get from DAO -->
-                                        <option value="1">Tired </option>
-                                        <option value="2">So Tired</option>
+                                    <select class="selectspec" name="specialty"> 
+                                        <%
+                                            List<Specialty> s1 = spec.getSpec_specialty();
+                                            for (Specialty sp1 : s1) {%>
+                                        <option value="<%=sp1.getSpec_specialty()%>"><%=sp1.getSpec_specialty()%></option>
+                                        <%}%>
                                     </select>
                                     <div class="text"><fmt:message key="otheractivitiesdiploma"/>: </div>
                                     <input class="input" name="" type="text" placeholder="Activities">

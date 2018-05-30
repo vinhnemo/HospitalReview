@@ -513,9 +513,9 @@
                                 </p>
 
                                 <div class="social-links">
-                                    <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-                                    <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-                                    <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                                    <a href="https://twitter.com/drstrange" class="twitter"><i class="fa fa-twitter"></i></a>
+                                    <a href="https://www.facebook.com/DoctorStrangeOfficial/" class="facebook"><i class="fa fa-facebook"></i></a>
+                                    <a href="https://www.instagram.com/p/BjXOzFogTcF/?tagged=doctorstrange" class="instagram"><i class="fa fa-instagram"></i></a>
                                     <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
                                     <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
                                 </div>

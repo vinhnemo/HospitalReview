@@ -162,7 +162,20 @@ CREATE TABLE `coordinate` (
   PRIMARY KEY (`c_id`),
   KEY `h_id` (`h_id`),
   CONSTRAINT `coordinate_ibfk_1` FOREIGN KEY (`h_id`) REFERENCES `hospital` (`h_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+CREATE TABLE `speciality` (
+  `s_id` int(11) NOT NULL AUTO_INCREMENT,
+  `specialty` varchar(50) NOT NULL,
+  `specific_specialty` varchar(50) NOT NULL,
+  PRIMARY KEY (`s_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
 -- ------------------------------------------------------
 -- ----------------------------------
 -- ------------------------------------------------------
@@ -203,4 +216,22 @@ INSERT INTO `hospital` (`h_name`, `h_address`, `h_website`, `adname`, `ademail`)
 INSERT INTO `hospital` (`h_name`, `h_address`, `h_website`, `adname`, `ademail`) VALUES ('103', '261 Phung Hung.Phuc La Ward,Ha Dong District, Ha Noi', 'http://benhvien103.vn/', 'Son Nguyen', 'bv103@gmail.ocm');
 INSERT INTO `hospital` (`h_name`, `h_address`, `h_website`, `adname`, `ademail`) VALUES ('Tu Du', '284 Cong Quynh, Pham Ngu Lao Ward,Distric 1,Ho Chi Minh City', 'http://tudu.com.vn/', 'Le Duc', 'tudu@tuduhos.com');
 INSERT INTO `hospital` (`h_name`, `h_address`, `h_website`, `adname`, `ademail`) VALUES ('Viet Duc', '40 Trang Thi, Hang Bong Ward,Hoan Kiem District ,Ha Noi', 'http://benhvienvietduc.org/', 'Bao Tran', 'vietduc@vietducvn.com');
-
+---------------Database Specialty
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('1', 'Gastroenterology', 'Gastrointestinal');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('2', 'Gastroenterology', 'Dietician');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('3', 'Gastroenterology', 'Endoscopy');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('4', 'Gastroenterology', 'Digestion');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('5', 'General Surgery', 'Rheumatology');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('6', 'General Surgery', 'Dermatology');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('7', 'General Surgery', 'Physiotherapy');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('8', 'Obstetric', 'Obstetric');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('9', 'Obstetric', 'Fertility specialist');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('10', 'General Internal', 'Cardiology');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('11', 'General Internal', 'Gastrointestinal');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('12', 'General Internal', 'Endoscopy');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('13', 'General Internal', 'Nephrology');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('14', 'General Internal', 'Pulmonology');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('15', 'General Internal', 'Infectious Disease');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('16', 'Neurology', 'Neurosurgery');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('17', 'Neurology', 'Neurological');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('18', 'Psychiatrist', 'Psychiatrist');

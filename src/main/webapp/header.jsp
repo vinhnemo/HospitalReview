@@ -83,7 +83,7 @@
                                 </li>
                             </ul> 
                         </li>
-                        <li><a href="#"><fmt:message key="appt"/></a></li>
+                        <li><a href="appointmentRequest.jsp"><fmt:message key="appt"/></a></li>
                         <li class="menu-has-children"><a href="#"><fmt:message key="language"/></a>
                             <ul>
                                 <li><a href="<%= javax.servlet.http.HttpUtils.getRequestURL(request)%>?language=en_US">English</a></li>
