@@ -6,7 +6,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@page import="java.util.*, DTO.*, DAO.*"%>
 <c:set var="language" value="${param.language}" scope="session" />
 <c:if test="${not empty language}">
     <fmt:setLocale value="${language}" scope="session"/>
@@ -20,6 +20,7 @@
         <meta content="" name="keywords">
         <meta content="" name="description">
         <title>Doctor Strange | Hospital Review Website</title>
+        <link rel="icon" type="image/png" href="img/Add.png">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -35,16 +36,16 @@
     <body>
 
         <jsp:include page="header.jsp"></jsp:include>
-        <!--end of header -->
-        <main id="main">
-            <!-- De choi thoi -->
-            <div class="nothing-special-dark"></div>
-            <div class="container-fluid" style="background-color: #eee">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12" style="background-color: #eee">
-                            <div class="appointment">
-                                <h3> <fmt:message key="setanappointment"/> </h3>
+            <!--end of header -->
+            <main id="main">
+                <!-- De choi thoi -->
+                <div class="nothing-special-dark"></div>
+                <div class="container-fluid" style="background-color: #eee">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12" style="background-color: #eee">
+                                <div class="appointment">
+                                    <h3> <fmt:message key="setanappointment"/> </h3>
                                 <form action="" method="">
                                     <div class="head"><fmt:message key="patientinformation"/></div>
                                     <div class="text"><fmt:message key="fullname"/>: </div>
@@ -64,15 +65,20 @@
                                     <div class="text"><fmt:message key="doctor"/>: </div>
                                     <input class="input" name="" type="text" placeholder="Auto Filled From Session or Ajax">
                                     <div class="text"><fmt:message key="speciality"/>: </div>
-                                    <select class="selectspec"> <!-- get from DAO -->
-                                        <option value="1">Cảm</option>
-                                        <option value="2">Sốt</option>
-                                        <option value="3">Nhức Đầu</option>
+                                    <select class="selectspec" name="specialty"> 
+                                        <% SpecialtyDAO spec = new SpecialtyDAO();
+                                            List<Specialty> s = spec.getSpecialty();
+                                            for (Specialty sp : s) {%>
+                                        <option value="<%=sp.getSpecialty()%>"><%=sp.getSpecialty()%></option>
+                                        <%}%>
                                     </select>
                                     <div class="text"><fmt:message key="specificspeciality"/>: </div>
-                                    <select class="selectspec"> <!-- get from DAO -->
-                                        <option value="1">Tired </option>
-                                        <option value="2">So Tired</option>
+                                    <select class="selectspec" name="specialty"> 
+                                        <%
+                                            List<Specialty> s1 = spec.getSpec_specialty();
+                                            for (Specialty sp1 : s1) {%>
+                                        <option value="<%=sp1.getSpec_specialty()%>"><%=sp1.getSpec_specialty()%></option>
+                                        <%}%>
                                     </select>
                                     <div class="text"><fmt:message key="otheractivitiesdiploma"/>: </div>
                                     <input class="input" name="" type="text" placeholder="Activities">

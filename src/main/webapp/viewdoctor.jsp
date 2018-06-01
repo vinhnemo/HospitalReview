@@ -4,9 +4,7 @@
     Author     : NemoVinh
 --%>
 
-<%@page import="java.util.*"%>
-<%@page import="DAO.*"%>
-<%@page import="DTO.*"%>
+<%@page import="java.util.*, DAO.*, DTO.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -23,29 +21,41 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
+        <title>Doctor Strange | Hospital Review Website</title>
+        <link rel="icon" type="image/png" href="img/Add.png">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
         <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <link rel="stylesheet" href="lib/form/search.css">
         <link rel="stylesheet" href="lib/form/sidebar.css">
         <link rel="stylesheet" href="lib/form/form.css">
         <link rel="stylesheet" href="lib/form/profile.css">
-        <meta charset="utf-8">
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <meta content="" name="keywords">
-        <meta content="" name="description">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
-        <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-        <link href="lib/animate/animate.min.css" rel="stylesheet">
-        <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-        <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
-        <link rel="stylesheet" href="lib/form/form.css">
+
+        <script src="lib/jquery/jquery.min.js"></script>
+        <script src="lib/jquery/jquery-migrate.min.js"></script>
+        <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/easing/jquery.easing.1.3.js"></script>
+        <script src="lib/flexslider/jquery.flexslider-min.js"></script>
+        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+        <script src="lib/superfish/hoverIntent.js"></script>
+        <script src="lib/superfish/superfish.min.js"></script>
+        <script src="lib/wow/wow.min.js"></script>
+        <script src="lib/form/side.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/counterup/counterup.min.js"></script>
+        <script src="lib/isotope/isotope.pkgd.min.js"></script>
+        <script src="lib/lightbox/js/lightbox.min.js"></script>
+        <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
+        <script src="lib/anime/anime.min.js"></script>
+        <script src="lib/form/rating.js"></script>
+        <script src="lib/modernizer/modernizr-2.6.2.min.js"></script>
+
+        <script src="js/main.js"></script>
+        <script src="js/modal.js"></script>
     </head>
 
     <body>
@@ -70,45 +80,35 @@
             } else if (session.getAttribute("admin") != null) {
                 admin = (Admin) session.getAttribute("admin");
             }
-        %>
-        
-        <jsp:include page="header.jsp"></jsp:include>
-        <!--end of header -->
 
-        <%
             Doctor doc;
             doc = (Doctor) session.getAttribute("prodoc");
-            //            Doctor doc;
-            //            int i = 1;
-            //            DoctorDAO dao  = new DoctorDAO();
-            //            doc = (Doctor) dao.getDoctor(i);
 
             CommentDAO commentDAO = new CommentDAO();
             List<Comment> listOfComment = commentDAO.getAllComment(doc.getID());
-            PatientDAO patientDAO = new PatientDAO();
-//                Patient patient = null;
-            if (session.getAttribute("patient") != null) {
-                patient = (Patient) session.getAttribute("patient");
-            }
         %> 
 
-        <main id="main">
-            <!-- De choi thoi -->
-            <div class="nothing-special-dark"></div>
-            <div class="nothing-special-light"></div>
-            <section class="card-section-imagia">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-7 col-sm-7" style="background-color: #eee; margin-right: 10px;">
-                            <div class="doctor-name">
-                                <div class="row" style="margin-top: 40px;">             
-                                    <div class="col-md-4 col-sm-10">
-                                        <div class="doctor-pic">
-                                            <img src="" alt="">
+        <jsp:include page="header.jsp"></jsp:include>
+            <!--end of header -->
+
+            <main id="main">
+                <!-- De choi thoi -->
+                <div class="nothing-special-dark"></div>
+                <div class="nothing-special-light"></div>
+                <section class="card-section-imagia">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-2 col-sm-2"></div>
+                            <div class="col-md-4 col-sm-4" style="background-color: #eee; margin-right: 10px;">
+                                <div class="doctor-name">
+                                    <div class="row" style="margin-top: 40px;">             
+                                        <div class="col-md-4 col-sm-10">
+                                            <div class="doctor-pic">
+                                                <img src="" alt="">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-7 col-sm-10">
-                                        <h3 class="name"><%= doc.getLname() + " " + doc.getFname()%></h3>
+                                        <div class="col-md-7 col-sm-10">
+                                            <h3 class="name"><%= doc.getLname() + " " + doc.getFname()%></h3>
                                         <div class="doctor-text"> <fmt:message key="dob"/>: 11-01-1997<br> <fmt:message key="gender"/>: <%= doc.getSex()%></div>
                                     </div>
                                 </div>
@@ -126,79 +126,39 @@
                                 </table>
                             </div>
                         </div>
-
-                        <form action="doctor" method="POST">
-                            <div class="form-group">
-                                <label for="name"><fmt:message key="firstname"/> </label>
-                                <input type="name" class="form-control" id="name" name="fname" value="<%= doc.getFname()%>">
-                            </div>
-                            <div class="form-group">
-                                <label for="name"><fmt:message key="lastname"/> </label>
-                                <input type="name" class="form-control" id="name" name="lname" value="<%= doc.getLname()%>">
-                            </div>
-                            <div class="form-group">
-                                <label for="address"><fmt:message key="gender"/></label>
-                                <input type="address" class="form-control" id="address"  name="gender" value="<%= doc.getSex()%>">
-                            </div>
-                            <div class="form-group">
-                                <label for="website"><fmt:message key="degree"/></label>
-                                <input type="website" class="form-control" id="website" name="degree" value="<%= doc.getDegree()%>">
-                            </div>
-                            <div class="form-group">
-                                <label for="website"><fmt:message key="acceptinsurance"/></label>
-                                <input type="website" class="form-control" id="website" name="insurance" value="<%= doc.getInsurance()%>">
-                            </div>
-                            <div class="form-group">
-                                <label for="name"><fmt:message key="specificspeciality"/> </label>
-                                <input type="name" class="form-control" id="name" name="speciality" value="<%= doc.getSpeciality()%>" >
-                            </div>
-                            <div class="form-group">
-                                <label for="name"><fmt:message key="workhour"/> </label>
-                                <input type="name" class="form-control" id="name" name="hour" value="<%= doc.getHours()%>">
-                            </div>
-                            <div class="form-group">
-                                <label for="name"><fmt:message key="language"/> </label>
-                                <input type="name" class="form-control" id="name" name="language" value="<%= doc.getLang()%>">
-                            </div>
-                            <input type="hidden" name="id" value="<%= doc.getID()%>" >
-                            <input type="hidden" name="action" value="updateDoctor">
-                            <button type="submit" class="btn btn-default"><fmt:message key="edit"/></button>
-                        </form>
-                        <form action="doctor" method="POST">
-                            <input type="hidden" name="id" value="<%= doc.getID()%>" >
-                            <input type="hidden" name="action" value="remove">
-                            <button type="submit" class="btn btn-default"><fmt:message key="remove"/></button>
-                        </form>    
-
-                        <div class="col-md-4 col-sm-4" style="background-color: #FFF;">  
+                        <div class="col-md-3 col-sm-12" style="background-color: #FFF;">  
                             <div class="side-doctor">
+                                <% if (patient != null) {%>
                                 <h4><fmt:message key="option"/></h4><hr>
                                 <div class="side-text"><fmt:message key="setanappointment"/>:</div>
-                                <input class="side-button" type="submit" value="Make Appointment"><hr>
+                                <input class="side-button" type="submit" value="Make Appointment" onclick="window.location.href = '/appointmentRequest.jsp'"><hr>
                                 <div class="side-text"><fmt:message key="addtobookmark"/>:</div>
                                 <form method="POST" action="controlBookmark">
                                     <input type="hidden" name="pID" value="<%= patient.getID()%>">
                                     <input type="hidden" name="dID" value="<%= doc.getID()%>">
                                     <button class="side-button2" value="bookmarkdoctor" name="action">Bookmark </button><hr>
                                 </form>
+                                <% }%>
 
+                                <% if (admin != null) {%>
                                 <form method="post" action="activeReview" > 
                                     <div class="row" >  
                                         <div class="col-md-6" style="margin-left: -5%;">
-                                            <div class="container-fluid" >
-                                                <input type="hidden" name="activateDoctorID" value="<%= doc.getID()%>">
+                                            <div class="container-fluid form-group" >
+                                                <input type="hidden" name="activateDoctorID" value="<%= doc.getID()%>" class="form-control">
                                                 <button type="submit" class="side-button2" name="action" value="ActivateReview" style="padding: 5px 10px;">Enable Review</button>
                                             </div> 
                                         </div>     
                                         <div class="col-md-6" style="margin-left: -15%;" >
-                                            <div class="container-fluid" >
-                                                <input type="hidden" name="deActivateDoctorID" value="<%= doc.getID()%>">
+                                            <div class="container-fluid form-group" >
+                                                <input type="hidden" name="deActivateDoctorID" value="<%= doc.getID()%>" class="form-control">
                                                 <button type="submit" class="side-button2" name="action" value="DeactivateReview" style="padding: 5px 10px;" >Disable Review</button>
                                             </div>
                                         </div>
 
                                     </div>
-                                </form> 
+                                </form>
+                                <% }%>
                                 <%
                                     DoctorDAO doctorDAO = new DoctorDAO();
                                     Doctor doctor = doctorDAO.getDoctorReview(doc.getID());
@@ -233,11 +193,94 @@
                                 <% } %>
                             </div>
                         </div>
-                    </div>
+                        <div clsss="col-md-2 col-sm-12" style="margin-left: 30px;">
+                            <% if (admin != null) {%>
+                            <form action="doctor" method="POST">
+                                <div class="form-group">
+                                    <label for="name"><fmt:message key="firstname"/> </label>
+                                    <input type="name" class="form-control" id="name" name="fname" value="<%= doc.getFname()%>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="name"><fmt:message key="lastname"/> </label>
+                                    <input type="name" class="form-control" id="name" name="lname" value="<%= doc.getLname()%>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="address"><fmt:message key="gender"/></label>
+                                    <input type="address" class="form-control" id="address"  name="gender" value="<%= doc.getSex()%>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="website"><fmt:message key="degree"/></label>
+                                    <input type="website" class="form-control" id="website" name="degree" value="<%= doc.getDegree()%>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="website"><fmt:message key="acceptinsurance"/></label>
+                                    <input type="website" class="form-control" id="website" name="insurance" value="<%= doc.getInsurance()%>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="name"><fmt:message key="specificspeciality"/> </label>
+                                    <input type="name" class="form-control" id="name" name="speciality" value="<%= doc.getSpeciality()%>" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="name"><fmt:message key="workhour"/> </label>
+                                    <input type="name" class="form-control" id="name" name="hour" value="<%= doc.getHours()%>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="name"><fmt:message key="language"/> </label>
+                                    <input type="name" class="form-control" id="name" name="language" value="<%= doc.getLang()%>">
+                                </div>
+                                <input type="hidden" name="id" value="<%= doc.getID()%>" >
+                                <input type="hidden" name="action" value="updateDoctor">
+                                <button type="submit" class="btn btn-default"><fmt:message key="edit"/></button>
+                            </form>
+                            <form action="doctor" method="POST">
+                                <input type="hidden" name="id" value="<%= doc.getID()%>" >
+                                <input type="hidden" name="action" value="remove">
+                                <button type="submit" class="btn btn-default"><fmt:message key="remove"/></button>
+                            </form>    
+                            <% } else {%>
+                            <form>
+                                <div class="form-group">
+                                    <label for="name"><fmt:message key="firstname"/> </label>
+                                    <input type="name" class="form-control" id="name" name="fname" value="<%= doc.getFname()%>" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name"><fmt:message key="lastname"/> </label>
+                                    <input type="name" class="form-control" id="name" name="lname" value="<%= doc.getLname()%>" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address"><fmt:message key="gender"/></label>
+                                    <input type="address" class="form-control" id="address"  name="gender" value="<%= doc.getSex()%>" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="website"><fmt:message key="degree"/></label>
+                                    <input type="website" class="form-control" id="website" name="degree" value="<%= doc.getDegree()%>" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="website"><fmt:message key="acceptinsurance"/></label>
+                                    <input type="website" class="form-control" id="website" name="insurance" value="<%= doc.getInsurance()%>" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name"><fmt:message key="specificspeciality"/> </label>
+                                    <input type="name" class="form-control" id="name" name="speciality" value="<%= doc.getSpeciality()%>" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name"><fmt:message key="workhour"/> </label>
+                                    <input type="name" class="form-control" id="name" name="hour" value="<%= doc.getHours()%>" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name"><fmt:message key="language"/> </label>
+                                    <input type="name" class="form-control" id="name" name="language" value="<%= doc.getLang()%>" disabled>
+                                </div>
+                            </form>
+                            <% }%>
 
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
                     <div class="comment">
                         <div class="row">
-                            <div class="col-md-10">
+                            <div class="col-md-10 col-sm-12">
                                 <h3 class="page-header"><fmt:message key="comment"/></h3>
                                 <hr>
                                 <section class="comment-list">
@@ -245,21 +288,21 @@
                                     <%
                                         if (listOfComment.size() > 0) {
                                             for (Comment comment : listOfComment) {
-                                                Patient p = patientDAO.getPatient(comment.getpID());
+                                                Patient p = PatientDAO.getPatient(comment.getpID());
 
                                     %>
                                     <article class="row">
                                         <div class="col-md-2 col-sm-2">
                                             <figure class="thumbnail">
-                                                <figcaption class="text-center"><%= p.getFname() + " " + p.getFname()%></figcaption>
+                                                <figcaption class="text-center"><%= p.getFname() + " " + p.getLname()%></figcaption>
                                             </figure>
                                         </div>
                                         <div class="col-md-8 col-sm-9" style="margin-left:20px; ">
                                             <div class="panel panel-default arrow left">
                                                 <div class="panel-body">
                                                     <header class="text-left">
-                                                        <div class="comment-user"><i class="fa fa-user"></i> <%= p.getFname() + " " + p.getFname()%> </div> 
-                                                        <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
+                                                        <div class="comment-user"><i class="fa fa-user"></i> <%= p.getFname() + " " + p.getLname()%> </div> 
+                                                        <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> May 30, 2018</time>
                                                     </header> 
                                                     <div class="comment-post">
                                                         <p>
@@ -283,7 +326,7 @@
 
                         <%
                             if (doctor.getAllowReview() == 1) {
-                                if (session.getAttribute("patient") != null) {
+                                if (patient != null) {
 
                         %>  
                         <div class="comment-box">
@@ -303,11 +346,12 @@
                             </div>
                         </div>
                         <% }
-                                }%>
+                        }%>
                     </div>
                 </div>
             </section>
         </main>
+
         <!-- End of Result -->
         <footer id="footer">
             <div class="footer-top">
@@ -367,38 +411,6 @@
         </footer>
 
 
-        <script src="lib/jquery/jquery.min.js"></script>
-        <script src="lib/jquery/jquery-migrate.min.js"></script>
-        <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/flexslider/jquery.flexslider-min.js"></script>
-        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-        <script src="lib/superfish/hoverIntent.js"></script>
-        <script src="lib/superfish/superfish.min.js"></script>
-        <script src="lib/wow/wow.min.js"></script>
-        <script src="lib/form/rating.js"></script>
-        <script src="lib/form/side.js"></script>
-        <script src="js/main.js"></script>
-        <script src="js/editform.js"></script>
-        <script src="lib/jquery/jquery.min.js"></script>
-        <script src="lib/jquery/jquery-migrate.min.js"></script>
-        <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/superfish/hoverIntent.js"></script>
-        <script src="lib/superfish/superfish.min.js"></script>
-        <script src="lib/wow/wow.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/counterup/counterup.min.js"></script>
-        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="lib/isotope/isotope.pkgd.min.js"></script>
-        <script src="lib/lightbox/js/lightbox.min.js"></script>
-        <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
-        <script src="lib/anime/anime.min.js"></script>
-
-        <script src="contactform/contactform.js"></script>
-
-        <script src="js/main.js"></script>
-        <script src="js/modal.js"></script>
     </body>
 </html>
 

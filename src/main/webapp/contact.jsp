@@ -22,6 +22,7 @@
         <meta content="" name="keywords">
         <meta content="" name="description">
         <title>Doctor Strange | Hospital Review Website</title>
+        <link rel="icon" type="image/png" href="img/Add.png">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -56,15 +57,15 @@
         %>
 
         <jsp:include page="header.jsp"></jsp:include>
-        
-        <div class="nothing-special-dark"></div>
-        <section id="contact" class="section-bg wow fadeInUp">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-2" style="background-color: transparent"></div>
-                    <div class="col-md-8">
-                        <div class="section-header">
-                            <h3><fmt:message key="contact"/></h3>
+
+            <div class="nothing-special-dark"></div>
+            <section id="contact" class="section-bg wow fadeInUp">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2" style="background-color: transparent"></div>
+                        <div class="col-md-8">
+                            <div class="section-header">
+                                <h3><fmt:message key="contact"/></h3>
                             <p>Call us when you need</p>
                         </div>
 

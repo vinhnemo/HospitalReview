@@ -22,6 +22,7 @@
         <meta content="" name="keywords">
         <meta content="" name="description">
         <title>Doctor Strange | Hospital Review Website</title>
+        <link rel="icon" type="image/png" href="img/Add.png">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -68,28 +69,32 @@
             } else if (session.getAttribute("admin") != null) {
                 admin = (Admin) session.getAttribute("admin");
             }
+
+            String error = (String) request.getAttribute("error");
         %>
-        
+
         <jsp:include page="header.jsp"></jsp:include>
-        
-        <!--end of header -->
 
-        <!--gogo-->
+            <!--end of header -->
+
+            <!--gogo-->
 
 
-        <main id="main">
-            <!-- De choi thoi -->
-            <div class="nothing-special-dark"></div>
-            <div class="container-fluid" style="height:800px;display: block;">
-                <div id="wrapper">
-                    <div id="sidebar-wrapper">
-                        <ul class="sidebar-nav nav">
-                            <li><h3>Options:</h3></li>
+            <main id="main">
+                <!-- De choi thoi -->
+                <div class="nothing-special-dark"></div>
+                <div class="container-fluid" style="height:800px;display: block;">
+                    <div id="wrapper">
+                        <div id="sidebar-wrapper">
+                            <ul class="sidebar-nav nav">
+                                <li><h3><fmt:message key="options"/></h3></li>
                             <li class="active"><a class="general" href="#general" data-toggle="tab"><i class="fa fa-gears"></i><fmt:message key="general"/></a></li>
                             <li><a class="edit" href="#edit" data-toggle="tab"><i class="fa fa-pencil"></i><fmt:message key="edityourprofile"/></a></li>
                             <li><a class="change" href="#change" data-toggle="tab"><i class="fa fa-key"></i><fmt:message key="changepassword"/></a></li>
+                                    <%if (admin == null) {%>
                             <li><a class="bookmark" href="#bookmark" data-toggle="tab"><i class="fa fa-bookmark"></i><fmt:message key="bookmark"/></a></li>
                             <li><a class="other" href="#other" data-toggle="tab"><i class="fa fa-angle-double-right"></i><fmt:message key="other"/></a></li>
+                                    <% }%>
                         </ul>
                     </div>
                     <div class="page-content-wrapper">
@@ -103,7 +108,8 @@
                                                     <div class="col-md-12 col-sm-12">
                                                         <div class="user">
                                                             <div class="user-information">
-                                                                <div class="userhead"><fmt:message key="personalinformation"/></div><br> 
+                                                                <div class="userhead"><fmt:message key="personalinformation"/></div><br>
+                                                                <% if (patient != null) {%>
                                                                 <table>
                                                                     <tr><td><div class="userinfo"><fmt:message key="name"/>: </div></td><td> <div class="userinfo-text"><%= patient.getFname() + " " + patient.getLname()%></div></td></tr>
                                                                     <tr><td><div class="userinfo"><fmt:message key="email"/>: </div></td><td> <div class="userinfo-text"><%= patient.getEmail()%></div></td></tr>
@@ -112,6 +118,12 @@
                                                                     <tr><td><div class="userinfo"><fmt:message key="insurancenumber"/>: </div></td><td> <div class="userinfo-text">046556065</div></div></td></tr>
                                                                     <tr><td><div class="userinfo"><fmt:message key="language"/> :</div></td><td> <div class="userinfo-text"><%= patient.getLang()%></div></div></td></tr>
                                                                 </table>
+                                                                <% }
+                                                                    if (admin != null) {%>
+                                                                <table>
+                                                                    <tr><td><div class="userinfo"><fmt:message key="email"/>: </div></td><td> <div class="userinfo-text"><%= admin.getEmail()%></div></td></tr>
+                                                                </table>
+                                                                <% }%>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -125,11 +137,13 @@
                                                         <div class="user">
                                                             <div class="user-information">
                                                                 <div class="userhead"><fmt:message key="edityourprofile"/></div><br>
-                                                                <form class="change" action="patient" method="POST">
+                                                                <% if (patient != null) {%>
+                                                                <form class="change" action="profile" method="POST">
                                                                     <table>
                                                                         <!--use value=user profile trong db -->
-                                                                        <tr><td><div class="userinfo"><fmt:message key="name"/>: </div></td><td><input class="form-change" type="text" name="fname" value="<%= patient.getFname() + " " + patient.getLname()%>"></td></tr>
-                                                                        <tr><td><div class="userinfo"><fmt:message key="email"/>: </div></td><td><input class="form-change" type="email" name="email" value="<%= patient.getEmail()%>"></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="firstname"/>: </div></td><td><input class="form-change" type="text" name="fname" value="<%= patient.getFname()%>"></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="lastname"/>: </div></td><td><input class="form-change" type="text" name="lname" value="<%= patient.getLname()%>"></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="email"/>: </div></td><td><input class="form-change" value="<%= patient.getEmail()%>" disabled></td></tr>
                                                                         <tr><td><div class="userinfo"><fmt:message key="gender"/>: </div></td>
                                                                             <td>                        
                                                                                 <select class="form-change" name="gender">
@@ -141,12 +155,28 @@
                                                                         </tr>
                                                                         <tr><td><div class="userinfo"><fmt:message key="address"/>: </div></td><td><input class="form-change" type="text" name="address" value="<%= patient.getAddress()%>"></td></tr>
                                                                         <tr><td><div class="userinfo"><fmt:message key="insurancenumber"/>: </div></td><td><input class="form-change" type="text" name="z" value="046556065"></td></tr>
-                                                                        <tr><td><div class="userinfo"><fmt:message key="language"/>: </div></td><td><input class="form-change" type="text" name="language" value="<%= patient.getLang()%>"></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="language"/>: </div></td>
+                                                                            <td>                        
+                                                                                <select class="form-change" name="language">
+                                                                                    <%
+                                                                                        String lang = patient.getLang(), en = "", vi = "";
+                                                                                        if (lang.equals("en_US")) {
+                                                                                            en = "selected";
+                                                                                        } else {
+                                                                                            vi = "selected";
+                                                                                        }
+                                                                                    %>
+                                                                                    <option value="en_US" <%=en%>>English</option>
+                                                                                    <option value="vi_VN" <%=vi%>>Tiếng Việt</option>
+                                                                                </select>
+                                                                            </td>
+                                                                        </tr>
                                                                     </table>
                                                                     <input class="save" type="hidden" value="<%= patient.getID()%>" name="id"> 
                                                                     <input class="save" type="submit" value="Save change" name="action"> 
 
                                                                 </form>
+                                                                <% }%>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -160,15 +190,15 @@
                                                         <div class="user">
                                                             <div class="user-information">
                                                                 <div class="userhead"><fmt:message key="changepassword"/></div><br>
-                                                                <form class="change" action="" method="">
+                                                                <form class="change" action="profile" method="POST">
                                                                     <table>
                                                                         <!--use value=user profile trong db -->
-                                                                        <tr><td><div class="userinfo"><fmt:message key="currentpassword"/>: </div></td><td><input class="form-change" type="password" name="password" placeholder="Your Current Password"></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="currentpassword"/>: </div></td><td><input class="form-change" type="password" name="oldpass" placeholder="Your Current Password"></td></tr>
                                                                         <tr><td><div class="userinfo"><fmt:message key="newpassword"/>: </div></td><td><input class="form-change" type="password" name="password" placeholder="Input New Password"></td></tr>             
-                                                                        <tr><td><div class="userinfo"><fmt:message key="confirmnewpassword"/>: </div></td><td><input class="form-change" type="password" name="password" placeholder="Confirm New Password"></td></tr>
+                                                                        <tr><td><div class="userinfo"><fmt:message key="confirmnewpassword"/>: </div></td><td><input class="form-change" type="password" name="password2" placeholder="Confirm New Password"></td></tr>
                                                                         <tr><td></td><td><div class="validate-new-password"></div></td></tr>
                                                                     </table>
-                                                                    <input class="save" type="submit" value="Confirm"> 
+                                                                    <input class="save" name="action" type="submit" value="Change Password"> 
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -181,45 +211,49 @@
                                                 <div class="row" style="">             
                                                     <div class="col-md-12 col-sm-12">
                                                         <div class="user">
+                                                            <% if (patient != null) {%>
                                                             <div class="user-information">
                                                                 <div class="userhead"><fmt:message key="yourfavoritedoctor"/></div><br>
-                                                                <% ArrayList<Doctor> listOfDoctor = new DoctorDAO().getAllDoctorBookmark(1);
-                                                                        for (int i = 0; i < listOfDoctor.size(); i++) {%>
+                                                                <%
+                                                                    ArrayList<Doctor> listOfDoctor = DoctorDAO.getAllDoctorBookmark(patient.getID());
+                                                                    for (Doctor d : listOfDoctor) {%>
                                                                 <table>
                                                                     <!--use value=user profile trong db -->
                                                                     <tr>
-                                                                        <td><a target="_blank" href="sdsad"><%=listOfDoctor.get(i).getFname()%>&nbsp;<%=listOfDoctor.get(i).getLname()%> </td>
+                                                                        <td><a target="_blank" href="doctor?action=viewpro&id_doctor=<%=d.getID()%>"><%=d.getFname()%>&nbsp;<%=d.getLname()%> </a></td>
                                                                         <td>
                                                                             <form method="POST" action="controlBookmark">
-                                                                                <input type="hidden" name="pID" value="1">
-                                                                                <input type="hidden" name="dID" value="<%=listOfDoctor.get(i).getID()%>">
-                                                                                <button class="remove" value="removebookmarkdoctor" name="action">Remove </button><hr>
+                                                                                <input type="hidden" name="pID" value="<%=patient.getID()%>">
+                                                                                <input type="hidden" name="dID" value="<%=d.getID()%>">
+                                                                                <button class="remove" value="removebookmarkdoctor" name="action">Remove</button><hr>
                                                                             </form>
 
                                                                         </td>
                                                                     </tr>
 
                                                                 </table>
-                                                                <%}%>
+                                                                <% }%>
                                                             </div>
                                                             <div class="user-information">
                                                                 <div class="userhead"><fmt:message key="yourfavoritehospital"/></div><br>
-                                                                <% ArrayList<Hospital> listOfHospital = new HospitalDAO().getAllHospitalBookmark(1);
-                                                                        for (int i = 0; i < listOfHospital.size(); i++) {%>
+                                                                <%
+                                                                    ArrayList<Hospital> listOfHospital = new HospitalDAO().getAllHospitalBookmark(patient.getID());
+                                                                    for (Hospital h : listOfHospital) {%>
                                                                 <table>
                                                                     <!--use value=user profile trong db -->
-                                                                    <td><a target="_blank" href="sdsad"><%=listOfHospital.get(i).getName()%> </td>
+                                                                    <td><a target="_blank" href="hospital?action=viewprohos&id_hospital=<%=h.getID()%>"><%=h.getName()%> </a></td>
                                                                     <td>
                                                                         <form method="POST" action="controlBookmark">
-                                                                            <input type="hidden" name="pID" value="1">
-                                                                            <input type="hidden" name="hID" value="<%=listOfHospital.get(i).getID()%>">
-                                                                            <button class="remove" value="removebookmarkhospital" name="action">Remove </button><hr>
+                                                                            <input type="hidden" name="pID" value="<%=patient.getID()%>">
+                                                                            <input type="hidden" name="hID" value="<%=h.getID()%>">
+                                                                            <button class="remove" value="removebookmarkhospital" name="action">Remove</button><hr>
                                                                         </form>
 
                                                                     </td>
                                                                 </table> 
-                                                                <%}%>
+                                                                <% }%>
                                                             </div>
+                                                            <% }%>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -231,10 +265,12 @@
                                                     <div class="col-md-12 col-sm-12">
                                                         <div class="user">
                                                             <div class="user-information">
+                                                                <% if (patient != null) {%>
                                                                 <div class="userhead"><fmt:message key="deactivethisaccount"/></div>
-                                                                <form class="change" action="" method="">
-                                                                    <input class="save" type="submit" value="Deactive">
+                                                                <form class="change" action="profile" method="POST">
+                                                                    <input class="save" type="submit" value="Deactive" name="action">
                                                                 </form>
+                                                                <% }%>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -338,6 +374,13 @@
 
         <script src="js/main.js"></script>
         <script src="js/modal.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+            <% if (error != null) {%>
+                alert("<%=error%>");
+            <% }%>
+            });
+        </script>
     </body>
 </html>
 

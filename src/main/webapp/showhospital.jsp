@@ -21,6 +21,7 @@
         <meta content="" name="keywords">
         <meta content="" name="description">
         <title>Doctor Strange | Hospital Review Website</title>
+        <link rel="icon" type="image/png" href="img/Add.png">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -31,18 +32,6 @@
         <link rel="stylesheet" href="lib/form/sidebar.css">
         <link rel="stylesheet" href="lib/form/form.css">
         <script src="lib/modernizer/modernizr-2.6.2.min.js"></script>
-        <meta charset="utf-8">
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <meta content="" name="keywords">
-        <meta content="" name="description">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
-        <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-        <link href="lib/animate/animate.min.css" rel="stylesheet">
-        <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-        <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
         <link rel="stylesheet" href="lib/form/form.css">
     </head>
 
@@ -67,21 +56,22 @@
             }
             if (session.getAttribute("patient") != null) {
                 patient = (Patient) session.getAttribute("patient");
+
             } else if (session.getAttribute("admin") != null) {
                 admin = (Admin) session.getAttribute("admin");
             }
 
             HospitalDAO hosDAO = new HospitalDAO();
             List<Hospital> listhospital = (ArrayList<Hospital>) session.getAttribute("hospitallist");
-
+            HashMap<Integer, Double> map = (HashMap<Integer, Double>) session.getAttribute("distance");
         %>
         <jsp:include page="header.jsp"></jsp:include>
-        <!--end of header -->
-        <main id="main">
-            <!-- De choi thoi -->
-            <div class="nothing-special-dark"></div>
-            <div class="search-field">
-                <h4> <%= listhospital.size()%> <fmt:message key="hospitalfound"/> </h4>
+            <!--end of header -->
+            <main id="main">
+                <!-- De choi thoi -->
+                <div class="nothing-special-dark"></div>
+                <div class="search-field">
+                    <h4> <%= listhospital.size()%> <fmt:message key="hospitalfound"/> </h4>
             </div>
             <!-- !! -->
             <section class="card-section-imagia">
@@ -144,8 +134,9 @@
                                                 <div class="content-imagia">
                                                     <h3 class="name-imagia"><%= h.getName()%> </h3>
                                                     <p class="subtitle-imagia"><%= h.getAddress()%></p> <hr>
-                                                    <div id="location"><i class="fa fa-map-marker"></i> 1822km </div>
-
+                                                    <% if (session.getAttribute("patient") != null) {%>
+                                                    <div id="location"><i class="fa fa-map-marker"></i> <%= map.get(h.getID())%> </div>
+                                                    <% }%>
                                                     <div id="degree"> <fmt:message key="website"/> : <%= h.getWebsite()%></div>
                                                 </div>
                                                 <div class="footer-imagia"><span><i class="fa fa-plus"></i> <fmt:message key="moreinfor"/></span></div>
@@ -162,7 +153,6 @@
                                                 <div class="footer-imagia">
                                                     <div class="text-center">
                                                         <input type="hidden" name="id_doctor" value="" >
-                                                        <input class="card-button" type="submit" value="Make Appointment">
                                                     </div>
                                                     <div class="social-imagia text-center"><a href="/hospital?action=viewprohos&id_hospital=<%= h.getID()%>">View Profile</a></div>
                                                 </div>

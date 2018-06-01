@@ -22,6 +22,7 @@
         <meta content="" name="keywords">
         <meta content="" name="description">
         <title>Doctor Strange | Hospital Review Website</title>
+        <link rel="icon" type="image/png" href="img/Add.png">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -52,10 +53,6 @@
             }
             if (session.getAttribute("patient") != null) {
                 patient = (Patient) session.getAttribute("patient");
-        %>
-        <fmt:setLocale value="<%=patient.getLang()%>" scope="session"/>
-        <fmt:setBundle basename="text" />
-        <%
             } else if (session.getAttribute("admin") != null) {
                 admin = (Admin) session.getAttribute("admin");
             }
@@ -512,9 +509,9 @@
                                 </p>
 
                                 <div class="social-links">
-                                    <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-                                    <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-                                    <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                                    <a href="https://twitter.com/drstrange" class="twitter"><i class="fa fa-twitter"></i></a>
+                                    <a href="https://www.facebook.com/DoctorStrangeOfficial/" class="facebook"><i class="fa fa-facebook"></i></a>
+                                    <a href="https://www.instagram.com/p/BjXOzFogTcF/?tagged=doctorstrange" class="instagram"><i class="fa fa-instagram"></i></a>
                                     <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
                                     <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
                                 </div>

@@ -37,11 +37,10 @@ CREATE TABLE `token` (
     DROP TABLE IF EXISTS `admin`;
     CREATE TABLE `admin` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(45) NOT NULL,
   `email` varchar(150) NOT NULL,
   `password` varchar(150) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `admin_uindex` (`username`, `email`)
+  UNIQUE KEY `admin_uindex` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- --------------------------------------------------------
     -- Table Doctor
@@ -152,20 +151,7 @@ CREATE TABLE `doctorreview` (
 -- ----------------------------------
 -- ------------------------------------------------------
 -- ------------------------------------------------------
--- -------------- Database Doctor---------------------
-INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Linh', 'Nguyen', 'Female', 'PhD', '1', 'Dermatology', '4', 'Vietnamese');
-INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Vu', 'Long', 'Male', 'Masters', '0', 'Cardiology', '6', 'English');
-INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Duyet', 'Pham', 'Male', 'Masters', '0', 'Otolaryngology', '4', 'English, Vietnamese');
-INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Anh', 'Ha', 'Female', 'PhD', '1', 'Hematology', '2', 'English');
-INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Tien', 'Tran', 'Male', 'Masters', '0', 'Psychiatry', '9', 'English, Vietnamese');
-INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Trinh', 'Phan', 'Female', 'Masters', '0', 'Neurosurgery', '6', 'English');
-INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Vinh', 'Do', 'Male', 'PhD', '1', 'Infectious Disease', '3', 'Vietnamese');
-INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Sinh', 'Nguyen', 'Male', 'Masters', '0', 'Psychology', '1', 'English');
-INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Hue', 'Nguyen', 'Female', 'Masters', '0', 'Rheumatology', '6', 'English, Vietnamese');
-INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Hung', 'Phan', 'Male', 'Masters', '1', 'Otolaryngology', '2', 'English');
-INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Anh', 'Vu', 'Female', 'PhD', '0', 'Gastroenterology', '6', 'Vietnamese');
-INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Lan', 'Tra', 'Male', 'Masters', '0', 'Obstetrics', '4', 'English, Vietnamese');
-INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Toan', 'Duong', 'Male', 'Masters', '1', 'Pediatrics', '6', 'English');
+-- -------------- 
 -- ------------------------------------------------------
 -- -------------- ---------------------
 CREATE TABLE `coordinate` (
@@ -176,8 +162,168 @@ CREATE TABLE `coordinate` (
   PRIMARY KEY (`c_id`),
   KEY `h_id` (`h_id`),
   CONSTRAINT `coordinate_ibfk_1` FOREIGN KEY (`h_id`) REFERENCES `hospital` (`h_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+
+CREATE TABLE `speciality` (
+  `s_id` int(11) NOT NULL AUTO_INCREMENT,
+  `specialty` varchar(50) NOT NULL,
+  `specific_specialty` varchar(50) NOT NULL,
+  PRIMARY KEY (`s_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 -- ------------------------------------------------------
 -- ----------------------------------
 -- ------------------------------------------------------
 -- -----------------------------------------------
+-- ----------Database Patient---------------------
+INSERT INTO `patient` (`p_id`, `p_fname`, `p_lname`, `p_gender`, `email`, `password`, `p_address`, `languages`, `status`) VALUES ('1', 'Pham', 'Duyet', 'male', 'duyetphamm@gmail.com', '$2a$10$fDFeaiMySVovHyCxOdty9OsHey93mfDjZBngIByCE1S0oUM3prS5y', 'Tran Cao Van', 'en_US', 'active');
+INSERT INTO `patient` (`p_id`, `p_fname`, `p_lname`, `p_gender`, `email`, `password`, `p_address`, `languages`, `status`) VALUES ('2', 'Phan', 'Hung', 'male', 'dtpm7777777@gmail.com', '$2a$10$fDFeaiMySVovHyCxOdty9OsHey93mfDjZBngIByCE1S0oUM3prS5y', 'Bui Thi Xuan', 'en_US', 'active');
+
+-- ------------------------------------------------------
+-- ----------------------------------
+-- ------------------------------------------------------
+-- -----------------------------------------------
+-- ----------Database Doctor---------------------
+INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Hong Hoa', 'Dang', 'Female', 'phD', '1', 'Osteopathy', '8AM-4PM', 'Vietnamese, English');
+INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Vang Thuong', 'Nguyen', 'Male', 'Professor', '0', 'Gastrointestinal', '9AM-3PM', 'Vietnamese, English');
+INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Thi THu Hien', 'Do', 'Female', 'Masters', '1', 'Dermatology', '10AM-4PM', 'English');
+INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Vu', 'Nguyen', 'Male', 'phD', '0', 'Neurological', '8AM-11AM', 'Vietnamese');
+INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Danh Hoa', 'Nguyen', 'Male', 'phD', '0', 'Rheumatology', '1PM-5PM', 'Vietnamese, English');
+INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Quoc Tuan', 'Tran', 'Male', 'Masters', '1', 'Hematology', '8AM-11AM', 'English');
+INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Quang Binh', 'Truong', 'Male', 'Professor', '1', 'Psychiatry', '8AM-11AM', 'Vietnamese, English');
+INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Anh Tuan ', 'Ho', 'Male', 'phD', '0', 'Infectious Disease', '1PM-5PM', 'Vietnamese, English');
+INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Minh Tuan', 'Do', 'Male', 'Masters', '0', 'Cardiology', '1PM-5PM', 'Vietnamese');
+INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Kim Thanh', 'Do', 'Male', 'phD', '0', 'Rheumatology', '9AM-12PM', 'Vietnamese, English');
+INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Hien', 'Bui', 'Male', 'phD', '1', 'Gastrointestinal', '10AM-3PM', 'Vietnamese');
+INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Thi Thanh', 'Nguyen', 'Female', 'Bachelors', '0', 'Hematology', '8AM-5PM', 'Vietnamese, English');
+INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Thanh Tu', 'Tran', 'Female', 'Professor', '0', 'Obstetrics', '8AM-4PM', 'Vietnamese');
+INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Tien Duc', 'Cao', 'Male', 'Professor', '1', 'Psychology', '9AM-2PM', 'Vietnamese');
+INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Hoang Kiem', 'Ha', 'Male', 'Professor', '1', 'Psychiatry', '1PM-5PM', 'English');
+INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Bach', 'Nguyen', 'Male', 'phD', '0', 'Otolaryngology', '9AM-2PM', 'English');
+INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Ngoc Lan', 'Do', 'Female', 'Bachelor', '0', 'Gastroenterology', '10AM-3PM', 'Vietnamese, English');
+INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Huu Thinh', 'Cao', 'Male', 'Masters', '1', 'Dermatology', '8AM-11AM', 'Vietnamese');
+INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Dinh Toan', 'Duong', 'Male', 'phD', '1', 'Rheumatology', '9AM-2PM', 'Vietnamese, English');
+INSERT INTO `doctor` (`d_fname`, `d_lname`, `d_gender`, `d_degree`, `d_insurance`, `d_speciality`, `d_hour`, `languages`) VALUES ('Ngoc', 'Ha', 'Female', 'Masters', '0', 'Gastroenterology', '8AM-2PM', 'German');
+
+-- ------------------------------------------------------
+-- ----------------------------------
+-- ------------------------------------------------------
+-- -----------------------------------------------
+-- ----------Database Hospital---------------------
+INSERT INTO `hospital` (`h_name`, `h_address`, `h_website`, `adname`, `ademail`) VALUES ('Bach Mai', '78 Giai Phong, Phuong Mai Ward, Dong Da District, Ha Noi', 'http://bachmai.gov.vn', 'Duyet Pham', 'duyetpham@gmail.com');
+INSERT INTO `hospital` (`h_name`, `h_address`, `h_website`, `adname`, `ademail`) VALUES ('Cho Ray', '201B Nguyen Chi Thanh, Ward 12 ,District 5,Ho Chi Minh City', 'http://choray.vn/', 'Hung Cao', 'bvchoray@choray.vn');
+INSERT INTO `hospital` (`h_name`, `h_address`, `h_website`, `adname`, `ademail`) VALUES ('Y Duoc Ha Noi', '1 Ton That Tung,Kim Lien Ward,Dong Da District, Ha Noi', 'http://www.benhviendaihocyhanoi.com/', 'Tien Tran', 'bvdhyd@umc.edu.vn');
+INSERT INTO `hospital` (`h_name`, `h_address`, `h_website`, `adname`, `ademail`) VALUES ('Y Duoc Ho Chi Minh', '215 Hong Bang, Ward 11, District 5, Ho Chi Minh City', 'http://www.bvdaihoc.com.vn/', 'Hung Phan', 'hungphan6969@gmail.com');
+INSERT INTO `hospital` (`h_name`, `h_address`, `h_website`, `adname`, `ademail`) VALUES ('FV Hospital', '6 Nguyen Luong Bang,Tan Phu Ward,District 7, Ho Chi Minh City', 'http://fvhospital.com/', 'Sinh Nguyen', 'fapvn@fapvn.vn');
+INSERT INTO `hospital` (`h_name`, `h_address`, `h_website`, `adname`, `ademail`) VALUES ('115', '527 Su Vanh Hanh, Ward 12, District 10, Ho Chi Minh City', 'http://benhvien115.com.vn/', 'Vinh Pham', '115@gmail.com');
+INSERT INTO `hospital` (`h_name`, `h_address`, `h_website`, `adname`, `ademail`) VALUES ('103', '261 Phung Hung.Phuc La Ward,Ha Dong District, Ha Noi', 'http://benhvien103.vn/', 'Son Nguyen', 'bv103@gmail.ocm');
+INSERT INTO `hospital` (`h_name`, `h_address`, `h_website`, `adname`, `ademail`) VALUES ('Tu Du', '284 Cong Quynh, Pham Ngu Lao Ward,Distric 1,Ho Chi Minh City', 'http://tudu.com.vn/', 'Le Duc', 'tudu@tuduhos.com');
+INSERT INTO `hospital` (`h_name`, `h_address`, `h_website`, `adname`, `ademail`) VALUES ('Viet Duc', '40 Trang Thi, Hang Bong Ward,Hoan Kiem District ,Ha Noi', 'http://benhvienvietduc.org/', 'Bao Tran', 'vietduc@vietducvn.com');
+
+---------------Database Specialty
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('1', 'Gastroenterology', 'Gastrointestinal');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('2', 'Gastroenterology', 'Dietician');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('3', 'Gastroenterology', 'Endoscopy');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('4', 'Gastroenterology', 'Digestion');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('5', 'General Surgery', 'Rheumatology');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('6', 'General Surgery', 'Dermatology');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('7', 'General Surgery', 'Physiotherapy');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('8', 'Obstetric', 'Obstetric');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('9', 'Obstetric', 'Fertility specialist');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('10', 'General Internal', 'Cardiology');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('11', 'General Internal', 'Gastrointestinal');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('12', 'General Internal', 'Endoscopy');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('13', 'General Internal', 'Nephrology');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('14', 'General Internal', 'Pulmonology');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('15', 'General Internal', 'Infectious Disease');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('16', 'Neurology', 'Neurosurgery');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('17', 'Neurology', 'Neurological');
+INSERT INTO `hospital`.`speciality` (`s_id`, `specialty`, `specific_specialty`) VALUES ('18', 'Psychiatrist', 'Psychiatrist');
+
+-- ------------------------------------------------------
+-- ----------------------------------
+-- ------------------------------------------------------
+-- -----------------------------------------------
+-- ----------Doctor Review---------------------
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('1', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('2', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('3', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('4', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('5', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('6', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('7', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('8', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('9', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('10', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('11', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('12', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('13', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('14', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('15', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('16', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('17', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('18', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('19', '1');
+INSERT INTO `doctorreview` (`d_id`, `allowReview`) VALUES ('20', '1');
+
+-- ------------------------------------------------------
+-- ----------------------------------
+-- ------------------------------------------------------
+-- -----------------------------------------------
+-- ----------Comment---------------------
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('1', 'good', '1', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('2', 'bad', '2', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('3', 'good', '3', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('4', 'bad', '4', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('5', 'good', '5', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('6', 'bad', '6', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('7', 'good', '7', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('8', 'bad', '8', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('9', 'good', '9', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('10', 'bad', '10', '1');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('11', 'good', '11', '2');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('12', 'good', '12', '2');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('13', 'bad', '13', '2');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('14', 'good', '14', '2');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('15', 'good', '15', '2');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('16', 'bad', '16', '2');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('17', 'good', '17', '2');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('18', 'good', '18', '2');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('19', 'bad', '19', '2');
+INSERT INTO `comment` (`c_id`, `c_comment`, `d_id`, `p_id`) VALUES ('20', 'good', '20', '2');
+
+-- ------------------------------------------------------
+-- ----------------------------------
+-- ------------------------------------------------------
+-- -----------------------------------------------
+-- ----------Rate---------------------
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('1', '1', '1');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('2', '2', '2');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('3', '3', '3');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('4', '4', '4');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('5', '5', '5');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('6', '1', '6');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('7', '2', '7');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('8', '3', '8');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('9', '4', '9');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('10', '5', '10');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('11', '1', '11');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('12', '2', '12');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('13', '3', '13');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('14', '4', '14');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('15', '5', '15');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('16', '1', '16');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('17', '2', '17');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('18', '3', '18');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('19', '4', '19');
+INSERT INTO `hospital`.`rate` (`r_id`, `r_rate`, `d_id`) VALUES ('20', '5', '20');
+
+
+
+
+

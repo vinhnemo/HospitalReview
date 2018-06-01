@@ -12,14 +12,14 @@ package Calculate;
 public class Location {
 
     private String address;
-    private float lat;
+    private String lat;
 
-    private float lng;
+    private String lng;
 
     public Location() {
     }
 
-    public Location(String address, float lat, float lng) {
+    public Location(String address, String lat, String lng) {
         this.address = address;
         this.lat = lat;
         this.lng = lng;
@@ -33,22 +33,22 @@ public class Location {
         this.address = address;
     }
 
-    public float getLat() {
+    public String getLat() {
         return lat;
     }
 
-    public void setLat(float lat) {
+    public void setLat(String lat) {
         this.lat = lat;
     }
 
-    public float getLng() {
+    public String getLng() {
         return lng;
     }
 
-    public void setLng(float lng) {
+    public void setLng(String lng) {
         this.lng = lng;
     }
 
-    
+   
 
 }

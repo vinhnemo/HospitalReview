@@ -4,7 +4,7 @@
     Author     : TGMaster
 --%>
 
-<%@page import="DTO.*, DAO.*"%>
+<%@page import="DTO.*, DAO.*, javax.servlet.http.HttpUtils.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -17,6 +17,16 @@
 <!DOCTYPE html>
 <html lang="${language}">
     <head>
+        <style>
+            .btn-find {
+                border-bottom-left-radius: 25px !important;
+                border-bottom-right-radius: 25px !important;
+                border-top-left-radius: 25px !important;
+                border-top-right-radius: 25px !important;
+                border-width:2px;
+                font-weight: bold !important;
+            }
+        </style>
         <link href="css/modal.css" rel="stylesheet">
     </head>
     <%
@@ -35,6 +45,10 @@
         }
         if (session.getAttribute("patient") != null) {
             patient = (Patient) session.getAttribute("patient");
+    %>
+    <fmt:setLocale value="<%=patient.getLang()%>" scope="session"/>
+    <fmt:setBundle basename="text" />
+    <%
         } else if (session.getAttribute("admin") != null) {
             admin = (Admin) session.getAttribute("admin");
         }
@@ -47,37 +61,57 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children menu-active"><a href="/doctor"><fmt:message key="finddoc"/></a>
+                        <li class="menu-has-children"><a href="/hospital"><fmt:message key="findhospital"/></a>
                             <ul>
                                 <li>
                                     <div class="dropdown-form">
-                                        <form action="doctor" method="POST">
-                                            <h3><fmt:message key="finddoc"/></h3>
-                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="<fmt:message key="searchdotorbyname"/>"/>                               
-                                            <input class="dropdown-button" type="submit" name="action" value="Search Doctor">
+                                        <form action="hospital" method="POST">
+                                            <h4><fmt:message key="findhospital"/></h4>
+                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="<fmt:message key="searchhospitalbyname"/>"/>                               
+                                            <button class="btn btn-outline-success btn-lg btn-find mr-md-4 mr-sm-0 px-5 mb-3 text-uppercase" type="submit" name="action" value="Search Hospital"><i class="fa fa-search"></i> <fmt:message key="searchbtn"/></button>
                                         </form>
                                     </div>
                                 </li>
                             </ul> 
                         </li>
-                        <li><a href="#"><fmt:message key="appt"/></a></li>
-                        <li class="menu-has-children"><a href=""><fmt:message key="language"/></a>
+                        <li class="menu-has-children"><a href="/doctor"><fmt:message key="finddoc"/></a>
                             <ul>
-                                <li><a href="home.jsp?language=en_US">English</a></li>
-                                <li><a href="home.jsp?language=vi_VN">Tiếng Việt</a></li>
+                                <li>
+                                    <div class="dropdown-form">
+                                        <form action="doctor" method="POST">
+                                            <h4><fmt:message key="finddoc"/></h4>
+                                            <input type="text" name="search" class="form-control form-search" id="name" placeholder="<fmt:message key="searchdotorbyname"/>"/>                               
+                                            <button class="btn btn-outline-success btn-lg btn-find mr-md-4 mr-sm-0 px-5 mb-3 text-uppercase" type="submit" name="action" value="Search Doctor"><i class="fa fa-search"></i> <fmt:message key="searchbtn"/></button>
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul> 
+                        </li>
+                        <li><a href="appointmentRequest.jsp"><fmt:message key="appt"/></a></li>
+                        <li class="menu-has-children"><a href="#"><fmt:message key="language"/></a>
+                            <ul>
+                                <li><a href="<%= javax.servlet.http.HttpUtils.getRequestURL(request)%>?language=en_US">English</a></li>
+                                <li><a href="<%= javax.servlet.http.HttpUtils.getRequestURL(request)%>?language=vi_VN">Tiếng Việt</a></li>
                             </ul>
                         </li>
                         <li><a href="contact.jsp"><fmt:message key="contact"/></a></li>
 
                         <% if (patient != null) {%>
-                        <li class="menu-has-children"><a href=""><fmt:message key="greeting"/>, <%out.print(patient.getFname() + " " + patient.getLname());%></a>
+                        <li class="menu-has-children menu-active"><a href=""><fmt:message key="greeting"/>, <%=patient.getFname()%> <%=patient.getLname()%></a>
                             <ul>
-                                <li><a href="profileUser.jsp"><fmt:message key="yourprofile"/></a></li>
+                                <li><a href="profile"><fmt:message key="yourprofile"/></a></li>
                                 <li><a href="logout"><fmt:message key="signout"/></a></li>
                             </ul>
                         </li>
-                        <% } else {%>
-                        <li class="menu"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true" onclick="animeEffectIn()"><fmt:message key="signinup"/></a></li>
+                        <% } else if (admin != null) {%>
+                        <li class="menu-has-children menu-active"><a href=""><fmt:message key="greeting"/>, <%=admin.getEmail()%></a>
+                            <ul>
+                                <li><a href="profile"><fmt:message key="yourprofile"/></a></li>
+                                <li><a href="logout"><fmt:message key="signout"/></a></li>
+                            </ul>
+                        </li>
+                        <% } else { %>
+                        <li class="menu menu-active"><a href="#" data-toggle="modal" data-target="#myLogin" data-keyboard="true" onclick="animeEffectIn()"><fmt:message key="signinup"/></a></li>
                             <% }%>
 
                     </ul>
@@ -102,12 +136,12 @@
                                     <a href="home.jsp" class="logo">Doctor <span>STRANGE</span></a>
 
                                     <div class="heading">
-                                        <h2 class="effectAnime"><span id="heading"><fmt:message key="signup"/></span></h2>
+                                        <h2 class="effectAnime"><span id="heading">Sign Up</span></h2>
                                     </div>
 
                                     <div class="success-msg">
                                         <p><fmt:message key="loginsuccess"/></p>
-                                        <div class="success-btn"><a href="profileUser.jsp" class="profile"><fmt:message key="yourprofile"/></a></div>
+                                        <div class="success-btn"><a href="profile" class="profile"><fmt:message key="yourprofile"/></a></div>
                                         <div class="success-btn"><a href="home.jsp" class="btn-info"><fmt:message key="backtohomepage"/></a></div>
                                     </div>
                                 </div>
@@ -139,6 +173,7 @@
                                             <div class="CTA">
                                                 <input type="submit" value="Login" name="action" id="login">
                                                 <a href="#" class="switch" id="registersw"><fmt:message key="imnew"/></a>
+                                                <a href="forgotPassword" class="link"><fmt:message key="forgotemailorpassword"/></a>
                                             </div>
                                         </form>
                                     </div><!-- End Login Form -->
@@ -188,6 +223,5 @@
             </div>
         </div>
 
-        <script src="js/modal.js"></script>
     </body>
 </html>

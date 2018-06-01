@@ -236,7 +236,7 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
 }
 
-#intro .btn-get-started {
+.btn-get-started {
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 16px;
@@ -250,7 +250,7 @@ h1, h2, h3, h4, h5, h6 {
   background: #18d26e;
 }
 
-#intro .btn-get-started:hover {
+.btn-get-started:hover {
   background: #fff;
   color: #18d26e;
 }

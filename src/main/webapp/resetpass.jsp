@@ -21,6 +21,7 @@
         <meta content="" name="keywords">
         <meta content="" name="description">
         <title>Doctor Strange | Hospital Review Website</title>
+        <link rel="icon" type="image/png" href="img/Add.png">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -41,10 +42,10 @@
         %>
         <jsp:include page="header.jsp"></jsp:include>
 
-        <main id="main">
-            <div class="login-dark">
-                <form class="reset" action="#" method="post" id="reset-form">
-                    <h3> <fmt:message key="newpassword"/> </h3>
+            <main id="main">
+                <div class="login-dark">
+                    <form class="reset" action="#" method="post" id="reset-form">
+                        <h3> <fmt:message key="newpassword"/> </h3>
                     <div class="i3"><i class="icon ion-ios-unlocked-outline"></i></div>
                     <div class="text"><fmt:message key="enterpassword"/> :</div>
                     <div class="form-group">
@@ -89,7 +90,9 @@
                             } else {
                                 $('#user-result').hide();
                                 alert(msg.text);
-                                setTimeout(function(){location.href="home.jsp";} , 5000); 
+                                setTimeout(function () {
+                                    location.href = "home.jsp";
+                                }, 5000);
                             }
                         });
                     }, 1000);
