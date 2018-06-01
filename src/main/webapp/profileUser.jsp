@@ -138,7 +138,7 @@
                                                             <div class="user-information">
                                                                 <div class="userhead"><fmt:message key="edityourprofile"/></div><br>
                                                                 <% if (patient != null) {%>
-                                                                <form class="change" action="patient" method="POST">
+                                                                <form class="change" action="profile" method="POST">
                                                                     <table>
                                                                         <!--use value=user profile trong db -->
                                                                         <tr><td><div class="userinfo"><fmt:message key="firstname"/>: </div></td><td><input class="form-change" type="text" name="fname" value="<%= patient.getFname()%>"></td></tr>
@@ -190,7 +190,7 @@
                                                         <div class="user">
                                                             <div class="user-information">
                                                                 <div class="userhead"><fmt:message key="changepassword"/></div><br>
-                                                                <form class="change" action="patient" method="POST">
+                                                                <form class="change" action="profile" method="POST">
                                                                     <table>
                                                                         <!--use value=user profile trong db -->
                                                                         <tr><td><div class="userinfo"><fmt:message key="currentpassword"/>: </div></td><td><input class="form-change" type="password" name="oldpass" placeholder="Your Current Password"></td></tr>
@@ -267,7 +267,7 @@
                                                             <div class="user-information">
                                                                 <% if (patient != null) {%>
                                                                 <div class="userhead"><fmt:message key="deactivethisaccount"/></div>
-                                                                <form class="change" action="patient" method="POST">
+                                                                <form class="change" action="profile" method="POST">
                                                                     <input class="save" type="submit" value="Deactive" name="action">
                                                                 </form>
                                                                 <% }%>

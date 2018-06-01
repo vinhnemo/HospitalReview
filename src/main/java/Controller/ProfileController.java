@@ -178,8 +178,11 @@ public class ProfileController extends HttpServlet {
                 }
             }
         } else if (admin != null) {
+            if (action == null) {
+                rd = sc.getRequestDispatcher("/profileUser.jsp");
+                rd.forward(request, response);
             // Change Password
-            if (action.equals("Change Password")) {
+            } else if (action.equals("Change Password")) {
                 String error = "";
                 String oldpass = request.getParameter("oldpass");
                 String pass = request.getParameter("password");
